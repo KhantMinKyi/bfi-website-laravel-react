@@ -6,7 +6,7 @@ function HeroBanner() {
                 className="bg-blue-950  py-10 ">
                 {/* <div className="wraper "> */}
                     <div className="grid grid-cols-12 gap-x-4 ">
-                        <div className="col-span-12 sm:col-span-6 md:col-span-4 col:col-span-12 mb-20 pl-4">
+                        <div className="col-span-12 sm:col-span-6 md:col-span-4 col:col-span-12 my-auto py-10 pl-4">
                             <div
                                 className="flex items-center justify-center md:mb-4 md:justify-center sm:mb-8 sm:flex-wrap sm:text-center col:block">
                                 <div>
@@ -25,7 +25,7 @@ function HeroBanner() {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-span-12 sm:col-span-6 md:col-span-4 col:col-span-12 mb-20 pl-4">
+                        <div className="col-span-12 sm:col-span-6 md:col-span-4 col:col-span-12  my-auto py-10 pl-4">
                             <div
                                 className="flex items-center justify-center md:mb-4 md:justify-center sm:mb-8 sm:flex-wrap sm:text-center col:block">
                                 <div>
@@ -44,7 +44,7 @@ function HeroBanner() {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-span-12 sm:col-span-6 md:col-span-4 col:col-span-12 mb-20 pl-4">
+                        <div className="col-span-12 sm:col-span-6 md:col-span-4 col:col-span-12  my-auto py-10 pl-4">
                             <div
                                 className="flex items-center justify-center  md:justify-center sm:flex-wrap sm:text-center col:block">
                                 <div>
