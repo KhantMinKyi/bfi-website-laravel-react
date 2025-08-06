@@ -22,13 +22,13 @@ export default ({ children }: FrondendLayoutProps) => {
 
         <React.Fragment>
             <header className="relative ">
-                <div className="absolute left-0 top-0 sm:hidden lg:block">
-                    <img src="assets/images/header-shape1.png" alt="" />
+                <div className="absolute left-24 top-4 sm:hidden lg:block">
+                    <img src="img/bfi_b.png" alt="" className='w-28 rotate-z-8 opacity-15'/>
                 </div>
-                <div className="absolute right-0 top-0   sm:hidden lg:block">
-                    <img src="assets/images/header-shape2.png" alt="" />
+                <div className="absolute right-20 top-4   sm:hidden lg:block">
+                    <img src="img/bfi_b.png" alt="" className=' w-44 -rotate-z-6 opacity-15'/>
                 </div>
-                <h1 className="hidden">section heading hidden</h1>
+                {/* <h1 className="hidden">section heading hidden</h1> */}
                 <div className="py-[0px] relative z-20">
                     <div className="wraper container mx-auto max-w-11/12 sm:max-w-9/12">
                         <div className="grid grid-cols-12 gap-4 items-center">
@@ -39,13 +39,13 @@ export default ({ children }: FrondendLayoutProps) => {
                             </div>
                             <div className=" col-span-12 lg:col-span-9">
                                 <div className="sm:flex  lg:justify-end justify-center flex-wrap hidden ">
-                                    <div className="mx-3 sm:flex lg:m-1 lg:mx-0 sm:mx-3 flex-col sm:text-center col:mb-4 pr-2">
+                                    <div className="mx-3   sm:flex text-left  pr-2">
                                         <div
-                                            className="w-12 h-12 leading-[48px] border-[2px] border-[#F7F6F1]
-                                     text-center rounded-full mr-2 sm:float-none sm:mx-auto sm:mb-1 sm:w-8 sm:h-8 sm:leading-8 col:mb-1">
+                                            className="sm:w-12 sm:h-12 sm:leading-[48px] border-[2px] border-[#F7F6F1]
+                                     text-center rounded-full mr-2 sm:float-none sm:mx-auto sm:mb-1 w-8 h-8 leading-8 col:mb-1">
                                             <i className="fi flaticon-phone-call  text-blue-500 sm:text-lg"></i>
                                         </div>
-                                        <div className="overflow-hidden ml-5 sm:ml-0">
+                                        <div className="overflow-hidden ml-5 ">
                                             <span
                                                 className="font-normal lg:text-base leading-4 text-green-500 mb-1 text-xs">Call
                                                 Us:</span>
@@ -53,31 +53,32 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 567 458 796 47</p>
                                         </div>
                                     </div>
-                                    <div className="mx-3 flex lg:m-1 lg:mx-0 sm:mx-3 sm:flex-col sm:text-center col:mb-4 pr-2">
+                                    <div className="mx-3   sm:flex text-left  pr-2">
                                         <div
-                                            className="w-12 h-12 leading-[48px] border-[2px] border-[#F7F6F1]
-                                     text-center rounded-full mr-2 sm:float-none sm:mx-auto sm:mb-1 sm:w-8 sm:h-8 sm:leading-8 col:mb-1">
-                                            <i className=" fi flaticon-email text-blue-500 sm:text-lg"></i>
+                                            className="sm:w-12 sm:h-12 sm:leading-[48px] border-[2px] border-[#F7F6F1]
+                                     text-center rounded-full mr-2 sm:float-none sm:mx-auto sm:mb-1 w-8 h-8 leading-8 col:mb-1">
+                                            <i className="fi flaticon-email  text-blue-500 sm:text-lg"></i>
                                         </div>
-                                        <div className="overflow-hidden ml-5 sm:ml-0">
+                                        <div className="overflow-hidden ml-5 ">
                                             <span
-                                                className="font-normal lg:text-base leading-4 text-green-500 mb-1 text-xs">E-mail
-                                                Now:</span>
-                                            <p className="text-[#232323] font-medium sm:text-sm leading-5 font-heading-font">
-                                                nutrey@gmail.com</p>
+                                                className="font-normal lg:text-base leading-4 text-green-500 mb-1 text-xs">Call
+                                                Us:</span>
+                                            <p className="text-[#232323] font-medium sm:text-sm leading-5 font-heading-font">00
+                                                567 458 796 47</p>
                                         </div>
                                     </div>
-                                    <div className="mx-3 flex lg:m-1 lg:mx-0 sm:mx-3 sm:flex-col sm:text-center col:mb-0 pr-2">
+                                    <div className="mx-3   sm:flex text-left  pr-2">
                                         <div
-                                            className="w-12 h-12 leading-[48px] border-[2px] border-[#F7F6F1]
-                                     text-center rounded-full mr-2 sm:float-none sm:mx-auto sm:mb-1 sm:w-8 sm:h-8 sm:leading-8 col:mb-1">
-                                            <i className=" fi flaticon-placeholder text-blue-500 sm:text-lg"></i>
+                                            className="sm:w-12 sm:h-12 sm:leading-[48px] border-[2px] border-[#F7F6F1]
+                                     text-center rounded-full mr-2 sm:float-none sm:mx-auto sm:mb-1 w-8 h-8 leading-8 col:mb-1">
+                                            <i className="fi flaticon-placeholder  text-blue-500 sm:text-lg"></i>
                                         </div>
-                                        <div className="overflow-hidden ml-5 sm:ml-0">
-                                            <span className="font-normal lg:text-base leading-4 text-green-500 mb-1 text-xs">Our
-                                                Location:</span>
-                                            <p className="text-[#232323] font-medium sm:text-sm leading-5 font-heading-font ">
-                                                Nagata Kundo, 82-A, USA.</p>
+                                        <div className="overflow-hidden ml-5 ">
+                                            <span
+                                                className="font-normal lg:text-base leading-4 text-green-500 mb-1 text-xs">Call
+                                                Us:</span>
+                                            <p className="text-[#232323] font-medium sm:text-sm leading-5 font-heading-font">00
+                                                567 458 796 47</p>
                                         </div>
                                     </div>
                                 </div>
