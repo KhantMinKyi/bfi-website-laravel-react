@@ -176,3 +176,10 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
+.font-base-font{
+font-family: "Roboto Flex", sans-serif;
+}
+
+.font-heading-font{
+  font-family: "Oswald", sans-serif;
+}
