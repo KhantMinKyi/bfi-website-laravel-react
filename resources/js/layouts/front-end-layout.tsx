@@ -1,7 +1,7 @@
 import AppLayoutTemplate from '@/layouts/app/app-sidebar-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import React, { useState, type ReactNode } from 'react';
+import React, { useEffect, useState, type ReactNode } from 'react';
 
 interface FrondendLayoutProps {
     children: ReactNode;
@@ -9,6 +9,7 @@ interface FrondendLayoutProps {
 
 export default ({ children }: FrondendLayoutProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -18,26 +19,43 @@ export default ({ children }: FrondendLayoutProps) => {
     const toggleSubMenu = (menu: string) => {
         setActiveSubMenu(activeSubMenu === menu ? null : menu);
     };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setTimeout(() => {
+                    setScrolled(true);
+                }, 100);
+            } else {
+                                setTimeout(() => {
+                    setScrolled(false);
+                }, 100);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
     return (
 
         <React.Fragment>
-            <header className="relative ">
-                <div className="absolute left-24 top-4 sm:hidden lg:block">
-                    <img src="img/bfi_b.png" alt="" className='w-28 rotate-z-8 opacity-15'/>
+            <header className={`  ${scrolled ? 'sticky top-4 z-50 ' : 'relative'} transition-all duration-300 ease-in-out   `}>
+                <div className={`absolute left-24 top-4  ${scrolled ? 'hidden' : 'sm:hidden lg:block'}`}>
+                    <img src="img/bfi_b.png" alt="" className='w-28 rotate-z-8 opacity-15' />
                 </div>
-                <div className="absolute right-20 top-4   sm:hidden lg:block">
-                    <img src="img/bfi_b.png" alt="" className=' w-44 -rotate-z-6 opacity-15'/>
+                <div className={`absolute right-20 top-4    ${scrolled ? 'hidden' : 'sm:hidden lg:block'} `}>
+                    <img src="img/bfi_b.png" alt="" className=' w-44 -rotate-z-6 opacity-15' />
                 </div>
                 {/* <h1 className="hidden">section heading hidden</h1> */}
-                <div className="py-[0px] relative z-20">
-                    <div className="wraper container mx-auto max-w-11/12 sm:max-w-9/12">
+                <div className={`py-[0px]  z-20 ${scrolled ? 'hidden' : 'block'} transition-all duration-300 ease-in-out `}>
+                    <div className=" mx-auto max-w-11/12 sm:max-w-9/12">
                         <div className="grid grid-cols-12 gap-4 items-center">
                             <div className="col-span-3 hidden lg:block  relative  top-16 left-5 z-20">
                                 <a href="index.html">
                                     <img src="img/bfi.png" className=' max-w-28' alt="" />
                                 </a>
                             </div>
-                            <div className=" col-span-12 lg:col-span-9">
+                            <div className={` col-span-12 lg:col-span-9  ${scrolled ? 'hidden' : 'block'}`}>
                                 <div className="sm:flex  lg:justify-end justify-center flex-wrap hidden ">
                                     <div className="mx-3   sm:flex text-left  pr-2">
                                         <div
@@ -86,92 +104,18 @@ export default ({ children }: FrondendLayoutProps) => {
                         </div>
                     </div>
                 </div>
-                <div className="wraper container mx-auto max-w-9/12 mt-4 sm:mt-0">
+                           {/* <div className="hidden lg:block  absolute -top-5 left-35 z-20">
+                                <a href="index.html">
+                                    <img src="img/bfi.png" className=' max-w-28' alt="" />
+                                </a>
+                            </div> */}
+                <div className=" mx-auto max-w-9/12 mt-4 sm:mt-0  ">
                     <div
                         className="flex items-center justify-between bg-blue-50 rounded-[5px] -mb-6 relative z-10 py-[10px]">
                         <div>
                             <div id="dl-menu" className="dl-menuwrapper ">
                                 <button className="dl-trigger px-4 py-2  border-gray-800 border-2 text-gray-800 lg:hidden rounded-xl text-xl ml-2 " onClick={toggleMenu}>  <i className='fa fa-solid fa-bars'></i> </button>
-                                <div
-                                    className={`overflow-hidden transition-all duration-500 ease-in-out ${menuOpen ? 'max-h-[1000px]' : 'max-h-0'
-                                        }`}
-                                >
-                                    <div
-                                        onClick={toggleMenu}
-                                        className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-500 ${menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-                                            }`}
-                                    ></div>
 
-
-                                    {/* Sidebar */}
-                                    <div
-                                        className={`fixed top-0 left-0 h-full w-72 bg-white shadow-xl transform transition-transform duration-500 z-50 ${menuOpen ? 'translate-x-0' : '-translate-x-full'
-                                            }`}
-                                    >
-                                        {/* Close Button */}
-                                        <button
-                                            onClick={toggleMenu}
-                                            className="absolute top-4 right-4 text-2xl font-bold text-gray-700"
-                                        >
-                                            ×
-                                        </button>
-
-                                        {/* Menu Items */}
-                                        <nav className="mt-16 p-6 space-y-4 font-heading-font uppercase text-gray-800">
-                                            {/* Home */}
-                                            <div>
-                                                <button
-                                                    onClick={() => toggleSubMenu('home')}
-                                                    className="w-full flex justify-between items-center py-2 text-left"
-                                                >
-                                                    Home
-                                                    <span>{activeSubMenu === 'home' ? '▲' : '▼'}</span>
-                                                </button>
-                                                <div
-                                                    className={`overflow-hidden transition-all duration-300 ${activeSubMenu === 'home' ? 'max-h-40' : 'max-h-0'
-                                                        }`}
-                                                >
-                                                    <ul className="ml-4 mt-2 space-y-4 text-sm text-gray-600">
-                                                        <li><a href="index.html">Home style 1</a></li>
-                                                        <li><a href="index-2.html">Home style 2</a></li>
-                                                        <li><a href="index-3.html">Home style 3</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            {/* About */}
-                                            <div>
-                                                <a href="about.html" className="block py-2">About</a>
-                                            </div>
-
-                                            {/* Pages */}
-                                            <div>
-                                                <button
-                                                    onClick={() => toggleSubMenu('pages')}
-                                                    className="w-full flex justify-between items-center py-2 text-left"
-                                                >
-                                                    Pages
-                                                    <span>{activeSubMenu === 'pages' ? '▲' : '▼'}</span>
-                                                </button>
-                                                <div
-                                                    className={`overflow-hidden transition-all duration-300 ${activeSubMenu === 'pages' ? 'max-h-40' : 'max-h-0'
-                                                        }`}
-                                                >
-                                                    <ul className="ml-4 mt-2 space-y-2 text-sm text-gray-600">
-                                                        <li><a href="team.html">Team</a></li>
-                                                        <li><a href="service.html">Service</a></li>
-                                                        <li><a href="faq.html">FAQ</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            {/* Contact */}
-                                            <div>
-                                                <a href="contact.html" className="block py-2">Contact</a>
-                                            </div>
-                                        </nav>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div>
@@ -185,9 +129,9 @@ export default ({ children }: FrondendLayoutProps) => {
                                 py-[30px] xl:px-[20px] px-[6px]
                                 text-[#14212b] block uppercase
                                 font-heading-font font-bold transition-all-all
-                                hover:text-[#ea7c08]
+                                hover:text-blue-800
                                 before:absolute before:left-0 before:top-0 before:w-full before:h-[4px]
-                                before:bg-[#ea7c08] before:content
+                                before:bg-blue-700 before:content
                                 before:opacity-0 before:invisible before:transition-all-all before:rounded-[3px]
                                 hover:before:opacity-100 hover:before:visible">Home</Link>
                                 </li>
@@ -196,9 +140,9 @@ export default ({ children }: FrondendLayoutProps) => {
                                 py-[30px] xl:px-[20px] px-[6px]
                                 text-[#14212b] block uppercase
                                 font-heading-font font-bold transition-all-all
-                                hover:text-[#ea7c08]
+                                hover:text-blue-800
                                 before:absolute before:left-0 before:top-0 before:w-full before:h-[4px]
-                                before:bg-[#ea7c08] before:content
+                                before:bg-blue-700 before:content
                                 before:opacity-0 before:invisible before:transition-all-all before:rounded-[3px]
                                 hover:before:opacity-100 hover:before:visible">About</a>
                                 </li>
@@ -207,9 +151,9 @@ export default ({ children }: FrondendLayoutProps) => {
                                 py-[30px] xl:px-[20px] px-[6px]
                                 text-[#14212b] block uppercase
                                 font-heading-font font-bold transition-all
-                                hover:text-[#ea7c08]
+                                hover:text-blue-800
                                 before:absolute before:left-0 before:top-0 before:w-full before:h-[4px]
-                                before:bg-[#ea7c08] before:content
+                                before:bg-blue-700 before:content
                                 before:opacity-0 before:invisible before:transition-all before:rounded-[3px]
                                 hover:before:opacity-100 hover:before:visible">Pages</a>
                                     <ul className="absolute w-[240px] left-0 top-[110%] pt-[20px] pb-[15px] px-[7px] z-[111] bg-[#fff]
@@ -272,9 +216,9 @@ export default ({ children }: FrondendLayoutProps) => {
                                 py-[30px] xl:px-[20px] px-[6px]
                                 text-[#14212b] block uppercase
                                 font-heading-font font-bold transition-all
-                                hover:text-[#ea7c08]
+                                hover:text-blue-800
                                 before:absolute before:left-0 before:top-0 before:w-full before:h-[4px]
-                                before:bg-[#ea7c08] before:content
+                                before:bg-blue-700 before:content
                                 before:opacity-0 before:invisible before:transition-all before:rounded-[3px]
                                 hover:before:opacity-100 hover:before:visible">Shop</a>
                                     <ul className="absolute w-[240px] left-0 top-[110%] pt-[20px] pb-[15px] px-[7px] z-[111] bg-[#fff]
@@ -315,9 +259,9 @@ export default ({ children }: FrondendLayoutProps) => {
                                 py-[30px] xl:px-[20px] px-[6px]
                                 text-[#14212b] block uppercase
                                 font-heading-font font-bold transition-all
-                                hover:text-[#ea7c08]
+                                hover:text-blue-800
                                 before:absolute before:left-0 before:top-0 before:w-full before:h-[4px]
-                                before:bg-[#ea7c08] before:content
+                                before:bg-blue-700 before:content
                                 before:opacity-0 before:invisible before:transition-all before:rounded-[3px]
                                 hover:before:opacity-100 hover:before:visible">Blog</a>
                                     <ul className="absolute w-[240px] left-0 top-[110%] pt-[20px] pb-[15px] px-[7px] z-[111] bg-[#fff]
@@ -395,9 +339,9 @@ export default ({ children }: FrondendLayoutProps) => {
                                 py-[30px] xl:px-[20px] px-[6px]
                                 text-[#14212b] block uppercase
                                 font-heading-font font-bold transition-all
-                                hover:text-[#ea7c08]
+                                hover:text-blue-800
                                 before:absolute before:left-0 before:top-0 before:w-full before:h-[4px]
-                                before:bg-[#ea7c08] before:content
+                                before:bg-blue-700 before:content
                                 before:opacity-0 before:invisible before:transition-all before:rounded-[3px]
                                 hover:before:opacity-100 hover:before:visible
                             ">Contact</a>
@@ -405,82 +349,93 @@ export default ({ children }: FrondendLayoutProps) => {
                             </ul>
                         </div>
                         <div className=" items-center pr-[15px] lg:pr-[4px] sm:pr-0 hidden md:flex">
-                            {/* <div className="relative header-search-form-wrapper">
-                            <div className="cart-search-contact mr-[20px] sm:mr-[10px] text-center cursor-pointer">
-                                <div className="search-toggle-btn  border border-[rgba(35,35,35,0.09)] text-[#6e6e6e]
-                                    w-[50px] h-[50px] rounded-[50%] leading-[55px]">
-                                    <i className="fi flaticon-loupe text-[22px]"></i>
-                                </div>
-                            </div>
-                            <div className="header-search-form absolute right-0 top-[210%] w-[263px] bg-white z-20 p-[15px]
-                                transform text-center transition-all opacity-0 invisible
-                                    shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);]">
-                                <div>
-                                    <form className="relative">
-                                        <input className="bg-white w-full h-[40px] pl-[10px] pr-[40px] focus-visible:outline-0
-                                            border border-[rgba(64,59,59,0.07)] uppercase" type="text"
-                                            placeholder="search here.."/>
-                                        <button
-                                            className="absolute right-0 top-0 w-[40px] h-[40px] leading-[40px] bg-[#272c3f] text-white border-0"><i
-                                                className="fi flaticon-loupe"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="relative mini-cart col:hidden mr-[20px]">
-                            <div className="md:mr-0 text-center cursor-pointer ">
-                                <div className="cart-toggle-btn bg-[rgba(0,0,0,0.05)] text-[#6e6e6e]
-                                w-[50px] h-[50px] rounded-[50%] leading-[55px]">
-                                    <i className="fi flaticon-shopping-cart text-[22px]"></i>
-                                    <span className="w-[19px] h-[19px] text-[10px] leading-[19px] text-white
-                                absolute top-[-2px] right-[-5px] rounded-[50%] font-semibold bg-[#F78914]">2</span>
-                                </div>
-                            </div>
-                            <div className="mini-cart-content">
-                                <button className="mini-cart-close">
-                                    <i className="ti-close"></i>
-                                </button>
-                                <div className="mini-cart-items">
-                                    <div className="mini-cart-item clearfix">
-                                        <div className="mini-cart-item-image">
-                                            <a href="shop.html"><img src="assets/images/shop/mini-cart/img-1.jpg"
-                                                     /></a>
-                                        </div>
-                                        <div className="mini-cart-item-des">
-                                            <a href="shop.html">Fresh key Lime</a>
-                                            <span className="mini-cart-item-price">$20.15 x 1</span>
-                                            <span className="mini-cart-item-quantity"><a href="#"><i
-                                                        className="ti-close"></i></a></span>
-                                        </div>
-                                    </div>
-                                    <div className="mini-cart-item clearfix">
-                                        <div className="mini-cart-item-image">
-                                            <a href="shop.html"><img src="assets/images/shop/mini-cart/img-2.jpg"
-                                                      /></a>
-                                        </div>
-                                        <div className="mini-cart-item-des">
-                                            <a href="shop.html">Red Radish</a>
-                                            <span className="mini-cart-item-price">$13.25 x 2</span>
-                                            <span className="mini-cart-item-quantity"><a href="#"><i
-                                                        className="ti-close"></i></a></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="mini-cart-action clearfix">
-                                    <span className="mini-checkout-price">Subtotal: <span>$215.14</span></span>
-                                    <div className="mini-btn">
-                                        <a href="checkout.html" className="view-cart-btn s1">Checkout</a>
-                                        <a href="cart.html" className="view-cart-btn">View Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
+                           
                             <a className=" py-2 px-4 rounded-2xl mr-2 text-white border-l shadow-2xl cursor-pointer bg-sky-500 hidden md:block"
                                 href="contact.html">Contact Us</a>
                         </div>
                     </div>
                 </div>
             </header>
+            <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${menuOpen ? 'max-h-[1000px]' : 'max-h-0'
+                    }`}
+            >
+                <div
+                    onClick={toggleMenu}
+                    className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-500 ${menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+                        }`}
+                ></div>
+
+
+                {/* Sidebar */}
+                <div
+                    className={`fixed top-0 left-0 h-full w-72 bg-white shadow-xl transform transition-transform duration-500 z-50 ${menuOpen ? 'translate-x-0' : '-translate-x-full'
+                        }`}
+                >
+                    {/* Close Button */}
+                    <button
+                        onClick={toggleMenu}
+                        className="absolute top-4 right-4 text-2xl font-bold text-gray-700"
+                    >
+                        ×
+                    </button>
+
+                    {/* Menu Items */}
+                    <nav className="mt-16 p-6 space-y-4 font-heading-font uppercase text-gray-800">
+                        {/* Home */}
+                        <div>
+                            <button
+                                onClick={() => toggleSubMenu('home')}
+                                className="w-full flex justify-between items-center py-2 text-left"
+                            >
+                                Home
+                                <span>{activeSubMenu === 'home' ? '▲' : '▼'}</span>
+                            </button>
+                            <div
+                                className={`overflow-hidden transition-all duration-300 ${activeSubMenu === 'home' ? 'max-h-40' : 'max-h-0'
+                                    }`}
+                            >
+                                <ul className="ml-4 mt-2 space-y-4 text-sm text-gray-600">
+                                    <li><a href="index.html">Home style 1</a></li>
+                                    <li><a href="index-2.html">Home style 2</a></li>
+                                    <li><a href="index-3.html">Home style 3</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* About */}
+                        <div>
+                            <a href="about.html" className="block py-2">About</a>
+                        </div>
+
+                        {/* Pages */}
+                        <div>
+                            <button
+                                onClick={() => toggleSubMenu('pages')}
+                                className="w-full flex justify-between items-center py-2 text-left"
+                            >
+                                Pages
+                                <span>{activeSubMenu === 'pages' ? '▲' : '▼'}</span>
+                            </button>
+                            <div
+                                className={`overflow-hidden transition-all duration-300 ${activeSubMenu === 'pages' ? 'max-h-40' : 'max-h-0'
+                                    }`}
+                            >
+                                <ul className="ml-4 mt-2 space-y-2 text-sm text-gray-600">
+                                    <li><a href="team.html">Team</a></li>
+                                    <li><a href="service.html">Service</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Contact */}
+                        <div>
+                            <a href="contact.html" className="block py-2">Contact</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
             {children}
         </React.Fragment>
     )

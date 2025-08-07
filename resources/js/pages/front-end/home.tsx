@@ -1,3 +1,4 @@
+import AboutTestimonial from '@/components/front-end/home/about-testimonial'
 import CarouselBanner from '@/components/front-end/home/carousel-banner'
 import Counter from '@/components/front-end/home/counter'
 import HeroBanner from '@/components/front-end/home/hero-banner'
@@ -7,14 +8,13 @@ import React from 'react'
 
 function home() {
   return (
-        <FrontEndLayout >
-<CarouselBanner/>
-<HeroBanner/>
-<Information/>
-<Counter/>
-<Information/>
-<Information/>
-        </FrontEndLayout>
+    <FrontEndLayout >
+      <CarouselBanner />
+      <HeroBanner />
+      <Information />
+      <Counter />
+      <AboutTestimonial  />
+    </FrontEndLayout>
   )
 }
 
