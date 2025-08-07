@@ -17,7 +17,7 @@ function AboutTestimonial() {
             translate: ['100%', 0, 0],
           },
         }}
-        modules={[EffectCreative, Navigation]}
+        modules={[EffectCreative, Navigation,Autoplay]}
         autoplay={{ delay: 3000 }}
         loop={true}
       >
