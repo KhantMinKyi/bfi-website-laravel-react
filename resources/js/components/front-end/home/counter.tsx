@@ -14,7 +14,7 @@ function Counter() {
                         <div className="grid grid-cols-12 gap-x-4">
                             <div className="col-span-6 md:col-span-3 col:col-span-12 mb-8 font-extrabold text-blue-400 ">
                                 <div>
-                                    <h3 className="text-7xl font-heading-font lg:text-6xl sm:text-5xl flex items-center justify-center ">
+                                    <h3 className=" lg:text-7xl font-heading-font sm:text-6xl text-5xl flex items-center justify-center ">
                                         <CountUp end={2000} duration={2} enableScrollSpy={true} separator="," className="odometer" />+
                                     </h3>
                                     <p className="text-base  md:text-sm">Students</p>
@@ -22,7 +22,7 @@ function Counter() {
                             </div>
                             <div className="col-span-6 md:col-span-3 col:col-span-12 mb-8 font-extrabold text-green-400">
                                 <div>
-                                    <h3 className="lg:text-7xl   font-heading-font sm:text-6xl text-5xl flex items-center justify-center">
+                                    <h3 className="lg:text-7xl font-heading-font sm:text-6xl text-5xl flex items-center justify-center">
                                         <CountUp end={550} duration={2} enableScrollSpy={true} separator="," className="odometer" />+
                                     </h3>
                                     <p className="text-base  md:text-sm">Graduate</p>
@@ -30,7 +30,7 @@ function Counter() {
                             </div>
                             <div className="col-span-6 md:col-span-3 col:col-span-12 mb-8 font-extrabold text-blue-400">
                                 <div>
-                                    <h3 className="text-7xl  font-heading-font lg:text-6xl sm:text-5xl flex items-center justify-center">
+                                    <h3 className="lg:text-7xl font-heading-font sm:text-6xl text-5xl flex items-center justify-center">
                                         <CountUp end={90} duration={2} enableScrollSpy={true} separator="," className="odometer" />%
                                     </h3>
                                     <p className="text-base  md:text-sm">Foreign Teachers</p>
@@ -38,7 +38,7 @@ function Counter() {
                             </div>
                             <div className="col-span-6 md:col-span-3 col:col-span-12 mb-8 font-extrabold text-green-400">
                                 <div>
-                                    <h3 className="text-7xl  font-heading-font lg:text-6xl sm:text-5xl flex items-center justify-center">
+                                    <h3 className="lg:text-7xl font-heading-font sm:text-6xl text-5xl flex items-center justify-center">
                                         <CountUp end={30} duration={2} enableScrollSpy={true} separator="," className="odometer" />+
                                     </h3>
                                     <p className="text-base  md:text-sm">Awards</p>
