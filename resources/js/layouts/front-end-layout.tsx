@@ -27,7 +27,7 @@ export default ({ children }: FrondendLayoutProps) => {
                     setScrolled(true);
                 }, 100);
             } else {
-                                setTimeout(() => {
+                setTimeout(() => {
                     setScrolled(false);
                 }, 100);
             }
@@ -39,12 +39,12 @@ export default ({ children }: FrondendLayoutProps) => {
     return (
 
         <React.Fragment>
-            <header className={`  ${scrolled ? 'sticky top-4 z-50 ' : 'relative'} transition-all duration-300 ease-in-out   `}>
+            <header className={`  ${scrolled ? 'sticky top-4 z-50 bg-transparent ' : 'relative bg-white dark:bg-gray-950'} transition-all duration-300 ease-in-out   `}>
                 <div className={`absolute left-24 top-4  ${scrolled ? 'hidden' : 'sm:hidden lg:block'}`}>
-                    <img src="img/bfi_b.png" alt="" className='w-28 rotate-z-8 opacity-15' />
+                    <img src="img/bfi_b.png" alt="" className='w-28 rotate-z-8 opacity-15 dark:opacity-50' />
                 </div>
                 <div className={`absolute right-20 top-4    ${scrolled ? 'hidden' : 'sm:hidden lg:block'} `}>
-                    <img src="img/bfi_b.png" alt="" className=' w-44 -rotate-z-6 opacity-15' />
+                    <img src="img/bfi_b.png" alt="" className=' w-44 -rotate-z-6 opacity-15 dark:opacity-50' />
                 </div>
                 {/* <h1 className="hidden">section heading hidden</h1> */}
                 <div className={`py-[0px]  z-20 ${scrolled ? 'hidden' : 'block'} transition-all duration-300 ease-in-out `}>
@@ -67,7 +67,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             <span
                                                 className="font-normal lg:text-base leading-4 text-green-500 mb-1 text-xs">Call
                                                 Us:</span>
-                                            <p className="text-[#232323] font-medium sm:text-sm leading-5 font-heading-font">00
+                                            <p className="text-[#232323] dark:text-white font-medium sm:text-sm leading-5 font-heading-font">00
                                                 567 458 796 47</p>
                                         </div>
                                     </div>
@@ -81,7 +81,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             <span
                                                 className="font-normal lg:text-base leading-4 text-green-500 mb-1 text-xs">Call
                                                 Us:</span>
-                                            <p className="text-[#232323] font-medium sm:text-sm leading-5 font-heading-font">00
+                                            <p className="text-[#232323] dark:text-white font-medium sm:text-sm leading-5 font-heading-font">00
                                                 567 458 796 47</p>
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             <span
                                                 className="font-normal lg:text-base leading-4 text-green-500 mb-1 text-xs">Call
                                                 Us:</span>
-                                            <p className="text-[#232323] font-medium sm:text-sm leading-5 font-heading-font">00
+                                            <p className="text-[#232323] dark:text-white font-medium sm:text-sm leading-5 font-heading-font">00
                                                 567 458 796 47</p>
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@ export default ({ children }: FrondendLayoutProps) => {
                         </div>
                     </div>
                 </div>
-                           {/* <div className="hidden lg:block  absolute -top-5 left-35 z-20">
+                {/* <div className="hidden lg:block  absolute -top-5 left-35 z-20">
                                 <a href="index.html">
                                     <img src="img/bfi.png" className=' max-w-28' alt="" />
                                 </a>
@@ -349,7 +349,7 @@ export default ({ children }: FrondendLayoutProps) => {
                             </ul>
                         </div>
                         <div className=" items-center pr-[15px] lg:pr-[4px] sm:pr-0 hidden md:flex">
-                           
+
                             <a className=" py-2 px-4 rounded-2xl mr-2 text-white border-l shadow-2xl cursor-pointer bg-sky-500 hidden md:block"
                                 href="contact.html">Contact Us</a>
                         </div>

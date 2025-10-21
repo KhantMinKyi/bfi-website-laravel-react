@@ -1,9 +1,9 @@
 import React from 'react'
 
 function Information() {
-  return (
-       <section
-            className="relative flex justify-center flex-col z-20 py-[120px] md:pt-[70px] md:py-[90px] sm:py-[80px] sm:pt-[60px] ">
+    return (
+        <section
+            className="relative flex justify-center flex-col z-20 py-[120px] md:pt-[70px] md:py-[90px] sm:py-[80px] sm:pt-[60px] dark:bg-gray-950">
             <div className="  mx-auto max-w-7xl ">
                 <div className="grid grid-cols-12 gap-x-4 items-center">
                     <div className="col-span-12 md:col-span-6 p-10">
@@ -14,7 +14,7 @@ function Information() {
                                     US”</span>
                                 <h2 className="text-3xl sm:text-4xl  lg:text-6xl font-heading-font mb-5 font-bold ">BFI Education Services  </h2>
                                 <p className="mb-5">operate 4 main campuses and 4 kindergartens in Myanmar.
-Our campuses are located in Yangon, Mandalay and Nay Pyi Taw. </p>
+                                    Our campuses are located in Yangon, Mandalay and Nay Pyi Taw. </p>
                                 <ul className="mb-8 flex col:block">
                                     <li className="py-1 relative pl-6 font-semibold inline-block text-base  text-[#687693]">
                                         <i className="absolute left-0 top-1">
@@ -39,7 +39,7 @@ Our campuses are located in Yangon, Mandalay and Nay Pyi Taw. </p>
                     </div>
                     <div className="col-span-12 md:col-span-6 p-10">
                         <div className=" pl-0 md:pl-12  mt-14">
-                            <div className="relative z-10 w-full p-5 col:p-2 border border-yellow-200 ">
+                            <div className="relative z-10 w-full p-5 col:p-2 border border-yellow-200 dark:border-0">
                                 <div>
                                     <img src="assets/images/about/ab.jpg" alt="" className="w-full" />
                                 </div>
@@ -58,15 +58,15 @@ Our campuses are located in Yangon, Mandalay and Nay Pyi Taw. </p>
                 </div>
             </div>
             <div className="absolute left-[40px] top-1/8 -translate-y-1/8 -z-10   "><img
-                    src="img/skt_riverside_campus.png" alt="" className='w-60 opacity-20 rotate-6' /></div>
+                src="img/skt_riverside_campus.png" alt="" className='w-60 opacity-20 rotate-6' /></div>
             <div className="absolute right-[40px] top-1/8 -translate-y-1/8 -z-10 "><img
-                    src="img/misa.png" alt="" className='w-60 opacity-20 -rotate-z-6' /></div>
+                src="img/misa.png" alt="" className='w-60 opacity-20 -rotate-z-6' /></div>
             <div className="absolute left-[40px] top-8/8 -translate-y-8/8 -z-10  "><img
-                  src="img/nisa.png" alt="" className='w-60 opacity-20 -rotate-z-6' /></div>
+                src="img/nisa.png" alt="" className='w-60 opacity-20 -rotate-z-6' /></div>
             <div className="absolute right-[40px] top-8/8 -translate-y-8/8 -z-10 "><img
-                    src="img/skt_city_campus.png" alt="" className='w-60 opacity-20 rotate-6' /></div>
+                src="img/skt_city_campus.png" alt="" className='w-60 opacity-20 rotate-6' /></div>
         </section>
-  )
+    )
 }
 
 export default Information
