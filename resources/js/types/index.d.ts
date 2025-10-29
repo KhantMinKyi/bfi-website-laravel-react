@@ -41,3 +41,13 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export type Programmes = {
+    id: number;
+    quote: string;
+    author: string;
+    authorImage: string;
+    date: Date;
+    category: string;
+    popularityIndex: number;
+};
