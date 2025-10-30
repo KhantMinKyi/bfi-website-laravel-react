@@ -141,45 +141,45 @@
 }
 /*** back to top **/
 .back-to-top {
-	background-color: rgba(4, 0, 237, 0.7);
-	width: 45px;
-	height: 45px;
-	line-height: 45px;
-	border: 2px solid #0400ed;
-	border-radius: 45px;
-	text-align: center;
-	display: none;
-	position: fixed;
-	z-index: 999;
-	right: 15px;
-	bottom: 15px;
-	transition: all 0.2s;
+    background-color: rgba(0, 54, 154, 0.9);
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    border: 2px solid rgba(8, 95, 255, 0.7);
+    border-radius: 45px;
+    text-align: center;
+    display: none;
+    position: fixed;
+    z-index: 999;
+    right: 15px;
+    bottom: 15px;
+    transition: all 0.2s;
 }
 
 @media (max-width: 991px) {
-	.back-to-top {
-		width: 35px;
-		height: 35px;
-		line-height: 35px;
-	}
+    .back-to-top {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+    }
 }
 
 .back-to-top:hover {
-	background-color: #0400ed;
+    background-color: #0400ed;
 }
 
 .back-to-top i {
-	font-size: 18px;
-	color: #fff;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
-.font-base-font{
-font-family: "Roboto Flex", sans-serif;
+.font-base-font {
+    font-family: 'Roboto Flex', sans-serif;
 }
 
-.font-heading-font{
-  font-family: "Oswald", sans-serif;
+.font-heading-font {
+    font-family: 'Oswald', sans-serif;
 }

@@ -27,7 +27,7 @@ function AboutTestimonial() {
                                 <img
                                     src="img/bfi.png"
                                     alt=""
-                                    className="rounded-tr-[20px]object-cover h-96 w-full rounded-tl-[20px] md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
+                                    className="rounded-tr-[20px]object-cover h-56 w-full rounded-tl-[20px] sm:h-72 md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
                                 />
                             </div>
                             <div className="">
@@ -47,7 +47,7 @@ function AboutTestimonial() {
                                 <img
                                     src="img/bfi.png"
                                     alt=""
-                                    className="rounded-tr-[20px]object-cover h-96 w-full rounded-tl-[20px] md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
+                                    className="rounded-tr-[20px]object-cover h-56 w-full rounded-tl-[20px] sm:h-72 md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
                                 />
                             </div>
                             <div className="">
@@ -67,7 +67,7 @@ function AboutTestimonial() {
                                 <img
                                     src="img/bfi.png"
                                     alt=""
-                                    className="rounded-tr-[20px]object-cover h-96 w-full rounded-tl-[20px] md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
+                                    className="rounded-tr-[20px]object-cover h-56 w-full rounded-tl-[20px] sm:h-72 md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
                                 />
                             </div>
                             <div className="">
