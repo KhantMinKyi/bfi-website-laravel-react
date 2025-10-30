@@ -29,12 +29,30 @@ function EducationProgramme({ programmes }: EducationProgrammeProps) {
                 // autoplay={{ delay: 3000 }}
                 pagination={true}
                 loop={true}
+                breakpoints={{
+                    '@0.00': {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+                    '@0.75': {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    '@1.00': {
+                        slidesPerView: 3,
+                        spaceBetween: 40,
+                    },
+                    '@1.50': {
+                        slidesPerView: 4,
+                        spaceBetween: 50,
+                    },
+                }}
             >
                 <div className="m-10">
                     {programmes.length > 0 ? (
                         programmes.map((p) => (
                             <SwiperSlide className="">
-                                <div className="w-full max-w-sm overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+                                <div className="max-w-sm overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
                                     <a href="#" className="flex h-56 justify-center align-middle">
                                         <img className="rounded-t-lg" src={p.authorImage} alt="product image" />
                                     </a>

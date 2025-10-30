@@ -1,10 +1,11 @@
 import AboutTestimonial from '@/components/front-end/core/about-testimonial';
 import Counter from '@/components/front-end/core/counter';
 import EducationProgramme from '@/components/front-end/core/education-programme';
-import Loading from '@/components/front-end/core/loading';
+import LoadingThreeDotsJumping from '@/components/front-end/core/loading-three-dots-jumping';
 import CarouselBanner from '@/components/front-end/home/carousel-banner';
 import HeroBanner from '@/components/front-end/home/hero-banner';
 import Information from '@/components/front-end/home/information';
+import SisterSchoolCards from '@/components/front-end/home/sister-school-cards';
 import FrontEndLayout from '@/layouts/front-end-layout';
 import { Programmes } from '@/types';
 import { useEffect, useState } from 'react';
@@ -26,13 +27,14 @@ function home() {
     return (
         <FrontEndLayout>
             <CarouselBanner />
+            <SisterSchoolCards />
             <HeroBanner />
             <Information />
             <Counter />
             <AboutTestimonial />
             {loading ? (
                 <div className="container mx-auto flex justify-center gap-10">
-                    <Loading />
+                    <LoadingThreeDotsJumping />
                 </div>
             ) : (
                 <EducationProgramme programmes={programmes} />
