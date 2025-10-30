@@ -28,10 +28,10 @@ function home() {
         <FrontEndLayout>
             <CarouselBanner />
             <SisterSchoolCards />
-            <HeroBanner />
             <Information />
-            <Counter />
+            <HeroBanner />
             <AboutTestimonial />
+            <Counter />
             {loading ? (
                 <div className="container mx-auto flex justify-center gap-10">
                     <LoadingThreeDotsJumping />

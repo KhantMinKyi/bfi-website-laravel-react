@@ -56,7 +56,7 @@ function AboutTestimonial() {
                                     lorem ipsum which looks reasonable. The generated lorem ipsum is therefore always free from repetition sentence
                                     structures, to generate lorem ipsum which looks..
                                 </p>
-                                <h2 className="px-10 text-3xl font-normal lg:text-4xl">Vision</h2>
+                                <h2 className="px-10 text-3xl font-normal lg:text-4xl">Mission</h2>
                                 <span className="px-10 text-base font-normal">BFI Education Services</span>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ function AboutTestimonial() {
                                     lorem ipsum which looks reasonable. The generated lorem ipsum is therefore always free from repetition sentence
                                     structures, to generate lorem ipsum which looks..
                                 </p>
-                                <h2 className="px-10 text-3xl font-normal lg:text-4xl">Vision</h2>
+                                <h2 className="px-10 text-3xl font-normal lg:text-4xl">Philosophy</h2>
                                 <span className="px-10 text-base font-normal">BFI Education Services</span>
                             </div>
                         </div>

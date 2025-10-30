@@ -1,6 +1,7 @@
 import { Programmes } from '@/types';
 import { Autoplay, EffectCreative, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import PullUpHeader from './pull-up-header';
 type EducationProgrammeProps = {
     programmes: Programmes[];
 };
@@ -9,7 +10,9 @@ function EducationProgramme({ programmes }: EducationProgrammeProps) {
     return (
         <div className="container mx-auto py-12">
             <div className="mb-10 text-center">
-                <h2 className="text-2xl font-bold">Education Programs</h2>
+                <h2 className="">
+                    <PullUpHeader text="Our Education Programmes" />
+                </h2>
             </div>
             <Swiper
                 grabCursor={true}
@@ -27,12 +30,13 @@ function EducationProgramme({ programmes }: EducationProgrammeProps) {
                 slidesPerView={4}
                 spaceBetween={50}
                 // autoplay={{ delay: 3000 }}
+
                 pagination={true}
                 loop={true}
                 breakpoints={{
                     '@0.00': {
                         slidesPerView: 1,
-                        spaceBetween: 10,
+                        centeredSlides: true,
                     },
                     '@0.75': {
                         slidesPerView: 2,
