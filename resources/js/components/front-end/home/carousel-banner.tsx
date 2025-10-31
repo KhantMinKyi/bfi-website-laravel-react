@@ -1,10 +1,9 @@
-import React from 'react'
+import { Autoplay, EffectCreative, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectFade, EffectCreative } from 'swiper/modules';
 function CarouselBanner() {
     return (
         <>
-            <div >
+            <div>
                 <Swiper
                     grabCursor={true}
                     effect={'creative'}
@@ -21,76 +20,110 @@ function CarouselBanner() {
                     autoplay={{ delay: 3000 }}
                     loop={true}
                 >
-
                     <SwiperSlide>
-                        <div data-swiper-parallax="-300"
-                            className=" relative  flex flex-col justify-center w-full h-screen bg-cover bg-center   text-gray-50 text-2xl pl-[30px]"
-                            style={{ backgroundImage: `url('img/banner.jpg')` }}
+                        <div
+                            data-swiper-parallax="-300"
+                            className="relative flex h-screen w-full flex-col justify-center bg-cover bg-center pl-[30px] text-2xl text-gray-50"
+                            style={{ backgroundImage: `url('img/skt_6.jpg')` }}
                         >
-                            <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
-                            <div className=' lg:ml-20 xl:ml-40'>
+                            <div className="absolute inset-0 z-0 bg-black opacity-50"></div>
+                            <div className="lg:ml-20 xl:ml-40">
                                 <div>
-                                    <div >
-                                        <p className="relative  text-[25px]  col:text-[16px] text-white font-base-font capitalize 
-                                                    mb-[30px] font-normal tracking-[2px]">“<span
-                                                className="text-blue-800 hover:text-green-800">25% PURE VEGETABLES</span>”</p>
+                                    <div>
+                                        <p className="col:text-[16px] font-base-font relative mb-[30px] text-[25px] font-normal tracking-[2px] text-white capitalize">
+                                            “<span className="text-blue-800 hover:text-green-800">4 Sister Schools</span>”
+                                        </p>
                                     </div>
                                     <div>
-                                        <h2 className="relative  lg:text-[75px] font-heading-font font-normal uppercase md:leading-[90px] mt-[10px] mb-[25px]
-                                                     md:text-[50px] text-[40px] leading-[55px] col:text-[35px]
-                                                     col:leading-[35px] text-white col:mb-[20px]">Organic Food <span
-                                                className="text-blue-800 hover:text-green-800">And</span> Vegetabls.</h2>
+                                        <h2 className="font-heading-font col:text-[35px] col:leading-[35px] col:mb-[20px] relative mt-[10px] mb-[25px] text-[40px] leading-[55px] font-normal text-white uppercase md:text-[50px] md:leading-[90px] lg:text-[75px]">
+                                            BFI <span className="text-blue-800 hover:text-green-800">EDUCATION</span> SERVIES.
+                                        </h2>
                                     </div>
                                     <div>
-                                        <p className="relative  md:text-[22px] text-[#e2e2e2] font-base-font
-                                                    leading-[35px]
-                                                     mb-[40px] 
-                                                    text-[18px] col:leading-[25px] 
-                                                    col:mb-[30px]">
-                                            Lorem Ipsum has been the industry's standard text since the printer
-                                            took
-                                            galley make.</p>
+                                        <p className="font-base-font col:leading-[25px] col:mb-[30px] relative mb-[40px] text-[18px] leading-[35px] text-[#e2e2e2] md:text-[22px]">
+                                            Lorem Ipsum has been the industry's standard text since the printer took galley make.
+                                        </p>
                                     </div>
-                                    <div className="relative  ">
-                                        <a href="about.html" className="bg-blue-900 py-4 px-6 rounded-4xl hover:shadow-2xl hover:bg-green-900 text-base">
-                                            Explore more</a>
+                                    <div className="relative">
+                                        <a
+                                            href="about.html"
+                                            className="rounded-4xl bg-blue-900 px-6 py-4 text-base hover:bg-green-900 hover:shadow-2xl"
+                                        >
+                                            Explore more
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div data-swiper-parallax="-100"
-                            className=" flex flex-col justify-center w-full h-screen bg-cover bg-center   text-gray-50 text-2xl pl-[30px]"
-                            style={{ backgroundImage: `url('assets/images/slider/slide-1.jpg')` }}
+                        <div
+                            data-swiper-parallax="-100"
+                            className="flex h-screen w-full flex-col justify-center bg-cover bg-center pl-[30px] text-2xl text-gray-50"
+                            style={{ backgroundImage: `url('img/skt_9.jpg')` }}
                         >
-                                                        <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
-                    <div className=' lg:ml-20 xl:ml-40'>
+                            <div className="absolute inset-0 z-0 bg-black opacity-50"></div>
+                            <div className="lg:ml-20 xl:ml-40">
                                 <div>
-                                    <div >
-                                        <p className="relative  text-[25px]  col:text-[16px] text-white font-base-font capitalize 
-                                                    mb-[30px] font-normal tracking-[2px]">“<span
-                                                className="text-blue-800 hover:text-green-800">25% PURE VEGETABLES</span>”</p>
+                                    <div>
+                                        <p className="col:text-[16px] font-base-font relative mb-[30px] text-[25px] font-normal tracking-[2px] text-white capitalize">
+                                            “<span className="text-blue-800 hover:text-green-800">90% Foreign Teachers</span>”
+                                        </p>
                                     </div>
                                     <div>
-                                        <h2 className="relative  lg:text-[75px] font-heading-font font-normal uppercase md:leading-[90px] mt-[10px] mb-[25px]
-                                                     md:text-[50px] text-[40px] leading-[55px] col:text-[35px]
-                                                     col:leading-[35px] text-white col:mb-[20px]">Organic Food <span
-                                                className="text-blue-800 hover:text-green-800">And</span> Vegetabls.</h2>
+                                        <h2 className="font-heading-font col:text-[35px] col:leading-[35px] col:mb-[20px] relative mt-[10px] mb-[25px] text-[40px] leading-[55px] font-normal text-white uppercase md:text-[50px] md:leading-[90px] lg:text-[75px]">
+                                            Inspiring Brilance<span className="text-blue-800 hover:text-green-800">Building Brighter</span> Futures.
+                                        </h2>
                                     </div>
                                     <div>
-                                        <p className="relative  md:text-[22px] text-[#e2e2e2] font-base-font
-                                                    leading-[35px]
-                                                     mb-[40px] 
-                                                    text-[18px] col:leading-[25px] 
-                                                    col:mb-[30px]">
-                                            Lorem Ipsum has been the industry's standard text since the printer
-                                            took
-                                            galley make.</p>
+                                        <p className="font-base-font col:leading-[25px] col:mb-[30px] relative mb-[40px] text-[18px] leading-[35px] text-[#e2e2e2] md:text-[22px]">
+                                            Lorem Ipsum has been the industry's standard text since the printer took galley make.
+                                        </p>
                                     </div>
-                                    <div className="relative  ">
-                                        <a href="about.html" className="bg-blue-900 py-4 px-6 rounded-4xl hover:shadow-2xl hover:bg-green-900 text-base">
-                                            Explore more</a>
+                                    <div className="relative">
+                                        <a
+                                            href="about.html"
+                                            className="rounded-4xl bg-blue-900 px-6 py-4 text-base hover:bg-green-900 hover:shadow-2xl"
+                                        >
+                                            Explore more
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div
+                            data-swiper-parallax="-100"
+                            className="flex h-screen w-full flex-col justify-center bg-cover bg-center pl-[30px] text-2xl text-gray-50"
+                            style={{ backgroundImage: `url('img/skt_5.jpg')` }}
+                        >
+                            <div className="absolute inset-0 z-0 bg-black opacity-50"></div>
+                            <div className="lg:ml-20 xl:ml-40">
+                                <div>
+                                    <div>
+                                        <p className="col:text-[16px] font-base-font relative mb-[30px] text-[25px] font-normal tracking-[2px] text-white capitalize">
+                                            “<span className="text-blue-800 hover:text-green-800">The IB Diploma Programme</span>”
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h2 className="font-heading-font col:text-[35px] col:leading-[35px] col:mb-[20px] relative mt-[10px] mb-[25px] text-[40px] leading-[55px] font-normal text-white uppercase md:text-[50px] md:leading-[90px] lg:text-[75px]">
+                                            WORLD-CLASS EDUCATION IN A
+                                            <span className="text-blue-800 hover:text-green-800">SAFE AND FRIENDLY ENVIRONMENT</span>
+                                        </h2>
+                                    </div>
+                                    <div>
+                                        <p className="font-base-font col:leading-[25px] col:mb-[30px] relative mb-[40px] text-[18px] leading-[35px] text-[#e2e2e2] md:text-[22px]">
+                                            Lorem Ipsum has been the industry's standard text since the printer took galley make.
+                                        </p>
+                                    </div>
+                                    <div className="relative">
+                                        <a
+                                            href="about.html"
+                                            className="rounded-4xl bg-blue-900 px-6 py-4 text-base hover:bg-green-900 hover:shadow-2xl"
+                                        >
+                                            Explore more
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -98,10 +131,8 @@ function CarouselBanner() {
                     </SwiperSlide>
                 </Swiper>
             </div>
-
-
         </>
-    )
+    );
 }
 
-export default CarouselBanner
+export default CarouselBanner;
