@@ -5,6 +5,7 @@ import LoadingThreeDotsJumping from '@/components/front-end/core/loading-three-d
 import CarouselBanner from '@/components/front-end/home/carousel-banner';
 import HeroBanner from '@/components/front-end/home/hero-banner';
 import Information from '@/components/front-end/home/information';
+import PhotoGallery from '@/components/front-end/home/photo-gallery';
 import SisterSchoolCards from '@/components/front-end/home/sister-school-cards';
 import FrontEndLayout from '@/layouts/front-end-layout';
 import { Programmes } from '@/types';
@@ -29,9 +30,6 @@ function home() {
             <CarouselBanner />
             <SisterSchoolCards />
             <Information />
-            <HeroBanner />
-            <AboutTestimonial />
-            <Counter />
             {loading ? (
                 <div className="container mx-auto flex justify-center gap-10">
                     <LoadingThreeDotsJumping />
@@ -39,6 +37,10 @@ function home() {
             ) : (
                 <EducationProgramme programmes={programmes} />
             )}
+            <Counter />
+            <AboutTestimonial />
+            <HeroBanner />
+            <PhotoGallery />
         </FrontEndLayout>
     );
 }

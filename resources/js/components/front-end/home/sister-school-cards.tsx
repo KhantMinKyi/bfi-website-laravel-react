@@ -5,7 +5,7 @@ import GradualSpacingHeader from '../core/gradual-spacing-header';
 
 const SisterSchoolCards = () => {
     return (
-        <div className="dark:bg-gray-950">
+        <div className="">
             <Nav />
             <Hero />
             <Schedule />
@@ -65,7 +65,7 @@ const CenterImage = () => {
                 opacity,
                 backgroundImage: `
       linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-      url('img/banner.jpg')
+      url('img/skt_11.jpg')
     `,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',

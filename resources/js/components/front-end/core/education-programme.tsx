@@ -29,8 +29,8 @@ function EducationProgramme({ programmes }: EducationProgrammeProps) {
                 modules={[EffectCreative, Navigation, Autoplay, Pagination]}
                 slidesPerView={4}
                 spaceBetween={50}
-                // autoplay={{ delay: 3000 }}
-
+                autoplay={{ delay: 3000 }}
+                centeredSlides={true}
                 pagination={true}
                 loop={true}
                 breakpoints={{
