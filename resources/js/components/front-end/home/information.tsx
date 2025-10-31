@@ -14,8 +14,8 @@ function Information() {
                             transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                         >
                             <div className="orico-about-text">
-                                <span className="font-heading-font mb-1 inline-block text-xl font-normal text-green-800 underline">“ABOUT US”</span>
-                                <h2 className="font-heading-font mb-5 text-3xl font-bold sm:text-4xl lg:text-6xl">BFI Education Services </h2>
+                                <span className="font-merriweather mb-1 inline-block text-xl font-normal text-green-800 underline">“ABOUT US”</span>
+                                <h2 className="font-merriweather mb-5 text-3xl font-bold sm:text-4xl lg:text-6xl">BFI Education Services </h2>
                                 <p className="mb-5">
                                     operate 4 main campuses and 4 kindergartens in Myanmar. Our campuses are located in Yangon, Mandalay and Nay Pyi
                                     Taw.{' '}

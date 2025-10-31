@@ -1,4 +1,5 @@
 import AboutTestimonial from '@/components/front-end/core/about-testimonial';
+import AccordionGallery from '@/components/front-end/core/accordion-gallery';
 import Counter from '@/components/front-end/core/counter';
 import EducationProgramme from '@/components/front-end/core/education-programme';
 import LoadingThreeDotsJumping from '@/components/front-end/core/loading-three-dots-jumping';
@@ -30,6 +31,7 @@ function home() {
             <CarouselBanner />
             <SisterSchoolCards />
             <Information />
+            <AccordionGallery />
             {loading ? (
                 <div className="container mx-auto flex justify-center gap-10">
                     <LoadingThreeDotsJumping />
