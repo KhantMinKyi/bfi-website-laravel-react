@@ -36,7 +36,7 @@ function EducationProgramme({ programmes }: EducationProgrammeProps) {
                 breakpoints={{
                     '@0.00': {
                         slidesPerView: 1,
-                        centeredSlides: true,
+                        spaceBetween: 10,
                     },
                     '@0.75': {
                         slidesPerView: 2,
