@@ -13,7 +13,7 @@ interface NavLinkProps {
 const Footer = () => {
     return (
         <>
-            <footer className="relative z-10 bg-white pt-20 pb-10 lg:pt-[120px] lg:pb-20 dark:bg-gray-950">
+            <footer className="relative z-10 bg-gray-200 pt-10 pb-10 lg:pt-[80px] lg:pb-10 dark:bg-gray-950">
                 <div className="container mx-auto">
                     <div className="flex">
                         <div className="mb-10">

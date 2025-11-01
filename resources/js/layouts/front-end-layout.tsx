@@ -8,9 +8,9 @@ interface FrondendLayoutProps {
 }
 
 const baseLink =
-    'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[17px] xl:px-[16px] xl:py-[35px]';
+    'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
 const activeLink =
-    'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all text-blue-800 before:visible before:opacity-100 lg:text-[17px] xl:px-[16px] xl:py-[35px]';
+    'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all text-blue-800 before:visible before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
 export default ({ children }: FrondendLayoutProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -104,11 +104,14 @@ export default ({ children }: FrondendLayoutProps) => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="hidden lg:block  absolute -top-5 left-35 z-20">
-                                <a href="index.html">
-                                    <img src="img/bfi.png" className=' max-w-28' alt="" />
-                                </a>
-                            </div> */}
+                <div
+                    className={`absolute top-2 left-36 z-20 lg:left-40 xl:left-56 2xl:left-64 dark:grayscale ${scrolled ? 'hidden lg:block' : 'hidden'}`}
+                >
+                    <a href="index.html">
+                        <img src="img/bfi.png " className="max-w-18" alt="" />
+                    </a>
+                </div>
+
                 <div className="mx-auto mt-4 max-w-9/12 sm:mt-0">
                     <div className="relative z-10 -mb-6 flex items-center justify-between rounded-[5px] bg-blue-50 py-[10px] dark:bg-gray-900">
                         <div>
@@ -124,11 +127,11 @@ export default ({ children }: FrondendLayoutProps) => {
                         </div>
                         <div>
                             <div className="col:w-[150px] col:ml-[50px] block w-[150px] sm:w-[195px] md:w-[200px] lg:hidden">
-                                <a className="flex items-center justify-end pr-2 text-white md:justify-center" href="index.html">
-                                    <img className="max-w-20" src="img/bfi.png" alt="" />
+                                <a className="flex items-center justify-end pr-2 text-white lg:justify-center" href="index.html">
+                                    <img className="max-w-20 dark:grayscale" src="img/bfi.png" alt="" />
                                 </a>
                             </div>
-                            <ul className="hidden text-[#14212b] lg:block dark:text-gray-50">
+                            <ul className={`hidden text-[#14212b] lg:block dark:text-gray-50 ${scrolled ? '' : 'sm:hidden lg:block'} `}>
                                 {/* Home */}
                                 <li className="group relative inline-block">
                                     <Link href={route('home')} className={`${currentPath === '/' ? activeLink : baseLink}`}>
@@ -406,18 +409,22 @@ export default ({ children }: FrondendLayoutProps) => {
                                         Career
                                     </Link>
                                 </li>
+                                <li className="group relative inline-block">
+                                    <AppearanceToggleDropdown />
+                                </li>
                             </ul>
                         </div>
-                        <div className="hidden items-center pr-[15px] sm:pr-0 md:flex lg:pr-[4px]">
-                            <a className="mr-2 hidden cursor-pointer rounded-2xl bg-sky-500 px-4 py-2 text-white shadow-2xl md:block" href="#">
+                        {/* <div className={`hidden items-center pr-[15px] sm:pr-0 md:flex lg:pr-[4px] ${scrolled ? 'block' : 'hidden'} `}>
+                            <a
+                                className="mr-2 hidden cursor-pointer rounded-2xl bg-sky-500 px-4 py-2 text-white shadow-2xl sm:block md:hidden"
+                                href="#"
+                            >
                                 Contact Us
                             </a>
                             <label className="inline-flex cursor-pointer items-center">
-                                {/* <input type="checkbox" value="" className="peer sr-only" /> */}
-                                {/* <div className="peer relative h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-blue-600 peer-focus:ring-4 peer-focus:ring-blue-300 peer-focus:outline-none after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-gray-700 dark:peer-checked:bg-blue-600 dark:peer-focus:ring-blue-800"></div> */}
                                 <AppearanceToggleDropdown />
                             </label>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </header>
