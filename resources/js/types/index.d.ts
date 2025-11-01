@@ -44,10 +44,9 @@ export interface User {
 
 export type Programmes = {
     id: number;
-    quote: string;
     author: string;
-    authorImage: string;
-    date: Date;
-    category: string;
-    popularityIndex: number;
+    width: number;
+    height: number;
+    url: string;
+    download_url: string;
 };

@@ -1,14 +1,24 @@
 import AppearanceToggleDropdown from '@/components/appearance-dropdown';
-import { Link } from '@inertiajs/react';
+import Footer from '@/components/front-end/core/footer';
+import { Link, usePage } from '@inertiajs/react';
 import React, { useEffect, useState, type ReactNode } from 'react';
 
 interface FrondendLayoutProps {
     children: ReactNode;
 }
 
+const baseLink =
+    'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[17px] xl:px-[16px] xl:py-[35px]';
+const activeLink =
+    'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all text-blue-800 before:visible before:opacity-100 lg:text-[17px] xl:px-[16px] xl:py-[35px]';
 export default ({ children }: FrondendLayoutProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const { url } = usePage();
+    const currentPath = new URL(url, window.location.origin).pathname;
+    console.log(currentPath);
+    console.log(route('home'));
+
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -119,207 +129,282 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </a>
                             </div>
                             <ul className="hidden text-[#14212b] lg:block dark:text-gray-50">
+                                {/* Home */}
                                 <li className="group relative inline-block">
-                                    <Link
-                                        href={route('home')}
-                                        className="font-heading-font transition-all-all before:content before:transition-all-all relative block px-[6px] py-[30px] text-[16px] font-bold uppercase before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[17px] xl:px-[20px] xl:py-[35px]"
-                                    >
+                                    <Link href={route('home')} className={`${currentPath === '/' ? activeLink : baseLink}`}>
                                         Home
                                     </Link>
                                 </li>
-                                <li className="relative inline-block">
-                                    <a
-                                        href="about.html"
-                                        className="font-heading-font transition-all-all before:content before:transition-all-all relative block px-[6px] py-[30px] text-[16px] font-bold uppercase before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[17px] xl:px-[20px] xl:py-[35px]"
-                                    >
-                                        About
-                                    </a>
-                                </li>
+                                {/* About Us */}
                                 <li className="group relative inline-block">
-                                    <a
-                                        href="#"
-                                        className="font-heading-font before:content relative block px-[6px] py-[30px] text-[16px] font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[17px] xl:px-[20px] xl:py-[35px]"
-                                    >
-                                        Pages
+                                    <a href="#" className={`${currentPath === '/about' ? activeLink : baseLink}`}>
+                                        About Us
                                     </a>
-                                    <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] bg-[#fff] px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
+                                    <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
+                                        <li>
+                                            <a
+                                                href="testimonial.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Sister Schools
+                                            </a>
+                                        </li>
                                         <li>
                                             <a
                                                 href="team.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Team
+                                                Our History
                                             </a>
                                         </li>
                                         <li>
                                             <a
                                                 href="service.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Service
+                                                Vision , Mission & Values
                                             </a>
                                         </li>
                                         <li>
                                             <a
                                                 href="service-single.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Service Single
+                                                Philosophy
                                             </a>
                                         </li>
-                                        <li>
-                                            <a
-                                                href="testimonial.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
-                                            >
-                                                Testimonial
-                                            </a>
-                                        </li>
+
                                         <li>
                                             <a
                                                 href="faq.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Faq
+                                                Leaderships Teams
                                             </a>
                                         </li>
                                         <li>
                                             <a
                                                 href="login.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                login
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="404.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
-                                            >
-                                                404
+                                                BFI Advantage
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
+                                {/* Sister Schools */}
                                 <li className="group relative inline-block">
-                                    <a
-                                        href="#"
-                                        className="font-heading-font before:content relative block px-[6px] py-[30px] text-[16px] font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[17px] xl:px-[20px] xl:py-[35px]"
-                                    >
-                                        Shop
+                                    <a href="#" className={`${currentPath === '/about' ? activeLink : baseLink}`}>
+                                        Sister Schools
                                     </a>
-                                    <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] bg-[#fff] px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
+                                    <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
                                         <li>
                                             <a
-                                                href="shop.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                href="testimonial.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Shop Page
+                                                SKT International School ( Riverside Campus)
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                href="shop-single.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                href="testimonial.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Shop Single
+                                                SKT International Prechool ( Riverside Campus)
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                href="cart.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                href="team.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Cart
+                                                SKT International School ( City Campus)
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                href="checkout.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                href="team.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Checkout
+                                                SKT International Prechool ( City Campus)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="service.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Mandalay International School of Acumen
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="service-single.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Mandalay International School of Acumen ( KinderGarten )
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a
+                                                href="faq.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Naypyitaw International School of Acumen
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="login.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Naypyitaw International School of Acumen ( KinderGarten )
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
+                                {/* Curriculum */}
                                 <li className="group relative inline-block">
-                                    <a
-                                        href="#"
-                                        className="font-heading-font before:content relative block px-[6px] py-[30px] text-[16px] font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[17px] xl:px-[20px] xl:py-[35px]"
-                                    >
-                                        Blog
+                                    <a href="#" className={`${currentPath === '/about' ? activeLink : baseLink}`}>
+                                        Curriculum
                                     </a>
-                                    <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] bg-[#fff] px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
+                                    <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
                                         <li>
                                             <a
-                                                href="blog.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                href="testimonial.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Blog With Right Sidebar
+                                                Pre-School (Ages 2-6)
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                href="blog-left-sidebar.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                href="testimonial.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Blog With Left Sidebar
+                                                Primary School (Year 2-6)
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                href="blog-fullwidth.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                href="team.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Blog Fullwidth
+                                                Secondary School (Year 7-9)
                                             </a>
                                         </li>
-                                        <li className="group/group-2 relative">
+                                        <li>
                                             <a
-                                                href="#"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
+                                                href="team.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Blog details
+                                                IGCSE (Year 10-11)
                                             </a>
-                                            <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-0 left-[120%] z-[111] w-[240px] bg-[#fff] px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover/group-2:visible group-hover/group-2:left-[103%] group-hover/group-2:opacity-100 dark:bg-gray-800">
-                                                <li>
-                                                    <a
-                                                        href="blog-single.html"
-                                                        className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
-                                                    >
-                                                        Blog details right sidebar
-                                                    </a>
-                                                </li>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="service.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                The IB Diploma Programme (Year 12-13)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="service-single.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Cambridge International A-Level
+                                            </a>
+                                        </li>
 
-                                                <li>
-                                                    <a
-                                                        href="blog-single-left-sidebar.html"
-                                                        className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
-                                                    >
-                                                        Blog details left sidebar
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a
-                                                        href="blog-single-fullwidth.html"
-                                                        className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-[16px] font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-[#ea7c08] after:transition-all hover:after:w-[50%] lg:text-[16px] dark:text-gray-50"
-                                                    >
-                                                        Blog details fullwidth
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        <li>
+                                            <a
+                                                href="faq.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Weekend English Course
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="login.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Weekend English Course
+                                            </a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li className="relative inline-block">
-                                    <a
-                                        href="contact.html"
-                                        className="font-heading-font before:content relative block px-[6px] py-[30px] text-[16px] font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[17px] xl:px-[20px] xl:py-[35px]"
-                                    >
-                                        Contact
+                                {/* Admissions */}
+                                <li className="group relative inline-block">
+                                    <a href="#" className={`${currentPath === '/about' ? activeLink : baseLink}`}>
+                                        Admissions
                                     </a>
+                                    <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
+                                        <li>
+                                            <a
+                                                href="testimonial.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Applying to BFI Sister Schools
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="testimonial.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Admission Policies
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="team.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Frequently asked questions
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                {/* BFI Olympiads */}
+                                <li className="group relative inline-block">
+                                    <a href="#" className={`${currentPath === '/about' ? activeLink : baseLink}`}>
+                                        BFI Olympiads
+                                    </a>
+                                    <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
+                                        <li>
+                                            <a
+                                                href="testimonial.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Mathemania Competition
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="testimonial.html"
+                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            >
+                                                Spelling Bee Contest
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                {/* contact */}
+                                <li className="group relative inline-block">
+                                    <Link href={route('home')} className={`${currentPath === '/contact' ? activeLink : baseLink}`}>
+                                        Contact Us
+                                    </Link>
+                                </li>
+                                {/* Career */}
+                                <li className="group relative inline-block">
+                                    <Link href={route('home')} className={`${currentPath === '/career' ? activeLink : baseLink}`}>
+                                        Career
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -416,6 +501,7 @@ export default ({ children }: FrondendLayoutProps) => {
                 </div>
             </div>
             {children}
+            <Footer />
         </React.Fragment>
     );
 };

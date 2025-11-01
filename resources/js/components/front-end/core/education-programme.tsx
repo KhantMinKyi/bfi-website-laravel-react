@@ -31,7 +31,7 @@ function EducationProgramme({ programmes }: EducationProgrammeProps) {
                 spaceBetween={50}
                 autoplay={{ delay: 3000 }}
                 centeredSlides={true}
-                pagination={true}
+                // pagination={true}
                 loop={true}
                 breakpoints={{
                     '@0.00': {
@@ -57,15 +57,15 @@ function EducationProgramme({ programmes }: EducationProgrammeProps) {
                         programmes.map((p) => (
                             <SwiperSlide className="">
                                 <div className="max-w-sm overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                                    <a href="#" className="flex h-56 justify-center align-middle">
-                                        <img className="rounded-t-lg" src={p.authorImage} alt="product image" />
+                                    <a href="#" className="mb-4 flex h-52 justify-center align-middle">
+                                        <img className="h-full w-full rounded-t-lg object-cover" src={p.download_url} alt="product image" />
                                     </a>
                                     <div className="px-5 pb-5">
                                         <a href="#">
-                                            <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{p.quote}</h5>
+                                            <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{p.author}</h5>
                                         </a>
                                         <a href="#">
-                                            <h6 className="text-base tracking-tight text-gray-500 dark:text-gray-200">
+                                            <h6 className="my-2 text-base tracking-tight text-gray-500 dark:text-gray-200">
                                                 Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport
                                             </h6>
                                         </a>
