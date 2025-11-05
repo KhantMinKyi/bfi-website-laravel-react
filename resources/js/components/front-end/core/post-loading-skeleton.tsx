@@ -1,6 +1,6 @@
 function PostLoadingSkeleton() {
     return (
-        <div role="status" className="max-w-sm animate-pulse rounded-sm border border-gray-200 p-4 shadow-sm md:p-6 dark:border-gray-700">
+        <div role="status" className="max-w-sm animate-pulse rounded-sm">
             <div className="mb-4 flex h-48 items-center justify-center rounded-sm bg-gray-300 dark:bg-gray-700">
                 <svg
                     className="h-10 w-10 text-gray-200 dark:text-gray-600"
