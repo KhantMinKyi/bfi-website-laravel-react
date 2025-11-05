@@ -54,7 +54,8 @@ export default function AccordionGallery() {
                         <div
                             key={index}
                             className={`relative flex-1 cursor-pointer overflow-hidden transition-all duration-500 ${isActive ? 'flex-[4]' : 'flex-1'}`}
-                            onClick={() => setActiveIndex(isActive ? null : index)}
+                            // onClick={() => setActiveIndex(isActive ? null : index)}
+                            onPointerEnter={() => setActiveIndex(index)}
                         >
                             <img src={image.src} alt={image.title} className="h-full w-full object-cover" />
                             {/* Black overlay */}
@@ -70,8 +71,8 @@ export default function AccordionGallery() {
 
                             {/* Open full overlay */}
                             {isActive && (
-                                <div className="absolute inset-0 flex flex-col items-start justify-center p-4 text-white transition-opacity duration-500">
-                                    <h3 className="font-merriweather mb-2 text-2xl font-bold uppercase">{image.title}</h3>
+                                <div className="absolute inset-0 flex flex-col items-start justify-center p-16 text-white transition-opacity duration-500">
+                                    <h3 className="font-merriweather mb-2 text-xl font-bold uppercase md:text-4xl">{image.title}</h3>
                                     <p>{image.desc}</p>
                                 </div>
                             )}
