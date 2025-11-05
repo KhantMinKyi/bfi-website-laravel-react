@@ -11,15 +11,16 @@ const baseLink =
     'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
 const activeLink =
     'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all text-blue-800 before:visible before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
+
+const routePath = (name: string) => new URL(route(name)).pathname;
 export default ({ children }: FrondendLayoutProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const { url } = usePage();
     const currentPath = new URL(url, window.location.origin).pathname;
-    console.log(currentPath);
-    console.log(route('home'));
-
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
+    const subLinkActive = 'after:w-[50%]';
+
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
         console.log(menuOpen);
@@ -47,22 +48,22 @@ export default ({ children }: FrondendLayoutProps) => {
     return (
         <React.Fragment>
             <header
-                className={` ${scrolled ? 'sticky top-4 z-50 bg-transparent' : 'relative bg-white dark:bg-gray-950'} transition-all duration-300 ease-in-out`}
+                className={` ${scrolled ? 'sticky top-4 z-50 bg-transparent' : 'relative bg-white dark:bg-gray-950'} scroll-smooth transition-all duration-300 ease-in-out`}
             >
                 <div className={`absolute top-4 left-24 ${scrolled ? 'hidden' : 'sm:hidden lg:block'}`}>
-                    <img src="img/bfi_b.png" alt="" className="w-28 rotate-z-8 opacity-15 dark:opacity-50" />
+                    <img src="/img/bfi_b.png" alt="" className="w-28 rotate-z-8 opacity-15 dark:opacity-50" />
                 </div>
                 <div className={`absolute top-4 right-20 ${scrolled ? 'hidden' : 'sm:hidden lg:block'} `}>
-                    <img src="img/bfi_b.png" alt="" className="w-44 -rotate-z-6 opacity-15 dark:opacity-50" />
+                    <img src="/img/bfi_b.png" alt="" className="w-44 -rotate-z-6 opacity-15 dark:opacity-50" />
                 </div>
                 {/* <h1 className="hidden">section heading hidden</h1> */}
                 <div className={`z-20 py-[0px] ${scrolled ? 'hidden' : 'block'} transition-all duration-300 ease-in-out`}>
                     <div className="mx-auto max-w-11/12 sm:max-w-9/12">
                         <div className="grid grid-cols-12 items-center gap-4">
                             <div className="relative top-16 left-5 z-20 col-span-3 hidden lg:block">
-                                <a href="index.html">
-                                    <img src="img/bfi.png" className="max-w-28 transition-all dark:grayscale" alt="" />
-                                </a>
+                                <Link href={route('home')}>
+                                    <img src="/img/bfi.png" className="max-w-28 transition-all dark:grayscale" alt="" />
+                                </Link>
                             </div>
                             <div className={`col-span-12 lg:col-span-9 ${scrolled ? 'hidden' : 'block'}`}>
                                 <div className="hidden flex-wrap justify-center sm:flex lg:justify-end">
@@ -107,9 +108,9 @@ export default ({ children }: FrondendLayoutProps) => {
                 <div
                     className={`absolute top-2 left-36 z-20 lg:left-40 xl:left-56 2xl:left-64 dark:grayscale ${scrolled ? 'hidden lg:block' : 'hidden'}`}
                 >
-                    <a href="index.html">
-                        <img src="img/bfi.png " className="max-w-18" alt="" />
-                    </a>
+                    <Link href={route('home')} className="scroll-smooth">
+                        <img src="/img/bfi.png " className="max-w-18" alt="" />
+                    </Link>
                 </div>
 
                 <div className="mx-auto mt-4 max-w-9/12 sm:mt-0">
@@ -127,38 +128,30 @@ export default ({ children }: FrondendLayoutProps) => {
                         </div>
                         <div>
                             <div className="col:w-[150px] col:ml-[50px] block w-[150px] sm:w-[195px] md:w-[200px] lg:hidden">
-                                <a className="flex items-center justify-end pr-2 text-white lg:justify-center" href="index.html">
-                                    <img className="max-w-20 dark:grayscale" src="img/bfi.png" alt="" />
+                                <a className="flex items-center justify-end pr-2 text-white lg:justify-center" href={route('home')}>
+                                    <img className="max-w-20 dark:grayscale" src="/img/bfi.png" alt="" />
                                 </a>
                             </div>
                             <ul className={`hidden text-[#14212b] lg:block dark:text-gray-50 ${scrolled ? '' : 'sm:hidden lg:block'} `}>
                                 {/* Home */}
                                 <li className="group relative inline-block">
-                                    <Link href={route('home')} className={`${currentPath === '/' ? activeLink : baseLink}`}>
+                                    <Link href={route('home')} className={`${currentPath === routePath('home') ? activeLink : baseLink}`}>
                                         Home
                                     </Link>
                                 </li>
                                 {/* About Us */}
                                 <li className="group relative inline-block">
-                                    <a href="#" className={`${currentPath === '/about' ? activeLink : baseLink}`}>
+                                    <a href="#" className={`${currentPath === routePath('our_history') ? activeLink : baseLink}`}>
                                         About Us
                                     </a>
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
                                         <li>
-                                            <a
-                                                href="testimonial.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                Sister Schools
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="team.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('our_history')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('our_history') ? subLinkActive : ''} `}
                                             >
                                                 Our History
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
                                             <a
@@ -447,7 +440,7 @@ export default ({ children }: FrondendLayoutProps) => {
                         ×
                     </button>
 
-                    {/* Menu Items */}
+                    {/* Mobile Menu Items */}
                     <nav className="font-heading-font mt-16 space-y-4 p-6 text-gray-800 uppercase">
                         {/* Home */}
                         <div>
@@ -458,7 +451,7 @@ export default ({ children }: FrondendLayoutProps) => {
                             <div className={`overflow-hidden transition-all duration-300 ${activeSubMenu === 'home' ? 'max-h-40' : 'max-h-0'}`}>
                                 <ul className="mt-2 ml-4 space-y-4 text-sm text-gray-600">
                                     <li>
-                                        <a href="index.html">Home style 1</a>
+                                        <a href={route('home')}>Home style 1</a>
                                     </li>
                                     <li>
                                         <a href="index-2.html">Home style 2</a>

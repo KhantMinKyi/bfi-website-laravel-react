@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('front-end/home');
+    return Inertia::render('front-end/Home');
 })->name('home');
+
+require __DIR__ . '/route_groups/front_end/about_us/our_history.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
