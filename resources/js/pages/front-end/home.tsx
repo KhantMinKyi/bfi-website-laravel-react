@@ -7,6 +7,7 @@ import PostCarousel, { PostItem, Posts } from '@/components/front-end/core/post-
 import PostLoadingSkeleton from '@/components/front-end/core/post-loading-skeleton';
 import PullUpHeader from '@/components/front-end/core/pull-up-header';
 import CarouselBanner from '@/components/front-end/home/carousel-banner';
+import ContactBanner from '@/components/front-end/home/contact-banner';
 import HeroBanner from '@/components/front-end/home/hero-banner';
 import Information from '@/components/front-end/home/information';
 import PhotoGallery from '@/components/front-end/home/photo-gallery';
@@ -108,13 +109,13 @@ function home() {
                 <AboutTestimonial />
                 <HeroBanner />
                 <PhotoGallery />
-                <div className="container mx-auto mt-10">
+                <div className="container mx-auto mt-10 h-[50dvh]">
                     {postLoading ? (
                         <div className="container mx-auto">
                             <h2 className="mb-4">
                                 <PullUpHeader text="Events & News" />
                             </h2>
-                            <div className="flex h-64 justify-center gap-10">
+                            <div className="flex h-[50dvh] justify-center gap-10">
                                 <PostLoadingSkeleton />
                                 <PostLoadingSkeleton />
                                 <PostLoadingSkeleton />
@@ -124,6 +125,7 @@ function home() {
                         <PostCarousel posts={cardsData} onPostClick={handleCardClick} onFilterChange={handleFilterChange} />
                     )}
                 </div>
+                <ContactBanner />
             </>
         </FrontEndLayout>
     );
