@@ -1,13 +1,26 @@
 import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FiMapPin } from 'react-icons/fi';
 import GradualSpacingHeader from '../core/gradual-spacing-header';
-
+interface CenterImageProps {
+    isMobile: boolean; // string for mobile, MotionValue for large screens
+}
+interface HeroProps {
+    isMobile: boolean; // string for mobile, MotionValue for large screens
+}
 const SisterSchoolCards = () => {
+    const { scrollY } = useScroll();
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 1024); // md breakpoint
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     return (
         <div className="">
             <Nav />
-            <Hero />
+            <Hero isMobile={isMobile} />
             <Schedule />
         </div>
     );
@@ -33,10 +46,10 @@ const Nav = () => {
 
 const SECTION_HEIGHT = 1500;
 
-const Hero = () => {
+const Hero: React.FC<HeroProps> = ({ isMobile }) => {
     return (
         <div style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)` }} className="relative w-full">
-            <CenterImage />
+            <CenterImage isMobile={isMobile} />
 
             <ParallaxImages />
 
@@ -45,7 +58,7 @@ const Hero = () => {
     );
 };
 
-const CenterImage = () => {
+const CenterImage: React.FC<CenterImageProps> = ({ isMobile }) => {
     const { scrollY } = useScroll();
 
     const clip1 = useTransform(scrollY, [1500, 1500], [25, 0]);
@@ -53,15 +66,35 @@ const CenterImage = () => {
 
     const clipPath = useMotionTemplate`polygon(${clip1}% ${clip1}%, ${clip2}% ${clip1}%, ${clip2}% ${clip2}%, ${clip1}% ${clip2}%)`;
 
+    // const backgroundSize = useTransform(scrollY, [0, SECTION_HEIGHT + 500], ['170%', '100%']);
+    // Transform background size only for large screens
     const backgroundSize = useTransform(scrollY, [0, SECTION_HEIGHT + 500], ['170%', '100%']);
     const opacity = useTransform(scrollY, [SECTION_HEIGHT, SECTION_HEIGHT + 500], [1, 1]);
+    console.log(isMobile);
 
     return (
+        //     <>
+        //         {isMobile ? (
+        //             <motion.div
+        //                 className="sticky top-0 h-screen w-full"
+        //                 style={{
+        //                     clipPath,
+        //                     backgroundSize: 'cover',
+        //                     opacity,
+        //                     backgroundImage: `
+        //   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        //   url('img/skt_11.jpg')
+        // `,
+        //                     backgroundPosition: 'center',
+        //                     backgroundRepeat: 'no-repeat',
+        //                 }}
+        //             />
+        //         ) : (
         <motion.div
             className="sticky top-0 h-screen w-full"
             style={{
                 clipPath,
-                backgroundSize,
+                backgroundSize: isMobile ? 'cover' : backgroundSize,
                 opacity,
                 backgroundImage: `
       linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
@@ -71,6 +104,8 @@ const CenterImage = () => {
                 backgroundRepeat: 'no-repeat',
             }}
         />
+        //     )}
+        // </>
     );
 };
 

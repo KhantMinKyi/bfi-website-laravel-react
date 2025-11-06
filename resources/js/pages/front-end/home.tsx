@@ -117,8 +117,8 @@ function home() {
                             </h2>
                             <div className="flex h-[50dvh] justify-center gap-10">
                                 <PostLoadingSkeleton />
-                                <PostLoadingSkeleton />
-                                <PostLoadingSkeleton />
+                                <PostLoadingSkeleton className={'hidden md:block'} />
+                                <PostLoadingSkeleton className={'hidden md:block'} />
                             </div>
                         </div>
                     ) : (

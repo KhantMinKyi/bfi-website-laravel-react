@@ -23,11 +23,11 @@ function AboutTestimonial() {
                 <div className="m-10">
                     <SwiperSlide className="bg-blue-100 py-16 dark:bg-gray-950">
                         <div className="mx-auto block max-w-sm items-center justify-center rounded-[24px] md:flex md:max-w-4xl">
-                            <div className="basis-2xl sm:basis-7xl">
+                            <div className="flex basis-2xl justify-center sm:basis-7xl">
                                 <img
                                     src="img/bfi.png"
                                     alt=""
-                                    className="rounded-tr-[20px]object-cover h-56 w-full rounded-tl-[20px] sm:h-72 md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
+                                    className="rounded-tr-[20px]object-cover h-full rounded-tl-[20px] sm:h-72 md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
                                 />
                             </div>
                             <div className="">
@@ -43,11 +43,11 @@ function AboutTestimonial() {
                     </SwiperSlide>
                     <SwiperSlide className="bg-green-100 py-16 dark:bg-gray-900">
                         <div className="mx-auto block max-w-sm items-center justify-center rounded-[24px] md:flex md:max-w-4xl">
-                            <div className="basis-2xl sm:basis-7xl">
+                            <div className="flex basis-2xl justify-center sm:basis-7xl">
                                 <img
                                     src="img/bfi.png"
                                     alt=""
-                                    className="rounded-tr-[20px]object-cover h-56 w-full rounded-tl-[20px] sm:h-72 md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
+                                    className="rounded-tr-[20px]object-cover h-full rounded-tl-[20px] sm:h-72 md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
                                 />
                             </div>
                             <div className="">
@@ -63,11 +63,11 @@ function AboutTestimonial() {
                     </SwiperSlide>
                     <SwiperSlide className="bg-white py-16 dark:bg-gray-950">
                         <div className="mx-auto block max-w-sm items-center justify-center rounded-[24px] md:flex md:max-w-4xl">
-                            <div className="basis-2xl sm:basis-7xl">
+                            <div className="flex basis-2xl justify-center sm:basis-7xl">
                                 <img
                                     src="img/bfi.png"
                                     alt=""
-                                    className="rounded-tr-[20px]object-cover h-56 w-full rounded-tl-[20px] sm:h-72 md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
+                                    className="rounded-tr-[20px]object-cover h-full rounded-tl-[20px] sm:h-72 md:h-96 md:rounded-tr-[0px] md:rounded-bl-[20px]"
                                 />
                             </div>
                             <div className="">
