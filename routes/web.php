@@ -7,7 +7,7 @@ Route::get('/', function () {
     return Inertia::render('front-end/Home');
 })->name('home');
 
-require __DIR__ . '/route_groups/front_end/about_us/our_history.php';
+require __DIR__ . '/route_groups/front_end/about_us.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
