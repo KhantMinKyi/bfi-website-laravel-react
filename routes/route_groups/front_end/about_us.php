@@ -6,5 +6,8 @@ use Inertia\Inertia;
 Route::get('/about_us/our_history', function () {
     return Inertia::render('front-end/about_us/OurHistory');
 })->name('our_history');
+Route::get('/about_us/vision_mission_value', function () {
+    return Inertia::render('front-end/about_us/VisionMissionValue');
+})->name('vision_mission_value');
 
 ?>

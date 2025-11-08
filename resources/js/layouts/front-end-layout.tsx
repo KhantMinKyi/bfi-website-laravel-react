@@ -8,9 +8,9 @@ interface FrondendLayoutProps {
 }
 
 const baseLink =
-    'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 hover:before:visible hover:before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
+    'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 dark:hover:text-green-800  hover:before:visible dark:before:bg-green-700 hover:before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
 const activeLink =
-    'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all text-blue-800 before:visible before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
+    'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all text-blue-800 dark:text-green-800 dark:before:bg-green-800 before:visible before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
 
 const routePath = (name: string) => new URL(route(name)).pathname;
 export default ({ children }: FrondendLayoutProps) => {
@@ -32,13 +32,12 @@ export default ({ children }: FrondendLayoutProps) => {
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 0) {
-                setTimeout(() => {
-                    setScrolled(true);
-                }, 100);
+                setScrolled(true);
+                setTimeout(() => {}, 10);
             } else {
                 setTimeout(() => {
                     setScrolled(false);
-                }, 100);
+                }, 10);
             }
         };
 
@@ -141,7 +140,14 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </li>
                                 {/* About Us */}
                                 <li className="group relative inline-block">
-                                    <a href="#" className={`${currentPath === routePath('our_history') ? activeLink : baseLink}`}>
+                                    <a
+                                        href="#"
+                                        className={` ${
+                                            currentPath === routePath('our_history') || currentPath === routePath('vision_mission_value')
+                                                ? activeLink
+                                                : baseLink
+                                        }`}
+                                    >
                                         About Us
                                     </a>
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
@@ -154,12 +160,12 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <a
-                                                href="service.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('vision_mission_value')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('vision_mission_value') ? subLinkActive : ''}`}
                                             >
                                                 Vision , Mission & Values
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
                                             <a
