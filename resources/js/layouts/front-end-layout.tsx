@@ -143,7 +143,9 @@ export default ({ children }: FrondendLayoutProps) => {
                                     <a
                                         href="#"
                                         className={` ${
-                                            currentPath === routePath('our_history') || currentPath === routePath('vision_mission_value')
+                                            currentPath === routePath('our_history') ||
+                                            currentPath === routePath('vision_mission_value') ||
+                                            currentPath === routePath('philosophy')
                                                 ? activeLink
                                                 : baseLink
                                         }`}
@@ -168,12 +170,12 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <a
-                                                href="service-single.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('philosophy')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('philosophy') ? subLinkActive : ''} `}
                                             >
                                                 Philosophy
-                                            </a>
+                                            </Link>
                                         </li>
 
                                         <li>
