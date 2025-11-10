@@ -13,9 +13,9 @@ function HistoryTagline() {
             <div className="container mx-auto grid grid-cols-1 p-10 md:grid-cols-2">
                 <motion.div
                     className="orico-about-text-wrap 111 font-merriweather flex items-center"
-                    initial={{ opacity: 0, x: 100 }} // start 100px below
-                    whileInView={{ opacity: 1, x: 1 }} // slide up and fade in
-                    exit={{ opacity: 0, x: 100 }} // fade out and slide down
+                    initial={{ opacity: 0, y: 100 }} // start 100px below
+                    whileInView={{ opacity: 1, y: 1 }} // slide up and fade in
+                    exit={{ opacity: 0, y: 100 }} // fade out and slide down
                     viewport={{ once: false, amount: 0.4 }} // trigger when 40% visible
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >
@@ -28,9 +28,9 @@ function HistoryTagline() {
                 </motion.div>
                 <motion.div
                     className="orico-about-text-wrap 111 flex flex-col items-center justify-center"
-                    initial={{ opacity: 0, x: -100 }} // start 100px below
-                    whileInView={{ opacity: 1, x: 1 }} // slide up and fade in
-                    exit={{ opacity: 0, x: -100 }} // fade out and slide down
+                    initial={{ opacity: 0, y: -100 }} // start 100px below
+                    whileInView={{ opacity: 1, y: 1 }} // slide up and fade in
+                    exit={{ opacity: 0, y: -100 }} // fade out and slide down
                     viewport={{ once: false, amount: 0.4 }} // trigger when 40% visible
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >

@@ -28,7 +28,7 @@ function PullUpHeader({ text, className = '' }: { text: string; className?: stri
                     animate={isInView ? 'animate' : ''}
                     custom={i}
                     className={cn(
-                        'text-center text-xl font-bold tracking-tighter sm:text-4xl md:text-6xl md:leading-[4rem]',
+                        'font-merriweather text-center text-xl font-bold tracking-tighter sm:text-4xl md:text-6xl md:leading-[4rem]',
                         'pr-2', // class to sperate words
                         className,
                     )}

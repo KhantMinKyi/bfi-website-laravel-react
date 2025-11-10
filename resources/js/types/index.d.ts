@@ -50,3 +50,9 @@ export type Programmes = {
     url: string;
     download_url: string;
 };
+
+export type TeamCardType = {
+    name: string;
+    profession: string;
+    imagesrc?: string;
+};
