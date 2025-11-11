@@ -125,7 +125,6 @@ const ParallaxImg = ({ className, alt, src, start, end }: { className?: string; 
 
     const { scrollYProgress } = useScroll({
         target: ref,
-        // @ts-ignore
         offset: [`${start}px end`, `end ${end * -1}px`],
     });
 
