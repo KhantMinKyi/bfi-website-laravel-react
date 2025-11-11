@@ -45,18 +45,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
         rel="stylesheet">
-    <link href="assets/css/themify-icons.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/flaticon.css" rel="stylesheet">
-    <link href="assets/css/magnific-popup.css" rel="stylesheet">
-    <link href="assets/css/animate.css" rel="stylesheet">
-    {{-- <link href="assets/css/owl.carousel.css" rel="stylesheet"> --}}
-    {{-- <link href="assets/css/owl.theme.css" rel="stylesheet"> --}}
-    <link href="assets/css/slick.css" rel="stylesheet">
-    <link href="assets/css/slick-theme.css" rel="stylesheet">
-    <link href="assets/css/swiper.min.css" rel="stylesheet">
-    <link href="assets/css/jquery.fancybox.css" rel="stylesheet">
-    <link href="assets/css/odometer-theme-default.css" rel="stylesheet">
+    <link href="/assets/css/themify-icons.css" rel="stylesheet">
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/css/flaticon.css" rel="stylesheet">
+    <link href="/assets/css/magnific-popup.css" rel="stylesheet">
+    <link href="/assets/css/animate.css" rel="stylesheet">
+    {{-- <link href="/assets/css/owl.carousel.css" rel="stylesheet"> --}}
+    {{-- <link href="/assets/css/owl.theme.css" rel="stylesheet"> --}}
+    <link href="/assets/css/slick.css" rel="stylesheet">
+    <link href="/assets/css/slick-theme.css" rel="stylesheet">
+    <link href="/assets/css/swiper.min.css" rel="stylesheet">
+    <link href="/assets/css/jquery.fancybox.css" rel="stylesheet">
+    <link href="/assets/css/odometer-theme-default.css" rel="stylesheet">
     {{-- <link href="assets/css/global.css" rel="stylesheet"> --}}
     {{-- <link href="assets/css/style.css" rel="stylesheet"> --}}
     @routes
