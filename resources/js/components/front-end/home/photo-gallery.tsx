@@ -6,7 +6,10 @@ import SSR from 'react-photo-album/ssr';
 import { DotLoading } from '../core/dot-loading';
 // import photos from './photos';
 const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
-
+interface RawPhoto {
+    src: string;
+    alt?: string;
+}
 function imageLink(path: string, width: number, height: number, size: number, extension: string) {
     return `/img/${path}.${extension}`;
 }
@@ -22,7 +25,7 @@ function PhotoGallery() {
                 const data = await response.json();
 
                 const formattedPhotos = data
-                    .map(({ src, ...rest }: any) => {
+                    .map(({ src, ...rest }: RawPhoto) => {
                         const matcher = src.match(/^(.*)\.(\d+)x(\d+)\.(.*)$/);
                         if (!matcher) return null;
 
