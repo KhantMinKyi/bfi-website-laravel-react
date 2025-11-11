@@ -24,7 +24,7 @@ const handleFilterChange = (category: string) => {
     console.log('Filter changed to:', category);
 };
 
-function home() {
+function Welcome() {
     const [programmes, setProgrammes] = useState<Programmes[]>([]);
     const [images, setImages] = useState<ImageItem[]>([]);
     const [cardsData, setCardsData] = useState<PostItem[]>([]);
@@ -107,4 +107,4 @@ function home() {
     );
 }
 
-export default home;
+export default Welcome;

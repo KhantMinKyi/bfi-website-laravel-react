@@ -6,29 +6,6 @@ import FrontEndLayout from '@/layouts/front-end-layout';
 import { ImageItem } from '@/types';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-// Text Need to Change
-const images: ImageItem[] = [
-    {
-        src: '/img/skt_riverside_campus.png',
-        title: 'SKT Riverside Campus',
-        desc: 'Our Parallel Education Model delivers teaching and learning in a way that recognises the unique and changing social, emotional and educational needs of all students.',
-    },
-    {
-        src: '/img/skt_city_campus.png',
-        title: 'SKT City Campus',
-        desc: 'All sister schools under BFI are above all an integrated and passionate community of students, teachers, parents, guardians and alumni, working together to ensure BFI remains a supportive and enriching environment in which to learn and socialise.',
-    },
-    {
-        src: '/img/misa.png',
-        title: 'MISA',
-        desc: 'Our innovative Explicit Teaching Model provides the best possible start for all BFI Junior School students, helping them engage with and master the core skills of Literacy and Numeracy.',
-    },
-    {
-        src: '/img/nisa.png',
-        title: 'NISA',
-        desc: 'All sister schools under BFI has achieved national recognition and received a host of respected awards – the results of a unique combination of innovation, unrivalled educators and extraordinary results.',
-    },
-];
 function BFIAdvantage() {
     const [images, setImages] = useState<ImageItem[]>([]);
     const [imagesLoading, setImagesLoading] = useState<boolean>(true);
