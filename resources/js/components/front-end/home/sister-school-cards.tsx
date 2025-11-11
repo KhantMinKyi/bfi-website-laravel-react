@@ -9,7 +9,6 @@ interface HeroProps {
     isMobile: boolean; // string for mobile, MotionValue for large screens
 }
 const SisterSchoolCards = () => {
-    const { scrollY } = useScroll();
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 1024); // md breakpoint
