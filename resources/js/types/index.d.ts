@@ -56,3 +56,9 @@ export type TeamCardType = {
     profession: string;
     imagesrc?: string;
 };
+
+export interface ImageItem {
+    src: string;
+    title: string;
+    desc: string;
+}

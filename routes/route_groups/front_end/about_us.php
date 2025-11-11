@@ -15,5 +15,8 @@ Route::get('/about_us/philosophy', function () {
 Route::get('/about_us/leadership_teams', function () {
     return Inertia::render('front-end/about_us/LeadershipTeams');
 })->name('leadership_teams');
+Route::get('/about_us/bfi_advantage', function () {
+    return Inertia::render('front-end/about_us/BFIAdvantage');
+})->name('bfi_advantage');
 
 ?>
