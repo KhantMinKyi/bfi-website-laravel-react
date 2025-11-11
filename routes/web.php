@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('front-end/Home');
+    return Inertia::render('front-end/Welcome');
 })->name('home');
 
 require __DIR__ . '/route_groups/front_end/about_us.php';
