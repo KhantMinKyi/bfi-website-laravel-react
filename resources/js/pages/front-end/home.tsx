@@ -109,7 +109,7 @@ function home() {
                 <AboutTestimonial />
                 <HeroBanner />
                 <PhotoGallery />
-                <div className="container mx-auto mt-10 h-[50dvh]">
+                <div className="container mx-auto mt-10">
                     {postLoading ? (
                         <div className="container mx-auto">
                             <h2 className="mb-4">
