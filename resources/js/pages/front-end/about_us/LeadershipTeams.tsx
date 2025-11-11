@@ -1,30 +1,23 @@
 import Team from '@/components/front-end/about_us/leadership_teams/team-cards';
 import TeamTagline from '@/components/front-end/about_us/leadership_teams/team-tagline';
+import { DotLoading } from '@/components/front-end/core/dot-loading';
 import FrontEndLayout from '@/layouts/front-end-layout';
+import { TeamCardType } from '@/types';
 import { motion } from 'framer-motion';
-const teamData = [
-    {
-        name: 'U Ye Tun',
-        profession: 'Managing Director ',
-        imagesrc: 'https://cdn.tailgrids.com/assets/images/marketing/team/team-01/image-04.jpg',
-    },
-    {
-        name: 'U Pyi Soe',
-        profession: 'Mandalay Mananging Director ',
-        imagesrc: 'https://cdn.tailgrids.com/assets/images/marketing/team/team-01/image-02.jpg',
-    },
-    {
-        name: 'Dr. Aung Kyaw San',
-        profession: 'Public Relationship Director',
-        imagesrc: 'https://cdn.tailgrids.com/assets/images/marketing/team/team-01/image-03.jpg',
-    },
-    {
-        name: 'Ms. Cho Zin Tun',
-        profession: 'Admin Manager',
-        imagesrc: 'https://cdn.tailgrids.com/assets/images/marketing/team/team-01/image-01.jpg',
-    },
-];
+import { useEffect, useState } from 'react';
+
 function LeaderShipTeams() {
+    const [teamData, setTeamData] = useState<TeamCardType[]>([]);
+    const [teamDataLoading, setTeamDataLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        fetch('/dummy-json/leadership-teams.json')
+            .then((res) => res.json())
+            .then((data) => {
+                setTeamData(data);
+                setTeamDataLoading(false);
+            });
+    }, []);
     return (
         <FrontEndLayout>
             <div
@@ -54,7 +47,15 @@ function LeaderShipTeams() {
             </div>
 
             <TeamTagline />
-            <Team teamData={teamData} />
+            {teamDataLoading ? (
+                <div className="container mx-auto flex justify-center gap-10">
+                    <div className="flex h-64 items-center justify-center text-lg text-gray-500">
+                        <DotLoading />
+                    </div>
+                </div>
+            ) : (
+                <Team teamData={teamData} />
+            )}
         </FrontEndLayout>
     );
 }

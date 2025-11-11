@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "title": "The government of Myanmar has issued advisory statements to close all Pre-school classes temporarily",
+        "category": "Event",
+        "description": "This is card 1",
+        "image": "https://www.wolters-cat-dog.de/media/4c/8b/e4/1706866207/WOLTERS_Funny_Dummy_Mood_web%20(1).webp"
+    },
+    {
+        "id": 2,
+        "title": "SKT International School: School Calendar",
+        "category": "News",
+        "description": "This is card 2",
+        "image": "https://www.wolters-cat-dog.de/media/4c/8b/e4/1706866207/WOLTERS_Funny_Dummy_Mood_web%20(1).webp"
+    },
+    {
+        "id": 3,
+        "title": "BFI Football Tournament",
+        "category": "Event",
+        "description": "This is card 3",
+        "image": "https://www.wolters-cat-dog.de/media/4c/8b/e4/1706866207/WOLTERS_Funny_Dummy_Mood_web%20(1).webp"
+    },
+    {
+        "id": 4,
+        "title": "BFI Sport day is Here!",
+        "category": "Event",
+        "description": "This is card 4",
+        "image": "https://www.wolters-cat-dog.de/media/4c/8b/e4/1706866207/WOLTERS_Funny_Dummy_Mood_web%20(1).webp"
+    },
+    {
+        "id": 5,
+        "title": "Spelling Bee is Comming!!",
+        "category": "News",
+        "description": "This is card 5",
+        "image": "https://www.wolters-cat-dog.de/media/4c/8b/e4/1706866207/WOLTERS_Funny_Dummy_Mood_web%20(1).webp"
+    }
+]

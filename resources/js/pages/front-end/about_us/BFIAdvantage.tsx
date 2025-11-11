@@ -1,9 +1,11 @@
 import BFIAdvantageBanner from '@/components/front-end/about_us/bfi_advantages/bfi-advantange-banner';
 import IconCardGroup from '@/components/front-end/about_us/bfi_advantages/icon-card';
 import AccordionGallery from '@/components/front-end/core/accordion-gallery';
+import { DotLoading } from '@/components/front-end/core/dot-loading';
 import FrontEndLayout from '@/layouts/front-end-layout';
 import { ImageItem } from '@/types';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 // Text Need to Change
 const images: ImageItem[] = [
     {
@@ -28,6 +30,17 @@ const images: ImageItem[] = [
     },
 ];
 function BFIAdvantage() {
+    const [images, setImages] = useState<ImageItem[]>([]);
+    const [imagesLoading, setImagesLoading] = useState<boolean>(true);
+
+    useEffect(() => {}, []);
+    fetch('/dummy-json/advantange-page-according-images.json')
+        .then((res) => res.json())
+        .then((data: ImageItem[]) => {
+            setImages(data);
+            setImagesLoading(false);
+        })
+        .catch((err) => console.log(err));
     return (
         <FrontEndLayout>
             <div
@@ -57,7 +70,16 @@ function BFIAdvantage() {
             </div>
             <BFIAdvantageBanner />
             <IconCardGroup />
-            <AccordionGallery images={images} />
+
+            {imagesLoading ? (
+                <div className="container mx-auto flex justify-center gap-10">
+                    <div className="flex h-64 items-center justify-center text-lg text-gray-500">
+                        <DotLoading />
+                    </div>
+                </div>
+            ) : (
+                <AccordionGallery images={images} />
+            )}
         </FrontEndLayout>
     );
 }
