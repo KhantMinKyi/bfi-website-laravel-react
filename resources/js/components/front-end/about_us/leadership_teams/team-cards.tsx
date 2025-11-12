@@ -27,6 +27,7 @@ const Team: React.FC<Props> = ({ teamData }) => {
                     {teamData.map((t, i) => (
                         <motion.div
                             className="orico-about-text-wrap 111"
+                            key={i}
                             initial={{ opacity: 0, y: -50 }} // start 50px below
                             whileInView={{ opacity: 1, y: 1 }} // slide up and fade in
                             exit={{ opacity: 0, y: -50 }} // fade out and slide down
