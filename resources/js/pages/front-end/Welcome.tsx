@@ -1,12 +1,12 @@
 import AboutTestimonial from '@/components/front-end/core/about-testimonial';
 import AccordionGallery from '@/components/front-end/core/accordion-gallery';
+import CarouselBanner from '@/components/front-end/core/carousel-banner';
 import Counter from '@/components/front-end/core/counter';
 import { DotLoading } from '@/components/front-end/core/dot-loading';
 import EducationProgramme from '@/components/front-end/core/education-programme';
 import PostCarousel, { PostItem } from '@/components/front-end/core/post-lists';
 import PostLoadingSkeleton from '@/components/front-end/core/post-loading-skeleton';
 import PullUpHeader from '@/components/front-end/core/pull-up-header';
-import CarouselBanner from '@/components/front-end/home/carousel-banner';
 import ContactBanner from '@/components/front-end/home/contact-banner';
 import HeroBanner from '@/components/front-end/home/hero-banner';
 import Information from '@/components/front-end/home/information';
@@ -23,6 +23,36 @@ const handleCardClick = (card: PostItem) => {
 const handleFilterChange = (category: string) => {
     console.log('Filter changed to:', category);
 };
+const carouselData = [
+    {
+        bgSrc: '/img/skt_6.jpg',
+        headTitle: 'BFI',
+        colorTitle: 'EDUCATION',
+        lastTitle: 'SERVIES.',
+        subTitle: '4 Sister Schools',
+        desc: 'Lorem Ipsum has been the industry`s standard text since the printer took galley make.',
+        routeLink: '#',
+    },
+
+    {
+        bgSrc: '/img/skt_9.jpg',
+        headTitle: 'Inspiring Brilance',
+        colorTitle: 'Building Brighter',
+        lastTitle: 'Futures.',
+        subTitle: '90% Foreign Teachers',
+        desc: 'Lorem Ipsum has been the industry`s standard text since the printer took galley make.',
+        routeLink: '#',
+    },
+
+    {
+        bgSrc: '/img/skt_5.jpg',
+        headTitle: 'WORLD-CLASS EDUCATION IN A',
+        colorTitle: 'SAFE AND FRIENDLY ENVIRONMENT',
+        subTitle: 'The IB Diploma Programme',
+        desc: 'Lorem Ipsum has been the industry`s standard text since the printer took galley make.',
+        routeLink: '#',
+    },
+];
 
 function Welcome() {
     const [programmes, setProgrammes] = useState<Programmes[]>([]);
@@ -59,7 +89,7 @@ function Welcome() {
     return (
         <FrontEndLayout>
             <>
-                <CarouselBanner />
+                <CarouselBanner carouselData={carouselData} />
                 <SisterSchoolCards />
                 <Information />
 

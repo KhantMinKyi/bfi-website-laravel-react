@@ -56,9 +56,24 @@ export type TeamCardType = {
     profession: string;
     imagesrc?: string;
 };
+export type carouselDataType = {
+    bgSrc: string;
+    headTitle: string;
+    colorTitle: string;
+    lastTitle?: string;
+    subTitle: string;
+    desc: string;
+    routeLink?: string;
+};
 
 export interface ImageItem {
     src: string;
     title: string;
     desc: string;
+}
+export interface SisterSchoolBannerType {
+    logo: string;
+    schoolName: string;
+    shortName: string;
+    schoolOverview: string;
 }
