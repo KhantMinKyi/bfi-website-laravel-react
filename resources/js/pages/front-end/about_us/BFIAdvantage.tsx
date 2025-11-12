@@ -10,14 +10,15 @@ function BFIAdvantage() {
     const [images, setImages] = useState<ImageItem[]>([]);
     const [imagesLoading, setImagesLoading] = useState<boolean>(true);
 
-    useEffect(() => {}, []);
-    fetch('/dummy-json/advantange-page-according-images.json')
-        .then((res) => res.json())
-        .then((data: ImageItem[]) => {
-            setImages(data);
-            setImagesLoading(false);
-        })
-        .catch((err) => console.log(err));
+    useEffect(() => {
+        fetch('/dummy-json/advantange-page-according-images.json')
+            .then((res) => res.json())
+            .then((data: ImageItem[]) => {
+                setImages(data);
+                setImagesLoading(false);
+            })
+            .catch((err) => console.log(err));
+    }, []);
     return (
         <FrontEndLayout>
             <div
