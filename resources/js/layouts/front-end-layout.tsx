@@ -13,7 +13,7 @@ const baseLink =
 const activeLink =
     'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all text-blue-800 dark:text-green-800 dark:before:bg-green-800 before:visible before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
 
-const routePath = (name: string) => new URL(route(name)).pathname;
+export const routePath = (name: string) => new URL(route(name)).pathname;
 export default ({ children }: FrondendLayoutProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -24,7 +24,7 @@ export default ({ children }: FrondendLayoutProps) => {
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
-        console.log(menuOpen);
+        // console.log(menuOpen);
     };
     const toggleSubMenu = (menu: string) => {
         setActiveSubMenu(activeSubMenu === menu ? null : menu);
@@ -201,17 +201,17 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </li>
                                 {/* Sister Schools */}
                                 <li className="group relative inline-block">
-                                    <a href="#" className={`${currentPath === '/about' ? activeLink : baseLink}`}>
+                                    <Link href="#" className={` ${currentPath === routePath('skt_riverside') ? activeLink : baseLink}`}>
                                         Sister Schools
-                                    </a>
+                                    </Link>
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
                                         <li>
-                                            <a
-                                                href="testimonial.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('skt_riverside')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('skt_riverside') ? subLinkActive : ''}`}
                                             >
                                                 SKT International School ( Riverside Campus)
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
                                             <a
@@ -299,7 +299,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 href="team.html"
                                                 className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Secondary School (Year 7-9)
+                                                Lower Secondary School (Year 7-9)
                                             </a>
                                         </li>
                                         <li>
@@ -307,15 +307,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 href="team.html"
                                                 className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                IGCSE (Year 10-11)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="service.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                The IB Diploma Programme (Year 12-13)
+                                                Upper Secondary School (Year 10-11)
                                             </a>
                                         </li>
                                         <li>
@@ -323,24 +315,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 href="service-single.html"
                                                 className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Cambridge International A-Level
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a
-                                                href="faq.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                Weekend English Course
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="login.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                Weekend English Course
+                                                Foundation Program
                                             </a>
                                         </li>
                                     </ul>
@@ -432,7 +407,7 @@ export default ({ children }: FrondendLayoutProps) => {
                     </div>
                 </div>
             </header>
-            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${menuOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
+            <div className={`overflow-auto transition-all duration-500 ease-in-out ${menuOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
                 <div
                     onClick={toggleMenu}
                     className={`bg-opacity-50 fixed inset-0 bg-black transition-opacity duration-500 ${
@@ -442,7 +417,7 @@ export default ({ children }: FrondendLayoutProps) => {
 
                 {/* Sidebar */}
                 <div
-                    className={`fixed top-0 left-0 z-50 h-full w-72 transform bg-white shadow-xl transition-transform duration-500 ${
+                    className={`fixed top-0 left-0 z-50 h-full w-72 transform overflow-auto bg-white shadow-xl transition-transform duration-500 dark:bg-gray-950 ${
                         menuOpen ? 'translate-x-0' : '-translate-x-full'
                     }`}
                 >
@@ -452,7 +427,7 @@ export default ({ children }: FrondendLayoutProps) => {
                     </button>
 
                     {/* Mobile Menu Items */}
-                    <MobileLayout toggleSubMenu={toggleSubMenu} activeSubMenu={activeSubMenu} />
+                    <MobileLayout toggleSubMenu={toggleSubMenu} activeSubMenu={activeSubMenu} currentPath={currentPath} />
                 </div>
             </div>
             {children}
