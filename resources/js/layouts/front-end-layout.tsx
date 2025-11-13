@@ -201,7 +201,21 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </li>
                                 {/* Sister Schools */}
                                 <li className="group relative inline-block">
-                                    <Link href="#" className={` ${currentPath === routePath('skt_riverside') ? activeLink : baseLink}`}>
+                                    <Link
+                                        href="#"
+                                        className={` ${
+                                            currentPath === routePath('skt_riverside') ||
+                                            currentPath === routePath('skt_riverside_preschool') ||
+                                            currentPath === routePath('skt_city') ||
+                                            currentPath === routePath('skt_city_preschool') ||
+                                            currentPath === routePath('misa') ||
+                                            currentPath === routePath('misa_preschool') ||
+                                            currentPath === routePath('nisa') ||
+                                            currentPath === routePath('nisa_preschool')
+                                                ? activeLink
+                                                : baseLink
+                                        }`}
+                                    >
                                         Sister Schools
                                     </Link>
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
@@ -214,61 +228,61 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <a
-                                                href="testimonial.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('skt_riverside_preschool')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('skt_riverside_preschool') ? subLinkActive : ''}`}
                                             >
                                                 SKT International Prechool ( Riverside Campus)
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a
-                                                href="team.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('skt_city')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('skt_city') ? subLinkActive : ''}`}
                                             >
                                                 SKT International School ( City Campus)
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a
-                                                href="team.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('skt_city_preschool')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('skt_city_preschool') ? subLinkActive : ''}`}
                                             >
                                                 SKT International Prechool ( City Campus)
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a
-                                                href="service.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('misa')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('misa') ? subLinkActive : ''}`}
                                             >
                                                 Mandalay International School of Acumen
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a
-                                                href="service-single.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('misa_preschool')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('misa_preschool') ? subLinkActive : ''}`}
                                             >
                                                 Mandalay International School of Acumen ( KinderGarten )
-                                            </a>
+                                            </Link>
                                         </li>
 
                                         <li>
-                                            <a
-                                                href="faq.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('nisa')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('nisa') ? subLinkActive : ''}`}
                                             >
                                                 Naypyitaw International School of Acumen
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a
-                                                href="login.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('nisa_preschool')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('nisa_preschool') ? subLinkActive : ''}`}
                                             >
                                                 Naypyitaw International School of Acumen ( KinderGarten )
-                                            </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </li>

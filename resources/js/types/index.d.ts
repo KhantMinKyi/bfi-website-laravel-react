@@ -101,3 +101,15 @@ export interface SisterSchoolContactBannerType {
     logoUrlB: string;
     websiteLink: string;
 }
+export interface SisterSchoolDataType {
+    logoUrl: string;
+    logoUrlB: string;
+    schoolName: string;
+    shortName: string;
+    schoolOverview: string;
+    websiteLink: string;
+    history: string;
+    leadership: string[];
+    hosImg: string;
+    hosMessage: string;
+}

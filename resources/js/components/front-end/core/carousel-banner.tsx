@@ -6,8 +6,6 @@ interface carouselDataProps {
     carouselData?: carouselDataType[];
 }
 function CarouselBanner({ carouselData }: carouselDataProps) {
-    console.log(carouselData);
-
     return (
         <>
             <div>
