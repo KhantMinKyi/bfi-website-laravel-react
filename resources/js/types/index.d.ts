@@ -85,3 +85,19 @@ export interface SisterSchoolHOSMessageType {
     hosImg: string;
     hosMessage: string;
 }
+export interface CounterType {
+    firstNumber?: number;
+    firstTitle?: string;
+    secondNumber?: number;
+    secondTitle?: string;
+    thirdNumber?: number;
+    thirdTitle?: string;
+    fourthNumber?: number;
+    fourthTitle?: string;
+}
+
+export interface SisterSchoolContactBannerType {
+    logoUrl: string;
+    logoUrlB: string;
+    websiteLink: string;
+}
