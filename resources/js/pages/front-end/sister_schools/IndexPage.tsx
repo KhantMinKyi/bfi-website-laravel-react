@@ -40,7 +40,7 @@ function IndexPage() {
         <FrontEndLayout>
             {carouselDataLoading ? (
                 <div className="container mx-auto flex justify-center gap-10">
-                    <div className="flex h-60 items-center justify-center text-lg text-gray-500">
+                    <div className="flex h-screen items-center justify-center text-lg text-gray-500">
                         <DotLoading />
                     </div>
                 </div>
