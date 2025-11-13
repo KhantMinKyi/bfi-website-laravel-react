@@ -1,0 +1,28 @@
+[
+    {
+        "bgSrc": "/img/skt-cc/skt-cc-3.webp",
+        "headTitle": "SKT International School",
+        "colorTitle": "Riverside",
+        "lastTitle": "Campus",
+        "subTitle": "BFI Sister School",
+        "desc": "SKT International Riverside Campus was established in the year 2010, located on Shukhinthar Mayopat Road, Yangon.",
+        "routeLink": "#"
+    },
+
+    {
+        "bgSrc": "/img/SKT-cc/skt-cc-2.webp",
+        "headTitle": "WORLD-CLASS EDUCATION IN A",
+        "colorTitle": "SAFE AND FRIENDLY ENVIRONMENT",
+        "subTitle": "90% Foreign Teachers",
+        "desc": "We empower our students to join world-class universities and become lifelong learners and compassionate global citizens.",
+        "routeLink": "#"
+    },
+    {
+        "bgSrc": "/img/SKT-cc/skt-cc-1.webp",
+        "headTitle": "The IB Diploma ",
+        "colorTitle": "Programme",
+        "subTitle": "Quality Education",
+        "desc": "Empowering students with a well-rounded curriculum, hands-on learning, and a passion for lifelong growth",
+        "routeLink": "#"
+    }
+]
