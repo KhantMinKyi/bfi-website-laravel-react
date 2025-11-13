@@ -1,4 +1,7 @@
+import IconCardGroup from '@/components/front-end/about_us/bfi_advantages/icon-card';
 import CarouselBanner from '@/components/front-end/core/carousel-banner';
+import Counter from '@/components/front-end/core/counter';
+import ContactBanner from '@/components/front-end/sister_schools/contact-banner';
 import HeadOfSchoolMessage from '@/components/front-end/sister_schools/head-of-school-message';
 import HeroBanner from '@/components/front-end/sister_schools/hero-banner';
 import OverviewBanner from '@/components/front-end/sister_schools/overview-banner';
@@ -33,6 +36,7 @@ const carouselData = [
 ];
 const schoolData = {
     logoUrl: '/img/skt_riverside_campus.png',
+    logoUrlB: '/img/skt_riverside_campus_b.png',
     schoolName: 'SKT International School - Riverside Campus',
     shortName: 'Riverside Campus',
     schoolOverview:
@@ -64,6 +68,20 @@ function SktRiverside() {
             />
             <OverviewBanner data={{ history: schoolData.history, leadership: schoolData.leadership }} />
             <HeadOfSchoolMessage data={{ hosImg: schoolData.hosImg, hosMessage: schoolData.hosMessage }} />
+            <IconCardGroup />
+            <Counter
+                data={{
+                    firstNumber: 160,
+                    firstTitle: 'students',
+                    secondNumber: 300,
+                    secondTitle: 'Alumini Worldwide',
+                    thirdNumber: 92,
+                    thirdTitle: 'Foreign Teachers',
+                    fourthNumber: 163,
+                    fourthTitle: 'Winning Award',
+                }}
+            />
+            <ContactBanner data={{ logoUrl: schoolData.logoUrl, logoUrlB: schoolData.logoUrlB, websiteLink: schoolData.websiteLink }} />
         </FrontEndLayout>
     );
 }
