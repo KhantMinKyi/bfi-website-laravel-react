@@ -2,7 +2,7 @@ import * as motion from 'motion/react-client';
 function IconCardGroup() {
     return (
         <div className="bg-gray-50 dark:bg-neutral-900">
-            <div className="container mx-auto flex flex-wrap justify-center pt-4 md:pt-20">
+            <div className="container mx-auto flex flex-wrap justify-center py-4 md:py-20">
                 <motion.div
                     className="orico-about-text-wrap 111"
                     initial={{ opacity: 0, y: -50 }} // start 50px below
