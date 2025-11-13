@@ -77,3 +77,11 @@ export interface SisterSchoolBannerType {
     shortName: string;
     schoolOverview: string;
 }
+export interface SisterSchoolOverViewType {
+    history: string;
+    leadership: string[];
+}
+export interface SisterSchoolHOSMessageType {
+    hosImg: string;
+    hosMessage: string;
+}

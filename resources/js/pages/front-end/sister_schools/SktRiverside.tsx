@@ -1,4 +1,5 @@
 import CarouselBanner from '@/components/front-end/core/carousel-banner';
+import HeadOfSchoolMessage from '@/components/front-end/sister_schools/head-of-school-message';
 import HeroBanner from '@/components/front-end/sister_schools/hero-banner';
 import OverviewBanner from '@/components/front-end/sister_schools/overview-banner';
 import FrontEndLayout from '@/layouts/front-end-layout';
@@ -37,6 +38,17 @@ const schoolData = {
     schoolOverview:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque amet reprehenderit minus nemo, dolorem quidem temporibus voluptate esse molestias. Assumenda nobis unde laborum veniam, similique facere nisi vel ut vitae.',
     websiteLink: 'https://skt.edu.mm/skt-riverside-campus',
+    history:
+        'SKT International Riverside Campus was established in the year 2010, located on Shukhinthar Mayopat Road, Yangon. Situated in the heart of Yangon, our campus offers a convenient and accessible environment for students, parents, and educators. With modern facilities and a warm, welcoming atmosphere, we are committed to supporting both academic excellence and extracurricular development.',
+    leadership: [
+        'https://cdn.tailgrids.com/assets/images/marketing/team/team-01/image-01.jpg',
+        'https://cdn.tailgrids.com/assets/images/marketing/team/team-01/image-02.jpg',
+        'https://cdn.tailgrids.com/assets/images/marketing/team/team-01/image-03.jpg',
+        'https://cdn.tailgrids.com/assets/images/marketing/team/team-01/image-04.jpg',
+    ],
+    hosImg: 'https://cdn.tailgrids.com/assets/images/marketing/team/team-01/image-01.jpg',
+    hosMessage:
+        'Welcome to SKT International School, Riverside Campus. As Head of School, it’s a true privilege for me to work with such a diverse and vibrant community. I believe deeply in our mission to nurture students into lifelong learners and compassionate individuals, and I see that happening every day in the classrooms, through meaningful conversations, and in the way our students grow with confidence and purpose. Together with our dedicated staff and supportive parents, we are building a school where every child feels valued, challenged, and inspired to reach their full potential.',
 };
 function SktRiverside() {
     return (
@@ -50,7 +62,8 @@ function SktRiverside() {
                     schoolOverview: schoolData.schoolOverview,
                 }}
             />
-            <OverviewBanner />
+            <OverviewBanner data={{ history: schoolData.history, leadership: schoolData.leadership }} />
+            <HeadOfSchoolMessage data={{ hosImg: schoolData.hosImg, hosMessage: schoolData.hosMessage }} />
         </FrontEndLayout>
     );
 }
