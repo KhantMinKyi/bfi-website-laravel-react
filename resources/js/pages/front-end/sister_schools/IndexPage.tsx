@@ -17,7 +17,7 @@ function IndexPage() {
     const [carouselData, setCarouselData] = useState<carouselDataType[]>([]);
     const [carouselDataLoading, setCarouselDataLoading] = useState<boolean>(true);
     const [schoolData, setSchoolData] = useState<SisterSchoolDataType>({} as SisterSchoolDataType);
-    const [schoolDataLoading, setSchoolDataLoading] = useState<boolean>();
+    const [schoolDataLoading, setSchoolDataLoading] = useState<boolean>(true);
 
     useEffect(() => {
         fetch('/dummy-json/sister-school-carousel-' + data + '.json')
@@ -47,30 +47,42 @@ function IndexPage() {
             ) : (
                 <>
                     <CarouselBanner carouselData={carouselData} />
-                    <HeroBanner
-                        data={{
-                            logo: schoolData.logoUrl,
-                            schoolName: schoolData.schoolName,
-                            shortName: schoolData.shortName,
-                            schoolOverview: schoolData.schoolOverview,
-                        }}
-                    />
-                    <OverviewBanner data={{ history: schoolData.history, leadership: schoolData.leadership }} />
-                    <HeadOfSchoolMessage data={{ hosImg: schoolData.hosImg, hosMessage: schoolData.hosMessage }} />
-                    <IconCardGroup />
-                    <Counter
-                        data={{
-                            firstNumber: 160,
-                            firstTitle: 'students',
-                            secondNumber: 300,
-                            secondTitle: 'Alumini Worldwide',
-                            thirdNumber: 92,
-                            thirdTitle: 'Foreign Teachers',
-                            fourthNumber: 163,
-                            fourthTitle: 'Winning Award',
-                        }}
-                    />
-                    <ContactBanner data={{ logoUrl: schoolData.logoUrl, logoUrlB: schoolData.logoUrlB, websiteLink: schoolData.websiteLink }} />
+                    {schoolDataLoading ? (
+                        <div className="container mx-auto flex justify-center gap-10">
+                            <div className="flex h-screen items-center justify-center text-lg text-gray-500">
+                                <DotLoading />
+                            </div>
+                        </div>
+                    ) : (
+                        <>
+                            <HeroBanner
+                                data={{
+                                    logo: schoolData.logoUrl,
+                                    schoolName: schoolData.schoolName,
+                                    shortName: schoolData.shortName,
+                                    schoolOverview: schoolData.schoolOverview,
+                                }}
+                            />
+                            <OverviewBanner data={{ history: schoolData.history, leadership: schoolData.leadership }} />
+                            <HeadOfSchoolMessage data={{ hosImg: schoolData.hosImg, hosMessage: schoolData.hosMessage }} />
+                            <IconCardGroup />
+                            <Counter
+                                data={{
+                                    firstNumber: 160,
+                                    firstTitle: 'students',
+                                    secondNumber: 300,
+                                    secondTitle: 'Alumini Worldwide',
+                                    thirdNumber: 92,
+                                    thirdTitle: 'Foreign Teachers',
+                                    fourthNumber: 163,
+                                    fourthTitle: 'Winning Award',
+                                }}
+                            />
+                            <ContactBanner
+                                data={{ logoUrl: schoolData.logoUrl, logoUrlB: schoolData.logoUrlB, websiteLink: schoolData.websiteLink }}
+                            />
+                        </>
+                    )}
                 </>
             )}
         </FrontEndLayout>
