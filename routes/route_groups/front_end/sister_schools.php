@@ -9,7 +9,7 @@ Route::get('/sister_schools/skt_riverside', function () {
     return Inertia::render('front-end/sister_schools/IndexPage',compact('data'));
 })->name('skt_riverside');
 Route::get('/sister_schools/skt_riverside_preschool', function () {
-    $data = 'skt-rc';
+    $data = 'skt-rc-pre';
     return Inertia::render('front-end/sister_schools/IndexPage',compact('data'));
 })->name('skt_riverside_preschool');
 
