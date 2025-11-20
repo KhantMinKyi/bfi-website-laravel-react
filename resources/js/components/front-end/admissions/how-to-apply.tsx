@@ -32,7 +32,7 @@ function HowToApply() {
                             transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                         >
                             <p className="m-5">
-                                <ol className="max-w-5xl list-inside list-decimal space-y-4 marker:text-xl marker:font-bold marker:text-blue-500">
+                                <ol className="max-w-5xl list-inside list-decimal space-y-4 marker:text-xl marker:font-bold marker:text-blue-800 dark:marker:text-green-800">
                                     <li>
                                         <span className="text-xl font-medium">
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, quo, repellat ex beatae similique
