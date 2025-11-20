@@ -18,7 +18,8 @@ const Footer = () => {
                     <div className="flex">
                         <div className="mb-10">
                             <a href="/#" className="mb-6 flex justify-center md:max-w-[160px]">
-                                <img src="/img/bfi.png" alt="logo" className="w-32 dark:grayscale" />
+                                <img src="/img/bfi.png" alt="logo" className="w-32 dark:hidden" />
+                                <img src="/img/bfi_b.png" alt="logo" className="hidden w-32 dark:block" />
                             </a>
                             <p className="mb-7 text-center text-base text-gray-800 md:text-left dark:text-gray-300">
                                 Sed ut perspiciatis undmnis is iste natus error sit amet voluptatem totam rem aperiam.
