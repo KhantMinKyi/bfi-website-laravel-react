@@ -21,7 +21,8 @@ function BFIAdvantageBanner() {
                 >
                     <div className="flex flex-col items-center">
                         <h2 className="font-merriweather my-10 text-4xl font-bold md:text-6xl">Why BFI?</h2>
-                        <img src="/img/bfi.png" className="max-w-full" alt="BFI Logi" />
+                        <img src="/img/bfi.png" className="max-w-64 dark:hidden" alt="" />
+                        <img src="/img/bfi_b.png" className="hidden max-w-64 dark:block" alt="" />
                     </div>
                 </motion.div>
                 <motion.div
