@@ -55,6 +55,7 @@ export type TeamCardType = {
     name: string;
     profession: string;
     imagesrc?: string;
+    websiteUrl?: string;
 };
 export type carouselDataType = {
     bgSrc: string;
@@ -70,6 +71,13 @@ export interface ImageItem {
     src: string;
     title: string;
     desc: string;
+}
+export interface schoolAccordionType {
+    src: string;
+    title: string;
+    desc: string;
+    bgSrc: string;
+    websiteUrl: string;
 }
 export interface SisterSchoolBannerType {
     logo: string;
