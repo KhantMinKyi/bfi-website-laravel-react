@@ -11,9 +11,10 @@ function HowToApply() {
                 backgroundSize: 'cover',
             }}
         >
-            <div className="absolute inset-0 dark:bg-black/80"></div>
+            {/* <div className="absolute inset-0 dark:bg-black/80"></div> */}
             <div className="flex flex-col items-center justify-center px-4 py-10 text-center">
-                <img src="/img/bfi.png" className="max-w-40 dark:grayscale" alt="" />
+                <img src="/img/bfi.png" className="max-w-40 dark:hidden" alt="" />
+                <img src="/img/bfi_b.png" className="hidden max-w-40 dark:block" alt="" />
             </div>
             <div className="mx-auto">
                 {/* <div className="grid grid-cols-12 gap-x-4"> */}
