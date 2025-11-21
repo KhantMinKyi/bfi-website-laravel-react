@@ -22,3 +22,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+.DS_Store
+.DS_Store
+package-lock.json
+public/.DS_Store
