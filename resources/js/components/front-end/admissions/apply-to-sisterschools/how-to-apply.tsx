@@ -1,14 +1,15 @@
 import { motion } from 'motion/react';
-import GradualSpacingHeader from '../core/gradual-spacing-header';
+import GradualSpacingHeader from '../../core/gradual-spacing-header';
 function HowToApply() {
     return (
         <section
             className="relative z-20 flex flex-col justify-center overflow-hidden dark:bg-neutral-950"
             style={{
-                backgroundImage: "url('/img/footer-banner.png')", // put your image path here
+                backgroundImage: "url('/img/banner2.png')", // put your image path here
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
+                backgroundBlendMode: 'soft-light',
             }}
         >
             {/* <div className="absolute inset-0 dark:bg-black/80"></div> */}
@@ -22,7 +23,7 @@ function HowToApply() {
                     <div className="orico-about-text font-merriweather">
                         <h2 className="font-merriweather text-center text-3xl font-bold sm:text-4xl lg:text-6xl">
                             {' '}
-                            <GradualSpacingHeader text="How To Apply" className="z-10 text-blue-900 dark:text-green-900" />{' '}
+                            <GradualSpacingHeader text="How To Apply" className="z-10 text-blue-900 dark:text-green-700" />{' '}
                         </h2>
                         <motion.div
                             className="orico-about-text-wrap 111"

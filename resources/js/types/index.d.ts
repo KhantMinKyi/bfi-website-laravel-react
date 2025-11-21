@@ -53,7 +53,7 @@ export type Programmes = {
 
 export type TeamCardType = {
     name: string;
-    profession: string;
+    profession?: string;
     imagesrc?: string;
     websiteUrl?: string;
 };
@@ -78,6 +78,10 @@ export interface schoolAccordionType {
     desc: string;
     bgSrc: string;
     websiteUrl: string;
+}
+export interface policyCardType {
+    src: string;
+    title: string;
 }
 export interface SisterSchoolBannerType {
     logo: string;
