@@ -83,6 +83,10 @@ export interface policyCardType {
     src: string;
     title: string;
 }
+export interface PolicyPdfType {
+    src: string;
+    title: string;
+}
 export interface SisterSchoolBannerType {
     logo: string;
     schoolName: string;

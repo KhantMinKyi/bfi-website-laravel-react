@@ -2,18 +2,18 @@ import Enrollment from '@/components/front-end/admissions/admission_policies/enr
 import PolicyCardGroup from '@/components/front-end/admissions/admission_policies/policy-card-group';
 import { DotLoading } from '@/components/front-end/core/dot-loading';
 import FrontEndLayout from '@/layouts/front-end-layout';
-import { policyCardType } from '@/types';
+import { PolicyPdfType } from '@/types';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 function AdmissionPolicies() {
-    const [policyCard, setPolicyCard] = useState<policyCardType[]>([]);
-    const [imagesLoading, setImagesLoading] = useState<boolean>(true);
+    const [pdfData, setPdfData] = useState<PolicyPdfType[]>([]);
+    const [pdfLoading, setPdfLoading] = useState<boolean>(true);
     useEffect(() => {
-        fetch('/dummy-json/sister-school-accordions-2.json')
+        fetch('/dummy-json/policy-pdf-data.json')
             .then((res) => res.json())
-            .then((data: policyCardType[]) => {
-                setPolicyCard(data);
-                setImagesLoading(false);
+            .then((data: PolicyPdfType[]) => {
+                setPdfData(data);
+                setPdfLoading(false);
             })
             .catch((err) => console.log(err));
     }, []);
@@ -45,14 +45,14 @@ function AdmissionPolicies() {
                 </motion.div>
             </div>
             <Enrollment />
-            {imagesLoading ? (
+            {pdfLoading ? (
                 <div className="container mx-auto flex justify-center gap-10">
                     <div className="flex h-64 items-center justify-center text-lg text-gray-500">
                         <DotLoading />
                     </div>
                 </div>
             ) : (
-                <PolicyCardGroup policyCard={policyCard} />
+                <PolicyCardGroup pdfData={pdfData} />
             )}
         </FrontEndLayout>
     );
