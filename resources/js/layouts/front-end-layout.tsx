@@ -341,7 +341,15 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </li>
                                 {/* Admissions */}
                                 <li className="group relative inline-block">
-                                    <a href="#" className={`${currentPath === routePath('apply_to_bfi_sister_schools') ? activeLink : baseLink}`}>
+                                    <a
+                                        href="#"
+                                        className={`${
+                                            currentPath === routePath('apply_to_bfi_sister_schools') ||
+                                            currentPath === routePath('admission_policies')
+                                                ? activeLink
+                                                : baseLink
+                                        }`}
+                                    >
                                         Admissions
                                     </a>
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
@@ -354,12 +362,12 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <a
-                                                href="testimonial.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('admission_policies')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('admission_policies') ? subLinkActive : ''}`}
                                             >
                                                 Admission Policies
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
                                             <a
