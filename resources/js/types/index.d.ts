@@ -129,3 +129,7 @@ export interface SisterSchoolDataType {
     hosImg: string;
     hosMessage: string;
 }
+export interface FaqDataType {
+    question: string;
+    answer: string;
+}

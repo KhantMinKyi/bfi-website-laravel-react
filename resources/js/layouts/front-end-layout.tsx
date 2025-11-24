@@ -345,7 +345,8 @@ export default ({ children }: FrondendLayoutProps) => {
                                         href="#"
                                         className={`${
                                             currentPath === routePath('apply_to_bfi_sister_schools') ||
-                                            currentPath === routePath('admission_policies')
+                                            currentPath === routePath('admission_policies') ||
+                                            currentPath === routePath('faq')
                                                 ? activeLink
                                                 : baseLink
                                         }`}
@@ -370,12 +371,12 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <a
-                                                href="team.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
+                                            <Link
+                                                href={route('faq')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('faq') ? subLinkActive : ''}`}
                                             >
                                                 Frequently asked questions
-                                            </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </li>
