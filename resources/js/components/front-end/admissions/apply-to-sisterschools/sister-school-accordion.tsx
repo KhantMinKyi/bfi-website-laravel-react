@@ -3,8 +3,10 @@ import { motion } from 'motion/react';
 import React from 'react';
 type Props = {
     schoolAccordions: schoolAccordionType[];
+    title?: string;
+    body?: string;
 };
-const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions }) => {
+const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions, title = null, body = null }) => {
     return (
         <section className="pt-20 pb-10 lg:pt-[120px] lg:pb-20 dark:bg-gray-950">
             <div className="container mx-auto">
@@ -12,10 +14,10 @@ const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions }) => {
                     <div className="w-full px-4">
                         <div className="mx-auto mb-[60px] max-w-[510px] text-center">
                             <h2 className="font-merriweather text-dark mb-3 text-3xl leading-[1.2] font-bold sm:text-4xl md:text-[40px] dark:text-white">
-                                Applying to BFI Sister Schools
+                                {title ? title : 'Applying to BFI Sister Schools'}
                             </h2>
                             <p className="text-body-color font-merriweather text-base text-blue-800 dark:text-green-800">
-                                Click the image and check out what our sister school has to offer
+                                {body ? body : 'Click the image and check out what our sister school has to offer'}
                             </p>
                         </div>
                     </div>

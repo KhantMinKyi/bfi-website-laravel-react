@@ -406,7 +406,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </li>
                                 {/* contact */}
                                 <li className="group relative inline-block">
-                                    <Link href={route('home')} className={`${currentPath === '/contact' ? activeLink : baseLink}`}>
+                                    <Link href={route('contact_us')} className={`${currentPath === routePath('contact_us') ? activeLink : baseLink}`}>
                                         Contact Us
                                     </Link>
                                 </li>

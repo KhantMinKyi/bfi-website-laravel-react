@@ -78,6 +78,7 @@ export interface schoolAccordionType {
     desc: string;
     bgSrc: string;
     websiteUrl: string;
+    contactUsWebsiteUrl?: string;
 }
 export interface policyCardType {
     src: string;
