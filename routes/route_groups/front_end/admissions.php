@@ -8,4 +8,7 @@ Route::get('/admissions/apply_to_bfi_sister_schools', function () {
 Route::get('/admissions/admission_policies', function () {
     return Inertia::render('front-end/admissions/AdmissionPolicies');
 })->name('admission_policies');
+Route::get('/admissions/faq', function () {
+    return Inertia::render('front-end/admissions/FAQ');
+})->name('faq');
 ?>
