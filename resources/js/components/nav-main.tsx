@@ -18,7 +18,7 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
                                 <SidebarGroup>
                                     <SidebarGroupLabel asChild>
                                         <CollapsibleTrigger>
-                                            {item.icon && <item.icon className="mr-2 text-zinc-900" />}
+                                            {item.icon && <item.icon className="mr-2 text-zinc-900 dark:text-white" />}
                                             <div className="text-sm text-zinc-900 dark:text-gray-100">{item.title}</div>
                                             <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                                         </CollapsibleTrigger>
