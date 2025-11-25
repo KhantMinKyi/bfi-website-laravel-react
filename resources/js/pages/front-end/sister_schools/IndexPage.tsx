@@ -34,7 +34,7 @@ function IndexPage() {
                 setSchoolDataLoading(false);
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [data]);
 
     return (
         <FrontEndLayout>
