@@ -14,7 +14,7 @@ require __DIR__ . '/route_groups/front_end/contact_us.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
+        return Inertia::render('back-end/Index');
     })->name('dashboard');
 });
 
