@@ -34,7 +34,7 @@ const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions, title = null
                             viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                             transition={{ duration: (i + 1) * 0.2, ease: 'easeInOut' }} // longer duration
                         >
-                            <SisterSchoolAccordionCard name={t.title} profession={t.title} imagesrc={t.src} websiteUrl={t.websiteUrl} />
+                            <SisterSchoolAccordionCard name={t.title} imagesrc={t.src} websiteUrl={t.websiteUrl} />
                         </motion.div>
                     ))}
                 </div>
@@ -45,7 +45,7 @@ const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions, title = null
 
 export default SisterSchoolAccordion;
 
-const SisterSchoolAccordionCard: React.FC<TeamCardType> = ({ imagesrc, name, profession, websiteUrl }) => {
+const SisterSchoolAccordionCard: React.FC<TeamCardType> = ({ imagesrc, name, websiteUrl }) => {
     return (
         <>
             <a className="w-full cursor-pointer px-4 md:w-1/2 xl:w-1/4" href={websiteUrl} target="__blank">
