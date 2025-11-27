@@ -37,6 +37,8 @@ import { UpdateUserDialog } from './update-user-dialog';
 export interface User {
     id: number;
     name: string;
+    username: string;
+    phone: string;
     email: string;
     avatar?: string;
     email_verified_at: string | null;
@@ -51,6 +53,7 @@ export function UserDataTable() {
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
     const [rowSelection, setRowSelection] = React.useState({});
+    const [globalFilter, setGlobalFilter] = React.useState('');
     const [updateDialogOpen, setUpdateDialogOpen] = React.useState(false);
     const [passwordDialogOpen, setPasswordDialogOpen] = React.useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
@@ -60,12 +63,13 @@ export function UserDataTable() {
         const fetchUsers = async () => {
             try {
                 setLoading(true);
-                const response = await fetch('/dummy-json/users.json');
+                const response = await fetch('/api/user-management/users');
+
                 if (!response.ok) {
                     throw new Error('Failed to fetch users');
                 }
                 const result = await response.json();
-                setData(result);
+                setData(result.users);
             } catch (error) {
                 console.error('Error fetching users:', error);
             } finally {
@@ -126,6 +130,18 @@ export function UserDataTable() {
                 cell: ({ row }) => <div className="font-medium">{row.getValue('name')}</div>,
             },
             {
+                accessorKey: 'username',
+                header: ({ column }) => {
+                    return (
+                        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+                            Username
+                            <ArrowUpDown />
+                        </Button>
+                    );
+                },
+                cell: ({ row }) => <div className="font-medium">{row.getValue('username')}</div>,
+            },
+            {
                 accessorKey: 'email',
                 header: ({ column }) => {
                     return (
@@ -138,27 +154,39 @@ export function UserDataTable() {
                 cell: ({ row }) => <div className="lowercase">{row.getValue('email')}</div>,
             },
             {
-                accessorKey: 'created_at',
+                accessorKey: 'phone',
                 header: ({ column }) => {
                     return (
                         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-                            Created At
+                            Phone
                             <ArrowUpDown />
                         </Button>
                     );
                 },
-                cell: ({ row }) => {
-                    const date = new Date(row.getValue('created_at'));
-                    const formatted = new Intl.DateTimeFormat('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                    }).format(date);
-                    return <div className="text-sm">{formatted}</div>;
-                },
+                cell: ({ row }) => <div className="lowercase">{row.getValue('phone')}</div>,
             },
+            // {
+            //     accessorKey: 'created_at',
+            //     header: ({ column }) => {
+            //         return (
+            //             <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+            //                 Created At
+            //                 <ArrowUpDown />
+            //             </Button>
+            //         );
+            //     },
+            //     cell: ({ row }) => {
+            //         const date = new Date(row.getValue('created_at'));
+            //         const formatted = new Intl.DateTimeFormat('en-US', {
+            //             year: 'numeric',
+            //             month: 'short',
+            //             day: 'numeric',
+            //             hour: '2-digit',
+            //             minute: '2-digit',
+            //         }).format(date);
+            //         return <div className="text-sm">{formatted}</div>;
+            //     },
+            // },
             {
                 id: 'actions',
                 enableHiding: false,
@@ -226,11 +254,13 @@ export function UserDataTable() {
         getFilteredRowModel: getFilteredRowModel(),
         onColumnVisibilityChange: setColumnVisibility,
         onRowSelectionChange: setRowSelection,
+        onGlobalFilterChange: setGlobalFilter,
         state: {
             sorting,
             columnFilters,
             columnVisibility,
             rowSelection,
+            globalFilter,
         },
     });
 
@@ -238,7 +268,13 @@ export function UserDataTable() {
         return (
             <div className="w-full">
                 <div className="flex items-center gap-4 py-4">
-                    <Input placeholder="Filter by name or email..." disabled className="max-w-sm" />
+                    <Input
+                        placeholder="Filter by name or email..."
+                        disabled
+                        className="max-w-sm"
+                        value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+                        onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
+                    />
                     <div className="ml-auto flex items-center gap-2">
                         <Button disabled>Add User</Button>
                         <Button variant="outline" disabled>
@@ -253,8 +289,9 @@ export function UserDataTable() {
                                 <TableHead className="w-12"></TableHead>
                                 <TableHead>Avatar</TableHead>
                                 <TableHead>Name</TableHead>
+                                <TableHead>Username</TableHead>
                                 <TableHead>Email</TableHead>
-                                <TableHead>Created At</TableHead>
+                                <TableHead>Phone</TableHead>
                                 <TableHead></TableHead>
                             </TableRow>
                         </TableHeader>
@@ -266,6 +303,9 @@ export function UserDataTable() {
                                     </TableCell>
                                     <TableCell>
                                         <div className="h-10 w-10 animate-pulse rounded-full bg-muted"></div>
+                                    </TableCell>
+                                    <TableCell>
+                                        <div className="h-4 w-32 animate-pulse rounded bg-muted"></div>
                                     </TableCell>
                                     <TableCell>
                                         <div className="h-4 w-32 animate-pulse rounded bg-muted"></div>
@@ -292,10 +332,16 @@ export function UserDataTable() {
     return (
         <div className="w-full">
             <div className="flex items-center gap-4 py-4">
-                <Input
+                {/* <Input
                     placeholder="Filter by name or email..."
                     value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
                     onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
+                    className="max-w-sm"
+                /> */}
+                <Input
+                    placeholder="Search across all columns..."
+                    value={globalFilter ?? ''}
+                    onChange={(event) => setGlobalFilter(event.target.value)}
                     className="max-w-sm"
                 />
                 <div className="ml-auto flex items-center gap-2">
