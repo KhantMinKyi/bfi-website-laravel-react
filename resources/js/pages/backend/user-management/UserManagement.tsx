@@ -14,6 +14,7 @@ function UserManagement() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="User Management" />
+
             <div className="p-10">
                 <UserDataTable />
             </div>

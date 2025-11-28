@@ -6,7 +6,6 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collap
 
 export function NavMain({ items = [] }: { items: NavItem[] }) {
     const page = usePage();
-    console.log(page.url.startsWith('/user-management/dashboard'));
     return (
         <SidebarGroup className="px-2 py-0">
             <SidebarGroupLabel>Platform</SidebarGroupLabel>
