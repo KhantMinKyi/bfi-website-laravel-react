@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('password');
             $table->enum('gender',['male','female']);
             $table->string('avator')->nullable();
-            $table->string('phone');
+            $table->string('phone')->nullable();
+            $table->string('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
