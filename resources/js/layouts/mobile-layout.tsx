@@ -31,13 +31,14 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'sister_schools' &&
                         activeSubMenu !== 'curriculum' &&
                         activeSubMenu !== 'admissions' &&
-                        activeSubMenu !== 'bfi_olympiads' &&
+                        activeSubMenu !== 'competition' &&
                         activeSubMenu !== 'community' &&
                         (activeSubMenu === 'about_us' ||
                             currentPath === routePath('our_history') ||
                             currentPath === routePath('vision_mission_value') ||
                             currentPath === routePath('philosophy') ||
                             // currentPath === routePath('leadership_teams') ||
+                            currentPath === routePath('community_service_activities') ||
                             currentPath === routePath('bfi_advantage'))
                             ? 'max-h-64'
                             : 'max-h-0'
@@ -85,6 +86,14 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                                 BFI Advantage
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                href={route('community_service_activities')}
+                                className={`${currentPath === routePath('community_service_activities') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                Community Service Activities
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -99,7 +108,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'about_us' &&
                         activeSubMenu !== 'curriculum' &&
                         activeSubMenu !== 'admissions' &&
-                        activeSubMenu !== 'bfi_olympiads' &&
+                        activeSubMenu !== 'competition' &&
                         activeSubMenu !== 'community' &&
                         (activeSubMenu === 'sister_schools' ||
                             currentPath === routePath('skt_riverside') ||
@@ -193,7 +202,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'about_us' &&
                         activeSubMenu !== 'sister_schools' &&
                         activeSubMenu !== 'admissions' &&
-                        activeSubMenu !== 'bfi_olympiads' &&
+                        activeSubMenu !== 'competition' &&
                         activeSubMenu !== 'community' &&
                         (activeSubMenu === 'curriculum' ||
                             currentPath === routePath('curriculum') ||
@@ -207,19 +216,19 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
                         <li>
-                            <Link href={route('curriculum')}> Pre-School (Ages 2-6)</Link>
+                            <Link href={route('curriculum')}> Pre-School</Link>
                         </li>
                         <li>
                             <Link href="#">Primary School (Year 2-6)</Link>
                         </li>
                         <li>
-                            <Link href="#">Lower Secondary School (Year 7-9)</Link>
+                            <Link href="#">Secondary School (Year 7-9)</Link>
                         </li>
                         <li>
-                            <Link href="#">Upper Secondary School (Year 10-11)</Link>
+                            <Link href="#"> IGCSE (Year 10-11)</Link>
                         </li>
                         <li>
-                            <Link href="#">Foundation Program</Link>
+                            <Link href="#">IB Diploma Programme (Year 12-13)</Link>
                         </li>
                     </ul>
                 </div>
@@ -258,8 +267,50 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     </ul>
                 </div>
             </div> */}
-            {/* BFI Olympiads*/}
+            {/* COMPETITION*/}
             <div>
+                <button onClick={() => toggleSubMenu('competition')} className="flex w-full items-center justify-between py-2 text-left uppercase">
+                    COMPETITION
+                    <span>{activeSubMenu === 'competition' ? '▲' : '▼'}</span>
+                </button>
+                <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                        activeSubMenu !== 'about_us' &&
+                        activeSubMenu !== 'sister_schools' &&
+                        activeSubMenu !== 'curriculum' &&
+                        activeSubMenu !== 'community' &&
+                        // (
+                        activeSubMenu === 'competition'
+                            ? // ||
+                              // currentPath === routePath('curriculum') ||
+                              // currentPath === routePath('curriculum') ||
+                              // currentPath === routePath('curriculum') ||
+                              // currentPath === routePath('curriculum') ||
+                              // currentPath === routePath('curriculum'))
+                              'max-h-screen'
+                            : 'max-h-0'
+                    }`}
+                >
+                    <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
+                        <li>
+                            <Link href="#"> Mathemania</Link>
+                        </li>
+                        <li>
+                            <Link href="#"> Spelling Bee</Link>
+                        </li>
+                        <li>
+                            <Link href="#">Science Project Competition</Link>
+                        </li>
+                        <li>
+                            <Link href="#">BFI Football Tournament</Link>
+                        </li>
+                        <li>
+                            <Link href="#">Robofest</Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {/* <div>
                 <button onClick={() => toggleSubMenu('bfi_olympiads')} className="flex w-full items-center justify-between py-2 text-left uppercase">
                     BFI Olympiads
                     <span>{activeSubMenu === 'bfi_olympiads' ? '▲' : '▼'}</span>
@@ -290,8 +341,13 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         </li>
                     </ul>
                 </div>
+            </div> */}
+            {/* BFI Olympiads */}
+            <div>
+                <Link href="#" className="block py-2">
+                    BFI Olympiads
+                </Link>
             </div>
-
             {/* Community */}
             <div>
                 <button onClick={() => toggleSubMenu('community')} className="flex w-full items-center justify-between py-2 text-left uppercase">
@@ -304,7 +360,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'sister_schools' &&
                         activeSubMenu !== 'curriculum' &&
                         activeSubMenu !== 'admissions' &&
-                        activeSubMenu !== 'bfi_olympiads' &&
+                        activeSubMenu !== 'competition' &&
                         (activeSubMenu === 'community' || currentPath === routePath('contact_us') || currentPath === routePath('faq'))
                             ? 'max-h-screen'
                             : 'max-h-0'

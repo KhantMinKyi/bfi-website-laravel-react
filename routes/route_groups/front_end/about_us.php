@@ -12,11 +12,14 @@ Route::get('/about_us/vision_mission_value', function () {
 Route::get('/about_us/philosophy', function () {
     return Inertia::render('front-end/about_us/OurPhilosophy');
 })->name('philosophy');
-// Route::get('/about_us/leadership_teams', function () {
-//     return Inertia::render('front-end/about_us/LeadershipTeams');
-// })->name('leadership_teams');
+Route::get('/about_us/leadership_teams', function () {
+    return Inertia::render('front-end/about_us/LeadershipTeams');
+})->name('leadership_teams');
 Route::get('/about_us/bfi_advantage', function () {
     return Inertia::render('front-end/about_us/BFIAdvantage');
 })->name('bfi_advantage');
+Route::get('/about_us/community_service_activities', function () {
+    return Inertia::render('front-end/about_us/CommunityServiceActivities');
+})->name('community_service_activities');
 
 ?>
