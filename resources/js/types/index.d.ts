@@ -73,6 +73,12 @@ export type TeamCardType = {
     imagesrc?: string;
     websiteUrl?: string;
 };
+export type DonationDataType = {
+    title: string;
+    desciption: string;
+    date: string;
+    imgSrc: string;
+};
 export type carouselDataType = {
     bgSrc: string;
     headTitle: string;

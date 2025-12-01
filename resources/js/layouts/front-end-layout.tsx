@@ -185,7 +185,8 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 Philosophy
                                             </Link>
                                         </li>
-                                        {/* 
+
+                                        {/*                                         
                                         <li>
                                             <Link
                                                 href={route('leadership_teams')}
@@ -200,6 +201,15 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('bfi_advantage') ? subLinkActive : ''}`}
                                             >
                                                 BFI Advantage
+                                            </Link>
+                                        </li>
+
+                                        <li>
+                                            <Link
+                                                href={route('community_service_activities')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('community_service_activities') ? subLinkActive : ''} `}
+                                            >
+                                                COMMUNITY SERVICE ACTIVITIES
                                             </Link>
                                         </li>
                                     </ul>
@@ -298,49 +308,49 @@ export default ({ children }: FrondendLayoutProps) => {
                                     </a>
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
                                         <li>
-                                            <a
+                                            <Link
                                                 href="testimonial.html"
                                                 className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Pre-School (Ages 2-6)
-                                            </a>
+                                                Pre-School
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a
+                                            <Link
                                                 href="testimonial.html"
                                                 className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
                                                 Primary School (Year 2-6)
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a
+                                            <Link
                                                 href="team.html"
                                                 className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Lower Secondary School (Year 7-9)
-                                            </a>
+                                                Secondary School (Year 7-9)
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a
+                                            <Link
                                                 href="team.html"
                                                 className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Upper Secondary School (Year 10-11)
-                                            </a>
+                                                IGCSE (Year 10-11)
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a
+                                            <Link
                                                 href="service-single.html"
                                                 className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
                                             >
-                                                Foundation Program
-                                            </a>
+                                                IB Diploma Programme (Year 12-13)
+                                            </Link>
                                         </li>
                                     </ul>
                                 </li>
                                 {/* Admissions */}
-                                <li className="group relative inline-block">
+                                {/* <li className="group relative inline-block">
                                     <a
                                         href="#"
                                         className={`${
@@ -370,6 +380,63 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 Admission Policies
                                             </Link>
                                         </li>
+                                    </ul>
+                                </li> */}
+                                {/* COMPETITION */}
+                                <li className="group relative inline-block">
+                                    <a
+                                        href="#"
+                                        className={`${
+                                            currentPath === routePath('apply_to_bfi_sister_schools') ||
+                                            currentPath === routePath('admission_policies')
+                                                ? // currentPath === routePath('faq')
+                                                  activeLink
+                                                : baseLink
+                                        }`}
+                                    >
+                                        COMPETITION
+                                    </a>
+                                    <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
+                                        <li>
+                                            <Link
+                                                href={route('apply_to_bfi_sister_schools')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('apply_to_bfi_sister_schools') ? subLinkActive : ''}`}
+                                            >
+                                                MATHEMANIA
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                href={route('admission_policies')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('admission_policies') ? subLinkActive : ''}`}
+                                            >
+                                                Spelling Bee
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                href={route('admission_policies')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('admission_policies') ? subLinkActive : ''}`}
+                                            >
+                                                Science Project Competition
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                href={route('admission_policies')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('admission_policies') ? subLinkActive : ''}`}
+                                            >
+                                                BFI Football Tournament
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                href={route('admission_policies')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('admission_policies') ? subLinkActive : ''}`}
+                                            >
+                                                Robofest
+                                            </Link>
+                                        </li>
                                         {/* <li>
                                             <Link
                                                 href={route('faq')}
@@ -382,27 +449,9 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </li>
                                 {/* BFI Olympiads */}
                                 <li className="group relative inline-block">
-                                    <a href="#" className={`${currentPath === '/about' ? activeLink : baseLink}`}>
+                                    <Link href="#" className={`${currentPath === '/career' ? activeLink : baseLink}`}>
                                         BFI Olympiads
-                                    </a>
-                                    <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
-                                        <li>
-                                            <a
-                                                href="testimonial.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                Mathemania Competition
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="testimonial.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                Spelling Bee Contest
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    </Link>
                                 </li>
                                 {/* Community */}
                                 <li className="group relative inline-block">
@@ -433,12 +482,6 @@ export default ({ children }: FrondendLayoutProps) => {
                                         </li>
                                     </ul>
                                 </li>
-                                {/* contact */}
-                                {/* <li className="group relative inline-block">
-                                    <Link href={route('contact_us')} className={`${currentPath === routePath('contact_us') ? activeLink : baseLink}`}>
-                                        Contact Us
-                                    </Link>
-                                </li> */}
                                 {/* Career */}
                                 <li className="group relative inline-block">
                                     <Link href={route('home')} className={`${currentPath === '/career' ? activeLink : baseLink}`}>
