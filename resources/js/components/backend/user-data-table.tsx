@@ -40,6 +40,7 @@ export interface User {
     username: string;
     phone: string;
     email: string;
+    gender: string;
     avatar?: string;
     email_verified_at: string | null;
     created_at: string;
@@ -59,26 +60,26 @@ export function UserDataTable() {
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
     const [selectedUser, setSelectedUser] = React.useState<User | null>(null);
 
-    React.useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                setLoading(true);
-                const response = await fetch('/api/user-management/users');
+    const fetchUsers = React.useCallback(async () => {
+        try {
+            setLoading(true);
+            const response = await fetch('/api/user-management/users');
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch users');
-                }
-                const result = await response.json();
-                setData(result.users);
-            } catch (error) {
-                console.error('Error fetching users:', error);
-            } finally {
-                setLoading(false);
+            if (!response.ok) {
+                throw new Error('Failed to fetch users');
             }
-        };
-
-        fetchUsers();
+            const result = await response.json();
+            setData(result.users);
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        } finally {
+            setLoading(false);
+        }
     }, []);
+
+    React.useEffect(() => {
+        fetchUsers();
+    }, [fetchUsers]);
 
     const columns: ColumnDef<User>[] = React.useMemo(
         () => [
@@ -165,28 +166,6 @@ export function UserDataTable() {
                 },
                 cell: ({ row }) => <div className="lowercase">{row.getValue('phone')}</div>,
             },
-            // {
-            //     accessorKey: 'created_at',
-            //     header: ({ column }) => {
-            //         return (
-            //             <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-            //                 Created At
-            //                 <ArrowUpDown />
-            //             </Button>
-            //         );
-            //     },
-            //     cell: ({ row }) => {
-            //         const date = new Date(row.getValue('created_at'));
-            //         const formatted = new Intl.DateTimeFormat('en-US', {
-            //             year: 'numeric',
-            //             month: 'short',
-            //             day: 'numeric',
-            //             hour: '2-digit',
-            //             minute: '2-digit',
-            //         }).format(date);
-            //         return <div className="text-sm">{formatted}</div>;
-            //     },
-            // },
             {
                 id: 'actions',
                 enableHiding: false,
@@ -268,15 +247,11 @@ export function UserDataTable() {
         return (
             <div className="w-full">
                 <div className="flex items-center gap-4 py-4">
-                    <Input
-                        placeholder="Filter by name or email..."
-                        disabled
-                        className="max-w-sm"
-                        value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-                        onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
-                    />
+                    <Input placeholder="Filter by name or email..." disabled className="max-w-sm" value="" onChange={() => {}} />
                     <div className="ml-auto flex items-center gap-2">
-                        <Button disabled>Add User</Button>
+                        <Button disabled className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
+                            Add User
+                        </Button>
                         <Button variant="outline" disabled>
                             Columns <ChevronDown />
                         </Button>
@@ -332,12 +307,6 @@ export function UserDataTable() {
     return (
         <div className="w-full">
             <div className="flex items-center gap-4 py-4">
-                {/* <Input
-                    placeholder="Filter by name or email..."
-                    value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-                    onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
-                    className="max-w-sm"
-                /> */}
                 <Input
                     placeholder="Search across all columns..."
                     value={globalFilter ?? ''}
@@ -345,7 +314,7 @@ export function UserDataTable() {
                     className="max-w-sm"
                 />
                 <div className="ml-auto flex items-center gap-2">
-                    <AddUserDialog />
+                    <AddUserDialog onSuccess={fetchUsers} />
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline">
@@ -422,9 +391,9 @@ export function UserDataTable() {
 
             {selectedUser && (
                 <>
-                    <UpdateUserDialog user={selectedUser} open={updateDialogOpen} onOpenChange={setUpdateDialogOpen} />
-                    <ChangePasswordDialog user={selectedUser} open={passwordDialogOpen} onOpenChange={setPasswordDialogOpen} />
-                    <DeleteUserDialog user={selectedUser} open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen} />
+                    <UpdateUserDialog user={selectedUser} open={updateDialogOpen} onOpenChange={setUpdateDialogOpen} onSuccess={fetchUsers} />
+                    <ChangePasswordDialog user={selectedUser} open={passwordDialogOpen} onOpenChange={setPasswordDialogOpen} onSuccess={fetchUsers} />
+                    <DeleteUserDialog user={selectedUser} open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen} onSuccess={fetchUsers} />
                 </>
             )}
         </div>

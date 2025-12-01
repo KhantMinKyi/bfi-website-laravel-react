@@ -1,62 +1,87 @@
 'use client';
 
-import * as React from 'react';
-
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { router } from '@inertiajs/react';
+import { KeyRound } from 'lucide-react';
+import React from 'react';
+import { toast } from 'sonner';
 import type { User } from './user-data-table';
 
 interface ChangePasswordDialogProps {
     user: User;
     open: boolean;
     onOpenChange: (open: boolean) => void;
+    onSuccess?: () => void;
 }
 
-export function ChangePasswordDialog({ user, open, onOpenChange }: ChangePasswordDialogProps) {
-    const [formData, setFormData] = React.useState({
-        newPassword: '',
-        confirmPassword: '',
-    });
-    const [error, setError] = React.useState('');
+export function ChangePasswordDialog({ user, open, onOpenChange, onSuccess }: ChangePasswordDialogProps) {
+    const [password, setPassword] = React.useState('');
+    const [confirmPassword, setConfirmPassword] = React.useState('');
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
 
+    // Reset form when dialog opens/closes
     React.useEffect(() => {
-        if (open) {
-            setFormData({
-                newPassword: '',
-                confirmPassword: '',
-            });
-            setError('');
+        if (!open) {
+            setPassword('');
+            setConfirmPassword('');
         }
     }, [open]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setError('');
 
-        if (formData.newPassword !== formData.confirmPassword) {
-            setError('Passwords do not match');
+        if (password !== confirmPassword) {
+            toast.error('Passwords do not match');
             return;
         }
 
-        if (formData.newPassword.length < 8) {
-            setError('Password must be at least 8 characters long');
+        if (password.length < 8) {
+            toast.error('Password must be at least 8 characters long');
             return;
         }
 
-        console.log('Changing password for user:', user.id);
-        // Here you would typically make an API call to change the password
-        onOpenChange(false);
+        setIsSubmitting(true);
+
+        router.post(
+            `/api/user-management/users/${user.id}/reset-password`,
+            { password },
+            {
+                preserveScroll: true,
+
+                onSuccess: () => {
+                    toast.success('Password changed successfully!');
+                    onOpenChange(false);
+
+                    if (onSuccess) {
+                        onSuccess();
+                    }
+                },
+
+                onError: (errors) => {
+                    const msg = Object.values(errors).flat().join(' • ');
+                    toast.error(msg || 'Failed to change password');
+                },
+
+                onFinish: () => {
+                    setIsSubmitting(false);
+                },
+            },
+        );
     };
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-[500px]">
+            <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Change Password</DialogTitle>
+                    <DialogTitle className="flex items-center gap-2">
+                        <KeyRound className="h-5 w-5" />
+                        Change Password
+                    </DialogTitle>
                     <DialogDescription>
-                        Set a new password for {user.name}. The user will need to use this password on their next login.
+                        Change password for {user.name} ({user.email})
                     </DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
@@ -67,10 +92,12 @@ export function ChangePasswordDialog({ user, open, onOpenChange }: ChangePasswor
                                 id="new-password"
                                 type="password"
                                 placeholder="••••••••"
-                                value={formData.newPassword}
-                                onChange={(e) => setFormData({ ...formData, newPassword: e.target.value })}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 required
+                                minLength={8}
                             />
+                            <p className="text-xs text-muted-foreground">Password must be at least 8 characters long</p>
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="confirm-password">Confirm Password</Label>
@@ -78,18 +105,25 @@ export function ChangePasswordDialog({ user, open, onOpenChange }: ChangePasswor
                                 id="confirm-password"
                                 type="password"
                                 placeholder="••••••••"
-                                value={formData.confirmPassword}
-                                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
+                                minLength={8}
                             />
                         </div>
-                        {error && <div className="text-sm text-destructive">{error}</div>}
                     </div>
                     <DialogFooter>
-                        <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => onOpenChange(false)}
+                            className="cursor-pointer gap-2 bg-red-500 text-white hover:bg-red-700"
+                        >
                             Cancel
                         </Button>
-                        <Button type="submit">Change Password</Button>
+                        <Button type="submit" disabled={isSubmitting} className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
+                            {isSubmitting ? 'Changing...' : 'Change Password'}
+                        </Button>
                     </DialogFooter>
                 </form>
             </DialogContent>
