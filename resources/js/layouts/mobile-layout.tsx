@@ -32,11 +32,12 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'curriculum' &&
                         activeSubMenu !== 'admissions' &&
                         activeSubMenu !== 'bfi_olympiads' &&
+                        activeSubMenu !== 'community' &&
                         (activeSubMenu === 'about_us' ||
                             currentPath === routePath('our_history') ||
                             currentPath === routePath('vision_mission_value') ||
                             currentPath === routePath('philosophy') ||
-                            currentPath === routePath('leadership_teams') ||
+                            // currentPath === routePath('leadership_teams') ||
                             currentPath === routePath('bfi_advantage'))
                             ? 'max-h-64'
                             : 'max-h-0'
@@ -68,14 +69,14 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                             </Link>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <Link
                                 href={route('leadership_teams')}
                                 className={`${currentPath === routePath('leadership_teams') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
                                 Leaderships Teams
                             </Link>
-                        </li>
+                        </li> */}
                         <li>
                             <Link
                                 href={route('bfi_advantage')}
@@ -99,12 +100,16 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'curriculum' &&
                         activeSubMenu !== 'admissions' &&
                         activeSubMenu !== 'bfi_olympiads' &&
+                        activeSubMenu !== 'community' &&
                         (activeSubMenu === 'sister_schools' ||
                             currentPath === routePath('skt_riverside') ||
-                            currentPath === routePath('skt_riverside') ||
-                            currentPath === routePath('skt_riverside') ||
-                            currentPath === routePath('skt_riverside') ||
-                            currentPath === routePath('skt_riverside'))
+                            currentPath === routePath('skt_riverside_preschool') ||
+                            currentPath === routePath('skt_city') ||
+                            currentPath === routePath('skt_city_preschool') ||
+                            currentPath === routePath('misa') ||
+                            currentPath === routePath('misa_preschool') ||
+                            currentPath === routePath('nisa') ||
+                            currentPath === routePath('nisa_preschool'))
                             ? 'max-h-screen'
                             : 'max-h-0'
                     }`}
@@ -119,25 +124,60 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                             </Link>
                         </li>
                         <li>
-                            <Link href="#">SKT International PreSchool ( Riverside Campus )</Link>
+                            <Link
+                                href={route('skt_riverside_preschool')}
+                                className={`${currentPath === routePath('skt_riverside_preschool') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                SKT International PreSchool ( Riverside Campus )
+                            </Link>
                         </li>
                         <li>
-                            <Link href="#">SKT International School ( City Campus )</Link>
+                            <Link
+                                href={route('skt_city')}
+                                className={`${currentPath === routePath('skt_city') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                SKT International School ( City Campus )
+                            </Link>
                         </li>
                         <li>
-                            <Link href="#">SKT International PreSchool ( City Campus )</Link>
+                            <Link
+                                href={route('skt_city_preschool')}
+                                className={`${currentPath === routePath('skt_city_preschool') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                SKT International PreSchool ( City Campus )
+                            </Link>
                         </li>
                         <li>
-                            <Link href="#">Mandalay International School of Acumen</Link>
+                            <Link
+                                href={route('misa')}
+                                className={`${currentPath === routePath('misa') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                Mandalay International School of Acumen
+                            </Link>
                         </li>
                         <li>
-                            <Link href="#">Mandalay International School of Acumen ( KinderGarten )</Link>
+                            <Link
+                                href={route('misa_preschool')}
+                                className={`${currentPath === routePath('misa_preschool') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                Mandalay International School of Acumen ( KinderGarten )
+                            </Link>
                         </li>
                         <li>
-                            <Link href="#">Naypyitaw International School of Acumen</Link>
+                            <Link
+                                href={route('nisa')}
+                                className={`${currentPath === routePath('nisa') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                Naypyitaw International School of Acumen
+                            </Link>
                         </li>
                         <li>
-                            <Link href="#">Naypyitaw International School of Acumen ( KinderGarten )</Link>
+                            <Link
+                                href={route('nisa_preschool')}
+                                className={`${currentPath === routePath('nisa_preschool') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                Naypyitaw International School of Acumen ( KinderGarten )
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -154,6 +194,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'sister_schools' &&
                         activeSubMenu !== 'admissions' &&
                         activeSubMenu !== 'bfi_olympiads' &&
+                        activeSubMenu !== 'community' &&
                         (activeSubMenu === 'curriculum' ||
                             currentPath === routePath('curriculum') ||
                             currentPath === routePath('curriculum') ||
@@ -184,7 +225,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                 </div>
             </div>
             {/* Admissions*/}
-            <div>
+            {/* <div>
                 <button onClick={() => toggleSubMenu('admissions')} className="flex w-full items-center justify-between py-2 text-left uppercase">
                     Admissions
                     <span>{activeSubMenu === 'admissions' ? '▲' : '▼'}</span>
@@ -214,12 +255,9 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         <li>
                             <Link href="#"> Admission Policies</Link>
                         </li>
-                        <li>
-                            <Link href="#">Frequently asked questions</Link>
-                        </li>
                     </ul>
                 </div>
-            </div>
+            </div> */}
             {/* BFI Olympiads*/}
             <div>
                 <button onClick={() => toggleSubMenu('bfi_olympiads')} className="flex w-full items-center justify-between py-2 text-left uppercase">
@@ -253,12 +291,53 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     </ul>
                 </div>
             </div>
-            {/* Career */}
+
+            {/* Community */}
+            <div>
+                <button onClick={() => toggleSubMenu('community')} className="flex w-full items-center justify-between py-2 text-left uppercase">
+                    Community
+                    <span>{activeSubMenu === 'community' ? '▲' : '▼'}</span>
+                </button>
+                <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                        activeSubMenu !== 'about_us' &&
+                        activeSubMenu !== 'sister_schools' &&
+                        activeSubMenu !== 'curriculum' &&
+                        activeSubMenu !== 'admissions' &&
+                        activeSubMenu !== 'bfi_olympiads' &&
+                        (activeSubMenu === 'community' || currentPath === routePath('contact_us') || currentPath === routePath('faq'))
+                            ? 'max-h-screen'
+                            : 'max-h-0'
+                    }`}
+                >
+                    <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
+                        <li>
+                            <Link
+                                href={route('contact_us')}
+                                className={`${currentPath === routePath('contact_us') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                {' '}
+                                Contact Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href={route('faq')}
+                                className={`${currentPath === routePath('faq') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                Frequently asked questions
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {/* Career
             <div>
                 <Link href="#" className="block py-2">
                     Contact
                 </Link>
-            </div>
+            </div> */}
             {/* Career */}
             <div>
                 <Link href="#" className="block py-2">

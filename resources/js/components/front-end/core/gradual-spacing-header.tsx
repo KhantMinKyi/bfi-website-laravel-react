@@ -15,7 +15,7 @@ function GradualSpacingHeader({ text, className }: { text: string; className?: s
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         exit="hidden"
                         transition={{ duration: 0.5, delay: i * 0.1 }}
-                        className={`font-merriweather mb-20 text-center text-3xl font-bold tracking-tighter sm:text-4xl md:text-6xl md:leading-[4rem] ${className ? className : ''}`}
+                        className={`font-merriweather mb-20 text-center text-xl font-bold tracking-tighter sm:text-2xl md:text-4xl md:leading-[4rem] ${className ? className : ''}`}
                     >
                         {char === ' ' ? <span>&nbsp;</span> : char}
                     </motion.p>
