@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -26,14 +30,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // throw new Exception("Error Processing Request", 1);
-        
+
         $validated = $request->validate([
             'name'          => 'required|string|max:255',
             'username'      =>'required|string|unique:users',
             'email'         =>'required|string|unique:users',
             'password'      =>'required',
             'gender'        => 'required|in:male,female',
-            'avator'        =>'nullable|string',
+            'avatar'        =>'nullable|string',
             'phone'         =>'required|string',
         ]);
         User::create($validated);
@@ -53,7 +57,18 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+                dd($request->all());
+        $user = User::findOrFail($id);
+        $validated = $request->validate([
+            'name'          => 'required|string|max:255',
+            'username'      =>['required','string',Rule::unique('users')->ignore($user->id),],
+            'email'         =>['required','string','email',Rule::unique('users')->ignore($user->id),],
+            'gender'        => 'required|in:male,female',
+            'avatar'        =>'nullable|string',
+            'phone'         =>'required|string',
+        ]);
+        $user->update($validated);
+        return back()->with('success', 'User created successfully.');
     }
 
     /**
@@ -61,6 +76,40 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+             $user = User::findOrFail($id);
+             $currentUser = Auth::user()->id;
+             if($currentUser === $user->id){
+            throw ValidationException::withMessages([
+                'user' => ['You Cannot Delete Your Own Account in this Tab! ']
+                ]);
+             }
+             $user->update([
+                'status'=>0
+             ]);
+            return back()->with('success', 'User Deleted successfully.');
+    }
+    /**
+     * Reset User Password.
+     */
+    public function resetPassword(Request $request,string $id)
+    {
+
+            $user = User::findOrFail($id);
+            $validated = $request->validate([
+            'password'          => 'required',
+            ]);
+                $newPassword = $validated['password'];
+               // Check if new password is same as old password
+            if (Hash::check($newPassword, $user->password)) {
+                throw ValidationException::withMessages([
+                    'password' => ['New password cannot be the same as the old password.'],
+                ]);
+            } 
+            // Save new password
+            $user->password = Hash::make($newPassword);
+            $user->save();
+
+            return redirect()->back()->with('success', 'Password changed successfully!');
     }
 }

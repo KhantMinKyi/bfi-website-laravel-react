@@ -2,6 +2,7 @@ import { UserDataTable } from '@/components/backend/user-data-table';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
+import { Toaster } from 'sonner';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -17,6 +18,7 @@ function UserManagement() {
 
             <div className="p-10">
                 <UserDataTable />
+                <Toaster />
             </div>
         </AppLayout>
     );

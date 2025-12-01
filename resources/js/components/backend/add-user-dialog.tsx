@@ -1,19 +1,22 @@
 'use client';
 
-import { Plus } from 'lucide-react';
-
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useForm } from '@inertiajs/react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { router } from '@inertiajs/react';
+import { Plus } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-export function AddUserDialog() {
-    const [open, setOpen] = React.useState(false);
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+interface AddUserDialogProps {
+    onSuccess?: () => void;
+}
+
+export function AddUserDialog({ onSuccess }: AddUserDialogProps) {
+    const [open, setOpen] = React.useState(false);
+    const [formData, setFormData] = React.useState({
         name: '',
         username: '',
         email: '',
@@ -22,27 +25,80 @@ export function AddUserDialog() {
         phone: '',
         gender: '',
     });
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-        // Inertia handles CSRF and auth automatically
-        post('/api/user-management/users', {
-            onSuccess: () => {
-                toast.success('User created successfully!');
-                reset(); // clear form
-                setOpen(false);
-            },
-            onError: (errors) => {
-                const messages = Object.values(errors).join(' • ');
-                toast.error(messages);
-            },
+    const resetForm = () => {
+        setFormData({
+            name: '',
+            username: '',
+            email: '',
+            password: '',
+            avatar: '',
+            phone: '',
+            gender: '',
         });
     };
 
+    // const handleSubmit = async (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     setIsSubmitting(true);
+
+    //     try {
+    //         const response = await fetch('/api/user-management/users', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify(formData),
+    //         });
+
+    //         if (!response.ok) {
+    //             const error = await response.json();
+    //             throw new Error(error.message || 'Failed to create user');
+    //         }
+
+    //         toast.success('User created successfully!');
+    //         resetForm();
+    //         setOpen(false);
+
+    //         if (onSuccess) {
+    //             onSuccess();
+    //         }
+    //     } catch (error) {
+    //         toast.error(error instanceof Error ? error.message : 'Failed to create user');
+    //     } finally {
+    //         setIsSubmitting(false);
+    //     }
+    // };
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        router.post('/api/user-management/users', formData, {
+            preserveScroll: true,
+            onSuccess: () => {
+                toast.success('User created successfully!');
+                resetForm();
+                setOpen(false);
+
+                if (onSuccess) {
+                    onSuccess();
+                }
+            },
+            onError: (errors) => {
+                // Convert validation errors to a single toast message
+                const msg = Object.values(errors).join(' • ');
+                toast.error(msg || 'Failed to create user');
+            },
+            onFinish: () => {
+                setIsSubmitting(false);
+            },
+        });
+    };
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="gap-2">
+                <Button className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
                     <Plus className="h-4 w-4" />
                     Add User
                 </Button>
@@ -56,15 +112,21 @@ export function AddUserDialog() {
                     <div className="grid gap-4 py-4">
                         <div className="grid gap-2">
                             <Label htmlFor="name">Full Name</Label>
-                            <Input id="name" placeholder="John Doe" value={data.name} onChange={(e) => setData('name', e.target.value)} />
+                            <Input
+                                id="name"
+                                placeholder="John Doe"
+                                value={formData.name}
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                required
+                            />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="name">Username</Label>
+                            <Label htmlFor="username">Username</Label>
                             <Input
                                 id="username"
-                                placeholder="John Doe"
-                                value={data.username}
-                                onChange={(e) => setData('username', e.target.value)}
+                                placeholder="johndoe"
+                                value={formData.username}
+                                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                                 required
                             />
                         </div>
@@ -74,8 +136,8 @@ export function AddUserDialog() {
                                 id="email"
                                 type="email"
                                 placeholder="john.doe@example.com"
-                                value={data.email}
-                                onChange={(e) => setData('email', e.target.value)}
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 required
                             />
                         </div>
@@ -85,8 +147,8 @@ export function AddUserDialog() {
                                 id="password"
                                 type="password"
                                 placeholder="••••••••"
-                                value={data.password}
-                                onChange={(e) => setData('password', e.target.value)}
+                                value={formData.password}
+                                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                                 required
                             />
                         </div>
@@ -94,19 +156,23 @@ export function AddUserDialog() {
                             <Label htmlFor="avatar">Avatar URL (Optional)</Label>
                             <Input
                                 id="avatar"
-                                type="url"
                                 placeholder="https://example.com/avatar.jpg"
-                                value={data.avatar}
-                                onChange={(e) => setData('avatar', e.target.value)}
+                                value={formData.avatar}
+                                onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
                             />
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="phone">Phone Number</Label>
-                            <Input id="phone" placeholder="+959" value={data.phone} onChange={(e) => setData('phone', e.target.value)} />
+                            <Input
+                                id="phone"
+                                placeholder="+959"
+                                value={formData.phone}
+                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                            />
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="gender">Gender</Label>
-                            <Select value={data.gender} onValueChange={(value) => setData('gender', value)}>
+                            <Select value={formData.gender} onValueChange={(value) => setFormData({ ...formData, gender: value })}>
                                 <SelectTrigger id="gender">
                                     <SelectValue placeholder="Select gender" />
                                 </SelectTrigger>
@@ -118,10 +184,17 @@ export function AddUserDialog() {
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button type="button" variant="outline" onClick={() => setOpen(false)}>
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => setOpen(false)}
+                            className="cursor-pointer gap-2 bg-red-500 text-white hover:bg-red-700"
+                        >
                             Cancel
                         </Button>
-                        <Button type="submit">Save User</Button>
+                        <Button type="submit" disabled={isSubmitting} className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
+                            {isSubmitting ? 'Saving...' : 'Save User'}
+                        </Button>
                     </DialogFooter>
                 </form>
             </DialogContent>
