@@ -17,11 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('status',1)->orderBy('created_at','desc')->get();
+        $users = User::where('status', 1)->orderBy('created_at', 'desc')->get();
         return response()->json([
-            'message'=>'success',
-            'users'=>$users
-        ],200);
+            'message' => 'success',
+            'users' => $users
+        ], 200);
     }
 
     /**
@@ -33,12 +33,12 @@ class UserController extends Controller
 
         $validated = $request->validate([
             'name'          => 'required|string|max:255',
-            'username'      =>'required|string|unique:users',
-            'email'         =>'required|string|unique:users',
-            'password'      =>'required',
+            'username'      => 'required|string|unique:users',
+            'email'         => 'required|string|unique:users',
+            'password'      => 'required',
             'gender'        => 'required|in:male,female',
-            'avatar'        =>'nullable|string',
-            'phone'         =>'required|string',
+            'avatar'        => 'nullable|string',
+            'phone'         => 'required|string',
         ]);
         User::create($validated);
         return back()->with('success', 'User created successfully.');
@@ -57,15 +57,14 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-                dd($request->all());
         $user = User::findOrFail($id);
         $validated = $request->validate([
             'name'          => 'required|string|max:255',
-            'username'      =>['required','string',Rule::unique('users')->ignore($user->id),],
-            'email'         =>['required','string','email',Rule::unique('users')->ignore($user->id),],
+            'username'      => ['required', 'string', Rule::unique('users')->ignore($user->id),],
+            'email'         => ['required', 'string', 'email', Rule::unique('users')->ignore($user->id),],
             'gender'        => 'required|in:male,female',
-            'avatar'        =>'nullable|string',
-            'phone'         =>'required|string',
+            'avatar'        => 'nullable|string',
+            'phone'         => 'required|string',
         ]);
         $user->update($validated);
         return back()->with('success', 'User created successfully.');
@@ -77,39 +76,39 @@ class UserController extends Controller
     public function destroy(string $id)
     {
 
-             $user = User::findOrFail($id);
-             $currentUser = Auth::user()->id;
-             if($currentUser === $user->id){
+        $user = User::findOrFail($id);
+        $currentUser = Auth::user()->id;
+        if ($currentUser === $user->id) {
             throw ValidationException::withMessages([
                 'user' => ['You Cannot Delete Your Own Account in this Tab! ']
-                ]);
-             }
-             $user->update([
-                'status'=>0
-             ]);
-            return back()->with('success', 'User Deleted successfully.');
+            ]);
+        }
+        $user->update([
+            'status' => 0
+        ]);
+        return back()->with('success', 'User Deleted successfully.');
     }
     /**
      * Reset User Password.
      */
-    public function resetPassword(Request $request,string $id)
+    public function resetPassword(Request $request, string $id)
     {
 
-            $user = User::findOrFail($id);
-            $validated = $request->validate([
+        $user = User::findOrFail($id);
+        $validated = $request->validate([
             'password'          => 'required',
+        ]);
+        $newPassword = $validated['password'];
+        // Check if new password is same as old password
+        if (Hash::check($newPassword, $user->password)) {
+            throw ValidationException::withMessages([
+                'password' => ['New password cannot be the same as the old password.'],
             ]);
-                $newPassword = $validated['password'];
-               // Check if new password is same as old password
-            if (Hash::check($newPassword, $user->password)) {
-                throw ValidationException::withMessages([
-                    'password' => ['New password cannot be the same as the old password.'],
-                ]);
-            } 
-            // Save new password
-            $user->password = Hash::make($newPassword);
-            $user->save();
+        }
+        // Save new password
+        $user->password = Hash::make($newPassword);
+        $user->save();
 
-            return redirect()->back()->with('success', 'Password changed successfully!');
+        return redirect()->back()->with('success', 'Password changed successfully!');
     }
 }
