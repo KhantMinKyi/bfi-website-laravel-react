@@ -11,7 +11,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/public_data/event_and_post/dashboard',
     },
     {
-        title: 'Post Setting',
+        title: 'Setting',
         href: '/public_data/event_and_post/setting',
     },
 ];
