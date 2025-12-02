@@ -6,7 +6,7 @@ import { router } from '@inertiajs/react';
 import { AlertTriangle, Trash2 } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
-import type { User } from './user-data-table';
+import { User } from './user-data-table';
 
 interface DeleteUserDialogProps {
     user: User;

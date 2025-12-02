@@ -1,4 +1,4 @@
-import { UserDataTable } from '@/components/backend/user-data-table';
+import { UserDataTable } from '@/components/backend/user_management/user-data-table';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
