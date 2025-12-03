@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -17,12 +18,14 @@ export function AddPostTypeSetting({ onSuccess }: AddPostTypeSettingProps) {
     const [open, setOpen] = React.useState(false);
     const [formData, setFormData] = React.useState({
         title: '',
+        is_activity: false,
     });
     const [isSubmitting, setIsSubmitting] = React.useState(false);
 
     const resetForm = () => {
         setFormData({
             title: '',
+            is_activity: false,
         });
     };
 
@@ -73,7 +76,17 @@ export function AddPostTypeSetting({ onSuccess }: AddPostTypeSettingProps) {
                                 placeholder="Event"
                                 value={formData.title}
                                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                // required
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className="grid gap-4 py-4">
+                        <div className="grid gap-2">
+                            <Label htmlFor="is_activity">Is Include Date?</Label>
+                            <Checkbox
+                                id="is_activity"
+                                checked={formData.is_activity}
+                                onCheckedChange={(checked) => setFormData({ ...formData, is_activity: checked ? true : false })}
                             />
                         </div>
                     </div>

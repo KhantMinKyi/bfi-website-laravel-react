@@ -8,6 +8,7 @@ class PostType extends Model
 {
     protected $fillable = [
         'title',
+        'is_activity',
         'status',
     ];
 }

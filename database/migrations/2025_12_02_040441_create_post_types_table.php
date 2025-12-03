@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('post_types', function (Blueprint $table) {
             $table->id();
             $table->string('title')->unique();
+            $table->boolean('is_activity');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

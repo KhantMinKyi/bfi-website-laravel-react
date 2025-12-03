@@ -7,7 +7,8 @@ import { router } from '@inertiajs/react';
 import { Check } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
-import type { PostSetting } from './post-type-setting-data-table';
+import type { PostSetting } from '@/types';
+import { Checkbox } from '@/components/ui/checkbox';
 
 interface UpdatePostTypeSettingDialogProps {
     postSetting: PostSetting;
@@ -19,6 +20,7 @@ interface UpdatePostTypeSettingDialogProps {
 export function UpdatePostTypeSettingDialog({ postSetting, open, onOpenChange, onSuccess }: UpdatePostTypeSettingDialogProps) {
     const [formData, setFormData] = React.useState({
         title: postSetting.title,
+        is_activity: postSetting.is_activity,
     });
     const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -27,6 +29,7 @@ export function UpdatePostTypeSettingDialog({ postSetting, open, onOpenChange, o
         if (postSetting) {
             setFormData({
                 title: postSetting.title,
+                is_activity: postSetting.is_activity,
             });
         }
     }, [postSetting]);
@@ -44,6 +47,7 @@ export function UpdatePostTypeSettingDialog({ postSetting, open, onOpenChange, o
 
                 if (onSuccess) {
                     onSuccess();
+                    
                 }
             },
 
@@ -75,6 +79,16 @@ export function UpdatePostTypeSettingDialog({ postSetting, open, onOpenChange, o
                                 value={formData.title}
                                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                                 required
+                            />
+                        </div>
+                    </div>
+                    <div className="grid gap-4 py-4">
+                        <div className="grid gap-2">
+                            <Label htmlFor="update-is_activity">Is Include Date?</Label>
+                            <Checkbox
+                                id="update-is_activity"
+                                checked={formData.is_activity ? true : false}
+                                onCheckedChange={(checked) => setFormData({ ...formData, is_activity: checked ? true : false })}
                             />
                         </div>
                     </div>
