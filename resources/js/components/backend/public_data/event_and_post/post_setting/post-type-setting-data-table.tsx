@@ -12,14 +12,13 @@ import {
     useReactTable,
     type VisibilityState,
 } from '@tanstack/react-table';
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
+import { ArrowUpDown, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
 import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
     DropdownMenu,
-    DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuLabel,
@@ -189,11 +188,11 @@ export function PostTypeSettingDataTable() {
                     <Input placeholder="Filter by name or email..." disabled className="max-w-sm" value="" onChange={() => {}} />
                     <div className="ml-auto flex items-center gap-2">
                         <Button disabled className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
-                            Add postSetting
+                            Add Post Setting
                         </Button>
-                        <Button variant="outline" disabled>
+                        {/* <Button variant="outline" disabled>
                             Columns <ChevronDown />
-                        </Button>
+                        </Button> */}
                     </div>
                 </div>
                 <div className="overflow-hidden rounded-md border">
@@ -242,7 +241,7 @@ export function PostTypeSettingDataTable() {
                 />
                 <div className="ml-auto flex items-center gap-2">
                     <AddPostTypeSetting onSuccess={fetchPostSettings} />
-                    <DropdownMenu>
+                    {/* <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline">
                                 Columns <ChevronDown />
@@ -265,7 +264,7 @@ export function PostTypeSettingDataTable() {
                                     );
                                 })}
                         </DropdownMenuContent>
-                    </DropdownMenu>
+                    </DropdownMenu> */}
                 </div>
             </div>
             <div className="overflow-hidden rounded-md border">
