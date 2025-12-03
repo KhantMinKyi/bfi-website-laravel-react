@@ -1,9 +1,8 @@
 import { PostTypeSettingDataTable } from '@/components/backend/public_data/event_and_post/post_setting/post-type-setting-data-table';
-import { UserDataTable } from '@/components/backend/user_management/user-data-table';
+import { CategoryTagSettingDataTable } from '@/components/backend/public_data/event_and_post/tag_category_setting/category-tag-setting-data-table';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import { Toaster } from 'sonner';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -21,7 +20,7 @@ function PostSetting() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="PostSetting" />
             <div className="p-10">
-                <Toaster />
+                {/* <Toaster /> */}
                 <div className="grid grid-cols-12 gap-2">
                     <div className="col-span-4">
                         <div className="p-2">Post Setting</div>
@@ -29,7 +28,7 @@ function PostSetting() {
                     </div>
                     <div className="col-span-8">
                         <div className="p-2">Tag & Category Setting</div>
-                        <UserDataTable />
+                        <CategoryTagSettingDataTable />
                     </div>
                 </div>
             </div>
