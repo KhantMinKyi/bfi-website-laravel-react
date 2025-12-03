@@ -8,7 +8,7 @@ import { router } from '@inertiajs/react';
 import { Check } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
-import { CategoryTag } from './post-data-table';
+import { CategoryTag } from '@/types';
 
 interface UpdateCategoryTagSettingDialogProps {
     categoryTag: CategoryTag;
