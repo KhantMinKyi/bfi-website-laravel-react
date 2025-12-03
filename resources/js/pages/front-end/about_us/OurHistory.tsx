@@ -4,11 +4,10 @@ import HistoryTagline from '@/components/front-end/about_us/our_history/history-
 import FrontEndLayout from '@/layouts/front-end-layout';
 import * as motion from 'motion/react-client';
 const events = [
-    { year: '2010', title: 'Started Primary School' },
-    { year: '2015', title: 'Graduated Primary School' },
-    { year: '2016', title: 'Started High School' },
-    { year: '2020', title: 'Graduated High School' },
-    { year: '2021', title: 'Started University' },
+    { year: '2000', title: 'Established Horizon' },
+    { year: '2004', title: 'MISA ' },
+    { year: '2010', title: 'SKT Riverside Campus' },
+    { year: '2013', title: 'NISA ' },
 ];
 function OurHistory() {
     return (

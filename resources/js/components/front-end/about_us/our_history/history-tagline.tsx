@@ -20,10 +20,15 @@ function HistoryTagline() {
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >
                     <p className="text-white">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam explicabo in eum fuga, illum ipsa mollitia cum perferendis
-                        dignissimos aut ipsam nostrum officiis placeat odit a corrupti! Soluta, esse repellat. Lorem ipsum dolor sit amet consectetur,
-                        adipisicing elit. Magnam explicabo in eum fuga, illum ipsa mollitia cum perferendis dignissimos aut ipsam nostrum officiis
-                        placeat odit a corrupti! Soluta, esse repellat. Lorem ipsum dolor sit amet consectetur, adipisicing
+                        The SKT International School Riverside Campus, opened in 2010 on Shu Khin Thar Myo Pat Road, provides a contemporary learning
+                        environment with wide, purpose-built spaces and state-of-the-art facilities. In response to growing demand in Mandalay and
+                        Upper Myanmar, the Mandalay International School of Acumen was established in 2004 in Myanmar’s historic second capital.
+                        Within its first year, the school saw remarkable success thanks to strong parental support. The Mandalay campus offers
+                        Kindergarten through High School programs and features extensive facilities designed to support student development, in
+                        alignment with the Yangon curriculum. Nay Pyi Taw International School of Acumen (NISA) opened in 2013 to meet the rising
+                        interest in international education in the capital city. The school provides a wide range of facilities—including sports
+                        courts, playgrounds, and dining areas—creating an environment where students can grow academically, physically, and socially.
+                        With an international teaching staff, NISA warmly welcomes all learners seeking a global-standard education.
                     </p>
                 </motion.div>
                 <motion.div

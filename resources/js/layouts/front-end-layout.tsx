@@ -59,16 +59,16 @@ export default ({ children }: FrondendLayoutProps) => {
                     <img src="/img/bfi_b.png" alt="" className="hidden w-44 -rotate-z-6 dark:block dark:opacity-80" />
                 </div>
                 {/* <h1 className="hidden">section heading hidden</h1> */}
-                <div className={`z-20 py-[0px] ${scrolled ? 'hidden' : 'block'} transition-all duration-300 ease-in-out`}>
+                <div className={`z-20 py-[10px] lg:py-0 ${scrolled ? 'hidden' : 'block'} transition-all duration-300 ease-in-out`}>
                     <div className="mx-auto max-w-11/12 sm:max-w-9/12">
                         <div className="grid grid-cols-12 items-center gap-4">
-                            <div className="relative top-16 left-5 z-20 col-span-3 hidden lg:block">
+                            <div className="relative top-16 left-5 z-20 col-span-2 hidden lg:block">
                                 <Link href={route('home')}>
                                     <img src="/img/bfi.png" className="max-w-28 transition-all dark:hidden" alt="" />
                                     <img src="/img/bfi_b.png" className="hidden max-w-28 transition-all dark:block" alt="" />
                                 </Link>
                             </div>
-                            <div className={`col-span-12 lg:col-span-9 ${scrolled ? 'hidden' : 'block'}`}>
+                            <div className={`col-span-12 lg:col-span-10 ${scrolled ? 'hidden' : 'block'}`}>
                                 <div className="hidden flex-wrap justify-center sm:flex lg:justify-end">
                                     <div className="mx-3 pr-2 text-left sm:flex">
                                         <div className="col:mb-1 mr-2 h-8 w-8 rounded-full border-[2px] border-[#F7F6F1] text-center leading-8 sm:float-none sm:mx-auto sm:mb-1 sm:h-12 sm:w-12 sm:leading-[48px]">
@@ -86,9 +86,9 @@ export default ({ children }: FrondendLayoutProps) => {
                                             <i className="fi flaticon-email text-blue-500 sm:text-lg"></i>
                                         </div>
                                         <div className="ml-5 overflow-hidden">
-                                            <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Call Us:</span>
+                                            <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Email:</span>
                                             <p className="font-heading-font leading-5 font-medium text-[#232323] sm:text-sm dark:text-white">
-                                                00 567 458 796 47
+                                                contact@bfi.edu.mm
                                             </p>
                                         </div>
                                     </div>
@@ -97,9 +97,9 @@ export default ({ children }: FrondendLayoutProps) => {
                                             <i className="fi flaticon-placeholder text-blue-500 sm:text-lg"></i>
                                         </div>
                                         <div className="ml-5 overflow-hidden">
-                                            <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Call Us:</span>
+                                            <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Address:</span>
                                             <p className="font-heading-font leading-5 font-medium text-[#232323] sm:text-sm dark:text-white">
-                                                00 567 458 796 47
+                                                No.235, Shu Khinn Thar Myo Pat Road,Thaketa, Yangon.
                                             </p>
                                         </div>
                                     </div>

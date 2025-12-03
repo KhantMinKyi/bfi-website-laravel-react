@@ -16,7 +16,7 @@ const HistoryProgressBar: React.FC<Props> = ({ events }) => {
     return (
         <div className="flex w-full flex-col flex-wrap items-center justify-center gap-6 px-4 py-10 md:flex-row md:items-center md:px-10 md:py-20 dark:bg-neutral-950">
             {events.map((event, index) => (
-                <div key={index} className="flex flex-col items-center md:flex-row md:items-start md:gap-6">
+                <div key={index} className="flex flex-col items-center justify-start md:flex-row md:items-start md:gap-6">
                     {/* Circle */}
                     <motion.div
                         initial={{ scale: 0 }}
@@ -38,7 +38,7 @@ const HistoryProgressBar: React.FC<Props> = ({ events }) => {
                     )}
 
                     {/* Event info */}
-                    <div className="mt-3 text-center md:mt-0 md:ml-3 md:text-left">
+                    <div className="mt-3 text-center md:mt-0 md:mr-3 md:text-left">
                         <p className="text-lg font-bold text-blue-900 dark:text-green-500">{event.year}</p>
                         <p className="font-semibold text-gray-800 dark:text-gray-200">{event.title}</p>
                         {event.description && <p className="mt-1 text-sm text-gray-500">{event.description}</p>}
