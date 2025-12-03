@@ -6,7 +6,7 @@ import { router } from '@inertiajs/react';
 import { AlertTriangle, Trash2 } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
-import { CategoryTag } from './category-tag-setting-data-table';
+import { CategoryTag } from '@/types';
 
 interface DeleteCategoryTagSettingDialogProps {
     categoryTag: CategoryTag;

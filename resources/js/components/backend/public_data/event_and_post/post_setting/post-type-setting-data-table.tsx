@@ -95,6 +95,18 @@ export function PostTypeSettingDataTable() {
                 cell: ({ row }) => <div className="font-medium">{row.getValue('title')}</div>,
             },
             {
+                accessorKey: 'is_activity',
+                header: ({ column }) => {
+                    return (
+                        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+                            Is Include Date?
+                            <ArrowUpDown />
+                        </Button>
+                    );
+                },
+                cell: ({ row }) => <div className="font-medium">{row.getValue('is_activity') == 1 ? 'Yes' : 'No'}</div>,
+            },
+            {
                 accessorKey: 'status',
                 header: ({ column }) => {
                     return (
@@ -128,6 +140,7 @@ export function PostTypeSettingDataTable() {
                                     onClick={() => {
                                         setSelectedPostSetting(postSetting);
                                         setUpdateDialogOpen(true);
+                                        console.log(updateDialogOpen);
                                     }}
                                 >
                                     <Pencil className="mr-2 h-4 w-4" />

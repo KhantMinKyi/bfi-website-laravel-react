@@ -27,7 +27,8 @@ class PostTypeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required'
+            'title' => 'required',
+            'is_activity' => 'required|boolean',
         ]);
         $existing_data = PostType::where('title', $validated['title'])->where('status', 1)->first();
         if ($existing_data) {
@@ -66,6 +67,7 @@ class PostTypeController extends Controller
         $post_type = PostType::findOrFail($id);
         $validated = $request->validate([
             'title'      => ['required', 'string', Rule::unique('post_types')->ignore($post_type->id),],
+            'is_activity' => 'required|boolean',
         ]);
         $post_type->update($validated);
         return back()->with('success', 'Setting Updated successfully.');

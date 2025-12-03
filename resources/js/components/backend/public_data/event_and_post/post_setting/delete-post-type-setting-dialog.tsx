@@ -6,7 +6,7 @@ import { router } from '@inertiajs/react';
 import { AlertTriangle, Trash2 } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
-import { PostSetting } from './post-type-setting-data-table';
+import { PostSetting } from '@/types';
 
 interface DeletePostTypeSettingDialogProps {
     postSetting: PostSetting;
@@ -30,6 +30,7 @@ export function DeletePostTypeSettingDialog({ postSetting, open, onOpenChange, o
 
                 if (onSuccess) {
                     onSuccess();
+                    window.location.reload();
                 }
             },
 

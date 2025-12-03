@@ -159,6 +159,7 @@ export interface FaqDataType {
 export interface PostSetting {
     id: number;
     title: string;
+    is_activity: boolean;
     status: string;
     created_at: string;
     updated_at: string;

@@ -65,7 +65,12 @@ export function AddPost({ onSuccess, postType = [], categoryTag = [] }: AddPostP
         });
     };
 
-    const shouldHideConditionalFields = formData.post_type_id === '2';
+    // Find the currently selected post type so we can base conditional fields on its `is_activity` flag
+    const selectedPostType = postType.find((pt) => pt.id.toString() === formData.post_type_id);
+
+    // If `is_activity` is true, we should show the conditional fields (so hide = false).
+    // If it's false or there is no selection yet, hide the conditional fields.
+    const shouldHideConditionalFields = selectedPostType ? !Boolean(selectedPostType.is_activity) : true;
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
