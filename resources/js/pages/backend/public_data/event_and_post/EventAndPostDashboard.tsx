@@ -3,7 +3,6 @@ import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import { SlidersHorizontal } from 'lucide-react';
-import { Toaster } from 'sonner';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -27,7 +26,7 @@ function EventAndPostDashboard() {
                     </Link>
                 </div>
                 <UserDataTable />
-                <Toaster />
+                {/* <Toaster /> */}
             </div>
         </AppLayout>
     );

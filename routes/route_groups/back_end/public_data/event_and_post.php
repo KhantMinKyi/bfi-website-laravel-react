@@ -1,6 +1,7 @@
 
 <?php
 
+use App\Http\Controllers\CategoryTagController;
 use App\Http\Controllers\PostTypeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,5 +16,6 @@ Route::get('/public_data/event_and_post/setting', function () {
 })->name('public_data.event_and_post.setting');
 Route::prefix('api')->group(function () {
     Route::apiResource('/public_data/event_and_post/post-type-settings', PostTypeController::class);
+    Route::apiResource('/public_data/event_and_post/category-tag-settings', CategoryTagController::class);
 });
 ?>
