@@ -156,3 +156,51 @@ export interface FaqDataType {
     question: string;
     answer: string;
 }
+export interface PostSetting {
+    id: number;
+    title: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+}
+export interface CategoryTag {
+    id: number;
+    title: string;
+    type: string;
+    created_user_id: number;
+    updated_user_id?: number;
+    status: number;
+    created_user: User;
+    updated_user?: User;
+    created_at: string;
+    updated_at: string;
+}
+export interface Post {
+    type: PostSetting;
+    id: number;
+    title: string;
+    subtitle?: string;
+    description: string;
+    footer_description?: string;
+    banner_img: string;
+    images?: string;
+    start_date?: date;
+    end_date?: date;
+    registration_fee?: string;
+    award_description?: string;
+    video_url?: string;
+    location?: string;
+    created_user: User;
+    updated_user?: User;
+    category_tags: PostCategoryTag[];
+    status: number;
+    created_at: string;
+    updated_at: string;
+}
+export interface PostCategoryTag {
+    id: number;
+    category_tag_id: number;
+    post_id: number;
+    category_tag: CategoryTag;
+    post: Post;
+}

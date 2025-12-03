@@ -1,4 +1,4 @@
-import { UserDataTable } from '@/components/backend/user_management/user-data-table';
+import { PostDataTable } from '@/components/backend/public_data/event_and_post/post/post-data-table';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
@@ -25,7 +25,7 @@ function EventAndPostDashboard() {
                         <span className="text-sm"> Setting</span>
                     </Link>
                 </div>
-                <UserDataTable />
+                <PostDataTable />
                 {/* <Toaster /> */}
             </div>
         </AppLayout>

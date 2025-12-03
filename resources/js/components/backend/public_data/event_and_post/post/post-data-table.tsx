@@ -15,6 +15,7 @@ import {
 import { ArrowUpDown, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
 import * as React from 'react';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -27,13 +28,13 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { CategoryTag } from '@/types';
-import { AddCategoryTagSetting } from './add-category-tag-setting-dialog';
-import { DeleteCategoryTagSettingDialog } from './delete-category-tag-setting-dialog';
-import { UpdateCategoryTagSettingDialog } from './update-category-tag-setting-dialog';
+import { CategoryTag, Post, PostSetting } from '@/types';
+import { AddPost } from './add-post-dialog';
 
-export function CategoryTagSettingDataTable() {
-    const [data, setData] = React.useState<CategoryTag[]>([]);
+export function PostDataTable() {
+    const [data, setData] = React.useState<Post[]>([]);
+    const [postType, setPostType] = React.useState<PostSetting[]>([]);
+    const [categoryTag, setCategoryTag] = React.useState<CategoryTag[]>([]);
     const [loading, setLoading] = React.useState(true);
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -42,18 +43,18 @@ export function CategoryTagSettingDataTable() {
     const [globalFilter, setGlobalFilter] = React.useState('');
     const [updateDialogOpen, setUpdateDialogOpen] = React.useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
-    const [selectedCategoryTag, setSelectedCategoryTag] = React.useState<CategoryTag | null>(null);
+    const [selectedPost, setSelectedPost] = React.useState<Post | null>(null);
 
-    const fetchCategoryTagSettings = React.useCallback(async () => {
+    const fetchPosts = React.useCallback(async () => {
         try {
             setLoading(true);
-            const response = await fetch('/api/public_data/event_and_post/category-tag-settings');
+            const response = await fetch('/api/public_data/event_and_post/posts');
 
             if (!response.ok) {
                 throw new Error('Failed to fetch settings');
             }
             const result = await response.json();
-            setData(result.category_tags);
+            setData(result.posts);
         } catch (error) {
             console.error('Error fetching settings:', error);
         } finally {
@@ -62,10 +63,34 @@ export function CategoryTagSettingDataTable() {
     }, []);
 
     React.useEffect(() => {
-        fetchCategoryTagSettings();
-    }, [fetchCategoryTagSettings]);
+        fetchPosts();
 
-    const columns: ColumnDef<CategoryTag>[] = React.useMemo(
+        const fetchPostSettings = async () => {
+            try {
+                const response = await fetch('/api/public_data/event_and_post/post-type-settings');
+                if (!response.ok) throw new Error('Failed to fetch settings');
+                const result = await response.json();
+                setPostType(result.post_types);
+            } catch (error) {
+                console.error('Error fetching settings:', error);
+            }
+        };
+        fetchPostSettings();
+        const fetchCategoryTagSettings = async () => {
+            try {
+                const response = await fetch('/api/public_data/event_and_post/category-tag-settings');
+                if (!response.ok) throw new Error('Failed to fetch Category and Tag');
+                const result = await response.json();
+                setCategoryTag(result.category_tags);
+            } catch (error) {
+                console.error('Error fetching settings:', error);
+            }
+        };
+        fetchPostSettings();
+        fetchCategoryTagSettings();
+    }, [fetchPosts]);
+
+    const columns: ColumnDef<Post>[] = React.useMemo(
         () => [
             {
                 id: 'select',
@@ -83,6 +108,26 @@ export function CategoryTagSettingDataTable() {
                 enableHiding: false,
             },
             {
+                accessorKey: 'banner_img',
+                header: 'Banner',
+                cell: ({ row }) => {
+                    const post = row.original;
+                    return (
+                        <Avatar className="h-10 w-10">
+                            <AvatarImage src={post.banner_img || '/placeholder.svg'} alt={post.title} />
+                            <AvatarFallback>
+                                {post.title
+                                    .split(' ')
+                                    .map((n) => n[0])
+                                    .join('')
+                                    .toUpperCase()}
+                            </AvatarFallback>
+                        </Avatar>
+                    );
+                },
+                enableSorting: false,
+            },
+            {
                 accessorKey: 'title',
                 header: ({ column }) => {
                     return (
@@ -95,16 +140,35 @@ export function CategoryTagSettingDataTable() {
                 cell: ({ row }) => <div className="font-medium">{row.getValue('title')}</div>,
             },
             {
-                accessorKey: 'type',
-                header: ({ column }) => {
-                    return (
-                        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-                            Type
-                            <ArrowUpDown />
-                        </Button>
-                    );
+                id: 'type',
+                header: ({ column }) => (
+                    <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+                        Type
+                        <ArrowUpDown />
+                    </Button>
+                ),
+                accessorFn: (row) => row.type?.title ?? '',
+                cell: ({ getValue }) => {
+                    const value = getValue() as string;
+                    return <div className="font-medium">{value}</div>;
                 },
-                cell: ({ row }) => <div className="font-medium uppercase">{row.getValue('type')}</div>,
+            },
+            {
+                id: 'category_tags',
+                header: ({ column }) => (
+                    <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+                        Category Tag
+                        <ArrowUpDown />
+                    </Button>
+                ),
+                accessorFn: (row) => {
+                    // Map over array and join titles
+                    return Array.isArray(row.category_tags) ? row.category_tags.map((t) => t.category_tag.title).join(', ') : '';
+                },
+                cell: ({ getValue }) => {
+                    const value = getValue() as string;
+                    return <div className="font-medium">{value}</div>;
+                },
             },
             {
                 id: 'created_user_name',
@@ -120,20 +184,7 @@ export function CategoryTagSettingDataTable() {
                     return <div className="font-medium">{value}</div>;
                 },
             },
-            {
-                id: 'updated_user_name',
-                header: ({ column }) => (
-                    <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-                        Updated By
-                        <ArrowUpDown />
-                    </Button>
-                ),
-                accessorFn: (row) => row.updated_user?.name ?? '',
-                cell: ({ getValue }) => {
-                    const value = getValue() as string;
-                    return <div className="font-medium">{value}</div>;
-                },
-            },
+
             {
                 accessorKey: 'status',
                 header: ({ column }) => {
@@ -150,7 +201,7 @@ export function CategoryTagSettingDataTable() {
                 id: 'actions',
                 enableHiding: false,
                 cell: ({ row }) => {
-                    const CategoryTag = row.original;
+                    const Post = row.original;
 
                     return (
                         <DropdownMenu>
@@ -162,11 +213,11 @@ export function CategoryTagSettingDataTable() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                <DropdownMenuItem onClick={() => navigator.clipboard.writeText(CategoryTag.id.toString())}>Copy ID</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => navigator.clipboard.writeText(Post.id.toString())}>Copy ID</DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
                                     onClick={() => {
-                                        setSelectedCategoryTag(CategoryTag);
+                                        setSelectedPost(Post);
                                         setUpdateDialogOpen(true);
                                     }}
                                 >
@@ -176,7 +227,7 @@ export function CategoryTagSettingDataTable() {
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
                                     onClick={() => {
-                                        setSelectedCategoryTag(CategoryTag);
+                                        setSelectedPost(Post);
                                         setDeleteDialogOpen(true);
                                     }}
                                     className="text-destructive focus:text-destructive"
@@ -221,7 +272,7 @@ export function CategoryTagSettingDataTable() {
                     <Input placeholder="Filter by name or email..." disabled className="max-w-sm" value="" onChange={() => {}} />
                     <div className="ml-auto flex items-center gap-2">
                         <Button disabled className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
-                            Add Category & Tag Setting
+                            Add Posts
                         </Button>
                         {/* <Button variant="outline" disabled>
                             Columns <ChevronDown />
@@ -273,7 +324,7 @@ export function CategoryTagSettingDataTable() {
                     className="max-w-sm"
                 />
                 <div className="ml-auto flex items-center gap-2">
-                    <AddCategoryTagSetting onSuccess={fetchCategoryTagSettings} />
+                    <AddPost onSuccess={fetchPosts} postType={postType} categoryTag={categoryTag} />
                     {/* <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline">
@@ -348,20 +399,20 @@ export function CategoryTagSettingDataTable() {
                 </div>
             </div>
 
-            {selectedCategoryTag && (
+            {selectedPost && (
                 <>
-                    <UpdateCategoryTagSettingDialog
-                        categoryTag={selectedCategoryTag}
+                    {/* <UpdatePostSettingDialog
+                        Post={selectedPost}
                         open={updateDialogOpen}
                         onOpenChange={setUpdateDialogOpen}
-                        onSuccess={fetchCategoryTagSettings}
+                        onSuccess={fetchPosts}
                     />
-                    <DeleteCategoryTagSettingDialog
-                        categoryTag={selectedCategoryTag}
+                    <DeletePostSettingDialog
+                        Post={selectedPost}
                         open={deleteDialogOpen}
                         onOpenChange={setDeleteDialogOpen}
-                        onSuccess={fetchCategoryTagSettings}
-                    />
+                        onSuccess={fetchPosts}
+                    /> */}
                 </>
             )}
         </div>
