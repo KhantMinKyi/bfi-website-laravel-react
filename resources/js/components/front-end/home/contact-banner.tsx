@@ -13,9 +13,9 @@ function ContactBanner() {
             {/* Content */}
             <motion.div
                 className="orico-about-text-wrap 111"
-                initial={{ opacity: 0, x: -50 }} // start 50px below
-                whileInView={{ opacity: 1, x: 1 }} // slide up and fade in
-                exit={{ opacity: 0, x: -50 }} // fade out and slide down
+                initial={{ opacity: 0, y: -50 }} // start 50px below
+                whileInView={{ opacity: 1, y: 1 }} // slide up and fade in
+                exit={{ opacity: 0, y: -50 }} // fade out and slide down
                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                 transition={{ duration: 0.5, ease: 'easeInOut' }} // longer duration
             >
