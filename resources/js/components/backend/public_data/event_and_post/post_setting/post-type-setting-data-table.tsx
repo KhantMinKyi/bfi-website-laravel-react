@@ -27,17 +27,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { PostSetting } from '@/types';
 import { AddPostTypeSetting } from './add-post-type-setting-dialog';
 import { DeletePostTypeSettingDialog } from './delete-post-type-setting-dialog';
 import { UpdatePostTypeSettingDialog } from './update-post-type-setting-dialog';
-
-export interface PostSetting {
-    id: number;
-    title: string;
-    status: string;
-    created_at: string;
-    updated_at: string;
-}
 
 export function PostTypeSettingDataTable() {
     const [data, setData] = React.useState<PostSetting[]>([]);
