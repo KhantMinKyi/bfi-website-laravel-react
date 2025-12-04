@@ -78,6 +78,7 @@ export function AddPost({ onSuccess, postType = [], categoryTag = [] }: AddPostP
 
         const submitData = new FormData();
         submitData.append('post_type_id', formData.post_type_id);
+        submitData.append('post_type_is_activity', String(selectedPostType?.is_activity ?? 0));
         submitData.append('category_tag_ids', formData.category_tag_ids.join(','));
         submitData.append('title', formData.title);
         submitData.append('subtitle', formData.subtitle);
@@ -168,7 +169,6 @@ export function AddPost({ onSuccess, postType = [], categoryTag = [] }: AddPostP
                                     placeholder="Enter title"
                                     value={formData.title}
                                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                    required
                                 />
                             </div>
                         </div>
@@ -233,7 +233,6 @@ export function AddPost({ onSuccess, postType = [], categoryTag = [] }: AddPostP
                             label="Description"
                             value={formData.description}
                             onChange={(content) => setFormData({ ...formData, description: content })}
-                            required
                         />
 
                         <RichTextEditor
@@ -252,7 +251,6 @@ export function AddPost({ onSuccess, postType = [], categoryTag = [] }: AddPostP
                                 type="file"
                                 accept="image/*"
                                 onChange={(e) => setFormData({ ...formData, banner_img: e.target.files?.[0] || null })}
-                                required
                             />
                         </div>
 
@@ -282,7 +280,9 @@ export function AddPost({ onSuccess, postType = [], categoryTag = [] }: AddPostP
                             <>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="grid gap-2">
-                                        <Label htmlFor="start_date">Start Date</Label>
+                                        <Label htmlFor="start_date">
+                                            Start Date <span className="text-red-500">*</span>
+                                        </Label>
                                         <Input
                                             id="start_date"
                                             type="date"
@@ -292,7 +292,9 @@ export function AddPost({ onSuccess, postType = [], categoryTag = [] }: AddPostP
                                     </div>
 
                                     <div className="grid gap-2">
-                                        <Label htmlFor="end_date">End Date</Label>
+                                        <Label htmlFor="end_date">
+                                            End Date <span className="text-red-500">*</span>
+                                        </Label>
                                         <Input
                                             id="end_date"
                                             type="date"
@@ -304,7 +306,9 @@ export function AddPost({ onSuccess, postType = [], categoryTag = [] }: AddPostP
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="grid gap-2">
-                                        <Label htmlFor="registration_fee">Registration Fee</Label>
+                                        <Label htmlFor="registration_fee">
+                                            Registration Fee <span className="text-red-500">*</span>
+                                        </Label>
                                         <Input
                                             id="registration_fee"
                                             placeholder="Enter registration fee"
@@ -314,7 +318,9 @@ export function AddPost({ onSuccess, postType = [], categoryTag = [] }: AddPostP
                                     </div>
 
                                     <div className="grid gap-2">
-                                        <Label htmlFor="location">Location</Label>
+                                        <Label htmlFor="location">
+                                            Location <span className="text-red-500">*</span>
+                                        </Label>
                                         <Input
                                             id="location"
                                             placeholder="Enter location"

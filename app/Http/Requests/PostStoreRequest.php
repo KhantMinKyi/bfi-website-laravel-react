@@ -24,21 +24,29 @@ class PostStoreRequest extends FormRequest
     {
         return [
             'post_type_id'                      => ['required', 'integer', Rule::exists('post_types', 'id'),],
-            'title'                             => ['required', 'string'],
-            'subtitle'                          => 'nullable',
+            'post_type_is_activity'             => ['required', 'integer'],
+            'category_tag_ids'                  => ['required', 'string'],
+            'title'                             => ['required', 'string', 'max:100'],
+            'subtitle'                          => ['nullable', 'string'],
             'description'                       => ['required', 'string'],
             'footer_description'                => ['nullable', 'string'],
-            'banner_img'                        => ['required', 'string'],
-            'images'                            => ['nullable', 'string'],
-            'start_date'                        => ['nullable', 'date'],
-            'end_date'                          => ['nullable', 'date'],
-            'registration_fee'                  => ['nullable', 'string'],
-            'award_description'                 => ['nullable', 'string'],
             'video_url'                         => ['nullable', 'string'],
-            'location'                          => ['nullable', 'string'],
-            'created_user_id'                   => ['required', 'string', Rule::exists('users', 'id')],
-            'updated_user_id'                   => ['nullable', 'string', Rule::exists('users', 'id')],
+            'start_date'                        => [Rule::requiredIf($this->post_type_is_activity == 1), 'date'],
+            'end_date'                          => [Rule::requiredIf($this->post_type_is_activity == 1), 'date'],
+            'registration_fee'                  => [Rule::requiredIf($this->post_type_is_activity == 1), 'string'],
+            'award_description'                 => ['nullable', 'string'],
+            'location'                          => [Rule::requiredIf($this->post_type_is_activity == 1), 'string'],
+            'banner_img'                        => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'images'                            => ['nullable', 'array'],
+            'images.*'                          => ['file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+        ];
+    }
 
+    public function messages()
+    {
+        return [
+            'post_type_id.required' => 'The post type is required',
+            'category_tag_ids'      => 'Need to choose at least 1 Category or Tag'
         ];
     }
 }
