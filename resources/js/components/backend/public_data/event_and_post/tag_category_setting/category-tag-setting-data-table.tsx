@@ -64,7 +64,37 @@ export function CategoryTagSettingDataTable() {
     React.useEffect(() => {
         fetchCategoryTagSettings();
     }, [fetchCategoryTagSettings]);
+    const handleUpdateDialogChange = (open: boolean) => {
+        setUpdateDialogOpen(open);
+        if (!open) {
+            // Reset selected post setting when dialog closes
+            setSelectedCategoryTag(null);
+        }
+    };
 
+    const handleDeleteDialogChange = (open: boolean) => {
+        setDeleteDialogOpen(open);
+        if (!open) {
+            // Reset selected post setting when dialog closes
+            setSelectedCategoryTag(null);
+        }
+    };
+
+    const handleOpenUpdateDialog = (categoryTag: CategoryTag) => {
+        setSelectedCategoryTag(categoryTag);
+        // Small delay to allow dropdown to close before opening dialog
+        setTimeout(() => {
+            setUpdateDialogOpen(true);
+        }, 0);
+    };
+
+    const handleOpenDeleteDialog = (categoryTag: CategoryTag) => {
+        setSelectedCategoryTag(categoryTag);
+        // Small delay to allow dropdown to close before opening dialog
+        setTimeout(() => {
+            setDeleteDialogOpen(true);
+        }, 0);
+    };
     const columns: ColumnDef<CategoryTag>[] = React.useMemo(
         () => [
             {
@@ -164,21 +194,13 @@ export function CategoryTagSettingDataTable() {
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuItem onClick={() => navigator.clipboard.writeText(CategoryTag.id.toString())}>Copy ID</DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem
-                                    onClick={() => {
-                                        setSelectedCategoryTag(CategoryTag);
-                                        setUpdateDialogOpen(true);
-                                    }}
-                                >
+                                <DropdownMenuItem onClick={() => handleOpenUpdateDialog(CategoryTag)}>
                                     <Pencil className="mr-2 h-4 w-4" />
                                     Update
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
-                                    onClick={() => {
-                                        setSelectedCategoryTag(CategoryTag);
-                                        setDeleteDialogOpen(true);
-                                    }}
+                                    onClick={() => handleOpenDeleteDialog(CategoryTag)}
                                     className="text-destructive focus:text-destructive"
                                 >
                                     <Trash2 className="mr-2 h-4 w-4" />
@@ -353,13 +375,13 @@ export function CategoryTagSettingDataTable() {
                     <UpdateCategoryTagSettingDialog
                         categoryTag={selectedCategoryTag}
                         open={updateDialogOpen}
-                        onOpenChange={setUpdateDialogOpen}
+                        onOpenChange={handleUpdateDialogChange}
                         onSuccess={fetchCategoryTagSettings}
                     />
                     <DeleteCategoryTagSettingDialog
                         categoryTag={selectedCategoryTag}
                         open={deleteDialogOpen}
-                        onOpenChange={setDeleteDialogOpen}
+                        onOpenChange={handleDeleteDialogChange}
                         onSuccess={fetchCategoryTagSettings}
                     />
                 </>

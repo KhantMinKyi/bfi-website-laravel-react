@@ -27,7 +27,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { PostSetting } from '@/types';
+import type { PostSetting } from '@/types';
 import { AddPostTypeSetting } from './add-post-type-setting-dialog';
 import { DeletePostTypeSettingDialog } from './delete-post-type-setting-dialog';
 import { UpdatePostTypeSettingDialog } from './update-post-type-setting-dialog';
@@ -64,6 +64,38 @@ export function PostTypeSettingDataTable() {
     React.useEffect(() => {
         fetchPostSettings();
     }, [fetchPostSettings]);
+
+    const handleUpdateDialogChange = (open: boolean) => {
+        setUpdateDialogOpen(open);
+        if (!open) {
+            // Reset selected post setting when dialog closes
+            setSelectedPostSetting(null);
+        }
+    };
+
+    const handleDeleteDialogChange = (open: boolean) => {
+        setDeleteDialogOpen(open);
+        if (!open) {
+            // Reset selected post setting when dialog closes
+            setSelectedPostSetting(null);
+        }
+    };
+
+    const handleOpenUpdateDialog = (postSetting: PostSetting) => {
+        setSelectedPostSetting(postSetting);
+        // Small delay to allow dropdown to close before opening dialog
+        setTimeout(() => {
+            setUpdateDialogOpen(true);
+        }, 0);
+    };
+
+    const handleOpenDeleteDialog = (postSetting: PostSetting) => {
+        setSelectedPostSetting(postSetting);
+        // Small delay to allow dropdown to close before opening dialog
+        setTimeout(() => {
+            setDeleteDialogOpen(true);
+        }, 0);
+    };
 
     const columns: ColumnDef<PostSetting>[] = React.useMemo(
         () => [
@@ -136,22 +168,13 @@ export function PostTypeSettingDataTable() {
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuItem onClick={() => navigator.clipboard.writeText(postSetting.id.toString())}>Copy ID</DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem
-                                    onClick={() => {
-                                        setSelectedPostSetting(postSetting);
-                                        setUpdateDialogOpen(true);
-                                        console.log(updateDialogOpen);
-                                    }}
-                                >
+                                <DropdownMenuItem onClick={() => handleOpenUpdateDialog(postSetting)}>
                                     <Pencil className="mr-2 h-4 w-4" />
                                     Update
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
-                                    onClick={() => {
-                                        setSelectedPostSetting(postSetting);
-                                        setDeleteDialogOpen(true);
-                                    }}
+                                    onClick={() => handleOpenDeleteDialog(postSetting)}
                                     className="text-destructive focus:text-destructive"
                                 >
                                     <Trash2 className="mr-2 h-4 w-4" />
@@ -326,13 +349,13 @@ export function PostTypeSettingDataTable() {
                     <UpdatePostTypeSettingDialog
                         postSetting={selectedPostSetting}
                         open={updateDialogOpen}
-                        onOpenChange={setUpdateDialogOpen}
+                        onOpenChange={handleUpdateDialogChange}
                         onSuccess={fetchPostSettings}
                     />
                     <DeletePostTypeSettingDialog
                         postSetting={selectedPostSetting}
                         open={deleteDialogOpen}
-                        onOpenChange={setDeleteDialogOpen}
+                        onOpenChange={handleDeleteDialogChange}
                         onSuccess={fetchPostSettings}
                     />
                 </>
