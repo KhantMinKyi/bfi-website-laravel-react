@@ -16,8 +16,8 @@ class PostCategoryTag extends Model
     {
         return $this->belongsTo(CategoryTag::class, 'category_tag_id');
     }
-    public function post(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'post_id');
-    }
+    // public function posts()
+    // {
+    //     return $this->belongsToMany(Post::class, 'post_category_tags', 'category_tag_id', 'post_id');
+    // }
 }
