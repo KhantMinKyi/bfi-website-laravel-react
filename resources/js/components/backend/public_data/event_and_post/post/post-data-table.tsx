@@ -30,6 +30,7 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { CategoryTag, Post, PostSetting } from '@/types';
 import { AddPost } from './add-post-dialog';
+import { UpdatePostDialog } from './update-post-dialog';
 
 export function PostDataTable() {
     const [data, setData] = React.useState<Post[]>([]);
@@ -422,13 +423,15 @@ export function PostDataTable() {
 
             {selectedPost && (
                 <>
-                    {/* <UpdatePostSettingDialog
-                        Post={selectedPost}
+                    <UpdatePostDialog
+                        post={selectedPost}
                         open={updateDialogOpen}
                         onOpenChange={handleUpdateDialogChange}
                         onSuccess={fetchPosts}
+                        postType={postType}
+                        categoryTag={categoryTag}
                     />
-                    <DeletePostSettingDialog
+                    {/* <DeletePostSettingDialog
                         Post={selectedPost}
                         open={deleteDialogOpen}
                         onOpenChange={handleDeleteDialogChange}

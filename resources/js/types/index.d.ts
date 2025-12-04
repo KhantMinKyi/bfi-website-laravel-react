@@ -178,6 +178,7 @@ export interface CategoryTag {
 }
 export interface Post {
     type: PostSetting;
+    post_type_id: number;
     id: number;
     title: string;
     subtitle?: string;
@@ -195,6 +196,7 @@ export interface Post {
     updated_user?: User;
     category_tags: PostCategoryTag[];
     status: number;
+    category_tag_ids: string[];
     created_at: string;
     updated_at: string;
 }
