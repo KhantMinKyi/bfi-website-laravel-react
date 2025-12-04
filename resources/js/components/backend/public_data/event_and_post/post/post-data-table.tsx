@@ -90,6 +90,38 @@ export function PostDataTable() {
         fetchCategoryTagSettings();
     }, [fetchPosts]);
 
+    const handleUpdateDialogChange = (open: boolean) => {
+        setUpdateDialogOpen(open);
+        if (!open) {
+            // Reset selected post setting when dialog closes
+            setSelectedPost(null);
+        }
+    };
+
+    const handleDeleteDialogChange = (open: boolean) => {
+        setDeleteDialogOpen(open);
+        if (!open) {
+            // Reset selected post setting when dialog closes
+            setSelectedPost(null);
+        }
+    };
+
+    const handleOpenUpdateDialog = (post: Post) => {
+        setSelectedPost(post);
+        // Small delay to allow dropdown to close before opening dialog
+        setTimeout(() => {
+            setUpdateDialogOpen(true);
+        }, 0);
+    };
+
+    const handleOpenDeleteDialog = (post: Post) => {
+        setSelectedPost(post);
+        // Small delay to allow dropdown to close before opening dialog
+        setTimeout(() => {
+            setDeleteDialogOpen(true);
+        }, 0);
+    };
+
     const columns: ColumnDef<Post>[] = React.useMemo(
         () => [
             {
@@ -215,23 +247,12 @@ export function PostDataTable() {
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuItem onClick={() => navigator.clipboard.writeText(Post.id.toString())}>Copy ID</DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem
-                                    onClick={() => {
-                                        setSelectedPost(Post);
-                                        setUpdateDialogOpen(true);
-                                    }}
-                                >
+                                <DropdownMenuItem onClick={() => handleOpenUpdateDialog(Post)}>
                                     <Pencil className="mr-2 h-4 w-4" />
                                     Update
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem
-                                    onClick={() => {
-                                        setSelectedPost(Post);
-                                        setDeleteDialogOpen(true);
-                                    }}
-                                    className="text-destructive focus:text-destructive"
-                                >
+                                <DropdownMenuItem onClick={() => handleOpenDeleteDialog(Post)} className="text-destructive focus:text-destructive">
                                     <Trash2 className="mr-2 h-4 w-4" />
                                     Delete
                                 </DropdownMenuItem>
@@ -404,13 +425,13 @@ export function PostDataTable() {
                     {/* <UpdatePostSettingDialog
                         Post={selectedPost}
                         open={updateDialogOpen}
-                        onOpenChange={setUpdateDialogOpen}
+                        onOpenChange={handleUpdateDialogChange}
                         onSuccess={fetchPosts}
                     />
                     <DeletePostSettingDialog
                         Post={selectedPost}
                         open={deleteDialogOpen}
-                        onOpenChange={setDeleteDialogOpen}
+                        onOpenChange={handleDeleteDialogChange}
                         onSuccess={fetchPosts}
                     /> */}
                 </>

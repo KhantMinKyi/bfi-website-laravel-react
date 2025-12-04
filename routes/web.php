@@ -22,12 +22,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     require __DIR__ . '/route_groups/back_end/communications/jobs.php';
 
     require __DIR__ . '/route_groups/back_end/sister_schools/sister_schools.php';
-    
+
     require __DIR__ . '/route_groups/back_end/public_data/event_and_post.php';
     require __DIR__ . '/route_groups/back_end/public_data/faq.php';
     require __DIR__ . '/route_groups/back_end/public_data/competitions.php';
     require __DIR__ . '/route_groups/back_end/public_data/bfi_olympiads.php';
-    
+
 
     require __DIR__ . '/route_groups/back_end/education/education.php';
 
