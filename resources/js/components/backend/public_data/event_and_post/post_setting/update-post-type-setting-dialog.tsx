@@ -1,14 +1,14 @@
 'use client';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import type { PostSetting } from '@/types';
 import { router } from '@inertiajs/react';
 import { Check } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
-import type { PostSetting } from '@/types';
-import { Checkbox } from '@/components/ui/checkbox';
 
 interface UpdatePostTypeSettingDialogProps {
     postSetting: PostSetting;
@@ -47,7 +47,6 @@ export function UpdatePostTypeSettingDialog({ postSetting, open, onOpenChange, o
 
                 if (onSuccess) {
                     onSuccess();
-                    
                 }
             },
 
@@ -103,7 +102,7 @@ export function UpdatePostTypeSettingDialog({ postSetting, open, onOpenChange, o
                         </Button>
                         <Button type="submit" disabled={isSubmitting} className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
                             <Check />
-                            {isSubmitting ? 'Saving...' : 'Save Changes'}
+                            {isSubmitting ? 'Updating...' : 'Update Changes'}
                         </Button>
                     </DialogFooter>
                 </form>
