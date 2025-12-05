@@ -48,10 +48,6 @@ export function UpdatePostDialog({ post, open, onOpenChange, onSuccess, postType
     });
     const [isSubmitting, setIsSubmitting] = React.useState(false);
     const oldImageArray = post.images?.split(',');
-    var oldImageArrayLayout = 2;
-    if (oldImageArray && oldImageArray.length < 4) {
-        oldImageArrayLayout = oldImageArray.length;
-    }
     // Update form data when post prop changes
     React.useEffect(() => {
         if (post) {
@@ -153,7 +149,11 @@ export function UpdatePostDialog({ post, open, onOpenChange, onSuccess, postType
                                 <Label htmlFor="post_type_id">
                                     Post Type <span className="text-red-500">*</span>
                                 </Label>
-                                <Select value={formData.post_type_id} onValueChange={(value) => setFormData({ ...formData, post_type_id: value })}>
+                                <Select
+                                    value={formData.post_type_id}
+                                    onValueChange={(value) => setFormData({ ...formData, post_type_id: value })}
+                                    disabled
+                                >
                                     <SelectTrigger id="post_type_id">
                                         <SelectValue placeholder="Select Post Type" />
                                     </SelectTrigger>
@@ -266,7 +266,7 @@ export function UpdatePostDialog({ post, open, onOpenChange, onSuccess, postType
 
                             {post.images && post.images.length > 0 && (
                                 <div>
-                                    <div className={`grid grid-cols-${oldImageArrayLayout}`}>
+                                    <div className={`flex justify-center`}>
                                         {oldImageArray &&
                                             oldImageArray.length > 0 &&
                                             oldImageArray.map((e) => (
@@ -275,7 +275,7 @@ export function UpdatePostDialog({ post, open, onOpenChange, onSuccess, postType
                                                 </>
                                             ))}
                                     </div>
-                                    <div className="text-center text-sm text-muted-foreground">Current images: {post.images.length} file(s)</div>
+                                    <div className="mt-2 text-center text-sm text-green-500">Current images: {oldImageArray?.length} file(s)</div>
                                 </div>
                             )}
                         </div>
@@ -366,7 +366,7 @@ export function UpdatePostDialog({ post, open, onOpenChange, onSuccess, postType
                         </Button>
                         <Button type="submit" disabled={isSubmitting} className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
                             <Check />
-                            {isSubmitting ? 'Updating...' : 'Save Changes'}
+                            {isSubmitting ? 'Updating...' : 'Update Changes'}
                         </Button>
                     </DialogFooter>
                 </form>

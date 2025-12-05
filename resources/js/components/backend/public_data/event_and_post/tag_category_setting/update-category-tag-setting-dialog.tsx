@@ -10,7 +10,6 @@ import { Check } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
-
 interface UpdateCategoryTagSettingDialogProps {
     categoryTag: CategoryTag;
     open: boolean;
@@ -105,7 +104,7 @@ export function UpdateCategoryTagSettingDialog({ categoryTag, open, onOpenChange
                         </Button>
                         <Button type="submit" disabled={isSubmitting} className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
                             <Check />
-                            {isSubmitting ? 'Saving...' : 'Save Changes'}
+                            {isSubmitting ? 'Updating...' : 'Update Changes'}
                         </Button>
                     </DialogFooter>
                 </form>
