@@ -229,7 +229,15 @@ export function PostDataTable() {
                         </Button>
                     );
                 },
-                cell: ({ row }) => <div className="font-medium">{row.getValue('status') == 1 ? 'Active' : 'Inactive'}</div>,
+                cell: ({ row }) => (
+                    <div className="font-medium">
+                      {row.getValue("status") == 1 ? (
+                        <div className="text-green-500">Active</div>
+                      ) : (
+                        <div className="text-red-500">Inactive</div>
+                      )}
+                    </div>
+                  ),
             },
             {
                 id: 'actions',

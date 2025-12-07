@@ -14,7 +14,7 @@ class PostTypeController extends Controller
      */
     public function index()
     {
-        $post_types = PostType::where('status', 1)->get();
+        $post_types = PostType::orderBy('created_at', 'desc')->get();
         return response()->json([
             'message' => 'success',
             'post_types' => $post_types

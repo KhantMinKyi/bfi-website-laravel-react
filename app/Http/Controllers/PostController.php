@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('created_user', 'type', 'category_tags.category_tag')->where('status', 1)->get();
+        $posts = Post::with('created_user', 'type', 'category_tags.category_tag')->get();
         // dd($posts);
         return response()->json([
             'message' => 'success',
