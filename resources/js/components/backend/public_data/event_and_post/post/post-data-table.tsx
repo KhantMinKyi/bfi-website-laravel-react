@@ -30,6 +30,7 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { CategoryTag, Post, PostSetting } from '@/types';
 import { AddPost } from './add-post-dialog';
+import { DeletePostDialog } from './delete-post-dialog';
 import { UpdatePostDialog } from './update-post-dialog';
 
 export function PostDataTable() {
@@ -431,12 +432,12 @@ export function PostDataTable() {
                         postType={postType}
                         categoryTag={categoryTag}
                     />
-                    {/* <DeletePostSettingDialog
-                        Post={selectedPost}
+                    <DeletePostDialog
+                        post={selectedPost}
                         open={deleteDialogOpen}
                         onOpenChange={handleDeleteDialogChange}
                         onSuccess={fetchPosts}
-                    /> */}
+                    />
                 </>
             )}
         </div>
