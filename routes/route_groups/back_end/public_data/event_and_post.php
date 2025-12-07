@@ -20,5 +20,6 @@ Route::prefix('api')->group(function () {
     Route::apiResource('/public_data/event_and_post/category-tag-settings', CategoryTagController::class);
 
     Route::apiResource('/public_data/event_and_post/posts', PostController::class);
+    Route::post('/public_data/event_and_post/posts/{id}/change-status', [PostController::class, 'changeStatus']);
 });
 ?>
