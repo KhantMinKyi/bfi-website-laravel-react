@@ -15,7 +15,7 @@ class CategoryTagController extends Controller
      */
     public function index()
     {
-        $category_tags = CategoryTag::with('created_user', 'updated_user')->where('status', 1)->get();
+        $category_tags = CategoryTag::with('created_user', 'updated_user')->get();
         return response()->json([
             'message' => 'success',
             'category_tags' => $category_tags
@@ -81,6 +81,11 @@ class CategoryTagController extends Controller
      */
     public function destroy(string $id)
     {
-        dd($id);
+
+        $category_tag = CategoryTag::findOrFail($id);
+        $category_tag->update([
+            'status' => 0
+        ]);
+        return back()->with('success', 'Setting Deleted successfully.');
     }
 }
