@@ -36,7 +36,7 @@ function PostDetail() {
                 setOtherPostsLoading(false);
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [postId]);
     return (
         <>
             <FrontEndLayout>

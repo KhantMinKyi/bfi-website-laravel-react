@@ -18,7 +18,7 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
         <SidebarGroup className="px-2 py-0">
             <SidebarGroupLabel>Platform</SidebarGroupLabel>
             <SidebarMenu>
-                {items.map((item, i) => (
+                {items.map((item) => (
                     <div key={item.title}>
                         {item.haveSubItems ? (
                             // <Collapsible defaultOpen={page.url.startsWith(item.href)} className="group/collapsible">
