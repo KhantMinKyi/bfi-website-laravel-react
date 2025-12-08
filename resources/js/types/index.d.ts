@@ -173,6 +173,7 @@ export interface CategoryTag {
     status: number;
     created_user: User;
     updated_user?: User;
+    related_posts_count?: number;
     created_at: string;
     updated_at: string;
 }
@@ -196,7 +197,7 @@ export interface Post {
     updated_user?: User;
     category_tags: PostCategoryTag[];
     status: number;
-    category_tag_ids: string[];
+    category_tag_ids: string;
     created_at: string;
     updated_at: string;
 }
@@ -206,4 +207,8 @@ export interface PostCategoryTag {
     post_id: number;
     category_tag: CategoryTag;
     post: Post;
+}
+export interface ResponseProps {
+    message: string;
+    data: Post[];
 }

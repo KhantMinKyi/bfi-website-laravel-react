@@ -1,12 +1,22 @@
 <?php
 
+use App\Http\Controllers\GeneralRouteController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
+Route::get('/', [function () {
     return Inertia::render('front-end/Welcome');
-})->name('home');
-
+}])->name('home');
+Route::get('/post/post-detail/{postId}', function ($postId) {
+    return Inertia::render('front-end/PostDetail', [
+        'postId' => $postId, // now this works
+    ]);
+})->name('post-detail');
+Route::prefix('api')->group(function () {
+    Route::get('/home/get-post-data', [GeneralRouteController::class, 'getPostData']);
+    Route::get('/home/get-category-tag-data', [GeneralRouteController::class, 'getCategoryTagData']);
+    Route::get('/home/get-post-detail/{post}', [GeneralRouteController::class, 'getPostDetailData']);
+});
 require __DIR__ . '/route_groups/front_end/about_us.php';
 require __DIR__ . '/route_groups/front_end/sister_schools.php';
 require __DIR__ . '/route_groups/front_end/admissions.php';

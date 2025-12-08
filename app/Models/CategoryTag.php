@@ -22,4 +22,8 @@ class CategoryTag extends Model
     {
         return $this->belongsTo(User::class, 'updated_user_id');
     }
+    public function related_posts()
+    {
+        return $this->hasMany(PostCategoryTag::class, 'category_tag_id', 'id');
+    }
 }
