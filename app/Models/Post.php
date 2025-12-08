@@ -31,7 +31,7 @@ class Post extends Model
 
     public function type(): BelongsTo
     {
-        return $this->belongsTo(PostType::class, 'post_type_id');
+        return $this->belongsTo(PostType::class, 'post_type_id', 'id');
     }
 
     public function category_tags(): HasMany

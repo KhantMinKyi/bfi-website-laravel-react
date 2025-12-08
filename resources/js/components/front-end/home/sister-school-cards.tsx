@@ -65,30 +65,11 @@ const CenterImage: React.FC<CenterImageProps> = ({ isMobile }) => {
 
     const clipPath = useMotionTemplate`polygon(${clip1}% ${clip1}%, ${clip2}% ${clip1}%, ${clip2}% ${clip2}%, ${clip1}% ${clip2}%)`;
 
-    // const backgroundSize = useTransform(scrollY, [0, SECTION_HEIGHT + 500], ['170%', '100%']);
     // Transform background size only for large screens
     const backgroundSize = useTransform(scrollY, [0, SECTION_HEIGHT + 500], ['170%', '100%']);
     const opacity = useTransform(scrollY, [SECTION_HEIGHT, SECTION_HEIGHT + 500], [1, 1]);
-    console.log(isMobile);
 
     return (
-        //     <>
-        //         {isMobile ? (
-        //             <motion.div
-        //                 className="sticky top-0 h-screen w-full"
-        //                 style={{
-        //                     clipPath,
-        //                     backgroundSize: 'cover',
-        //                     opacity,
-        //                     backgroundImage: `
-        //   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-        //   url('img/skt_11.jpg')
-        // `,
-        //                     backgroundPosition: 'center',
-        //                     backgroundRepeat: 'no-repeat',
-        //                 }}
-        //             />
-        //         ) : (
         <motion.div
             className="sticky top-0 h-screen w-full"
             style={{

@@ -4,7 +4,7 @@ import CarouselBanner from '@/components/front-end/core/carousel-banner';
 import Counter from '@/components/front-end/core/counter';
 import { DotLoading } from '@/components/front-end/core/dot-loading';
 import EducationProgramme from '@/components/front-end/core/education-programme';
-import PostCarousel, { PostItem } from '@/components/front-end/core/post-lists';
+import PostCarousel from '@/components/front-end/core/post-lists';
 import PostLoadingSkeleton from '@/components/front-end/core/post-loading-skeleton';
 import PullUpHeader from '@/components/front-end/core/pull-up-header';
 import ContactBanner from '@/components/front-end/home/contact-banner';
@@ -13,16 +13,14 @@ import Information from '@/components/front-end/home/information';
 import PhotoGallery from '@/components/front-end/home/photo-gallery';
 import SisterSchoolCards from '@/components/front-end/home/sister-school-cards';
 import FrontEndLayout from '@/layouts/front-end-layout';
-import { ImageItem, Programmes } from '@/types';
+import { CategoryTag, ImageItem, Post, Programmes } from '@/types';
+import { router } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
-const handleCardClick = (card: PostItem) => {
-    alert(`You clicked: ${card.title}`);
+const handleCardClick = (card: Post) => {
+    router.visit(route('post-detail', { postId: card.id }));
 };
 
-const handleFilterChange = (category: string) => {
-    console.log('Filter changed to:', category);
-};
 const carouselData = [
     {
         bgSrc: '/img/skt_6.jpg',
@@ -57,7 +55,8 @@ const carouselData = [
 function Welcome() {
     const [programmes, setProgrammes] = useState<Programmes[]>([]);
     const [images, setImages] = useState<ImageItem[]>([]);
-    const [cardsData, setCardsData] = useState<PostItem[]>([]);
+    const [cardsData, setCardsData] = useState<Post[]>([]);
+    const [categoryTadData, setCategoryTadData] = useState<CategoryTag[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [imagesLoading, setImagesLoading] = useState<boolean>(true);
     const [cardLoading, setCardLoading] = useState<boolean>(true);
@@ -77,15 +76,20 @@ function Welcome() {
                 setImagesLoading(false);
             })
             .catch((err) => console.log(err));
-        fetch('/dummy-json/post-items.json')
+        fetch('/api/home/get-post-data')
             .then((res) => res.json())
-            .then((data: PostItem[]) => {
-                setCardsData(data);
+            .then((res) => {
+                setCardsData(res.data);
                 setCardLoading(false);
             })
             .catch((err) => console.log(err));
+        fetch('/api/home/get-category-tag-data')
+            .then((res) => res.json())
+            .then((res) => {
+                setCategoryTadData(res.data);
+            })
+            .catch((err) => console.log(err));
     }, []);
-
     return (
         <FrontEndLayout>
             <>
@@ -128,7 +132,12 @@ function Welcome() {
                             </div>
                         </div>
                     ) : (
-                        <PostCarousel posts={cardsData} onPostClick={handleCardClick} onFilterChange={handleFilterChange} />
+                        <PostCarousel
+                            posts={cardsData}
+                            categories={categoryTadData}
+                            onPostClick={handleCardClick}
+                            // onFilterChange={handleFilterChange}
+                        />
                     )}
                 </div>
                 <ContactBanner />
