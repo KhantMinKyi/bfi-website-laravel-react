@@ -12,7 +12,7 @@ import {
     useReactTable,
     type VisibilityState,
 } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
+import { ArrowUpDown, ImagePlus, MoreHorizontal, Pencil, Trash2, UserCog } from 'lucide-react';
 import * as React from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -30,6 +30,7 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { SisterSchool } from '@/types';
 import { AddSisterSchool } from './add-sister-school-dialog';
+import { UpdateSisterSchoolBannerDialog } from './update-sister-school-banner-dialog';
 
 export function SisterSchoolDataTable() {
     const [data, setData] = React.useState<SisterSchool[]>([]);
@@ -40,6 +41,7 @@ export function SisterSchoolDataTable() {
     const [rowSelection, setRowSelection] = React.useState({});
     const [globalFilter, setGlobalFilter] = React.useState('');
     const [updateDialogOpen, setUpdateDialogOpen] = React.useState(false);
+    const [updateBannerDialogOpen, setUpdateBannerDialogOpen] = React.useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
     const [selectedSisterSchool, setSelectedSisterSchool] = React.useState<SisterSchool | null>(null);
 
@@ -53,7 +55,6 @@ export function SisterSchoolDataTable() {
             }
             const result = await response.json();
             setData(result.data);
-            console.log(result.data);
         } catch (error) {
             console.error('Error fetching settings:', error);
         } finally {
@@ -65,6 +66,13 @@ export function SisterSchoolDataTable() {
     }, [fetchSisterSchools]);
     const handleUpdateDialogChange = (open: boolean) => {
         setUpdateDialogOpen(open);
+        if (!open) {
+            // Reset selected sisterSchool setting when dialog closes
+            setSelectedSisterSchool(null);
+        }
+    };
+    const handleUpdateBannerDialogChange = (open: boolean) => {
+        setUpdateBannerDialogOpen(open);
         if (!open) {
             // Reset selected sisterSchool setting when dialog closes
             setSelectedSisterSchool(null);
@@ -84,6 +92,13 @@ export function SisterSchoolDataTable() {
         // Small delay to allow dropdown to close before opening dialog
         setTimeout(() => {
             setUpdateDialogOpen(true);
+        }, 0);
+    };
+    const handleOpenUpdateBannerDialog = (sisterSchool: SisterSchool) => {
+        setSelectedSisterSchool(sisterSchool);
+        // Small delay to allow dropdown to close before opening dialog
+        setTimeout(() => {
+            setUpdateBannerDialogOpen(true);
         }, 0);
     };
 
@@ -209,6 +224,16 @@ export function SisterSchoolDataTable() {
                                 <DropdownMenuItem onClick={() => handleOpenUpdateDialog(sisterSchool)}>
                                     <Pencil className="mr-2 h-4 w-4" />
                                     Update
+                                </DropdownMenuItem>
+
+                                <DropdownMenuItem onClick={() => handleOpenUpdateBannerDialog(sisterSchool)}>
+                                    <ImagePlus className="mr-2 h-4 w-4" />
+                                    Update Banner
+                                </DropdownMenuItem>
+
+                                <DropdownMenuItem onClick={() => handleOpenUpdateDialog(sisterSchool)}>
+                                    <UserCog className="mr-2 h-4 w-4" />
+                                    Update Leadership
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
@@ -406,6 +431,12 @@ export function SisterSchoolDataTable() {
                         onOpenChange={handleDeleteDialogChange}
                         onSuccess={fetchSisterSchools}
                     /> */}
+                    <UpdateSisterSchoolBannerDialog
+                        sisterSchoolBanners={selectedSisterSchool.banners}
+                        open={updateBannerDialogOpen}
+                        onOpenChange={handleUpdateBannerDialogChange}
+                        onSuccess={fetchSisterSchools}
+                    />
                 </>
             )}
         </div>

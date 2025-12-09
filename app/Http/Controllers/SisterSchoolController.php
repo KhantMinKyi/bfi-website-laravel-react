@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SisterSchoolBannerUpdateRequest;
 use App\Http\Requests\SisterSchoolStoreRequest;
 use App\Models\SisterSchool;
 use App\Models\SisterSchoolBanner;
@@ -173,5 +174,79 @@ class SisterSchoolController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function bannerUpdate(SisterSchoolBannerUpdateRequest $request, string $id)
+    {
+        $data = $request->validated();
+        try {
+            DB::beginTransaction();
+            $sister_school = SisterSchool::findOrFail($id);
+            // Create Sister School banners
+            $banners = $data['sister_school_banner'] ?? [];
+
+            // Delete Data
+            $existingIds = SisterSchoolBanner::where('sister_school_id', $id)
+                ->pluck('id')
+                ->toArray();
+
+            $sentIds = collect($banners)
+                ->pluck('id')
+                ->filter() // remove null
+                ->toArray();
+            $idsToDelete = array_diff($existingIds, $sentIds);
+
+            if (!empty($idsToDelete)) {
+                $deleteBanners = SisterSchoolBanner::whereIn('id', $idsToDelete)->get();
+
+                foreach ($deleteBanners as $del) {
+                    if (!empty($del->banner_image) && File::exists(public_path($del->banner_image))) {
+                        File::delete(public_path($del->banner_image));
+                    }
+                    $del->delete();
+                }
+            }
+
+            if (!empty($banners)) {
+
+                $folderPath = "img/sister_schools_data/" . $sister_school->short_name . "/banners";
+                if (!File::exists($folderPath)) {
+                    File::makeDirectory($folderPath, 0755, true);
+                }
+                foreach ($banners as $key => $banner) {
+                    $old_sister_school_banner = SisterSchoolBanner::find($banner['id']);
+                    if (!empty($banner['banner_image'])) {
+                        if (isset($old_sister_school_banner)) {
+                            if (File::exists(public_path($old_sister_school_banner->banner_image))) {
+                                File::delete(public_path($old_sister_school_banner->banner_image));
+                            }
+                        }
+                        $file = $banner['banner_image'];
+                        $fileName = "sister_school_" . uniqid('', true) . "." . $file->getClientOriginalExtension();
+                        $file->move($folderPath, $fileName);
+                        $banner['banner_image'] = "/" . $folderPath . "/" . $fileName;
+                    } else {
+                        unset($banner['banner_image']); // prevent overwriting if no new file
+                    }
+                    $banner['updated_user_id']  = Auth::user()->id;
+                    if (isset($old_sister_school_banner)) {
+                        $old_sister_school_banner->update($banner);
+                    } else {
+                        unset($banner['id']);
+                        $banner['created_user_id']  = Auth::user()->id;
+                        $banner['sister_school_id']  = $id;
+                        SisterSchoolBanner::create($banner);
+                    }
+                }
+            }
+            DB::commit();
+
+            return back()->with('success', 'Sister School Updated Successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            // Handle the error
+            throw ValidationException::withMessages([
+                'title' =>  $e->getMessage()
+            ]);
+        }
     }
 }
