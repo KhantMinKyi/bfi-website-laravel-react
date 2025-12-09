@@ -9,4 +9,5 @@ Route::get('/sister_schools/dashboard', function () {
 })->name('sister_schools.dashboard');
 Route::prefix('api')->group(function () {
     Route::apiResource('/sister_schools/sister-schools', SisterSchoolController::class);
+    Route::put('/sister_schools/sister-schools/{sister_school}/banners', [SisterSchoolController::class, 'bannerUpdate']);
 });
