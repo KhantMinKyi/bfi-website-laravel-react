@@ -13,9 +13,20 @@ class SisterSchoolBanner extends Model
         'title',
         'top_sub_title',
         'bottom_sub_title',
+        'created_user_id',
+        'updated_user_id',
     ];
     public function sister_school(): BelongsTo
     {
         return $this->belongsTo(SisterSchool::class);
+    }
+    public function created_user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_user_id');
+    }
+
+    public function updated_user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_user_id');
     }
 }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('image');
             $table->string('name', 100);
             $table->string('position', 100);
+            $table->foreignId('created_user_id')->constrained('users');
+            $table->foreignId('updated_user_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

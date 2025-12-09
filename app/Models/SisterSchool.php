@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SisterSchool extends Model
@@ -22,6 +23,9 @@ class SisterSchool extends Model
         'hos_message',
         'hos_image',
         'hos_name',
+        'created_user_id',
+        'updated_user_id',
+        'status'
     ];
 
     public function banners(): HasMany
@@ -31,5 +35,14 @@ class SisterSchool extends Model
     public function leaderships(): HasMany
     {
         return $this->hasMany(SisterSchoolLeadership::class);
+    }
+    public function created_user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_user_id');
+    }
+
+    public function updated_user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_user_id');
     }
 }
