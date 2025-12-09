@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('title', 70);
             $table->string('top_sub_title', 50);
             $table->string('bottom_sub_title', 50);
+            $table->foreignId('created_user_id')->constrained('users');
+            $table->foreignId('updated_user_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

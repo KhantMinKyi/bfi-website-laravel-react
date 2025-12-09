@@ -1,3 +1,4 @@
+import { SisterSchoolDataTable } from '@/components/backend/sister_schools/sister-school-data-table';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
@@ -13,7 +14,9 @@ function SisterSchoolsDashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Sister Schools Dashboard" />
-            <div>Sister Schools Dashboard</div>
+            <div className="p-10">
+                <SisterSchoolDataTable />
+            </div>
         </AppLayout>
     );
 }

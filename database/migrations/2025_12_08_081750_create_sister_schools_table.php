@@ -27,6 +27,9 @@ return new class extends Migration
             $table->longText('hos_message');
             $table->string('hos_image');
             $table->string('hos_name', 50);
+            $table->foreignId('created_user_id')->constrained('users');
+            $table->foreignId('updated_user_id')->nullable()->constrained('users');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

@@ -212,3 +212,42 @@ export interface ResponseProps {
     message: string;
     data: Post[];
 }
+export interface SisterSchoolBanner {
+    id: string;
+    banner_image: File | null;
+    top_sub_title: string;
+    title: string;
+    bottom_sub_title: string;
+    bannerPreview?: string;
+    sister_school_id?: number;
+}
+export interface SisterSchoolLeadership {
+    id: string;
+    sister_school_id?: number;
+    image: File | null;
+    name: string;
+    position: string;
+    leadershipImagePreview?: string;
+}
+export interface SisterSchool {
+    id: number;
+    name: string;
+    short_name: string;
+    slug: string;
+    logo: string;
+    logo_b: string;
+    address: string;
+    email: string;
+    phone: string;
+    website_url: string;
+    introduction: string;
+    description: string;
+    hos_message: string;
+    hos_image: string;
+    hos_name: string;
+    status: boolean;
+    created_user: User;
+    updated_user?: User;
+    banners: SisterSchoolBanner[];
+    leaderships: SisterSchoolLeadership[];
+}
