@@ -30,7 +30,9 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { SisterSchool } from '@/types';
 import { AddSisterSchool } from './add-sister-school-dialog';
+import { DeleteSisterSchoolDialog } from './delete-sister-school-dialog';
 import { UpdateSisterSchoolBannerDialog } from './update-sister-school-banner-dialog';
+import { UpdateSisterSchoolDialog } from './update-sister-school-dialog';
 import { UpdateSisterSchoolLeadershipDialog } from './update-sister-school-leadership-dialog';
 
 export function SisterSchoolDataTable() {
@@ -433,20 +435,18 @@ export function SisterSchoolDataTable() {
 
             {selectedSisterSchool && (
                 <>
-                    {/* <UpdatePostDialog
-                        post={selectedSisterSchool}
+                    <UpdateSisterSchoolDialog
+                        sisterSchool={selectedSisterSchool}
                         open={updateDialogOpen}
                         onOpenChange={handleUpdateDialogChange}
                         onSuccess={fetchSisterSchools}
-                        postType={[]}
-                        categoryTag={[]}
                     />
-                    <DeletePostDialog
-                        post={selectedSisterSchool}
+                    <DeleteSisterSchoolDialog
+                        sisterSchool={selectedSisterSchool}
                         open={deleteDialogOpen}
                         onOpenChange={handleDeleteDialogChange}
                         onSuccess={fetchSisterSchools}
-                    /> */}
+                    />
                     <UpdateSisterSchoolBannerDialog
                         sisterSchoolBanners={selectedSisterSchool.banners}
                         sisterSchoolId={selectedSisterSchool.id}
