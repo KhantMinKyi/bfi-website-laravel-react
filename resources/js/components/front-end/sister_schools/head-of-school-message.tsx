@@ -50,8 +50,8 @@ const HeadOfSchoolMessage = ({ data }: HeadOfSchoolMessageProps) => {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                 >
-                    <img src="/img/skt_riverside_campus.png" alt="" className="w-60 rotate-6 opacity-20 dark:hidden" />
-                    <img src="/img/skt_riverside_campus_b.png" alt="" className="hidden w-60 rotate-6 opacity-20 dark:block" />
+                    <img src={data.logo} alt="" className="w-60 rotate-6 opacity-20 dark:hidden" />
+                    <img src={data.logo_b} alt="" className="hidden w-60 rotate-6 opacity-20 dark:block" />
                 </motion.div>
                 <motion.div
                     className="absolute top-1/8 right-[40px] -z-10 -translate-y-1/8"
@@ -61,8 +61,8 @@ const HeadOfSchoolMessage = ({ data }: HeadOfSchoolMessageProps) => {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                 >
-                    <img src="/img/skt_riverside_campus.png" alt="" className="w-60 -rotate-z-6 opacity-20 dark:hidden" />
-                    <img src="/img/skt_riverside_campus_b.png" alt="" className="hidden w-60 -rotate-z-6 opacity-20 dark:block" />
+                    <img src={data.logo} alt="" className="w-60 -rotate-z-6 opacity-20 dark:hidden" />
+                    <img src={data.logo_b} alt="" className="hidden w-60 -rotate-z-6 opacity-20 dark:block" />
                 </motion.div>
                 <motion.div
                     className="absolute top-8/8 left-[40px] -z-10 -translate-y-8/8"
@@ -72,8 +72,8 @@ const HeadOfSchoolMessage = ({ data }: HeadOfSchoolMessageProps) => {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                 >
-                    <img src="/img/skt_riverside_campus.png" alt="" className="w-60 -rotate-z-6 opacity-20 dark:hidden" />
-                    <img src="/img/skt_riverside_campus_b.png" alt="" className="hidden w-60 -rotate-z-6 opacity-20 dark:block" />
+                    <img src={data.logo} alt="" className="w-60 -rotate-z-6 opacity-20 dark:hidden" />
+                    <img src={data.logo_b} alt="" className="hidden w-60 -rotate-z-6 opacity-20 dark:block" />
                 </motion.div>
                 <motion.div
                     className="absolute top-8/8 right-[40px] -z-10 -translate-y-8/8"
@@ -83,8 +83,8 @@ const HeadOfSchoolMessage = ({ data }: HeadOfSchoolMessageProps) => {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                 >
-                    <img src="/img/skt_riverside_campus.png" alt="" className="w-60 rotate-6 opacity-20 dark:hidden" />
-                    <img src="/img/skt_riverside_campus_b.png" alt="" className="hidden w-60 rotate-6 opacity-20 dark:block" />
+                    <img src={data.logo} alt="" className="w-60 rotate-6 opacity-20 dark:hidden" />
+                    <img src={data.logo_b} alt="" className="hidden w-60 rotate-6 opacity-20 dark:block" />
                 </motion.div>
             </section>
         </div>

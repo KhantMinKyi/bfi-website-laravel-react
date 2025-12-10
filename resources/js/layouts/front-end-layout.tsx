@@ -7,7 +7,16 @@ import MobileLayout from './mobile-layout';
 interface FrondendLayoutProps {
     children: ReactNode;
 }
+interface SisterSchoolNav {
+    slug: string;
+    name: string;
+    // add any other fields
+}
 
+interface SharedProps {
+    sisterSchools: SisterSchoolNav[];
+    [key: string]: any; //
+}
 const baseLink =
     'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all hover:text-blue-800 dark:hover:text-green-800  hover:before:visible dark:before:bg-green-700 hover:before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
 const activeLink =
@@ -19,12 +28,13 @@ export default ({ children }: FrondendLayoutProps) => {
     const [scrolled, setScrolled] = useState(false);
     const { url } = usePage();
     const currentPath = new URL(url, window.location.origin).pathname;
+    const { sisterSchools } = usePage<SharedProps>().props;
+
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const subLinkActive = 'after:w-[50%]';
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
-        // console.log(menuOpen);
     };
     const toggleSubMenu = (menu: string) => {
         setActiveSubMenu(activeSubMenu === menu ? null : menu);
@@ -218,15 +228,8 @@ export default ({ children }: FrondendLayoutProps) => {
                                 <li className="group relative inline-block">
                                     <Link
                                         href="#"
-                                        className={` ${
-                                            currentPath === routePath('skt_riverside') ||
-                                            currentPath === routePath('skt_riverside_preschool') ||
-                                            currentPath === routePath('skt_city') ||
-                                            currentPath === routePath('skt_city_preschool') ||
-                                            currentPath === routePath('misa') ||
-                                            currentPath === routePath('misa_preschool') ||
-                                            currentPath === routePath('nisa') ||
-                                            currentPath === routePath('nisa_preschool')
+                                        className={`${
+                                            sisterSchools.some((ss) => currentPath === '/sister_schools/school-data/' + ss.slug)
                                                 ? activeLink
                                                 : baseLink
                                         }`}
@@ -242,7 +245,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 SKT International School ( Riverside Campus)
                                             </Link>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <Link
                                                 href={route('skt_riverside_preschool')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('skt_riverside_preschool') ? subLinkActive : ''}`}
@@ -298,7 +301,17 @@ export default ({ children }: FrondendLayoutProps) => {
                                             >
                                                 Naypyitaw International School of Acumen ( KinderGarten )
                                             </Link>
-                                        </li>
+                                        </li> */}
+                                        {sisterSchools.map((ss) => (
+                                            <li key={ss.slug}>
+                                                <Link
+                                                    href={route('sister_school.data', ss.slug)}
+                                                    className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === '/sister_schools/school-data/' + ss.slug ? subLinkActive : ''}`}
+                                                >
+                                                    {ss.name}
+                                                </Link>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </li>
                                 {/* Curriculum */}

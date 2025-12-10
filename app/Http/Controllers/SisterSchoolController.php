@@ -128,7 +128,7 @@ class SisterSchoolController extends Controller
                         $file->move($folderPath, $fileName);
                         $leadership['image'] = "/" . $folderPath . "/" . $fileName;
                     }
-                    $leadership['sister_school_id'] = 1;
+                    $leadership['sister_school_id'] = $sister_school->id;
                     $leadership['created_user_id']  = $data['created_user_id'];
                     $savedLeaderships[] = $leadership;
                 }

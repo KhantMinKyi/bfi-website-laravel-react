@@ -23,32 +23,24 @@ const handleCardClick = (card: Post) => {
 
 const carouselData = [
     {
-        bgSrc: '/img/skt_6.jpg',
-        headTitle: 'BFI',
-        colorTitle: 'EDUCATION',
-        lastTitle: 'SERVIES.',
-        subTitle: '4 Sister Schools',
-        desc: 'Lorem Ipsum has been the industry`s standard text since the printer took galley make.',
-        routeLink: '#',
+        banner_image: '/img/skt_6.jpg',
+        title: 'BFI',
+        bottom_sub_title: 'EDUCATION SERVIES.',
+        top_sub_title: '4 Sister Schools',
     },
 
     {
-        bgSrc: '/img/skt_9.jpg',
-        headTitle: 'Inspiring Brilance',
-        colorTitle: 'Building Brighter',
-        lastTitle: 'Futures.',
-        subTitle: '90% Foreign Teachers',
-        desc: 'Lorem Ipsum has been the industry`s standard text since the printer took galley make.',
-        routeLink: '#',
+        banner_image: '/img/skt_9.jpg',
+        title: 'Inspiring Brilance',
+        bottom_sub_title: 'Building Brighter Futures.',
+        top_sub_title: '90% Foreign Teachers',
     },
 
     {
-        bgSrc: '/img/skt_5.jpg',
-        headTitle: 'WORLD-CLASS EDUCATION IN A',
-        colorTitle: 'SAFE AND FRIENDLY ENVIRONMENT',
-        subTitle: 'The IB Diploma Programme',
-        desc: 'Lorem Ipsum has been the industry`s standard text since the printer took galley make.',
-        routeLink: '#',
+        banner_image: '/img/skt_5.jpg',
+        title: 'WORLD-CLASS EDUCATION IN A',
+        bottom_sub_title: 'SAFE AND FRIENDLY ENVIRONMENT',
+        top_sub_title: 'The IB Diploma Programme',
     },
 ];
 

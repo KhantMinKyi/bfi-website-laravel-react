@@ -79,7 +79,7 @@ export type DonationDataType = {
     date: string;
     imgSrc: string;
 };
-export type carouselDataType = {
+export type carouselDataType2 = {
     bgSrc: string;
     headTitle: string;
     colorTitle: string;
@@ -87,6 +87,14 @@ export type carouselDataType = {
     subTitle: string;
     desc: string;
     routeLink?: string;
+};
+export type carouselDataType = {
+    banner_image: string;
+    top_sub_title: string;
+    title: string;
+    bottom_sub_title: string;
+    routeLink?: string;
+    lastTitle?: string;
 };
 
 export interface ImageItem {
@@ -118,11 +126,13 @@ export interface SisterSchoolBannerType {
 }
 export interface SisterSchoolOverViewType {
     history: string;
-    leadership: string[];
+    leadership: SisterSchoolLeadership[];
 }
 export interface SisterSchoolHOSMessageType {
     hosImg: string;
     hosMessage: string;
+    logo?: string;
+    logo_b?: string;
 }
 export interface CounterType {
     firstNumber?: number;
@@ -141,16 +151,18 @@ export interface SisterSchoolContactBannerType {
     websiteLink: string;
 }
 export interface SisterSchoolDataType {
-    logoUrl: string;
+    logo: string;
     logoUrlB: string;
-    schoolName: string;
-    shortName: string;
-    schoolOverview: string;
-    websiteLink: string;
-    history: string;
-    leadership: string[];
-    hosImg: string;
-    hosMessage: string;
+    name: string;
+    short_name: string;
+    introduction: string;
+    website_url: string;
+    description: string;
+    leaderships: string[];
+    hos_image: string;
+    hos_name: string;
+    hos_message: string;
+    website_url?: string;
 }
 export interface FaqDataType {
     question: string;

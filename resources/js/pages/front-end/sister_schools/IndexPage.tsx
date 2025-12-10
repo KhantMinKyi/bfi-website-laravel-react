@@ -7,7 +7,7 @@ import HeadOfSchoolMessage from '@/components/front-end/sister_schools/head-of-s
 import HeroBanner from '@/components/front-end/sister_schools/hero-banner';
 import OverviewBanner from '@/components/front-end/sister_schools/overview-banner';
 import FrontEndLayout from '@/layouts/front-end-layout';
-import { carouselDataType, SisterSchoolDataType } from '@/types';
+import { carouselDataType, SisterSchool } from '@/types';
 import { usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 
@@ -16,24 +16,18 @@ function IndexPage() {
     const { data } = props;
     const [carouselData, setCarouselData] = useState<carouselDataType[]>([]);
     const [carouselDataLoading, setCarouselDataLoading] = useState<boolean>(true);
-    const [schoolData, setSchoolData] = useState<SisterSchoolDataType>({} as SisterSchoolDataType);
+    const [schoolData, setSchoolData] = useState<SisterSchool>({} as SisterSchool);
     const [schoolDataLoading, setSchoolDataLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        fetch('/dummy-json/sister-school-carousel-' + data + '.json')
+        fetch('/api/sister_schools/school-data/' + data)
             .then((res) => res.json())
-            .then((data: carouselDataType[]) => {
-                setCarouselData(data);
+            .then((res) => {
+                setCarouselData(res.banners);
                 setCarouselDataLoading(false);
-            })
-            .catch((err) => console.log(err));
-        fetch('/dummy-json/sister-school-overview-' + data + '.json')
-            .then((res) => res.json())
-            .then((data: SisterSchoolDataType) => {
-                setSchoolData(data);
+                setSchoolData(res.data);
                 setSchoolDataLoading(false);
-            })
-            .catch((err) => console.log(err));
+            });
     }, [data]);
 
     return (
@@ -46,7 +40,7 @@ function IndexPage() {
                 </div>
             ) : (
                 <>
-                    <CarouselBanner carouselData={carouselData} />
+                    <CarouselBanner carouselData={carouselData} webUrl={schoolData.website_url} />
                     {schoolDataLoading ? (
                         <div className="container mx-auto flex justify-center gap-10">
                             <div className="flex h-screen items-center justify-center text-lg text-gray-500">
@@ -57,14 +51,21 @@ function IndexPage() {
                         <>
                             <HeroBanner
                                 data={{
-                                    logo: schoolData.logoUrl,
-                                    schoolName: schoolData.schoolName,
-                                    shortName: schoolData.shortName,
-                                    schoolOverview: schoolData.schoolOverview,
+                                    logo: schoolData.logo,
+                                    schoolName: schoolData.name,
+                                    shortName: schoolData.short_name,
+                                    schoolOverview: schoolData.introduction,
                                 }}
                             />
-                            <OverviewBanner data={{ history: schoolData.history, leadership: schoolData.leadership }} />
-                            <HeadOfSchoolMessage data={{ hosImg: schoolData.hosImg, hosMessage: schoolData.hosMessage }} />
+                            <OverviewBanner data={{ history: schoolData.description, leadership: schoolData.leaderships }} />
+                            <HeadOfSchoolMessage
+                                data={{
+                                    hosImg: schoolData.hos_image,
+                                    hosMessage: schoolData.hos_message,
+                                    logo: schoolData.logo,
+                                    logo_b: schoolData.logo_b,
+                                }}
+                            />
                             <IconCardGroup />
                             <Counter
                                 data={{
@@ -78,9 +79,7 @@ function IndexPage() {
                                     fourthTitle: 'Winning Award',
                                 }}
                             />
-                            <ContactBanner
-                                data={{ logoUrl: schoolData.logoUrl, logoUrlB: schoolData.logoUrlB, websiteLink: schoolData.websiteLink }}
-                            />
+                            <ContactBanner data={{ logoUrl: schoolData.logo, logoUrlB: schoolData.logo_b, websiteLink: schoolData.website_url }} />
                         </>
                     )}
                 </>
