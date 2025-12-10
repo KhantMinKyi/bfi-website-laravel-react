@@ -32,10 +32,28 @@ const OverviewBanner = ({ data }: OverviewBannerProps) => {
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >
                     <p className="text-2xl text-blue-100">School's Leadership</p>
-                    <div className="grid gap-4 pt-10 md:grid-cols-2">
+                    {/* <div className="grid gap-4 pt-10 md:grid-cols-2">
                         {data.leadership.map((l, i) => (
                             <div className="flex items-center justify-center" key={i}>
-                                <img src={l} alt="Image 1" className="h-28 w-28 rounded-full object-cover lg:h-40 lg:w-40" />
+                                <img src={String(l.image)} alt="Image 1" className="h-28 w-28 rounded-full object-cover lg:h-40 lg:w-40" />
+                            </div>
+                        ))}
+                    </div> */}
+                    <div className="grid gap-4 pt-10 md:grid-cols-2">
+                        {data.leadership.map((l, i) => (
+                            <div key={i} className="group relative flex items-center justify-center">
+                                {/* Image */}
+                                <img
+                                    src={String(l.image)}
+                                    alt={l.name}
+                                    className="h-28 w-28 rounded-full object-cover transition-transform duration-300 group-hover:scale-105 lg:h-40 lg:w-40"
+                                />
+
+                                {/* Overlay */}
+                                <div className="bg-opacity-70 absolute inset-0 flex flex-col items-center justify-center rounded-full bg-neutral-950/90 px-2 text-center text-white opacity-0 transition-opacity duration-300 group-hover:scale-110 group-hover:opacity-100">
+                                    <h3 className="text-sm font-bold lg:text-lg">{l.name}</h3>
+                                    <p className="text-xs lg:text-sm">{l.position}</p>
+                                </div>
                             </div>
                         ))}
                     </div>

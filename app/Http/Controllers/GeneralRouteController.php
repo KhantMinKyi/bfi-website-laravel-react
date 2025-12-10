@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\CategoryTag;
 use App\Models\Post;
+use App\Models\SisterSchool;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 class GeneralRouteController extends Controller
@@ -45,6 +47,22 @@ class GeneralRouteController extends Controller
         return response()->json([
             'message' => 'success',
             'data' => $post,
+        ], 200);
+    }
+    public function getSisterSchoolPage($param)
+    {
+        $sister_school = SisterSchool::with('banners', 'leaderships')->where('slug', $param)->firstOrFail();
+        return Inertia::render('front-end/sister_schools/IndexPage', [
+            'data' => $param,
+        ]);
+    }
+    public function getSisterSchoolData($slug)
+    {
+        $sister_school = SisterSchool::with('banners', 'leaderships')->where('slug', $slug)->firstOrFail();
+        return response()->json([
+            'message' => 'success',
+            'data' => $sister_school,
+            'banners' => $sister_school->banners,
         ], 200);
     }
 }
