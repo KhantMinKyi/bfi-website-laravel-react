@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SisterSchoolBannerUpdateRequest;
+use App\Http\Requests\SisterSchoolLeadershipUpdateRequest;
 use App\Http\Requests\SisterSchoolStoreRequest;
 use App\Models\SisterSchool;
 use App\Models\SisterSchoolBanner;
@@ -175,6 +176,14 @@ class SisterSchoolController extends Controller
     {
         //
     }
+
+    /**
+     * Update Banner of Sister Schools
+     *
+     * @param SisterSchoolBannerUpdateRequest $request
+     * @param string $id
+     * @return void
+     */
     public function bannerUpdate(SisterSchoolBannerUpdateRequest $request, string $id)
     {
         $data = $request->validated();
@@ -240,7 +249,81 @@ class SisterSchoolController extends Controller
             }
             DB::commit();
 
-            return back()->with('success', 'Sister School Updated Successfully.');
+            return back()->with('success', 'Sister School Banner Updated Successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            // Handle the error
+            throw ValidationException::withMessages([
+                'title' =>  $e->getMessage()
+            ]);
+        }
+    }
+    public function leadershipUpdate(SisterSchoolLeadershipUpdateRequest $request, $id)
+    {
+        $data = $request->validated();
+        try {
+            DB::beginTransaction();
+            $sister_school = SisterSchool::findOrFail($id);
+            // Create Sister School Leaderships
+            $leaderships = $data['sister_school_leadership'] ?? [];
+
+            // Delete Data
+            $existingIds = SisterSchoolLeadership::where('sister_school_id', $id)
+                ->pluck('id')
+                ->toArray();
+
+            $sentIds = collect($leaderships)
+                ->pluck('id')
+                ->filter() // remove null
+                ->toArray();
+            $idsToDelete = array_diff($existingIds, $sentIds);
+
+            if (!empty($idsToDelete)) {
+                $deleteleaderships = SisterSchoolLeadership::whereIn('id', $idsToDelete)->get();
+
+                foreach ($deleteleaderships as $del) {
+                    if (!empty($del->image) && File::exists(public_path($del->image))) {
+                        File::delete(public_path($del->image));
+                    }
+                    $del->delete();
+                }
+            }
+
+            if (!empty($leaderships)) {
+
+                $folderPath = "img/sister_schools_data/" . $sister_school->short_name . "/leaderships";
+                if (!File::exists($folderPath)) {
+                    File::makeDirectory($folderPath, 0755, true);
+                }
+                foreach ($leaderships as $key => $leadership) {
+                    $old_sister_school_leadership = SisterSchoolLeadership::find($leadership['id']);
+                    if (!empty($leadership['image'])) {
+                        if (isset($old_sister_school_leadership)) {
+                            if (File::exists(public_path($old_sister_school_leadership->image))) {
+                                File::delete(public_path($old_sister_school_leadership->image));
+                            }
+                        }
+                        $file = $leadership['image'];
+                        $fileName = "sister_school_" . uniqid('', true) . "." . $file->getClientOriginalExtension();
+                        $file->move($folderPath, $fileName);
+                        $leadership['image'] = "/" . $folderPath . "/" . $fileName;
+                    } else {
+                        unset($leadership['image']); // prevent overwriting if no new file
+                    }
+                    $leadership['updated_user_id']  = Auth::user()->id;
+                    if (isset($old_sister_school_leadership)) {
+                        $old_sister_school_leadership->update($leadership);
+                    } else {
+                        unset($leadership['id']);
+                        $leadership['created_user_id']  = Auth::user()->id;
+                        $leadership['sister_school_id']  = $id;
+                        SisterSchoolLeadership::create($leadership);
+                    }
+                }
+            }
+            DB::commit();
+
+            return back()->with('success', 'Sister School Leadership Updated Successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
             // Handle the error

@@ -10,4 +10,5 @@ Route::get('/sister_schools/dashboard', function () {
 Route::prefix('api')->group(function () {
     Route::apiResource('/sister_schools/sister-schools', SisterSchoolController::class);
     Route::put('/sister_schools/sister-schools/{sister_school}/banners', [SisterSchoolController::class, 'bannerUpdate']);
+    Route::put('/sister_schools/sister-schools/{sister_school}/leaderships', [SisterSchoolController::class, 'leadershipUpdate']);
 });
