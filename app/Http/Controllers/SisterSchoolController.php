@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SisterSchoolBannerUpdateRequest;
 use App\Http\Requests\SisterSchoolLeadershipUpdateRequest;
 use App\Http\Requests\SisterSchoolStoreRequest;
+use App\Http\Requests\SisterSchoolUpdateRequest;
 use App\Models\SisterSchool;
 use App\Models\SisterSchoolBanner;
 use App\Models\SisterSchoolLeadership;
@@ -42,7 +43,7 @@ class SisterSchoolController extends Controller
             // $sisterSchoolUid = uniqid('', true);
             // create Logo 
             if (isset($data['logo'])) {
-                $filePath = "img/sister_schools_data/" . $data['short_name'];
+                $filePath = "img/sister_schools_data/" . $data['slug'];
                 if (!File::exists($filePath)) {
                     $result = File::makeDirectory($filePath, 0755, true);
                 }
@@ -57,7 +58,7 @@ class SisterSchoolController extends Controller
             }
             // create Logo Black
             if (isset($data['logo_b'])) {
-                $filePath = "img/sister_schools_data/" . $data['short_name'];
+                $filePath = "img/sister_schools_data/" . $data['slug'];
                 if (!File::exists($filePath)) {
                     $result = File::makeDirectory($filePath, 0755, true);
                 }
@@ -72,7 +73,7 @@ class SisterSchoolController extends Controller
             }
             // create HOS Image 
             if (isset($data['hos_image'])) {
-                $filePath = "img/sister_schools_data/" . $data['short_name'];
+                $filePath = "img/sister_schools_data/" . $data['slug'];
                 if (!File::exists($filePath)) {
                     $result = File::makeDirectory($filePath, 0755, true);
                 }
@@ -92,7 +93,7 @@ class SisterSchoolController extends Controller
             // Create Sister School banners
             $banners = $data['sister_school_banner'] ?? [];
             if (!empty($banners)) {
-                $folderPath = "img/sister_schools_data/" . $data['short_name'] . "/banners";
+                $folderPath = "img/sister_schools_data/" . $data['slug'] . "/banners";
                 if (!File::exists($folderPath)) {
                     File::makeDirectory($folderPath, 0755, true);
                 }
@@ -115,7 +116,7 @@ class SisterSchoolController extends Controller
             // Create Sister School banners
             $leaderships = $data['sister_school_leadership'] ?? [];
             if (!empty($leaderships)) {
-                $folderPath = "img/sister_schools_data/" . $data['short_name'] . "/leaderships";
+                $folderPath = "img/sister_schools_data/" . $data['slug'] . "/leaderships";
                 if (!File::exists($folderPath)) {
                     File::makeDirectory($folderPath, 0755, true);
                 }
@@ -142,7 +143,7 @@ class SisterSchoolController extends Controller
 
             DB::rollBack();
             // delete file if exists
-            $filePath = "img/sister_schools_data/" . $data['short_name'];
+            $filePath = "img/sister_schools_data/" . $data['slug'];
             if (File::exists($filePath)) {
                 File::deleteDirectory($filePath);
             }
@@ -164,9 +165,77 @@ class SisterSchoolController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SisterSchoolUpdateRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        $data['updated_user_id'] = Auth::user()->id;
+        $sister_school = SisterSchool::findOrFail($id);
+        try {
+            DB::beginTransaction();
+            if (isset($data['logo'])) {
+                if (File::exists(public_path($sister_school->logo))) {
+                    File::delete(public_path($sister_school->logo));
+                }
+                $filePath = "img/sister_schools_data/" . $data['slug'];
+                if (!File::exists($filePath)) {
+                    $result = File::makeDirectory($filePath, 0755, true);
+                }
+
+                $photo = $data['logo'];
+                $extension = $photo->getClientOriginalExtension();
+                $imageUid = uniqid('', true);
+                $photoName = $filePath . "/sister_school_" . $imageUid . "." . $extension;
+
+                $photo->move($filePath, "/sister_school_" . $imageUid . "." . $extension);
+                $data['logo'] = "/" . $photoName;
+            }
+            if (isset($data['logo_b'])) {
+                if (File::exists(public_path($sister_school->logo_b))) {
+                    File::delete(public_path($sister_school->logo_b));
+                }
+                $filePath = "img/sister_schools_data/" . $data['slug'];
+                if (!File::exists($filePath)) {
+                    $result = File::makeDirectory($filePath, 0755, true);
+                }
+
+                $photo = $data['logo_b'];
+                $extension = $photo->getClientOriginalExtension();
+                $imageUid = uniqid('', true);
+                $photoName = $filePath . "/sister_school_" . $imageUid . "." . $extension;
+
+                $photo->move($filePath, "/sister_school_" . $imageUid . "." . $extension);
+                $data['logo_b'] = "/" . $photoName;
+            }
+            if (isset($data['hos_image'])) {
+                if (File::exists(public_path($sister_school->hos_image))) {
+                    File::delete(public_path($sister_school->hos_image));
+                }
+                $filePath = "img/sister_schools_data/" . $data['slug'];
+                if (!File::exists($filePath)) {
+                    $result = File::makeDirectory($filePath, 0755, true);
+                }
+
+                $photo = $data['hos_image'];
+                $extension = $photo->getClientOriginalExtension();
+                $imageUid = uniqid('', true);
+                $photoName = $filePath . "/sister_school_" . $imageUid . "." . $extension;
+
+                $photo->move($filePath, "/sister_school_" . $imageUid . "." . $extension);
+                $data['hos_image'] = "/" . $photoName;
+            }
+            $sister_school->update($data);
+
+            DB::commit();
+
+            return back()->with('success', 'Sister School Updates Successfully.');
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+            // Handle the error
+            throw ValidationException::withMessages([
+                'title' =>  $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -174,7 +243,30 @@ class SisterSchoolController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sister_school = SisterSchool::with('banners', 'leaderships')->findOrFail($id);
+        try {
+            DB::transaction(function () use ($sister_school) {
+
+                $filePath = "img/sister_schools_data/" . $sister_school->slug;
+
+                // Delete relations
+                $sister_school->banners()->delete();
+                $sister_school->leaderships()->delete();
+
+                // Delete main record
+                $sister_school->delete();
+
+                // Delete Files
+                if (File::exists($filePath)) {
+                    File::deleteDirectory($filePath);
+                }
+            });
+        } catch (\Exception $e) {
+
+            throw ValidationException::withMessages([
+                'title' => $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -217,7 +309,7 @@ class SisterSchoolController extends Controller
 
             if (!empty($banners)) {
 
-                $folderPath = "img/sister_schools_data/" . $sister_school->short_name . "/banners";
+                $folderPath = "img/sister_schools_data/" . $sister_school->slug . "/banners";
                 if (!File::exists($folderPath)) {
                     File::makeDirectory($folderPath, 0755, true);
                 }
@@ -291,7 +383,7 @@ class SisterSchoolController extends Controller
 
             if (!empty($leaderships)) {
 
-                $folderPath = "img/sister_schools_data/" . $sister_school->short_name . "/leaderships";
+                $folderPath = "img/sister_schools_data/" . $sister_school->slug . "/leaderships";
                 if (!File::exists($folderPath)) {
                     File::makeDirectory($folderPath, 0755, true);
                 }

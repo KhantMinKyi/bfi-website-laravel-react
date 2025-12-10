@@ -50,7 +50,7 @@ const OverviewBanner = ({ data }: OverviewBannerProps) => {
                                 />
 
                                 {/* Overlay */}
-                                <div className="bg-opacity-70 absolute inset-0 flex flex-col items-center justify-center rounded-full bg-neutral-950/90 px-2 text-center text-white opacity-0 transition-opacity duration-300 group-hover:scale-110 group-hover:opacity-100">
+                                <div className="bg-opacity-70 absolute inset-0 flex cursor-pointer flex-col items-center justify-center rounded-full bg-neutral-950/90 px-2 text-center text-white opacity-0 transition-opacity duration-300 group-hover:scale-110 group-hover:opacity-100">
                                     <h3 className="text-sm font-bold lg:text-lg">{l.name}</h3>
                                     <p className="text-xs lg:text-sm">{l.position}</p>
                                 </div>
