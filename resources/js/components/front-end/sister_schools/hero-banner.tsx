@@ -21,7 +21,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ data }) => {
                 >
                     <div className="flex flex-col items-center justify-center">
                         <h2 className="font-merriweather my-10 text-center text-4xl font-bold xl:text-6xl">{data.schoolName}</h2>
-                        <img src={data.logo} className="max-w-64 xl:max-w-80" alt="SKT Riverside Logo" />
+                        <img src={data.logo} className="max-w-64 xl:max-w-80" alt="" />
                     </div>
                 </motion.div>
                 <motion.div

@@ -1,5 +1,5 @@
 import AppearanceToggleTab from '@/components/appearance-tabs';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { routePath } from './front-end-layout';
 
 interface MobileLayoutProps {
@@ -7,7 +7,19 @@ interface MobileLayoutProps {
     activeSubMenu: string | null;
     currentPath: string | null;
 }
+interface SisterSchoolNav {
+    slug: string;
+    name: string;
+    // add any other fields
+}
+
+interface SharedProps {
+    sisterSchools: SisterSchoolNav[];
+    [key: string]: any; //
+}
+
 function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayoutProps) {
+    const { sisterSchools } = usePage<SharedProps>().props;
     return (
         <nav className="font-merriweather mt-16 space-y-4 p-6 text-gray-800 uppercase dark:text-white">
             {/* Home */}
@@ -104,27 +116,47 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     <span>{activeSubMenu === 'sister_schools' ? '▲' : '▼'}</span>
                 </button>
                 <div
+                    // className={`overflow-hidden transition-all duration-300 ${
+                    //     activeSubMenu !== 'about_us' &&
+                    //     activeSubMenu !== 'curriculum' &&
+                    //     activeSubMenu !== 'admissions' &&
+                    //     activeSubMenu !== 'competition' &&
+                    //     activeSubMenu !== 'community' &&
+                    //     (activeSubMenu === 'sister_schools' ||
+                    //         currentPath === routePath('skt_riverside') ||
+                    //         currentPath === routePath('skt_riverside_preschool') ||
+                    //         currentPath === routePath('skt_city') ||
+                    //         currentPath === routePath('skt_city_preschool') ||
+                    //         currentPath === routePath('misa') ||
+                    //         currentPath === routePath('misa_preschool') ||
+                    //         currentPath === routePath('nisa') ||
+                    //         currentPath === routePath('nisa_preschool'))
+                    //         ? 'max-h-screen'
+                    //         : 'max-h-0'
+                    // }`}
                     className={`overflow-hidden transition-all duration-300 ${
                         activeSubMenu !== 'about_us' &&
                         activeSubMenu !== 'curriculum' &&
                         activeSubMenu !== 'admissions' &&
                         activeSubMenu !== 'competition' &&
                         activeSubMenu !== 'community' &&
-                        (activeSubMenu === 'sister_schools' ||
-                            currentPath === routePath('skt_riverside') ||
-                            currentPath === routePath('skt_riverside_preschool') ||
-                            currentPath === routePath('skt_city') ||
-                            currentPath === routePath('skt_city_preschool') ||
-                            currentPath === routePath('misa') ||
-                            currentPath === routePath('misa_preschool') ||
-                            currentPath === routePath('nisa') ||
-                            currentPath === routePath('nisa_preschool'))
+                        (activeSubMenu === 'sister_schools' || sisterSchools.some((ss) => currentPath === '/sister_schools/school-data/' + ss.slug))
                             ? 'max-h-screen'
                             : 'max-h-0'
                     }`}
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
-                        <li>
+                        {sisterSchools.map((ss) => (
+                            <li key={ss.slug}>
+                                <Link
+                                    href={route('sister_school.data', ss.slug)}
+                                    className={`${currentPath === '/sister_schools/school-data/' + ss.slug ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                                >
+                                    {ss.name}
+                                </Link>
+                            </li>
+                        ))}
+                        {/* <li>
                             <Link
                                 href={route('skt_riverside')}
                                 className={`${currentPath === routePath('skt_riverside') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
@@ -187,7 +219,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                             >
                                 Naypyitaw International School of Acumen ( KinderGarten )
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
