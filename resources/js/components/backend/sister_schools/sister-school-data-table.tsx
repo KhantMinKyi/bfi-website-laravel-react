@@ -31,6 +31,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { SisterSchool } from '@/types';
 import { AddSisterSchool } from './add-sister-school-dialog';
 import { UpdateSisterSchoolBannerDialog } from './update-sister-school-banner-dialog';
+import { UpdateSisterSchoolLeadershipDialog } from './update-sister-school-leadership-dialog';
 
 export function SisterSchoolDataTable() {
     const [data, setData] = React.useState<SisterSchool[]>([]);
@@ -42,6 +43,7 @@ export function SisterSchoolDataTable() {
     const [globalFilter, setGlobalFilter] = React.useState('');
     const [updateDialogOpen, setUpdateDialogOpen] = React.useState(false);
     const [updateBannerDialogOpen, setUpdateBannerDialogOpen] = React.useState(false);
+    const [updateLeadershipDialogOpen, setUpdateLeadershipDialogOpen] = React.useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
     const [selectedSisterSchool, setSelectedSisterSchool] = React.useState<SisterSchool | null>(null);
 
@@ -78,6 +80,13 @@ export function SisterSchoolDataTable() {
             setSelectedSisterSchool(null);
         }
     };
+    const handleUpdateLeadershipDialogChange = (open: boolean) => {
+        setUpdateLeadershipDialogOpen(open);
+        if (!open) {
+            // Reset selected sisterSchool setting when dialog closes
+            setSelectedSisterSchool(null);
+        }
+    };
 
     const handleDeleteDialogChange = (open: boolean) => {
         setDeleteDialogOpen(open);
@@ -99,6 +108,13 @@ export function SisterSchoolDataTable() {
         // Small delay to allow dropdown to close before opening dialog
         setTimeout(() => {
             setUpdateBannerDialogOpen(true);
+        }, 0);
+    };
+    const handleOpenUpdateLeadershipDialog = (sisterSchool: SisterSchool) => {
+        setSelectedSisterSchool(sisterSchool);
+        // Small delay to allow dropdown to close before opening dialog
+        setTimeout(() => {
+            setUpdateLeadershipDialogOpen(true);
         }, 0);
     };
 
@@ -231,7 +247,7 @@ export function SisterSchoolDataTable() {
                                     Update Banner
                                 </DropdownMenuItem>
 
-                                <DropdownMenuItem onClick={() => handleOpenUpdateDialog(sisterSchool)}>
+                                <DropdownMenuItem onClick={() => handleOpenUpdateLeadershipDialog(sisterSchool)}>
                                     <UserCog className="mr-2 h-4 w-4" />
                                     Update Leadership
                                 </DropdownMenuItem>
@@ -433,8 +449,16 @@ export function SisterSchoolDataTable() {
                     /> */}
                     <UpdateSisterSchoolBannerDialog
                         sisterSchoolBanners={selectedSisterSchool.banners}
+                        sisterSchoolId={selectedSisterSchool.id}
                         open={updateBannerDialogOpen}
                         onOpenChange={handleUpdateBannerDialogChange}
+                        onSuccess={fetchSisterSchools}
+                    />
+                    <UpdateSisterSchoolLeadershipDialog
+                        sisterSchoolLeaderships={selectedSisterSchool.leaderships}
+                        sisterSchoolId={selectedSisterSchool.id}
+                        open={updateLeadershipDialogOpen}
+                        onOpenChange={handleUpdateLeadershipDialogChange}
                         onSuccess={fetchSisterSchools}
                     />
                 </>

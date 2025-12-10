@@ -13,6 +13,7 @@ import { toast } from 'sonner';
 interface UpdateSisterSchoolBannerDialogProps {
     sisterSchoolBanners: SisterSchoolBanner[];
     open: boolean;
+    sisterSchoolId: number;
     onOpenChange: (open: boolean) => void;
     onSuccess?: () => void;
 }
@@ -28,7 +29,13 @@ interface BannerFormData {
     existingBannerUrl?: string;
 }
 
-export function UpdateSisterSchoolBannerDialog({ sisterSchoolBanners, open, onOpenChange, onSuccess }: UpdateSisterSchoolBannerDialogProps) {
+export function UpdateSisterSchoolBannerDialog({
+    sisterSchoolBanners,
+    open,
+    sisterSchoolId,
+    onOpenChange,
+    onSuccess,
+}: UpdateSisterSchoolBannerDialogProps) {
     const [banners, setBanners] = React.useState<BannerFormData[]>([]);
     const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -108,8 +115,6 @@ export function UpdateSisterSchoolBannerDialog({ sisterSchoolBanners, open, onOp
         });
 
         submitData.append('_method', 'PUT');
-
-        const sisterSchoolId = sisterSchoolBanners[0]?.sister_school_id;
 
         router.post(`/api/sister_schools/sister-schools/${sisterSchoolId}/banners`, submitData, {
             preserveScroll: true,
