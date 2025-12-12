@@ -165,8 +165,11 @@ export interface SisterSchoolDataType {
     website_url?: string;
 }
 export interface FaqDataType {
+    id: string;
     question: string;
     answer: string;
+    created_user?: User;
+    updated_user?: User;
 }
 export interface PostSetting {
     id: number;
