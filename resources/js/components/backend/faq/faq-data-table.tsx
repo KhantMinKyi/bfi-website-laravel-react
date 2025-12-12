@@ -29,6 +29,8 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { FaqDataType } from '@/types';
 import { AddFaq } from './add-faq-dialog';
+import { DeleteFaqDialog } from './delete-faq-dialog';
+import { UpdateFaqDialog } from './update-faq-dialog';
 // import { AddSisterSchool } from './add-sister-school-dialog';
 // import { DeleteSisterSchoolDialog } from './delete-sister-school-dialog';
 // import { UpdateSisterSchoolBannerDialog } from './update-sister-school-banner-dialog';
@@ -383,18 +385,8 @@ export function FaqDataTable() {
 
             {selectedFaq && (
                 <>
-                    {/* <UpdateSisterSchoolDialog
-                        sisterSchool={selectedFaq}
-                        open={updateDialogOpen}
-                        onOpenChange={handleUpdateDialogChange}
-                        onSuccess={fetchFaqs}
-                    />
-                    <DeleteSisterSchoolDialog
-                        sisterSchool={selectedFaq}
-                        open={deleteDialogOpen}
-                        onOpenChange={handleDeleteDialogChange}
-                        onSuccess={fetchFaqs}
-                    /> */}
+                    <UpdateFaqDialog faq={selectedFaq} open={updateDialogOpen} onOpenChange={handleUpdateDialogChange} onSuccess={fetchFaqs} />
+                    <DeleteFaqDialog faq={selectedFaq} open={deleteDialogOpen} onOpenChange={handleDeleteDialogChange} onSuccess={fetchFaqs} />
                 </>
             )}
         </div>

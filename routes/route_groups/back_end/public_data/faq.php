@@ -10,6 +10,6 @@ Route::get('/public_data/faq/dashboard', function () {
 })->name('public_data.faq.dashboard');
 
 Route::prefix('api')->group(function () {
-    Route::apiResource('/faq/faqs', FaqController::class);
+    Route::apiResource('/faq/faqs', FaqController::class)->except('show');
 });
 ?>

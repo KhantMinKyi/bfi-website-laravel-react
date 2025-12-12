@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FaqStoreRequest;
+use App\Http\Requests\FaqUpdateRequest;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,20 +48,16 @@ class FaqController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FaqUpdateRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        $data['updated_user_id'] = Auth::user()->id;
+        Faq::findOrFail($id)->update($data);
+        return back()->with('success', 'FAQ Updated Successfully.');
     }
 
     /**
@@ -68,6 +65,8 @@ class FaqController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        Faq::findOrFail($id)->delete();
+        return back()->with('success', 'FAQ Deleted Successfully.');
     }
 }
