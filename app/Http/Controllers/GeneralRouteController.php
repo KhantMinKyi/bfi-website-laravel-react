@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryTag;
+use App\Models\Faq;
 use App\Models\Post;
 use App\Models\SisterSchool;
 use Illuminate\Http\Request;
@@ -64,5 +65,14 @@ class GeneralRouteController extends Controller
             'data' => $sister_school,
             'banners' => $sister_school->banners,
         ], 200);
+    }
+
+    public function getFaqData()
+    {
+        $faqs = Faq::orderBy('question', 'asc')->get();
+        return response()->json([
+            'message' => 'success',
+            'data' => $faqs
+        ]);
     }
 }

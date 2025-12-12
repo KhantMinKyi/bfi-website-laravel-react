@@ -12,11 +12,10 @@ Route::get('/post/post-detail/{postId}', function ($postId) {
         'postId' => $postId, // now this works
     ]);
 })->name('post-detail');
-Route::prefix('api')->group(function () {
-    Route::get('/home/get-post-data', [GeneralRouteController::class, 'getPostData']);
-    Route::get('/home/get-category-tag-data', [GeneralRouteController::class, 'getCategoryTagData']);
-    Route::get('/home/get-post-detail/{post}', [GeneralRouteController::class, 'getPostDetailData']);
-});
+
+
+require __DIR__ . '/route_groups/front_end/data_fetch.php';
+
 require __DIR__ . '/route_groups/front_end/about_us.php';
 require __DIR__ . '/route_groups/front_end/sister_schools.php';
 require __DIR__ . '/route_groups/front_end/admissions.php';

@@ -7,12 +7,11 @@ import { useEffect, useState } from 'react';
 function FAQ() {
     const [faq, setFaq] = useState<FaqDataType[]>([]);
     const [loading, setLoading] = useState(true);
-
     useEffect(() => {
-        fetch('/dummy-json/faq-data.json')
+        fetch('/api/home/get-faq-data')
             .then((res) => res.json())
-            .then((data: FaqDataType[]) => {
-                setFaq(data);
+            .then((res) => {
+                setFaq(res.data);
                 setLoading(false);
             })
             .catch((err) => console.log(err));
