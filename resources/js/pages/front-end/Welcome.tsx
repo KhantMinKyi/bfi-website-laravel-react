@@ -87,6 +87,27 @@ function Welcome() {
             <>
                 <CarouselBanner carouselData={carouselData} />
                 <SisterSchoolCards />
+                <div className="container mx-auto mt-10">
+                    {cardLoading ? (
+                        <div className="container mx-auto">
+                            <h2 className="mb-4">
+                                <PullUpHeader text="Events & News" />
+                            </h2>
+                            <div className="flex h-[50dvh] justify-center gap-10">
+                                <PostLoadingSkeleton />
+                                <PostLoadingSkeleton className={'hidden md:block'} />
+                                <PostLoadingSkeleton className={'hidden md:block'} />
+                            </div>
+                        </div>
+                    ) : (
+                        <PostCarousel
+                            posts={cardsData}
+                            categories={categoryTadData}
+                            onPostClick={handleCardClick}
+                            // onFilterChange={handleFilterChange}
+                        />
+                    )}
+                </div>
                 <Information />
 
                 {imagesLoading ? (
@@ -111,27 +132,7 @@ function Welcome() {
                 <AboutTestimonial />
                 <HeroBanner />
                 <PhotoGallery />
-                <div className="container mx-auto mt-10">
-                    {cardLoading ? (
-                        <div className="container mx-auto">
-                            <h2 className="mb-4">
-                                <PullUpHeader text="Events & News" />
-                            </h2>
-                            <div className="flex h-[50dvh] justify-center gap-10">
-                                <PostLoadingSkeleton />
-                                <PostLoadingSkeleton className={'hidden md:block'} />
-                                <PostLoadingSkeleton className={'hidden md:block'} />
-                            </div>
-                        </div>
-                    ) : (
-                        <PostCarousel
-                            posts={cardsData}
-                            categories={categoryTadData}
-                            onPostClick={handleCardClick}
-                            // onFilterChange={handleFilterChange}
-                        />
-                    )}
-                </div>
+
                 <ContactBanner />
             </>
         </FrontEndLayout>

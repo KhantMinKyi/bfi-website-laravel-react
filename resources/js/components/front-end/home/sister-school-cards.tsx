@@ -133,7 +133,6 @@ const Schedule = () => {
             })
             .catch((err) => console.log(err));
     }, []);
-    console.log(sisterSchoolData);
     return (
         <section id="launch-schedule" className="mx-auto max-w-5xl px-4 py-48">
             {/* <motion.h1
@@ -146,7 +145,7 @@ const Schedule = () => {
             </motion.h1> */}
             <GradualSpacingHeader text="Our Sister Schools" />
             {sisterSchoolData.map((e)=>(
-                <ScheduleItem name={e.name} address={e.address} email={e.email} link={e.website_url} />
+                <ScheduleItem key={e.name} name={e.name} address={e.address} email={e.email} link={e.website_url} />
             ))}
            {/* <ScheduleItem title="GOES-U" date="Mar 8th" location="California" />
             <ScheduleItem title="ASTRA 1P" date="Apr 8th" location="Texas" /> */}

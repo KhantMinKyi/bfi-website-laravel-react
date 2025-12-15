@@ -32,9 +32,7 @@ function AboutTestimonial() {
                             </div>
                             <div className="">
                                 <p className="font-heading-font relative mb-4 px-10 pt-4 text-lg font-normal md:text-lg lg:mb-6 xl:text-2xl">
-                                    “It uses a dictionary of over 200 Latin words, combined with handful the model sentence structures, to generate
-                                    lorem ipsum which looks reasonable. The generated lorem ipsum is therefore always free from repetition sentence
-                                    structures, to generate lorem ipsum which looks..
+                                    We empower our students to join world-class universities and become lifelong learners and compassionate global citizens.
                                 </p>
                                 <h2 className="px-10 text-3xl font-normal lg:text-4xl">Vision</h2>
                                 <span className="px-10 text-base font-normal">BFI Education Services</span>
@@ -52,9 +50,7 @@ function AboutTestimonial() {
                             </div>
                             <div className="">
                                 <p className="font-heading-font relative mb-4 px-10 pt-4 text-lg font-normal md:text-lg lg:mb-6 xl:text-2xl">
-                                    “It uses a dictionary of over 200 Latin words, combined with handful the model sentence structures, to generate
-                                    lorem ipsum which looks reasonable. The generated lorem ipsum is therefore always free from repetition sentence
-                                    structures, to generate lorem ipsum which looks..
+                                We nurture students to become lifelong learners, responsible global citizens, and compassionate individuals through a challenging and balanced curriculum in a safe and caring environment.
                                 </p>
                                 <h2 className="px-10 text-3xl font-normal lg:text-4xl">Mission</h2>
                                 <span className="px-10 text-base font-normal">BFI Education Services</span>
@@ -72,9 +68,7 @@ function AboutTestimonial() {
                             </div>
                             <div className="">
                                 <p className="font-heading-font relative mb-4 px-10 pt-4 text-lg font-normal md:text-lg lg:mb-6 xl:text-2xl">
-                                    “It uses a dictionary of over 200 Latin words, combined with handful the model sentence structures, to generate
-                                    lorem ipsum which looks reasonable. The generated lorem ipsum is therefore always free from repetition sentence
-                                    structures, to generate lorem ipsum which looks..
+                                Our school philosophy revolves around five pillars, each representing a core aspect of our commitment to excellence and holistic development.
                                 </p>
                                 <h2 className="px-10 text-3xl font-normal lg:text-4xl">Philosophy</h2>
                                 <span className="px-10 text-base font-normal">BFI Education Services</span>

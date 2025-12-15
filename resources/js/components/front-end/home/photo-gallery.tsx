@@ -21,7 +21,7 @@ function PhotoGallery() {
             try {
                 await new Promise((resolve) => setTimeout(resolve, 2000));
                 // simulate fetching data (replace with real API later)
-                const response = await fetch('/dummy-photos.json');
+                const response = await fetch('/dummy-json/dummy-photos.json');
                 const data = await response.json();
 
                 const formattedPhotos = data
