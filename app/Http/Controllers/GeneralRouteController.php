@@ -75,4 +75,12 @@ class GeneralRouteController extends Controller
             'data' => $faqs
         ]);
     }
+    public function getAllSisterSchool()
+    {
+        $sister_schools = SisterSchool::orderBy('name', 'desc')->get(['name', 'address', 'email', 'logo', 'website_url']);
+        return response()->json([
+            'message' => 'success',
+            'data' => $sister_schools,
+        ], 200);
+    }
 }

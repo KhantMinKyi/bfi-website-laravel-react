@@ -1,7 +1,8 @@
 import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { FiMapPin } from 'react-icons/fi';
+import { FiMail, FiMapPin } from 'react-icons/fi';
 import GradualSpacingHeader from '../core/gradual-spacing-header';
+import { SisterSchool } from '@/types';
 interface CenterImageProps {
     isMobile: boolean; // string for mobile, MotionValue for large screens
 }
@@ -90,6 +91,8 @@ const CenterImage: React.FC<CenterImageProps> = ({ isMobile }) => {
 };
 
 const ParallaxImages = () => {
+
+    
     return (
         <div className="mx-auto max-w-5xl px-4 pb-[200px]">
             <ParallaxImg src="img/skt_riverside_campus.png" alt="And example of a space launch" start={-200} end={200} className="w-1/4" />
@@ -119,6 +122,18 @@ const ParallaxImg = ({ className, alt, src, start, end }: { className?: string; 
 };
 
 const Schedule = () => {
+    const [sisterSchoolData, setSisterSchoolData] = useState<SisterSchool[]>([]);
+    const [sisterSchoolLoading, setSisterSchoolLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        fetch('/api/sister_schools/get-all-sister-school')
+            .then((res) => res.json())
+            .then((res) => {
+                setSisterSchoolData(res.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+    console.log(sisterSchoolData);
     return (
         <section id="launch-schedule" className="mx-auto max-w-5xl px-4 py-48">
             {/* <motion.h1
@@ -130,17 +145,16 @@ const Schedule = () => {
                 Our Sister Schools
             </motion.h1> */}
             <GradualSpacingHeader text="Our Sister Schools" />
-            <ScheduleItem title="SKT International School ( Riverside Campus )" date="Tharkayta" location="Yangon" link="https://skt.edu.mm/" />
-            <ScheduleItem title="SKT International School ( City Campus )" date="Bahan" location="Yangon" link="https://skt.edu.mm/" />
-            <ScheduleItem title="Mandalay International Science Academy" date="Mandalay" location="Mandalay" link="https://misa.edu.mm/" />
-            <ScheduleItem title="NayPyiTaw International Science Academy" date="NayPyiTaw" location="NayPyiTaw" link="https://bisa.edu.mm/" />
-            {/* <ScheduleItem title="GOES-U" date="Mar 8th" location="California" />
+            {sisterSchoolData.map((e)=>(
+                <ScheduleItem name={e.name} address={e.address} email={e.email} link={e.website_url} />
+            ))}
+           {/* <ScheduleItem title="GOES-U" date="Mar 8th" location="California" />
             <ScheduleItem title="ASTRA 1P" date="Apr 8th" location="Texas" /> */}
         </section>
     );
 };
 
-const ScheduleItem = ({ title, date, location, link }: { title: string; date: string; location: string; link: string }) => {
+const ScheduleItem = ({ name, address, email, link }: { name: string; address: string; email: string; link: string }) => {
     return (
         <motion.a
             initial={{ y: 48, opacity: 0 }}
@@ -150,12 +164,12 @@ const ScheduleItem = ({ title, date, location, link }: { title: string; date: st
             href={link}
         >
             <div>
-                <p className="mb-1.5 text-xl">{title}</p>
-                <p className="text-sm uppercase">{date}</p>
+                <p className="mb-1.5 text-xl">{name}</p>
+                <p className="text-sm uppercase">{address}</p>
             </div>
             <div className="flex items-center gap-1.5 text-end text-sm uppercase">
-                <p>{location}</p>
-                <FiMapPin />
+                <p>{email}</p>
+                <FiMail />
             </div>
         </motion.a>
     );
