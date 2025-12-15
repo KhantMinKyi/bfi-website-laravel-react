@@ -14,8 +14,8 @@ import PhotoGallery from '@/components/front-end/home/photo-gallery';
 import SisterSchoolCards from '@/components/front-end/home/sister-school-cards';
 import FrontEndLayout from '@/layouts/front-end-layout';
 import { CategoryTag, ImageItem, Post, Programmes } from '@/types';
-import { router } from '@inertiajs/react';
-import { useEffect, useState } from 'react';
+import { Head, router } from '@inertiajs/react';
+import { useEffect, useMemo, useState } from 'react';
 
 const handleCardClick = (card: Post) => {
     router.visit(route('post-detail', { postId: card.id }));
@@ -53,6 +53,36 @@ function Welcome() {
     const [imagesLoading, setImagesLoading] = useState<boolean>(true);
     const [cardLoading, setCardLoading] = useState<boolean>(true);
 
+    const pageTitle = 'BFI International School | World-class Education in Yangon';
+    const pageDescription =
+        'Discover BFI International School’s world-class education in Yangon. Explore our sister schools, IB Diploma Programme, international teachers, events, and admissions information.';
+    const canonicalUrl = useMemo(() => {
+        try {
+            return route('home');
+        } catch (_e) {
+            return '';
+        }
+    }, []);
+
+    const structuredData = useMemo(
+        () => ({
+            '@context': 'https://schema.org',
+            '@type': 'School',
+            name: 'BFI International School',
+            url: canonicalUrl || undefined,
+            description: pageDescription,
+            address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'No.235, Shu Khinn Thar Myo Pat Road, Thaketa',
+                addressLocality: 'Yangon',
+                addressCountry: 'MM',
+            },
+            telephone: '019410010',
+            email: 'contact@bfi.edu.mm',
+        }),
+        [canonicalUrl, pageDescription],
+    );
+
     useEffect(() => {
         fetch('https://picsum.photos/v2/list')
             .then((res) => res.json())
@@ -85,6 +115,22 @@ function Welcome() {
     return (
         <FrontEndLayout>
             <>
+                <Head title={pageTitle}>
+                    <meta name="description" content={pageDescription} />
+                    {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+                    <meta name="robots" content="index,follow" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:title" content={pageTitle} />
+                    <meta property="og:description" content={pageDescription} />
+                    <meta property="og:url" content={canonicalUrl} />
+                    <meta property="og:image" content="/img/bfi.png" />
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta name="twitter:title" content={pageTitle} />
+                    <meta name="twitter:description" content={pageDescription} />
+                    <meta name="twitter:image" content="/img/bfi.png" />
+                    <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+                </Head>
+                <h1 className="sr-only">{pageTitle}</h1>
                 <CarouselBanner carouselData={carouselData} />
                 <SisterSchoolCards />
                 <div className="container mx-auto mt-10">
