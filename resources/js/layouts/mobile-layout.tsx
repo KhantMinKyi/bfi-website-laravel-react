@@ -237,7 +237,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'competition' &&
                         activeSubMenu !== 'community' &&
                         (activeSubMenu === 'curriculum' ||
-                            currentPath === routePath('curriculum') ||
+                            currentPath === routePath('preschool') ||
                             currentPath === routePath('curriculum') ||
                             currentPath === routePath('curriculum') ||
                             currentPath === routePath('curriculum') ||
@@ -248,7 +248,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
                         <li>
-                            <Link href={route('curriculum')}> Pre-School</Link>
+                            <Link href={route('preschool')}> Pre-School</Link>
                         </li>
                         <li>
                             <Link href="#">Primary School (Year 2-6)</Link>

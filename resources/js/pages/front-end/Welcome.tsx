@@ -53,9 +53,9 @@ function Welcome() {
     const [imagesLoading, setImagesLoading] = useState<boolean>(true);
     const [cardLoading, setCardLoading] = useState<boolean>(true);
 
-    const pageTitle = 'BFI International School | World-class Education in Yangon';
+    const pageTitle = 'BFI Education Services ';
     const pageDescription =
-        'Discover BFI International School’s world-class education in Yangon. Explore our sister schools, IB Diploma Programme, international teachers, events, and admissions information.';
+        'BFI Education Services manages 4+ international sister schools across Myanmar, offering world-class programmes, foreign teachers, IB Diploma pathways, events, and admissions support.';
     const canonicalUrl = useMemo(() => {
         try {
             return route('home');
@@ -67,8 +67,8 @@ function Welcome() {
     const structuredData = useMemo(
         () => ({
             '@context': 'https://schema.org',
-            '@type': 'School',
-            name: 'BFI International School',
+            '@type': 'EducationalOrganization',
+            name: 'BFI Education Services',
             url: canonicalUrl || undefined,
             description: pageDescription,
             address: {
@@ -79,6 +79,14 @@ function Welcome() {
             },
             telephone: '019410010',
             email: 'contact@bfi.edu.mm',
+            numberOfEmployees: '200+',
+            department: [
+                {
+                    '@type': 'School',
+                    name: 'BFI Sister Schools',
+                    description: 'Network of 4-8 international sister schools operated by BFI Education Services.',
+                },
+            ],
         }),
         [canonicalUrl, pageDescription],
     );
