@@ -29,9 +29,9 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Curriculum } from '@/types';
 import { AddCurriculum } from './add-curriculum-dialog';
+import { UpdateCurriculumPhotoDialog } from './update-curriculum-photo-dialog';
 // import { AddSisterSchool } from './add-sister-school-dialog';
 // import { DeleteSisterSchoolDialog } from './delete-sister-school-dialog';
-// import { UpdateSisterSchoolBannerDialog } from './update-sister-school-banner-dialog';
 // import { UpdateSisterSchoolDialog } from './update-sister-school-dialog';
 
 export function CurriculumDataTable() {
@@ -43,7 +43,7 @@ export function CurriculumDataTable() {
     const [rowSelection, setRowSelection] = React.useState({});
     const [globalFilter, setGlobalFilter] = React.useState('');
     const [updateDialogOpen, setUpdateDialogOpen] = React.useState(false);
-    const [updateBannerDialogOpen, setUpdateBannerDialogOpen] = React.useState(false);
+    const [updatePhotoDialogOpen, setUpdatePhotoDialogOpen] = React.useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
     const [selectedCurriculum, setSelectedCurriculum] = React.useState<Curriculum | null>(null);
 
@@ -73,8 +73,8 @@ export function CurriculumDataTable() {
             setSelectedCurriculum(null);
         }
     };
-    const handleUpdateBannerDialogChange = (open: boolean) => {
-        setUpdateBannerDialogOpen(open);
+    const handleUpdatePhotoDialogChange = (open: boolean) => {
+        setUpdatePhotoDialogOpen(open);
         if (!open) {
             // Reset selected Curriculum setting when dialog closes
             setSelectedCurriculum(null);
@@ -96,11 +96,11 @@ export function CurriculumDataTable() {
             setUpdateDialogOpen(true);
         }, 0);
     };
-    const handleOpenUpdateBannerDialog = (crriculum: Curriculum) => {
+    const handleOpenUpdatePhotoDialog = (crriculum: Curriculum) => {
         setSelectedCurriculum(crriculum);
         // Small delay to allow dropdown to close before opening dialog
         setTimeout(() => {
-            setUpdateBannerDialogOpen(true);
+            setUpdatePhotoDialogOpen(true);
         }, 0);
     };
 
@@ -192,9 +192,9 @@ export function CurriculumDataTable() {
                                     Update
                                 </DropdownMenuItem>
 
-                                <DropdownMenuItem onClick={() => handleOpenUpdateBannerDialog(curriculum)}>
+                                <DropdownMenuItem onClick={() => handleOpenUpdatePhotoDialog(curriculum)}>
                                     <ImagePlus className="mr-2 h-4 w-4" />
-                                    Update Banner
+                                    Update Photo
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
@@ -385,14 +385,14 @@ export function CurriculumDataTable() {
                         open={deleteDialogOpen}
                         onOpenChange={handleDeleteDialogChange}
                         onSuccess={fetchCurriculums}
-                    />
-                    <UpdateSisterSchoolBannerDialog
-                        sisterSchoolBanners={selectedCurriculum.banners}
-                        sisterSchoolId={selectedCurriculum.id}
-                        open={updateBannerDialogOpen}
-                        onOpenChange={handleUpdateBannerDialogChange}
-                        onSuccess={fetchCurriculums}
                     /> */}
+                    <UpdateCurriculumPhotoDialog
+                        curriculumPhotos={selectedCurriculum.related_photos}
+                        curriculumId={selectedCurriculum.id}
+                        open={updatePhotoDialogOpen}
+                        onOpenChange={handleUpdatePhotoDialogChange}
+                        onSuccess={fetchCurriculums}
+                    />
                 </>
             )}
         </div>
