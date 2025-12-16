@@ -12,14 +12,20 @@ interface SisterSchoolNav {
     name: string;
     // add any other fields
 }
+interface CurriculumNav {
+    slug: string;
+    name: string;
+    // add any other fields
+}
 
 interface SharedProps {
     sisterSchools: SisterSchoolNav[];
+    curriculum: CurriculumNav[];
     [key: string]: any; //
 }
 
 function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayoutProps) {
-    const { sisterSchools } = usePage<SharedProps>().props;
+    const { sisterSchools, curriculum } = usePage<SharedProps>().props;
     return (
         <nav className="font-merriweather mt-16 space-y-4 p-6 text-gray-800 uppercase dark:text-white">
             {/* Home */}
@@ -116,24 +122,6 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     <span>{activeSubMenu === 'sister_schools' ? '▲' : '▼'}</span>
                 </button>
                 <div
-                    // className={`overflow-hidden transition-all duration-300 ${
-                    //     activeSubMenu !== 'about_us' &&
-                    //     activeSubMenu !== 'curriculum' &&
-                    //     activeSubMenu !== 'admissions' &&
-                    //     activeSubMenu !== 'competition' &&
-                    //     activeSubMenu !== 'community' &&
-                    //     (activeSubMenu === 'sister_schools' ||
-                    //         currentPath === routePath('skt_riverside') ||
-                    //         currentPath === routePath('skt_riverside_preschool') ||
-                    //         currentPath === routePath('skt_city') ||
-                    //         currentPath === routePath('skt_city_preschool') ||
-                    //         currentPath === routePath('misa') ||
-                    //         currentPath === routePath('misa_preschool') ||
-                    //         currentPath === routePath('nisa') ||
-                    //         currentPath === routePath('nisa_preschool'))
-                    //         ? 'max-h-screen'
-                    //         : 'max-h-0'
-                    // }`}
                     className={`overflow-hidden transition-all duration-300 ${
                         activeSubMenu !== 'about_us' &&
                         activeSubMenu !== 'curriculum' &&
@@ -156,70 +144,6 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                                 </Link>
                             </li>
                         ))}
-                        {/* <li>
-                            <Link
-                                href={route('skt_riverside')}
-                                className={`${currentPath === routePath('skt_riverside') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
-                            >
-                                SKT International School ( Riverside Campus )
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href={route('skt_riverside_preschool')}
-                                className={`${currentPath === routePath('skt_riverside_preschool') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
-                            >
-                                SKT International PreSchool ( Riverside Campus )
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href={route('skt_city')}
-                                className={`${currentPath === routePath('skt_city') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
-                            >
-                                SKT International School ( City Campus )
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href={route('skt_city_preschool')}
-                                className={`${currentPath === routePath('skt_city_preschool') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
-                            >
-                                SKT International PreSchool ( City Campus )
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href={route('misa')}
-                                className={`${currentPath === routePath('misa') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
-                            >
-                                Mandalay International School of Acumen
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href={route('misa_preschool')}
-                                className={`${currentPath === routePath('misa_preschool') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
-                            >
-                                Mandalay International School of Acumen ( KinderGarten )
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href={route('nisa')}
-                                className={`${currentPath === routePath('nisa') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
-                            >
-                                Naypyitaw International School of Acumen
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href={route('nisa_preschool')}
-                                className={`${currentPath === routePath('nisa_preschool') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
-                            >
-                                Naypyitaw International School of Acumen ( KinderGarten )
-                            </Link>
-                        </li> */}
                     </ul>
                 </div>
             </div>
@@ -236,32 +160,22 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'admissions' &&
                         activeSubMenu !== 'competition' &&
                         activeSubMenu !== 'community' &&
-                        (activeSubMenu === 'curriculum' ||
-                            currentPath === routePath('preschool') ||
-                            currentPath === routePath('curriculum') ||
-                            currentPath === routePath('curriculum') ||
-                            currentPath === routePath('curriculum') ||
-                            currentPath === routePath('curriculum'))
+                        (activeSubMenu === 'curriculum' || curriculum.some((cc) => currentPath === '/curriculum/curriculum-data/' + cc.slug))
                             ? 'max-h-screen'
                             : 'max-h-0'
                     }`}
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
-                        <li>
-                            <Link href={route('preschool')}> Pre-School</Link>
-                        </li>
-                        <li>
-                            <Link href="#">Primary School (Year 2-6)</Link>
-                        </li>
-                        <li>
-                            <Link href="#">Secondary School (Year 7-9)</Link>
-                        </li>
-                        <li>
-                            <Link href="#"> IGCSE (Year 10-11)</Link>
-                        </li>
-                        <li>
-                            <Link href="#">IB Diploma Programme (Year 12-13)</Link>
-                        </li>
+                        {curriculum.map((cc) => (
+                            <li key={cc.slug}>
+                                <Link
+                                    href={route('curriculum.data', cc.slug)}
+                                    className={`${currentPath === '/curriculum/curriculum-data/' + cc.slug ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                                >
+                                    {cc.name}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>

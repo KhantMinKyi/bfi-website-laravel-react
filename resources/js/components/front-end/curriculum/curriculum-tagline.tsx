@@ -1,5 +1,12 @@
+import DOMPurify from 'dompurify';
 import * as motion from 'motion/react-client';
-function CurriculumTagline() {
+type Props = {
+    name: string;
+    sub_title: string;
+    introduction: string;
+};
+const CurriculumTagline: React.FC<Props> = ({ name, sub_title, introduction }) => {
+    const sanitizedDescription = DOMPurify.sanitize(introduction ?? '');
     return (
         <div
             className="relative bg-blue-950 py-20 dark:bg-green-950"
@@ -20,7 +27,9 @@ function CurriculumTagline() {
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >
                     <div className="flex flex-col items-center justify-center">
-                        <h2 className="font-merriweather my-10 text-4xl font-bold text-white md:text-6xl">Pre School</h2>
+                        <h2 className="font-merriweather my-10 text-4xl font-bold text-white md:text-6xl">{name}</h2>
+                        <br />
+                        <h6 className="font-merriweather text-2xl font-bold text-white md:text-4xl">{sub_title}</h6>
                     </div>
                 </motion.div>
                 <motion.div
@@ -31,15 +40,16 @@ function CurriculumTagline() {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 40% visible
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >
-                    <p className="text-center text-base text-white md:text-left md:text-xl">
-                        A theme-based approach links the topics to different subjects such as: Music and Movement, Story & Music, Language & Literacy,
-                        Math, Science, Fine Arts, Drawing & Painting, ICT, Physical development: Large motor skills, sand and water, Blocks,
-                        Gymnastics/Swimming & Various Sports, Health & Safety, Drama.
-                    </p>
+                    <p
+                        className="text-center text-base text-white md:text-left md:text-xl"
+                        dangerouslySetInnerHTML={{
+                            __html: sanitizedDescription,
+                        }}
+                    ></p>
                 </motion.div>
             </div>
         </div>
     );
-}
+};
 
 export default CurriculumTagline;

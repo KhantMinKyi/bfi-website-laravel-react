@@ -22,7 +22,7 @@ class CurriculumPhotoUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'curriculum_photo'                              => ['required', 'array', 'min:3'],
+            'curriculum_photo'                              => ['required', 'array', 'min:4'],
             'curriculum_photo.*.id'                         => ['required'],
             'curriculum_photo.*.title'                      => ['required', 'string'],
             'curriculum_photo.*.image'                      => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
