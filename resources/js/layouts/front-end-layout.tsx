@@ -12,9 +12,15 @@ interface SisterSchoolNav {
     name: string;
     // add any other fields
 }
+interface CurriculumNav {
+    slug: string;
+    name: string;
+    // add any other fields
+}
 
 interface SharedProps {
     sisterSchools: SisterSchoolNav[];
+    curriculum: CurriculumNav[];
     [key: string]: any; //
 }
 const baseLink =
@@ -28,8 +34,7 @@ export default ({ children }: FrondendLayoutProps) => {
     const [scrolled, setScrolled] = useState(false);
     const { url } = usePage();
     const currentPath = new URL(url, window.location.origin).pathname;
-    const { sisterSchools } = usePage<SharedProps>().props;
-
+    const { sisterSchools, curriculum } = usePage<SharedProps>().props;
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const subLinkActive = 'after:w-[50%]';
 
@@ -87,7 +92,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         <div className="ml-5 overflow-hidden">
                                             <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Call Us:</span>
                                             <p className="font-heading-font leading-5 font-medium text-[#232323] sm:text-sm dark:text-white">
-                                            019410010
+                                                019410010
                                             </p>
                                         </div>
                                     </div>
@@ -251,50 +256,25 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </li>
                                 {/* Curriculum */}
                                 <li className="group relative inline-block">
-                                    <a href="#" className={`${currentPath === '/about' ? activeLink : baseLink}`}>
+                                    <Link
+                                        href="#"
+                                        className={`${
+                                            curriculum.some((cc) => currentPath === '/curriculum/curriculum-data/' + cc.slug) ? activeLink : baseLink
+                                        }`}
+                                    >
                                         Curriculum
-                                    </a>
+                                    </Link>
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
-                                        <li>
-                                            <Link
-                                                href={route('preschool')}
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                Pre-School
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                href="testimonial.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                Primary School (Year 2-6)
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                href="team.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                Secondary School (Year 7-9)
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                href="team.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                IGCSE (Year 10-11)
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                href="service-single.html"
-                                                className="group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white"
-                                            >
-                                                IB Diploma Programme (Year 12-13)
-                                            </Link>
-                                        </li>
+                                        {curriculum.map((cc) => (
+                                            <li key={cc.slug}>
+                                                <Link
+                                                    href={route('curriculum.data', cc.slug)}
+                                                    className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === '/curriculum/curriculum-data/' + cc.slug ? subLinkActive : ''}`}
+                                                >
+                                                    {cc.name}
+                                                </Link>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </li>
                                 {/* Admissions */}

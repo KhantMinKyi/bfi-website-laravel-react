@@ -1,54 +1,38 @@
+'use client';
+
 import { useEffect, useState } from 'react';
-import type { Photo } from 'react-photo-album';
-import { RowsPhotoAlbum } from 'react-photo-album';
-import 'react-photo-album/rows.css';
-import SSR from 'react-photo-album/ssr';
-import { DotLoading } from '../core/dot-loading';
-// import photos from './photos';
-const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
-interface RawPhoto {
-    src: string;
-    alt?: string;
+
+interface PhotoItem {
+    image: string;
+    title: string;
 }
-function imageLink(path: string, width: number, height: number, size: number, extension: string) {
-    return `/img/${path}.${extension}`;
+
+interface ApiResponse {
+    message: string;
+    data: PhotoItem[];
 }
-function CurriculumPhotoGallery() {
-    const [photos, setPhotos] = useState<Photo[]>([]);
+
+// Random size configurations for masonry layout
+const sizeVariants = [
+    { span: 'md:col-span-1 md:row-span-1', height: 'h-64' },
+    { span: 'md:col-span-2 md:row-span-1', height: 'h-64' },
+    { span: 'md:col-span-1 md:row-span-2', height: 'h-96' },
+    { span: 'md:col-span-2 md:row-span-2', height: 'h-96' },
+];
+
+const CurriculumPhotoGallery = ({ slug }: { slug: string }) => {
+    const [photos, setPhotos] = useState<PhotoItem[]>([]);
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         async function fetchData() {
             try {
-                await new Promise((resolve) => setTimeout(resolve, 2000));
-                // simulate fetching data (replace with real API later)
-                const response = await fetch('/dummy-json/curriculum-dummy-photos.json');
-                const data = await response.json();
+                const response = await fetch(`/api/education/get-curriculum-photo/${slug}`);
+                const result: ApiResponse = await response.json();
 
-                const formattedPhotos = data
-                    .map(({ src, ...rest }: RawPhoto) => {
-                        const matcher = src.match(/^(.*)\.(\d+)x(\d+)\.(.*)$/);
-                        if (!matcher) return null;
+                console.log('API Response:', result);
 
-                        const path = matcher[1];
-                        const width = Number.parseInt(matcher[2], 10);
-                        const height = Number.parseInt(matcher[3], 10);
-                        const extension = matcher[4];
-
-                        return {
-                            src: imageLink(path, width, height, width, extension),
-                            width,
-                            height,
-                            srcSet: breakpoints.map((bp) => ({
-                                src: imageLink(path, width, height, bp, extension),
-                                width: bp,
-                                height: Math.round((height / width) * bp),
-                            })),
-                            ...rest,
-                        } as Photo;
-                    })
-                    .filter(Boolean);
-
-                setPhotos(formattedPhotos);
+                setPhotos(result.data);
             } catch (error) {
                 console.error('Error fetching photos:', error);
             } finally {
@@ -57,21 +41,47 @@ function CurriculumPhotoGallery() {
         }
 
         fetchData();
-    }, []);
+    }, [slug]);
+
+    const getRandomSize = (index: number) => {
+        const seed = index % sizeVariants.length;
+        return sizeVariants[seed];
+    };
 
     return (
-        <div>
+        <div className="w-full p-4">
             {loading ? (
-                <div className="flex h-64 items-center justify-center text-lg text-gray-500">
-                    <DotLoading />
+                <div className="flex h-64 items-center justify-center">
+                    <div className="flex gap-2">
+                        <div className="h-3 w-3 animate-bounce rounded-full bg-primary [animation-delay:-0.3s]" />
+                        <div className="h-3 w-3 animate-bounce rounded-full bg-primary [animation-delay:-0.15s]" />
+                        <div className="h-3 w-3 animate-bounce rounded-full bg-primary" />
+                    </div>
                 </div>
             ) : (
-                <SSR breakpoints={[300, 600, 900, 1200]}>
-                    <RowsPhotoAlbum photos={photos} spacing={0} />
-                </SSR>
+                <div className="grid grid-cols-1 gap-4 md:auto-rows-fr md:grid-cols-3">
+                    {photos.map((photo, index) => {
+                        const size = getRandomSize(index);
+                        return (
+                            <div key={index} className={`group relative overflow-hidden rounded-lg ${size.span} ${size.height}`}>
+                                <img
+                                    src={photo.image || '/placeholder.svg'}
+                                    alt={photo.title}
+                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                />
+
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                                <div className="absolute right-0 bottom-0 left-0 p-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                    <h3 className="text-lg font-semibold text-balance">{photo.title}</h3>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
             )}
         </div>
     );
-}
+};
 
 export default CurriculumPhotoGallery;

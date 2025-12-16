@@ -13,4 +13,7 @@ Route::prefix('api')->group(function () {
     Route::get('/home/get-faq-data', [GeneralRouteController::class, 'getFaqData']);
     Route::get('/sister_schools/school-data/{slug}', [GeneralRouteController::class, 'getSisterSchoolData']);
     Route::get('/sister_schools/get-all-sister-school', [GeneralRouteController::class, 'getAllSisterSchool']);
+    Route::get('/education/curriculum-data/{slug}', [GeneralRouteController::class, 'getCurriculumData']);
+    Route::get('/education/get-all-curriculum', [GeneralRouteController::class, 'getAllCurriculum']);
+    Route::get('/education/get-curriculum-photo/{slug}', [GeneralRouteController::class, 'getCurriculumPhotos']);
 });

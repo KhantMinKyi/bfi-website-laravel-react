@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryTag;
+use App\Models\Curriculum;
 use App\Models\Faq;
 use App\Models\Post;
 use App\Models\SisterSchool;
@@ -81,6 +82,29 @@ class GeneralRouteController extends Controller
         return response()->json([
             'message' => 'success',
             'data' => $sister_schools,
+        ], 200);
+    }
+    public function getCurriculumData($slug)
+    {
+        $curriculum = Curriculum::with('related_photos')->where('slug', $slug)->firstOrFail();
+        return response()->json([
+            'message' => 'success',
+            'data' => $curriculum,
+        ], 200);
+    }
+    public function getCurriculumPage($param)
+    {
+        $curriculum = Curriculum::with('related_photos')->where('slug', $param)->firstOrFail();
+        return Inertia::render('front-end/curriculum/IndexPage', [
+            'data' => $param,
+        ]);
+    }
+    public function getCurriculumPhotos($slug)
+    {
+        $curriculum = Curriculum::with('related_photos')->where('slug', $slug)->firstOrFail();
+        return response()->json([
+            'message' => 'success',
+            'data' => $curriculum->related_photos,
         ], 200);
     }
 }

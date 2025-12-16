@@ -44,6 +44,7 @@ class HandleInertiaRequests extends Middleware
             'name' => config('app.name'),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'sisterSchools' => fn() => \App\Models\SisterSchool::orderBy('name', 'desc')->get(['slug', 'name']),
+            'curriculum' => fn() => \App\Models\Curriculum::orderBy('name', 'desc')->get(['slug', 'name']),
             'auth' => [
                 'user' => $request->user(),
             ],

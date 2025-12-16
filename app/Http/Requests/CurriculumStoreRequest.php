@@ -31,7 +31,7 @@ class CurriculumStoreRequest extends FormRequest
             'footer'                                        => ['nullable', 'string'],
             'logo'                                          => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'secondary_logo'                                => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
-            'curriculum_photo'                              => ['required', 'array', 'min:3'],
+            'curriculum_photo'                              => ['required', 'array', 'min:4'],
             'curriculum_photo.*.title'                      => ['required', 'string'],
             'curriculum_photo.*.image'                      => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
@@ -41,7 +41,7 @@ class CurriculumStoreRequest extends FormRequest
     {
         return [
             'sub_title.required'                                        => 'Sub Title is Required',
-            'curriculum_photo.required'                                 => 'You Need to add at least 3 Curriculum Photo',
+            'curriculum_photo.required'                                 => 'You Need to add at least 4 Curriculum Photo',
             'curriculum_photo.*.title.required'                         => 'Curriculum Photo Title is required',
             'curriculum_photo.*.image.required'                         => 'Currriculum Photo is required',
         ];
