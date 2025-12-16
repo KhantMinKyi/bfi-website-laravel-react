@@ -9,4 +9,5 @@ Route::get('/education/dashboard', function () {
 })->name('education.dashboard');
 Route::prefix('api')->group(function () {
     Route::apiResource('/education/curriculum', CurriculumController::class)->except('show');
+    Route::put('/education/curriculum/{sister_school}/photos', [CurriculumController::class, 'photoUpdate']);
 });

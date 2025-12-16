@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CurriculumPhotoUpdateRequest;
 use App\Http\Requests\CurriculumStoreRequest;
 use App\Models\Curriculum;
 use App\Models\CurriculumPhoto;
@@ -18,7 +19,7 @@ class CurriculumController extends Controller
      */
     public function index()
     {
-        $curricula = Curriculum::with('created_user', 'updated_user')->orderBy('name', 'desc')->get();
+        $curricula = Curriculum::with('related_photos', 'created_user', 'updated_user')->orderBy('name', 'desc')->get();
         return response()->json([
             'message' => 'success',
             'curricula' => $curricula
@@ -130,5 +131,82 @@ class CurriculumController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function photoUpdate(CurriculumPhotoUpdateRequest $request, string $id)
+    {
+        $data = $request->validated();
+        try {
+            DB::beginTransaction();
+            $curriculum = Curriculum::findOrFail($id);
+            // Create curriculum photo
+            $photos = $data['curriculum_photo'] ?? [];
+
+            // Delete Data
+            $existingIds = CurriculumPhoto::where('curriculum_id', $id)
+                ->pluck('id')
+                ->toArray();
+
+            $sentIds = collect($photos)
+                ->pluck('id')
+                ->filter() // remove null
+                ->toArray();
+            $idsToDelete = array_diff($existingIds, $sentIds);
+
+            if (!empty($idsToDelete)) {
+                $deletePhotos = CurriculumPhoto::whereIn('id', $idsToDelete)->get();
+
+                foreach ($deletePhotos as $del) {
+                    if (!empty($del->image) && File::exists(public_path($del->image))) {
+                        File::delete(public_path($del->image));
+                    }
+                    $del->delete();
+                }
+            }
+
+            if (!empty($photos)) {
+
+                $folderPath = "img/curriculum_data/" . $curriculum->slug . "/curriculum";
+                if (!File::exists($folderPath)) {
+                    File::makeDirectory($folderPath, 0755, true);
+                }
+                foreach ($photos as $key => $photo) {
+                    $old_curriculum_photo = CurriculumPhoto::find($photo['id']);
+                    if (!empty($photo['image'])) {
+                        if (isset($old_curriculum_photo)) {
+                            if (File::exists(public_path($old_curriculum_photo->image))) {
+                                File::delete(public_path($old_curriculum_photo->image));
+                            }
+                        }
+                        $file = $photo['image'];
+                        $fileName = "curriculum_" . uniqid('', true) . "." . $file->getClientOriginalExtension();
+                        $file->move($folderPath, $fileName);
+                        $photo['image'] = "/" . $folderPath . "/" . $fileName;
+                    } else {
+                        unset($photo['image']); // prevent overwriting if no new file
+                    }
+                    $photo['updated_user_id']  = Auth::user()->id;
+                    if (isset($old_curriculum_photo)) {
+                        $old_curriculum_photo->update($photo);
+                    } else {
+                        unset($photo['id']);
+                        $photo['created_user_id']  = Auth::user()->id;
+                        $photo['curriculum_id']  = $id;
+                        CurriculumPhoto::create($photo);
+                    }
+                }
+            }
+            DB::commit();
+
+            return back()->with('success', 'Curriculum Photo Updated Successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            // Handle the error
+            throw ValidationException::withMessages([
+                'title' =>  $e->getMessage()
+            ]);
+        }
     }
 }
