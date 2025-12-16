@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CurriculumPhotoUpdateRequest;
 use App\Http\Requests\CurriculumStoreRequest;
+use App\Http\Requests\CurriculumUpdateRequest;
 use App\Models\Curriculum;
 use App\Models\CurriculumPhoto;
 use Illuminate\Http\Request;
@@ -120,9 +121,60 @@ class CurriculumController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CurriculumUpdateRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        $data['updated_user_id'] = Auth::user()->id;
+        $curriculum = Curriculum::findOrFail($id);
+        try {
+            DB::beginTransaction();
+            if (isset($data['logo'])) {
+                if (File::exists(public_path($curriculum->logo))) {
+                    File::delete(public_path($curriculum->logo));
+                }
+                $filePath = "img/curriculum_data/" . $data['slug'];
+                if (!File::exists($filePath)) {
+                    $result = File::makeDirectory($filePath, 0755, true);
+                }
+
+                $photo = $data['logo'];
+                $extension = $photo->getClientOriginalExtension();
+                $imageUid = uniqid('', true);
+                $photoName = $filePath . "/curriculum_" . $imageUid . "." . $extension;
+
+                $photo->move($filePath, "/curriculum_" . $imageUid . "." . $extension);
+                $data['logo'] = "/" . $photoName;
+            }
+            if (isset($data['secondary_logo'])) {
+                if (File::exists(public_path($curriculum->secondary_logo))) {
+                    File::delete(public_path($curriculum->secondary_logo));
+                }
+                $filePath = "img/curriculum_data/" . $data['slug'];
+                if (!File::exists($filePath)) {
+                    $result = File::makeDirectory($filePath, 0755, true);
+                }
+
+                $photo = $data['secondary_logo'];
+                $extension = $photo->getClientOriginalExtension();
+                $imageUid = uniqid('', true);
+                $photoName = $filePath . "/curriculum_" . $imageUid . "." . $extension;
+
+                $photo->move($filePath, "/curriculum_" . $imageUid . "." . $extension);
+                $data['secondary_logo'] = "/" . $photoName;
+            }
+            $curriculum->update($data);
+
+            DB::commit();
+
+            return back()->with('success', 'Curriculum Updates Successfully.');
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+            // Handle the error
+            throw ValidationException::withMessages([
+                'title' =>  $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -130,7 +182,29 @@ class CurriculumController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $curriculum = Curriculum::with('related_photos')->findOrFail($id);
+        try {
+            DB::transaction(function () use ($curriculum) {
+
+                $filePath = "img/curriculum_data/" . $curriculum->slug;
+
+                // Delete relations
+                $curriculum->related_photos()->delete();
+
+                // Delete main record
+                $curriculum->delete();
+
+                // Delete Files
+                if (File::exists($filePath)) {
+                    File::deleteDirectory($filePath);
+                }
+            });
+        } catch (\Exception $e) {
+
+            throw ValidationException::withMessages([
+                'title' => $e->getMessage()
+            ]);
+        }
     }
     /**
      * Remove the specified resource from storage.

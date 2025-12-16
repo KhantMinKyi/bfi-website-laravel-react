@@ -29,10 +29,9 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Curriculum } from '@/types';
 import { AddCurriculum } from './add-curriculum-dialog';
+import { DeleteCurriculumDialog } from './delete-curriculum-dialog';
+import { UpdateCurriculumDialog } from './update-curriculum-dialog';
 import { UpdateCurriculumPhotoDialog } from './update-curriculum-photo-dialog';
-// import { AddSisterSchool } from './add-sister-school-dialog';
-// import { DeleteSisterSchoolDialog } from './delete-sister-school-dialog';
-// import { UpdateSisterSchoolDialog } from './update-sister-school-dialog';
 
 export function CurriculumDataTable() {
     const [data, setData] = React.useState<Curriculum[]>([]);
@@ -374,18 +373,18 @@ export function CurriculumDataTable() {
 
             {selectedCurriculum && (
                 <>
-                    {/* <UpdateSisterSchoolDialog
-                        sisterSchool={selectedCurriculum}
+                    <UpdateCurriculumDialog
+                        curriculum={selectedCurriculum}
                         open={updateDialogOpen}
                         onOpenChange={handleUpdateDialogChange}
                         onSuccess={fetchCurriculums}
                     />
-                    <DeleteSisterSchoolDialog
-                        sisterSchool={selectedCurriculum}
+                    <DeleteCurriculumDialog
+                        curriculum={selectedCurriculum}
                         open={deleteDialogOpen}
                         onOpenChange={handleDeleteDialogChange}
                         onSuccess={fetchCurriculums}
-                    /> */}
+                    />
                     <UpdateCurriculumPhotoDialog
                         curriculumPhotos={selectedCurriculum.related_photos}
                         curriculumId={selectedCurriculum.id}
