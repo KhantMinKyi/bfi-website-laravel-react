@@ -266,3 +266,26 @@ export interface SisterSchool {
     banners: SisterSchoolBanner[];
     leaderships: SisterSchoolLeadership[];
 }
+export interface CurriculumPhoto {
+    id: StringIterator;
+    curriculum_id?: number;
+    image: File | null;
+    title: string;
+    curriculumPhotoPreview?: string;
+    created_user?: User;
+    updated_user?: User;
+}
+export interface Curriculum {
+    id: number;
+    name: string;
+    sub_title: string;
+    slug: string;
+    logo?: string;
+    secondary_logo?: string;
+    introduction: string;
+    body?: string;
+    footer?: string;
+    created_user: User;
+    updated_user?: User;
+    related_photos: CurriculumPhoto[];
+}
