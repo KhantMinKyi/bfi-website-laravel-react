@@ -53,7 +53,6 @@ class GeneralRouteController extends Controller
     }
     public function getSisterSchoolPage($param)
     {
-        $sister_school = SisterSchool::with('banners', 'leaderships')->where('slug', $param)->firstOrFail();
         return Inertia::render('front-end/sister_schools/IndexPage', [
             'data' => $param,
         ]);
@@ -94,7 +93,6 @@ class GeneralRouteController extends Controller
     }
     public function getCurriculumPage($param)
     {
-        $curriculum = Curriculum::with('related_photos')->where('slug', $param)->firstOrFail();
         return Inertia::render('front-end/curriculum/IndexPage', [
             'data' => $param,
         ]);
@@ -106,5 +104,11 @@ class GeneralRouteController extends Controller
             'message' => 'success',
             'data' => $curriculum->related_photos,
         ], 200);
+    }
+    public function getCompetitionPage($param)
+    {
+        return Inertia::render('front-end/competition/IndexPage', [
+            'data' => $param,
+        ]);
     }
 }
