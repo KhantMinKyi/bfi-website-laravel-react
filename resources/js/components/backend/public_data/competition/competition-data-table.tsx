@@ -30,9 +30,8 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Competition } from '@/types';
 import { AddCompetition } from './add-competition-dialog';
-// import { DeleteCurriculumDialog } from './delete-curriculum-dialog';
-// import { UpdateCurriculumDialog } from './update-curriculum-dialog';
-// import { UpdateCurriculumPhotoDialog } from './update-curriculum-photo-dialog';
+import { DeleteCompetitionDialog } from './delete-competition-dialog';
+import { UpdateCompetitionPhotoDialog } from './update-competition-photo-dialog';
 
 export function CompetitionDataTable() {
     const [data, setData] = React.useState<Competition[]>([]);
@@ -385,20 +384,20 @@ export function CompetitionDataTable() {
                         open={updateDialogOpen}
                         onOpenChange={handleUpdateDialogChange}
                         onSuccess={fetchCompetitions}
-                    />
-                    <DeleteCurriculumDialog
+                    /> */}
+                    <DeleteCompetitionDialog
                         competition={selectedCompetition}
                         open={deleteDialogOpen}
                         onOpenChange={handleDeleteDialogChange}
                         onSuccess={fetchCompetitions}
                     />
-                    <UpdateCurriculumPhotoDialog
+                    <UpdateCompetitionPhotoDialog
                         competitionPhotos={selectedCompetition.related_photos}
                         competitionId={selectedCompetition.id}
                         open={updatePhotoDialogOpen}
                         onOpenChange={handleUpdatePhotoDialogChange}
                         onSuccess={fetchCompetitions}
-                    /> */}
+                    />
                 </>
             )}
         </div>

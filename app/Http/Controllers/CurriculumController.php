@@ -207,7 +207,11 @@ class CurriculumController extends Controller
         }
     }
     /**
-     * Remove the specified resource from storage.
+     * Undocumented function
+     *
+     * @param CurriculumPhotoUpdateRequest $request
+     * @param string $id
+     * @return void
      */
     public function photoUpdate(CurriculumPhotoUpdateRequest $request, string $id)
     {

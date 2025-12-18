@@ -10,6 +10,6 @@ Route::get('/public_data/competitions/dashboard', function () {
 })->name('public_data.competitions.dashboard');
 Route::prefix('api')->group(function () {
     Route::apiResource('/public_data/competitions', CompetitionController::class)->except('show');
-    // Route::put('/public_data/competitions/{competition}/photos', [CompetitionController::class, 'photoUpdate']);
+    Route::put('/public_data/competitions/{competition}/photos', [CompetitionController::class, 'photoUpdate']);
 });
 ?>
