@@ -31,7 +31,11 @@ const IndexPage = () => {
                     </div>
                 </motion.div>
             </div>
+
             <CompetitionBanner />
+            <div className="container mx-auto flex justify-center">
+                <img src="/img/SKT_11.jpg" className="max-h-screen" alt="" />
+            </div>
             <CompetitionPhotoGallery slug="primary-school" />
             <CompetitionInformations />
         </FrontEndLayout>
