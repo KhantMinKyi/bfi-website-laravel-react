@@ -1,3 +1,4 @@
+import { CompetitionDataTable } from '@/components/backend/public_data/competition/competition-data-table';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
@@ -13,7 +14,9 @@ function CompetitionsDashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Competitions Dashboard" />
-            <div>Competitions Dashboard</div>
+            <div className="p-10">
+                <CompetitionDataTable />
+            </div>
         </AppLayout>
     );
 }

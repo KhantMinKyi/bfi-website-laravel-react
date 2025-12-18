@@ -289,3 +289,24 @@ export interface Curriculum {
     updated_user?: User;
     related_photos: CurriculumPhoto[];
 }
+export interface CompetitionPhoto {
+    id: StringIterator;
+    competition_id?: number;
+    image: File | null;
+    title: string;
+    competitionPhotoPreview?: string;
+    created_user?: User;
+    updated_user?: User;
+}
+export interface Competition {
+    id: number;
+    name: string;
+    slug: string;
+    banner: string;
+    introduction: string;
+    body?: string;
+    footer?: string;
+    created_user: User;
+    updated_user?: User;
+    related_photos: CompetitionPhoto[];
+}
