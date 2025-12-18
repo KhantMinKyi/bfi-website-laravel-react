@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CompetitionPhotoUpdateRequest;
 use App\Http\Requests\CompetitionStoreRequest;
+use App\Http\Requests\CompetitionUpdateRequest;
 use App\Models\Competition;
 use App\Models\CompetitionPhoto;
 use Illuminate\Http\Request;
@@ -105,9 +106,43 @@ class CompetitionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CompetitionUpdateRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        $data['updated_user_id'] = Auth::user()->id;
+        $competition = Competition::findOrFail($id);
+        try {
+            DB::beginTransaction();
+            if (isset($data['banner'])) {
+                if (File::exists(public_path($competition->banner))) {
+                    File::delete(public_path($competition->banner));
+                }
+                $filePath = "img/competition_data/" . $data['slug'];
+                if (!File::exists($filePath)) {
+                    $result = File::makeDirectory($filePath, 0755, true);
+                }
+
+                $photo = $data['banner'];
+                $extension = $photo->getClientOriginalExtension();
+                $imageUid = uniqid('', true);
+                $photoName = $filePath . "/competition_" . $imageUid . "." . $extension;
+
+                $photo->move($filePath, "/competition_" . $imageUid . "." . $extension);
+                $data['banner'] = "/" . $photoName;
+            }
+            $competition->update($data);
+
+            DB::commit();
+
+            return back()->with('success', 'Competition Updates Successfully.');
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+            // Handle the error
+            throw ValidationException::withMessages([
+                'title' =>  $e->getMessage()
+            ]);
+        }
     }
 
     /**

@@ -1,5 +1,11 @@
+import DOMPurify from 'dompurify';
 import * as motion from 'motion/react-client';
-function CompetitionBanner() {
+type Props = {
+    name: string;
+    introduction: string;
+};
+const CompetitionBanner: React.FC<Props> = ({ name, introduction }) => {
+    const sanitizedDescription = DOMPurify.sanitize(introduction ?? '');
     return (
         <div
             className="bg-opci relative bg-cover bg-center bg-no-repeat py-20"
@@ -20,7 +26,7 @@ function CompetitionBanner() {
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >
                     <div className="flex flex-col items-center">
-                        <h2 className="font-merriweather my-10 text-4xl font-bold md:text-6xl">Mathemania</h2>
+                        <h2 className="font-merriweather my-10 text-4xl font-bold md:text-6xl">{name}</h2>
                         <img src="/img/bfi.png" className="max-w-64 dark:hidden" alt="" />
                         <img src="/img/bfi_b.png" className="hidden max-w-64 dark:block" alt="" />
                     </div>
@@ -34,17 +40,17 @@ function CompetitionBanner() {
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >
                     <div className="font-merriweather flex flex-col items-center">
-                        <p>
-                            Mathemania is an annual puzzle contest held in Myanmar and is open to the public. It consists of puzzles that assess
-                            students' visual/spatial, counting, arithmetic, pattern finding and logical/reasoning skills. Mathemania is organized by
-                            the Math Department and has gained popularity since it was initiated in 2006. Students, parents, educators and media have
-                            shown great enthusiasm and support for the event.
-                        </p>
+                        <p
+                            className=""
+                            dangerouslySetInnerHTML={{
+                                __html: sanitizedDescription,
+                            }}
+                        ></p>
                     </div>
                 </motion.div>
             </div>
         </div>
     );
-}
+};
 
 export default CompetitionBanner;

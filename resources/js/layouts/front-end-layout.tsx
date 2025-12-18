@@ -17,10 +17,16 @@ interface CurriculumNav {
     name: string;
     // add any other fields
 }
+interface CompetitionNav {
+    slug: string;
+    name: string;
+    // add any other fields
+}
 
 interface SharedProps {
     sisterSchools: SisterSchoolNav[];
     curriculum: CurriculumNav[];
+    competitions: CompetitionNav[];
     [key: string]: any; //
 }
 const baseLink =
@@ -34,7 +40,7 @@ export default ({ children }: FrondendLayoutProps) => {
     const [scrolled, setScrolled] = useState(false);
     const { url } = usePage();
     const currentPath = new URL(url, window.location.origin).pathname;
-    const { sisterSchools, curriculum } = usePage<SharedProps>().props;
+    const { sisterSchools, curriculum, competitions } = usePage<SharedProps>().props;
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const subLinkActive = 'after:w-[50%]';
 
@@ -282,7 +288,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                     <a
                                         href="#"
                                         className={`${
-                                            curriculum.some((cc) => currentPath === '/competition/competition-data/' + cc.slug)
+                                            competitions.some((ct) => currentPath === '/competition/competition-data/' + ct.slug)
                                                 ? activeLink
                                                 : baseLink
                                         }`}
@@ -290,13 +296,13 @@ export default ({ children }: FrondendLayoutProps) => {
                                         COMPETITION
                                     </a>
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
-                                        {curriculum.map((cc) => (
-                                            <li key={cc.slug}>
+                                        {competitions.map((ct) => (
+                                            <li key={ct.slug}>
                                                 <Link
-                                                    href={route('competition.data', cc.slug)}
-                                                    className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === '/competition/competition-data/' + cc.slug ? subLinkActive : ''}`}
+                                                    href={route('competition.data', ct.slug)}
+                                                    className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === '/competition/competition-data/' + ct.slug ? subLinkActive : ''}`}
                                                 >
-                                                    {cc.name}
+                                                    {ct.name}
                                                 </Link>
                                             </li>
                                         ))}
