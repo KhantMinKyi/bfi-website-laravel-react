@@ -1,9 +1,13 @@
-import { Button } from '@/components/ui/button';
-import { ChevronRight } from 'lucide-react';
+import DOMPurify from 'dompurify';
 import { motion } from 'motion/react';
 import GradualSpacingHeader from '../core/gradual-spacing-header';
-
-const CompetitionInformations = () => {
+type Props = {
+    body?: string;
+    footer?: string;
+};
+const CompetitionInformations: React.FC<Props> = ({ body, footer }) => {
+    const sanitizedBody = DOMPurify.sanitize(body ?? '');
+    const sanitizedFooter = DOMPurify.sanitize(footer ?? '');
     return (
         <section
             className="relative z-20 flex flex-col justify-center overflow-hidden dark:bg-neutral-950"
@@ -40,19 +44,22 @@ const CompetitionInformations = () => {
                             transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                         >
                             {/* Should be Information Body with Text Editor  */}
-                            <p className="body my-4 max-w-5xl text-xl">
-                                {' '}
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora iusto nostrum modi. Cum doloremque officiis
-                                cupiditate. Illum maxime libero autem numquam laboriosam, hic placeat unde excepturi officiis nesciunt at odit. Lorem
-                                ipsum, dolor sit amet consectetur adipisicing elit. Esse dolores repellat saepe dignissimos, facilis in porro sequi
-                                reprehenderit dicta nemo animi rem omnis? Illum, suscipit? Nostrum cumque quia laboriosam repudiandae.
-                            </p>
+
+                            <p
+                                className="body my-4 max-w-5xl text-xl"
+                                dangerouslySetInnerHTML={{
+                                    __html: sanitizedBody,
+                                }}
+                            ></p>
+
                             {/* Should be Information Footer with Text Editor  */}
-                            <div className="text-center">
-                                <Button className="cursor-pointer gap-2 bg-green-700 text-white hover:bg-green-900">
-                                    View More
-                                    <ChevronRight />
-                                </Button>
+                            <div className="mt-10 text-center">
+                                <p
+                                    className="body my-4 max-w-5xl text-xl"
+                                    dangerouslySetInnerHTML={{
+                                        __html: sanitizedFooter,
+                                    }}
+                                ></p>
                             </div>
                         </motion.div>
                     </div>

@@ -31,6 +31,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Competition } from '@/types';
 import { AddCompetition } from './add-competition-dialog';
 import { DeleteCompetitionDialog } from './delete-competition-dialog';
+import { UpdateCompetitionDialog } from './update-competition-dialog';
 import { UpdateCompetitionPhotoDialog } from './update-competition-photo-dialog';
 
 export function CompetitionDataTable() {
@@ -379,12 +380,12 @@ export function CompetitionDataTable() {
 
             {selectedCompetition && (
                 <>
-                    {/* <UpdateCurriculumDialog
+                    <UpdateCompetitionDialog
                         competition={selectedCompetition}
                         open={updateDialogOpen}
                         onOpenChange={handleUpdateDialogChange}
                         onSuccess={fetchCompetitions}
-                    /> */}
+                    />
                     <DeleteCompetitionDialog
                         competition={selectedCompetition}
                         open={deleteDialogOpen}

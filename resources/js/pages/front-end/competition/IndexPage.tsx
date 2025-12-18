@@ -2,8 +2,25 @@ import CompetitionBanner from '@/components/front-end/competition/competition-ba
 import CompetitionInformations from '@/components/front-end/competition/competition-informations';
 import CompetitionPhotoGallery from '@/components/front-end/competition/competition-photo-gallery';
 import FrontEndLayout from '@/layouts/front-end-layout';
+import { Competition } from '@/types';
+import { usePage } from '@inertiajs/react';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 const IndexPage = () => {
+    const { props } = usePage<{ data: string }>();
+    const { data } = props;
+    const [competitionData, setCompetitionData] = useState<Competition>({} as Competition);
+    const [competitionDataLoading, setCompetitionDataLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        fetch('/api/competition/competition-data/' + data)
+            .then((res) => res.json())
+            .then((res) => {
+                setCompetitionData(res.data);
+                setCompetitionDataLoading(false);
+            });
+    }, [data]);
+    console.log(competitionData);
     return (
         <FrontEndLayout>
             <div
@@ -26,18 +43,18 @@ const IndexPage = () => {
                 >
                     <div className="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center md:py-40 lg:py-52">
                         <img src="/img/bfi.png" className="max-w-40" alt="" />
-                        <h2 className="font-merriweather mb-4 text-3xl font-bold md:text-5xl">Mathemania</h2>
+                        <h2 className="font-merriweather mb-4 text-3xl font-bold md:text-5xl">{competitionData.name}</h2>
                         <p className="mb-6 max-w-2xl text-lg md:text-xl">Our path through innovation, challenge, and achievement.</p>
                     </div>
                 </motion.div>
             </div>
 
-            <CompetitionBanner />
+            <CompetitionBanner name={competitionData.name} introduction={competitionData.introduction} />
             <div className="container mx-auto flex justify-center">
-                <img src="/img/SKT_11.jpg" className="max-h-screen" alt="" />
+                <img src={competitionData.banner} className="max-h-screen" alt="" />
             </div>
-            <CompetitionPhotoGallery slug="primary-school" />
-            <CompetitionInformations />
+            <CompetitionInformations body={competitionData.body} footer={competitionData.footer} />
+            <CompetitionPhotoGallery slug={competitionData.slug} />
         </FrontEndLayout>
     );
 };

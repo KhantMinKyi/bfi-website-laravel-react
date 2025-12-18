@@ -18,4 +18,8 @@ Route::prefix('api')->group(function () {
     Route::get('/education/curriculum-data/{slug}', [GeneralRouteController::class, 'getCurriculumData']);
     Route::get('/education/get-all-curriculum', [GeneralRouteController::class, 'getAllCurriculum']);
     Route::get('/education/get-curriculum-photo/{slug}', [GeneralRouteController::class, 'getCurriculumPhotos']);
+
+
+    Route::get('/competition/competition-data/{slug}', [GeneralRouteController::class, 'getCompetitionData']);
+    Route::get('/competition/get-competition-photo/{slug}', [GeneralRouteController::class, 'getCompetitionPhotos']);
 });

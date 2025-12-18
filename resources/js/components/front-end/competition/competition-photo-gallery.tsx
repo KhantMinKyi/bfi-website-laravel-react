@@ -27,7 +27,7 @@ const CompetitionPhotoGallery = ({ slug }: { slug: string }) => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch(`/api/education/get-curriculum-photo/${slug}`);
+                const response = await fetch(`/api/competition/get-competition-photo/${slug}`);
                 const result: ApiResponse = await response.json();
 
                 console.log('API Response:', result);

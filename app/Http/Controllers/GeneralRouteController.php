@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryTag;
+use App\Models\Competition;
 use App\Models\Curriculum;
 use App\Models\Faq;
 use App\Models\Post;
@@ -110,5 +111,21 @@ class GeneralRouteController extends Controller
         return Inertia::render('front-end/competition/IndexPage', [
             'data' => $param,
         ]);
+    }
+    public function getCompetitionData($slug)
+    {
+        $competition = Competition::with('related_photos')->where('slug', $slug)->firstOrFail();
+        return response()->json([
+            'message' => 'success',
+            'data' => $competition,
+        ], 200);
+    }
+    public function getCompetitionPhotos($slug)
+    {
+        $competition = Competition::with('related_photos')->where('slug', $slug)->firstOrFail();
+        return response()->json([
+            'message' => 'success',
+            'data' => $competition->related_photos,
+        ], 200);
     }
 }
