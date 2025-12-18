@@ -15,6 +15,7 @@ import {
 import { ArrowUpDown, ImagePlus, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
 import * as React from 'react';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -27,14 +28,14 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Curriculum } from '@/types';
-import { AddCurriculum } from './add-curriculum-dialog';
-import { DeleteCurriculumDialog } from './delete-curriculum-dialog';
-import { UpdateCurriculumDialog } from './update-curriculum-dialog';
-import { UpdateCurriculumPhotoDialog } from './update-curriculum-photo-dialog';
+import { Competition } from '@/types';
+import { AddCompetition } from './add-competition-dialog';
+// import { DeleteCurriculumDialog } from './delete-curriculum-dialog';
+// import { UpdateCurriculumDialog } from './update-curriculum-dialog';
+// import { UpdateCurriculumPhotoDialog } from './update-curriculum-photo-dialog';
 
-export function CurriculumDataTable() {
-    const [data, setData] = React.useState<Curriculum[]>([]);
+export function CompetitionDataTable() {
+    const [data, setData] = React.useState<Competition[]>([]);
     const [loading, setLoading] = React.useState(true);
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -44,74 +45,74 @@ export function CurriculumDataTable() {
     const [updateDialogOpen, setUpdateDialogOpen] = React.useState(false);
     const [updatePhotoDialogOpen, setUpdatePhotoDialogOpen] = React.useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
-    const [selectedCurriculum, setSelectedCurriculum] = React.useState<Curriculum | null>(null);
+    const [selectedCompetition, setSelectedCompetition] = React.useState<Competition | null>(null);
 
-    const fetchCurriculums = React.useCallback(async () => {
+    const fetchCompetitions = React.useCallback(async () => {
         try {
             setLoading(true);
-            const response = await fetch('/api/education/curriculum');
+            const response = await fetch('/api/public_data/competitions');
 
             if (!response.ok) {
-                throw new Error('Failed to fetch settings');
+                throw new Error('Failed to fetch Competitions');
             }
             const result = await response.json();
-            setData(result.curricula);
+            setData(result.competitions);
         } catch (error) {
-            console.error('Error fetching settings:', error);
+            console.error('Error fetching Competitions:', error);
         } finally {
             setLoading(false);
         }
     }, []);
     React.useEffect(() => {
-        fetchCurriculums();
-    }, [fetchCurriculums]);
+        fetchCompetitions();
+    }, [fetchCompetitions]);
     const handleUpdateDialogChange = (open: boolean) => {
         setUpdateDialogOpen(open);
         if (!open) {
-            // Reset selected Curriculum setting when dialog closes
-            setSelectedCurriculum(null);
+            // Reset selected Competition setting when dialog closes
+            setSelectedCompetition(null);
         }
     };
     const handleUpdatePhotoDialogChange = (open: boolean) => {
         setUpdatePhotoDialogOpen(open);
         if (!open) {
-            // Reset selected Curriculum setting when dialog closes
-            setSelectedCurriculum(null);
+            // Reset selected Competition setting when dialog closes
+            setSelectedCompetition(null);
         }
     };
 
     const handleDeleteDialogChange = (open: boolean) => {
         setDeleteDialogOpen(open);
         if (!open) {
-            // Reset selected Curriculum setting when dialog closes
-            setSelectedCurriculum(null);
+            // Reset selected Competition setting when dialog closes
+            setSelectedCompetition(null);
         }
     };
 
-    const handleOpenUpdateDialog = (curriculum: Curriculum) => {
-        setSelectedCurriculum(curriculum);
+    const handleOpenUpdateDialog = (competition: Competition) => {
+        setSelectedCompetition(competition);
         // Small delay to allow dropdown to close before opening dialog
         setTimeout(() => {
             setUpdateDialogOpen(true);
         }, 0);
     };
-    const handleOpenUpdatePhotoDialog = (curriculum: Curriculum) => {
-        setSelectedCurriculum(curriculum);
+    const handleOpenUpdatePhotoDialog = (competition: Competition) => {
+        setSelectedCompetition(competition);
         // Small delay to allow dropdown to close before opening dialog
         setTimeout(() => {
             setUpdatePhotoDialogOpen(true);
         }, 0);
     };
 
-    const handleOpenDeleteDialog = (curriculum: Curriculum) => {
-        setSelectedCurriculum(curriculum);
+    const handleOpenDeleteDialog = (competition: Competition) => {
+        setSelectedCompetition(competition);
         // Small delay to allow dropdown to close before opening dialog
         setTimeout(() => {
             setDeleteDialogOpen(true);
         }, 0);
     };
 
-    const columns: ColumnDef<Curriculum>[] = React.useMemo(
+    const columns: ColumnDef<Competition>[] = React.useMemo(
         () => [
             {
                 id: 'select',
@@ -129,6 +130,26 @@ export function CurriculumDataTable() {
                 enableHiding: false,
             },
             {
+                accessorKey: 'banner',
+                header: 'Banner',
+                cell: ({ row }) => {
+                    const sisterSchool = row.original;
+                    return (
+                        <Avatar className="h-10 w-10">
+                            <AvatarImage src={sisterSchool.banner || '/placeholder.svg'} alt={sisterSchool.name} />
+                            <AvatarFallback>
+                                {sisterSchool.name
+                                    .split(' ')
+                                    .map((n) => n[0])
+                                    .join('')
+                                    .toUpperCase()}
+                            </AvatarFallback>
+                        </Avatar>
+                    );
+                },
+                enableSorting: false,
+            },
+            {
                 accessorKey: 'name',
                 header: ({ column }) => {
                     return (
@@ -139,20 +160,6 @@ export function CurriculumDataTable() {
                     );
                 },
                 cell: ({ row }) => <div className="font-medium">{row.getValue('name')}</div>,
-            },
-            {
-                id: 'sub_title',
-                header: ({ column }) => (
-                    <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-                        Sub Title
-                        <ArrowUpDown />
-                    </Button>
-                ),
-                accessorFn: (row) => row.sub_title,
-                cell: ({ getValue }) => {
-                    const value = getValue() as string;
-                    return <div className="font-medium">{value}</div>;
-                },
             },
             {
                 id: 'introduction',
@@ -172,7 +179,7 @@ export function CurriculumDataTable() {
                 id: 'actions',
                 enableHiding: false,
                 cell: ({ row }) => {
-                    const curriculum = row.original;
+                    const competition = row.original;
 
                     return (
                         <DropdownMenu>
@@ -184,20 +191,20 @@ export function CurriculumDataTable() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                <DropdownMenuItem onClick={() => navigator.clipboard.writeText(curriculum.id.toString())}>Copy ID</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => navigator.clipboard.writeText(competition.id.toString())}>Copy ID</DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem onClick={() => handleOpenUpdateDialog(curriculum)}>
+                                <DropdownMenuItem onClick={() => handleOpenUpdateDialog(competition)}>
                                     <Pencil className="mr-2 h-4 w-4" />
                                     Update
                                 </DropdownMenuItem>
 
-                                <DropdownMenuItem onClick={() => handleOpenUpdatePhotoDialog(curriculum)}>
+                                <DropdownMenuItem onClick={() => handleOpenUpdatePhotoDialog(competition)}>
                                     <ImagePlus className="mr-2 h-4 w-4" />
                                     Update Photo
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
-                                    onClick={() => handleOpenDeleteDialog(curriculum)}
+                                    onClick={() => handleOpenDeleteDialog(competition)}
                                     className="text-destructive focus:text-destructive"
                                 >
                                     <Trash2 className="mr-2 h-4 w-4" />
@@ -240,7 +247,7 @@ export function CurriculumDataTable() {
                     <Input placeholder="Filter by name or email..." disabled className="max-w-sm" value="" onChange={() => {}} />
                     <div className="ml-auto flex items-center gap-2">
                         <Button disabled className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
-                            Add Curriculum
+                            Add Competition
                         </Button>
                         {/* <Button variant="outline" disabled>
                             Columns <ChevronDown />
@@ -252,8 +259,8 @@ export function CurriculumDataTable() {
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="w-12"></TableHead>
+                                <TableHead>Banner</TableHead>
                                 <TableHead>Name</TableHead>
-                                <TableHead>Sub Title</TableHead>
                                 <TableHead>Introduction</TableHead>
                                 <TableHead></TableHead>
                             </TableRow>
@@ -281,7 +288,7 @@ export function CurriculumDataTable() {
                         </TableBody>
                     </Table>
                 </div>
-                <div className="flex items-center justify-center py-8 text-sm text-muted-foreground">Loading Curriculum Data...</div>
+                <div className="flex items-center justify-center py-8 text-sm text-muted-foreground">Loading Competition Data...</div>
             </div>
         );
     }
@@ -296,7 +303,7 @@ export function CurriculumDataTable() {
                     className="max-w-sm"
                 />
                 <div className="ml-auto flex items-center gap-2">
-                    <AddCurriculum onSuccess={fetchCurriculums} />
+                    <AddCompetition onSuccess={fetchCompetitions} />
                     {/* <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline">
@@ -371,27 +378,27 @@ export function CurriculumDataTable() {
                 </div>
             </div>
 
-            {selectedCurriculum && (
+            {selectedCompetition && (
                 <>
-                    <UpdateCurriculumDialog
-                        curriculum={selectedCurriculum}
+                    {/* <UpdateCurriculumDialog
+                        competition={selectedCompetition}
                         open={updateDialogOpen}
                         onOpenChange={handleUpdateDialogChange}
-                        onSuccess={fetchCurriculums}
+                        onSuccess={fetchCompetitions}
                     />
                     <DeleteCurriculumDialog
-                        curriculum={selectedCurriculum}
+                        competition={selectedCompetition}
                         open={deleteDialogOpen}
                         onOpenChange={handleDeleteDialogChange}
-                        onSuccess={fetchCurriculums}
+                        onSuccess={fetchCompetitions}
                     />
                     <UpdateCurriculumPhotoDialog
-                        curriculumPhotos={selectedCurriculum.related_photos}
-                        curriculumId={selectedCurriculum.id}
+                        competitionPhotos={selectedCompetition.related_photos}
+                        competitionId={selectedCompetition.id}
                         open={updatePhotoDialogOpen}
                         onOpenChange={handleUpdatePhotoDialogChange}
-                        onSuccess={fetchCurriculums}
-                    />
+                        onSuccess={fetchCompetitions}
+                    /> */}
                 </>
             )}
         </div>
