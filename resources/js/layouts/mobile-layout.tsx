@@ -17,15 +17,21 @@ interface CurriculumNav {
     name: string;
     // add any other fields
 }
+interface CompetitionNav {
+    slug: string;
+    name: string;
+    // add any other fields
+}
 
 interface SharedProps {
     sisterSchools: SisterSchoolNav[];
     curriculum: CurriculumNav[];
+    competitions: CompetitionNav[];
     [key: string]: any; //
 }
 
 function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayoutProps) {
-    const { sisterSchools, curriculum } = usePage<SharedProps>().props;
+    const { sisterSchools, curriculum, competitions } = usePage<SharedProps>().props;
     return (
         <nav className="font-merriweather mt-16 space-y-4 p-6 text-gray-800 uppercase dark:text-white">
             {/* Home */}
@@ -179,40 +185,6 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     </ul>
                 </div>
             </div>
-            {/* Admissions*/}
-            {/* <div>
-                <button onClick={() => toggleSubMenu('admissions')} className="flex w-full items-center justify-between py-2 text-left uppercase">
-                    Admissions
-                    <span>{activeSubMenu === 'admissions' ? '▲' : '▼'}</span>
-                </button>
-                <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                        activeSubMenu !== 'about_us' &&
-                        activeSubMenu !== 'sister_schools' &&
-                        activeSubMenu !== 'curriculum' &&
-                        activeSubMenu !== 'bfi_olympiads' &&
-                        // (
-                        activeSubMenu === 'admissions'
-                            ? // ||
-                              // currentPath === routePath('curriculum') ||
-                              // currentPath === routePath('curriculum') ||
-                              // currentPath === routePath('curriculum') ||
-                              // currentPath === routePath('curriculum') ||
-                              // currentPath === routePath('curriculum'))
-                              'max-h-screen'
-                            : 'max-h-0'
-                    }`}
-                >
-                    <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
-                        <li>
-                            <Link href="#"> Applying to BFI Sister Schools</Link>
-                        </li>
-                        <li>
-                            <Link href="#"> Admission Policies</Link>
-                        </li>
-                    </ul>
-                </div>
-            </div> */}
             {/* COMPETITION*/}
             <div>
                 <button onClick={() => toggleSubMenu('competition')} className="flex w-full items-center justify-between py-2 text-left uppercase">
@@ -223,36 +195,25 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     className={`overflow-hidden transition-all duration-300 ${
                         activeSubMenu !== 'about_us' &&
                         activeSubMenu !== 'sister_schools' &&
+                        activeSubMenu !== 'admissions' &&
                         activeSubMenu !== 'curriculum' &&
                         activeSubMenu !== 'community' &&
-                        // (
-                        activeSubMenu === 'competition'
-                            ? // ||
-                              // currentPath === routePath('curriculum') ||
-                              // currentPath === routePath('curriculum') ||
-                              // currentPath === routePath('curriculum') ||
-                              // currentPath === routePath('curriculum') ||
-                              // currentPath === routePath('curriculum'))
-                              'max-h-screen'
+                        (activeSubMenu === 'competition' || competitions.some((cp) => currentPath === '/competition/competition-data/' + cp.slug))
+                            ? 'max-h-screen'
                             : 'max-h-0'
                     }`}
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
-                        <li>
-                            <Link href="#"> Mathemania</Link>
-                        </li>
-                        <li>
-                            <Link href="#"> Spelling Bee</Link>
-                        </li>
-                        <li>
-                            <Link href="#">Science Project Competition</Link>
-                        </li>
-                        <li>
-                            <Link href="#">BFI Football Tournament</Link>
-                        </li>
-                        <li>
-                            <Link href="#">Robofest</Link>
-                        </li>
+                        {competitions.map((cp) => (
+                            <li key={cp.slug}>
+                                <Link
+                                    href={route('competition.data', cp.slug)}
+                                    className={`${currentPath === '/competition/competition-data/' + cp.slug ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                                >
+                                    {cp.name}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>

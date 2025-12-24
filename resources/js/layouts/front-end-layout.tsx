@@ -306,7 +306,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 </Link>
                                             </li>
                                         ))}
-                                        <li>
+                                        {/* <li>
                                             <Link
                                                 href={route('apply_to_bfi_sister_schools')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('apply_to_bfi_sister_schools') ? subLinkActive : ''}`}
@@ -345,7 +345,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             >
                                                 Robofest
                                             </Link>
-                                        </li>
+                                        </li> */}
                                         {/* <li>
                                             <Link
                                                 href={route('faq')}
