@@ -310,3 +310,41 @@ export interface Competition {
     updated_user?: User;
     related_photos: CompetitionPhoto[];
 }
+export interface JobPost {
+    id: number;
+    title: string;
+    function: string;
+    sub_function: string;
+    gender: 'Male' | 'Female' | 'Both';
+    experience_level: 'Entry Level' | 'Experienced Non-Manager' | 'Manager' | 'Director and Above';
+    education_level: 'High School Diploma' | 'Associate Degree' | 'Bachelor`s Degree' | 'Master`s Degree' | 'Doctorate (Ph.D.)';
+    number_of_post: number;
+    type: 'Full Time' | 'Part Time' | 'Temp/Contract' | 'Voluntary' | 'Internship' | 'Project Specific';
+    computer_skill: 'Beginner' | 'Intermediate' | 'Advanced';
+    industry:
+        | 'IT/Computer'
+        | 'Banking/Insurance/Microfinance'
+        | 'Education/Training'
+        | 'Telecommunications'
+        | 'Construction/Building/Architecture'
+        | 'Medical/Hospital'
+        | 'Advertising/PR/Marketing'
+        | 'Accounting'
+        | 'Recruitment';
+    maximun_salary: number;
+    is_hide_salary: boolean;
+    employee_type: 'Local' | 'Foreigner' | 'Both';
+    email: string;
+    description: string;
+    requirement: string;
+    benefits: string;
+    highlights: string;
+    career_growth: string;
+    is_active: boolean;
+    created_user_id: number;
+    updated_user_id?: number;
+    created_user: User;
+    updated_user?: User;
+    created_at: string;
+    updated_at: string;
+}
