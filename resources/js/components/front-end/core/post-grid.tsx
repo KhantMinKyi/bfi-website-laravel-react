@@ -81,7 +81,7 @@ const PostGrid: React.FC<PostGridProps> = ({ posts, categories, onPostClick, onF
                 {currentPosts.map((post) => (
                     <div
                         key={post.id}
-                        className="group cursor-pointer overflow-hidden rounded-lg border border-gray-200 shadow-sm transition-shadow hover:shadow-lg"
+                        className="group cursor-pointer overflow-hidden rounded-lg shadow-sm transition-shadow hover:shadow-lg"
                         onClick={() => onPostClick && onPostClick(post)}
                     >
                         <div className="relative overflow-hidden">
@@ -123,7 +123,9 @@ const PostGrid: React.FC<PostGridProps> = ({ posts, categories, onPostClick, onF
                                 key={page}
                                 onClick={() => handlePageChange(page)}
                                 className={`min-w-[40px] rounded px-3 py-2 text-sm font-medium transition ${
-                                    currentPage === page ? 'bg-blue-800 text-white' : 'border border-gray-300 text-gray-700 hover:bg-gray-100'
+                                    currentPage === page
+                                        ? 'bg-blue-800 text-white dark:bg-green-600'
+                                        : 'border border-gray-300 text-gray-700 hover:bg-gray-100'
                                 }`}
                             >
                                 {page}
