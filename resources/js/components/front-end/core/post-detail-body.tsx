@@ -1,9 +1,11 @@
-import { CategoryTag, Post } from '@/types';
+import { Breadcrumbs } from '@/components/breadcrumbs';
+import { BreadcrumbItem, CategoryTag, Post } from '@/types';
 import { Link } from '@inertiajs/react';
 import DOMPurify from 'dompurify';
 import { CalendarCheck, Pin } from 'lucide-react';
 import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter, FiYoutube } from 'react-icons/fi';
 import { DotLoading } from './dot-loading';
+
 interface PostDetailProps {
     post?: Post;
     otherPosts?: Post[];
@@ -20,11 +22,21 @@ const PostDetailBody: React.FC<PostDetailProps> = ({ post, otherPosts, categorie
     const sanitizedDescription = DOMPurify.sanitize(post?.description ?? '');
     const sanitizedFooterDescription = DOMPurify.sanitize(post?.footer_description ?? '');
     const images = post?.images?.split(',');
-
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: 'News & Events',
+            href: '/community/news-and-events',
+        },
+        {
+            title: `${post?.title}`,
+            href: '#',
+        },
+    ];
     return (
         <>
             <section className="blog-page section-padding bg-gray-50 py-12 pt-20 dark:bg-neutral-950">
                 <div className="container mx-auto px-4">
+                    <Breadcrumbs breadcrumbs={breadcrumbs} />
                     <div className="row flex flex-wrap">
                         <div className="col-lg-7 col-sm-12 col-xs-12 w-full lg:w-7/12">
                             <div className="arti_single rounded-lg p-6 shadow-lg">
