@@ -9,4 +9,7 @@ Route::get('/community/contact_us', function () {
 Route::get('/community/faq', function () {
     return Inertia::render('front-end/community/FAQ');
 })->name('faq');
+Route::get('/community/news-and-events', function () {
+    return Inertia::render('front-end/community/NewsEvent');
+})->name('news_and_event');
 ?>

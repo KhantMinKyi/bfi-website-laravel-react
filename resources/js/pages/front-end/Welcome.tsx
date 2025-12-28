@@ -106,7 +106,7 @@ function Welcome() {
                 setImagesLoading(false);
             })
             .catch((err) => console.log(err));
-        fetch('/api/home/get-post-data')
+        fetch('/api/home/get-post-data?limit=6')
             .then((res) => res.json())
             .then((res) => {
                 setCardsData(res.data);
