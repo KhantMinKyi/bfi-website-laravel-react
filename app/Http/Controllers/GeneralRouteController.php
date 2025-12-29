@@ -6,6 +6,7 @@ use App\Models\CategoryTag;
 use App\Models\Competition;
 use App\Models\Curriculum;
 use App\Models\Faq;
+use App\Models\JobPost;
 use App\Models\Post;
 use App\Models\SisterSchool;
 use Illuminate\Http\Request;
@@ -134,6 +135,22 @@ class GeneralRouteController extends Controller
         return response()->json([
             'message' => 'success',
             'data' => $competition->related_photos,
+        ], 200);
+    }
+    public function getJobPostData()
+    {
+        $job_posts = JobPost::orderBy('created_at', 'desc')->get();
+        return response()->json([
+            'message' => 'success',
+            'data' => $job_posts,
+        ], 200);
+    }
+    public function getJobPostDetail($id)
+    {
+        $job_post = JobPost::findOrFail($id);
+        return response()->json([
+            'message' => 'success',
+            'data' => $job_post,
         ], 200);
     }
 }

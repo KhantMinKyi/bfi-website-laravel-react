@@ -36,7 +36,9 @@ const PostDetailBody: React.FC<PostDetailProps> = ({ post, otherPosts, categorie
         <>
             <section className="blog-page section-padding bg-gray-50 py-12 pt-20 dark:bg-neutral-950">
                 <div className="container mx-auto px-4">
-                    <Breadcrumbs breadcrumbs={breadcrumbs} />
+                    <div className="mb-4">
+                        <Breadcrumbs breadcrumbs={breadcrumbs} />
+                    </div>
                     <div className="row flex flex-wrap">
                         <div className="col-lg-7 col-sm-12 col-xs-12 w-full lg:w-7/12">
                             <div className="arti_single rounded-lg p-6 shadow-lg">
@@ -53,7 +55,7 @@ const PostDetailBody: React.FC<PostDetailProps> = ({ post, otherPosts, categorie
                                     <h2 className="font-merriweather my-2 text-lg font-bold text-gray-800 md:text-xl dark:text-gray-100">
                                         {post?.subtitle}
                                     </h2>
-                                    {post?.type && post?.type.is_activity && (
+                                    {post?.type && post?.type.is_activity == true && (
                                         <div className="my-8 flex gap-6">
                                             <span className="flex gap-2 text-green-700">
                                                 <Pin />

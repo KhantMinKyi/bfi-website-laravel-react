@@ -303,7 +303,10 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
             </div> */}
             {/* Career */}
             <div>
-                <Link href="#" className="block py-2">
+                <Link
+                    href={route('career')}
+                    className={`${currentPath === routePath('career') || currentPath?.startsWith('/career/job-detail/') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                >
                     Career
                 </Link>
             </div>

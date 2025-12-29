@@ -22,4 +22,8 @@ Route::prefix('api')->group(function () {
 
     Route::get('/competition/competition-data/{slug}', [GeneralRouteController::class, 'getCompetitionData']);
     Route::get('/competition/get-competition-photo/{slug}', [GeneralRouteController::class, 'getCompetitionPhotos']);
+
+
+    Route::get('/career/get-job-post-data', [GeneralRouteController::class, 'getJobPostData']);
+    Route::get('/career/get-job-post-detail/{id}', [GeneralRouteController::class, 'getJobPostDetail']);
 });
