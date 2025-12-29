@@ -1,12 +1,13 @@
-import { Programmes } from '@/types';
+import { Curriculum } from '@/types';
+import { Link } from '@inertiajs/react';
 import { Autoplay, EffectCreative, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import PullUpHeader from './pull-up-header';
 type EducationProgrammeProps = {
-    programmes: Programmes[];
+    curriculums: Curriculum[];
 };
 
-function EducationProgramme({ programmes }: EducationProgrammeProps) {
+function EducationProgramme({ curriculums }: EducationProgrammeProps) {
     return (
         <div className="container mx-auto py-12">
             <div className="mb-10 text-center">
@@ -53,30 +54,32 @@ function EducationProgramme({ programmes }: EducationProgrammeProps) {
                 }}
             >
                 <div className="m-10">
-                    {programmes.length > 0 ? (
-                        programmes.map((p) => (
+                    {curriculums.length > 0 ? (
+                        curriculums.map((c) => (
                             <SwiperSlide className="">
                                 <div className="max-w-sm overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                                    <a href="#" className="mb-4 flex h-52 justify-center align-middle">
-                                        <img className="h-full w-full rounded-t-lg object-cover" src={p.download_url} alt="product image" />
-                                    </a>
+                                    <Link href={`/curriculum/curriculum-data/${c.slug}`} className="mb-4 flex h-52 justify-center align-middle">
+                                        <img
+                                            className="h-full w-full rounded-t-lg object-cover"
+                                            src={String(c.related_photos[0].image)}
+                                            alt="product image"
+                                        />
+                                    </Link>
                                     <div className="px-5 pb-5">
                                         <a href="#">
-                                            <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{p.author}</h5>
+                                            <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{c.name}</h5>
                                         </a>
                                         <a href="#">
-                                            <h6 className="my-2 text-base tracking-tight text-gray-500 dark:text-gray-200">
-                                                Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport
-                                            </h6>
+                                            <h6 className="my-2 text-base tracking-tight text-gray-500 dark:text-gray-200">{c.sub_title}</h6>
                                         </a>
                                         <div className="flex items-center justify-between">
-                                            <span className="text-sm font-bold text-gray-900 dark:text-white">18-09-2025</span>
-                                            <a
-                                                href="#"
+                                            <span className="text-sm font-bold text-gray-900 dark:text-white"></span>
+                                            <Link
+                                                href={`/curriculum/curriculum-data/${c.slug}`}
                                                 className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-gray-950 dark:hover:bg-gray-900 dark:focus:ring-gray-950"
                                             >
                                                 View More
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
