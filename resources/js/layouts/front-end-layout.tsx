@@ -401,7 +401,10 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </li>
                                 {/* Career */}
                                 <li className="group relative inline-block">
-                                    <Link href={route('home')} className={`${currentPath === '/career' ? activeLink : baseLink}`}>
+                                    <Link
+                                        href={route('career')}
+                                        className={`${currentPath === routePath('career') || currentPath.startsWith('/career/job-detail/') ? activeLink : baseLink}`}
+                                    >
                                         Career
                                     </Link>
                                 </li>
@@ -410,17 +413,6 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </li>
                             </ul>
                         </div>
-                        {/* <div className={`hidden items-center pr-[15px] sm:pr-0 md:flex lg:pr-[4px] ${scrolled ? 'block' : 'hidden'} `}>
-                            <a
-                                className="mr-2 hidden cursor-pointer rounded-2xl bg-sky-500 px-4 py-2 text-white shadow-2xl sm:block md:hidden"
-                                href="#"
-                            >
-                                Contact Us
-                            </a>
-                            <label className="inline-flex cursor-pointer items-center">
-                                <AppearanceToggleDropdown />
-                            </label>
-                        </div> */}
                     </div>
                 </div>
             </header>
