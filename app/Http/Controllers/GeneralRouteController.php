@@ -92,6 +92,14 @@ class GeneralRouteController extends Controller
             'data' => $curriculum,
         ], 200);
     }
+    public function getAllCurriculum()
+    {
+        $curriculums = Curriculum::with('related_photos')->get();
+        return response()->json([
+            'message' => 'success',
+            'data' => $curriculums,
+        ], 200);
+    }
     public function getCurriculumPage($param)
     {
         return Inertia::render('front-end/curriculum/IndexPage', [

@@ -13,7 +13,7 @@ import Information from '@/components/front-end/home/information';
 import PhotoGallery from '@/components/front-end/home/photo-gallery';
 import SisterSchoolCards from '@/components/front-end/home/sister-school-cards';
 import FrontEndLayout from '@/layouts/front-end-layout';
-import { CategoryTag, ImageItem, Post, Programmes } from '@/types';
+import { CategoryTag, Curriculum, ImageItem, Post } from '@/types';
 import { Head, router } from '@inertiajs/react';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -45,7 +45,7 @@ const carouselData = [
 ];
 
 function Welcome() {
-    const [programmes, setProgrammes] = useState<Programmes[]>([]);
+    const [curriculum, setCurriculum] = useState<Curriculum[]>([]);
     const [images, setImages] = useState<ImageItem[]>([]);
     const [cardsData, setCardsData] = useState<Post[]>([]);
     const [categoryTadData, setCategoryTadData] = useState<CategoryTag[]>([]);
@@ -92,10 +92,10 @@ function Welcome() {
     );
 
     useEffect(() => {
-        fetch('https://picsum.photos/v2/list')
+        fetch('/api/education/get-all-curriculum')
             .then((res) => res.json())
-            .then((data: Programmes[]) => {
-                setProgrammes(data);
+            .then((res) => {
+                setCurriculum(res.data);
                 setLoading(false);
             })
             .catch((err) => console.log(err));
@@ -180,7 +180,7 @@ function Welcome() {
                         </div>
                     </div>
                 ) : (
-                    <EducationProgramme programmes={programmes} />
+                    <EducationProgramme curriculums={curriculum} />
                 )}
                 <Counter />
                 <AboutTestimonial />
