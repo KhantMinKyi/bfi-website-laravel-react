@@ -1,9 +1,9 @@
-import { DonationDataType, TeamCardType } from '@/types';
+import { CSADataType, TeamCardType } from '@/types';
 import { motion } from 'motion/react';
 import React from 'react';
 import PullUpHeader from '../../core/pull-up-header';
 type Props = {
-    CASProgramData: DonationDataType[];
+    CASProgramData: CSADataType[];
 };
 const CASProgramCardGroup: React.FC<Props> = ({ CASProgramData }) => {
     return (
@@ -36,7 +36,7 @@ const CASProgramCardGroup: React.FC<Props> = ({ CASProgramData }) => {
                             viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                             transition={{ duration: (i + 1) * 0.2, ease: 'easeInOut' }} // longer duration
                         >
-                            <CASProgramCard name={t.title} profession={t.date} imagesrc={t.imgSrc} />
+                            <CASProgramCard name={t.title} profession={t.date} imagesrc={t.image} />
                         </motion.div>
                     ))}
                 </div>
