@@ -26,4 +26,7 @@ Route::prefix('api')->group(function () {
 
     Route::get('/career/get-job-post-data', [GeneralRouteController::class, 'getJobPostData']);
     Route::get('/career/get-job-post-detail/{id}', [GeneralRouteController::class, 'getJobPostDetail']);
+
+
+    Route::get('/about_us/get-csa-data/{param}', [GeneralRouteController::class, 'getCSAData']);
 });

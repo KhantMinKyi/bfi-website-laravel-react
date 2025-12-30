@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryTag;
+use App\Models\CommunityServiceActivity;
 use App\Models\Competition;
 use App\Models\Curriculum;
 use App\Models\Faq;
@@ -151,6 +152,14 @@ class GeneralRouteController extends Controller
         return response()->json([
             'message' => 'success',
             'data' => $job_post,
+        ], 200);
+    }
+    public function getCSAData($param)
+    {
+        $csa = CommunityServiceActivity::where('is_donation', $param)->get();
+        return response()->json([
+            'message' => 'success',
+            'data' => $csa,
         ], 200);
     }
 }

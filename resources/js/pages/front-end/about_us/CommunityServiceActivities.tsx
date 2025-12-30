@@ -3,26 +3,26 @@ import CSATagline from '@/components/front-end/about_us/community_service_activi
 import DonationCardGroup from '@/components/front-end/about_us/community_service_activities/donation_card_group';
 import { DotLoading } from '@/components/front-end/core/dot-loading';
 import FrontEndLayout from '@/layouts/front-end-layout';
-import { DonationDataType } from '@/types';
+import { CSADataType } from '@/types';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 function CommunityServiceActivities() {
-    const [DonationData, setDonationData] = useState<DonationDataType[]>([]);
+    const [DonationData, setDonationData] = useState<CSADataType[]>([]);
     const [donationDataLoading, setDonationDataLoading] = useState<boolean>(false);
-    const [CASProgramData, setCASProgramData] = useState<DonationDataType[]>([]);
+    const [CASProgramData, setCASProgramData] = useState<CSADataType[]>([]);
     const [CASProgramDataLoading, setCASProgramDataLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        fetch('/dummy-json/donation-data.json')
+        fetch('/api/about_us/get-csa-data/1')
             .then((res) => res.json())
-            .then((data) => {
-                setDonationData(data);
+            .then((res) => {
+                setDonationData(res.data);
                 setDonationDataLoading(false);
             });
-        fetch('/dummy-json/donation-data.json')
+        fetch('/api/about_us/get-csa-data/0')
             .then((res) => res.json())
-            .then((data) => {
-                setCASProgramData(data);
+            .then((res) => {
+                setCASProgramData(res.data);
                 setCASProgramDataLoading(false);
             });
     }, []);
