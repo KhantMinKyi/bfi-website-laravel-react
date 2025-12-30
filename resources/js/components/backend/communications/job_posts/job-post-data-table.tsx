@@ -29,6 +29,8 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { JobPost } from '@/types';
 import { AddJobPost } from './add-job-post-dialog';
+import { DeleteJobPostDialog } from './delete-job-post-dialog';
+import { UpdateJobPostDialog } from './update-job-post-dialog';
 
 export function JobPostDataTable() {
     const [data, setData] = React.useState<JobPost[]>([]);
@@ -162,7 +164,18 @@ export function JobPostDataTable() {
                 accessorFn: (row) => row.created_at,
                 cell: ({ getValue }) => {
                     const value = getValue() as string;
-                    return <div className="font-medium" dangerouslySetInnerHTML={{ __html: value }} />;
+
+                    if (!value) return '-';
+
+                    const date = new Date(value);
+
+                    const formattedDate = [
+                        String(date.getDate()).padStart(2, '0'),
+                        String(date.getMonth() + 1).padStart(2, '0'),
+                        date.getFullYear(),
+                    ].join('-');
+
+                    return <div className="font-medium">{formattedDate}</div>;
                 },
             },
             {
@@ -374,25 +387,18 @@ export function JobPostDataTable() {
 
             {selectedJobPost && (
                 <>
-                    {/* <UpdateCompetitionDialog
-                        competition={selectedCompetition}
+                    <UpdateJobPostDialog
+                        jobPost={selectedJobPost}
                         open={updateDialogOpen}
                         onOpenChange={handleUpdateDialogChange}
-                        onSuccess={fetchCompetitions}
+                        onSuccess={fetchJobPosts}
                     />
-                    <DeleteCompetitionDialog
-                        competition={selectedCompetition}
+                    <DeleteJobPostDialog
+                        jobPost={selectedJobPost}
                         open={deleteDialogOpen}
                         onOpenChange={handleDeleteDialogChange}
-                        onSuccess={fetchCompetitions}
+                        onSuccess={fetchJobPosts}
                     />
-                    <UpdateCompetitionPhotoDialog
-                        competitionPhotos={selectedCompetition.related_photos}
-                        competitionId={selectedCompetition.id}
-                        open={updatePhotoDialogOpen}
-                        onOpenChange={handleUpdatePhotoDialogChange}
-                        onSuccess={fetchCompetitions}
-                    /> */}
                 </>
             )}
         </div>
