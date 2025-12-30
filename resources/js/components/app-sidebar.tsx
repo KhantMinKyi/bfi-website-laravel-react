@@ -118,7 +118,7 @@ const mainNavItems: NavItem[] = [
             },
             {
                 title: 'CSA',
-                href: '/site_profile/cas/dashboard',
+                href: '/site_profile/csa/dashboard',
                 icon: Network,
             },
         ],

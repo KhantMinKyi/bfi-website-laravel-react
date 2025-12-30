@@ -348,3 +348,16 @@ export interface JobPost {
     created_at: string;
     updated_at: string;
 }
+export type CSADataType = {
+    id: number;
+    title: string;
+    date: string;
+    image: string;
+    is_donation: boolean;
+    created_user_id: number;
+    updated_user_id?: number;
+    created_user: User;
+    updated_user?: User;
+    created_at: string;
+    updated_at: string;
+};

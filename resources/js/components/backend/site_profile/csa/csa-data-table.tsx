@@ -15,6 +15,7 @@ import {
 import { ArrowUpDown, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
 import * as React from 'react';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -27,13 +28,13 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { JobPost } from '@/types';
-import { AddJobPost } from './add-job-post-dialog';
-import { DeleteJobPostDialog } from './delete-job-post-dialog';
-import { UpdateJobPostDialog } from './update-job-post-dialog';
+import { CSADataType } from '@/types';
+import { AddCSA } from './add-csa-dialog';
+import { DeleteCSADialog } from './delete-csa-dialog';
+import { UpdateCSADialog } from './update-csa-dialog';
 
-export function JobPostDataTable() {
-    const [data, setData] = React.useState<JobPost[]>([]);
+export function CSADataTable() {
+    const [data, setData] = React.useState<CSADataType[]>([]);
     const [loading, setLoading] = React.useState(true);
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -43,74 +44,74 @@ export function JobPostDataTable() {
     const [updateDialogOpen, setUpdateDialogOpen] = React.useState(false);
     const [updatePhotoDialogOpen, setUpdatePhotoDialogOpen] = React.useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
-    const [selectedJobPost, setSelectedJobPost] = React.useState<JobPost | null>(null);
+    const [selectedCSA, setSelectedCSA] = React.useState<CSADataType | null>(null);
 
-    const fetchJobPosts = React.useCallback(async () => {
+    const fetchCSA = React.useCallback(async () => {
         try {
             setLoading(true);
-            const response = await fetch('/api/communications/jobs');
+            const response = await fetch('/api/site_profile/csa');
 
             if (!response.ok) {
-                throw new Error('Failed to fetch Job Posts');
+                throw new Error('Failed to fetch CSA');
             }
             const result = await response.json();
-            setData(result.job_posts);
+            setData(result.csas);
         } catch (error) {
-            console.error('Error fetching Job Posts:', error);
+            console.error('Error fetching CSA:', error);
         } finally {
             setLoading(false);
         }
     }, []);
     React.useEffect(() => {
-        fetchJobPosts();
-    }, [fetchJobPosts]);
+        fetchCSA();
+    }, [fetchCSA]);
     const handleUpdateDialogChange = (open: boolean) => {
         setUpdateDialogOpen(open);
         if (!open) {
-            // Reset selected JobPost setting when dialog closes
-            setSelectedJobPost(null);
+            // Reset selected CSA setting when dialog closes
+            setSelectedCSA(null);
         }
     };
     const handleUpdatePhotoDialogChange = (open: boolean) => {
         setUpdatePhotoDialogOpen(open);
         if (!open) {
-            // Reset selected JobPost setting when dialog closes
-            setSelectedJobPost(null);
+            // Reset selected CSA setting when dialog closes
+            setSelectedCSA(null);
         }
     };
 
     const handleDeleteDialogChange = (open: boolean) => {
         setDeleteDialogOpen(open);
         if (!open) {
-            // Reset selected JobPost setting when dialog closes
-            setSelectedJobPost(null);
+            // Reset selected Competition setting when dialog closes
+            setSelectedCSA(null);
         }
     };
 
-    const handleOpenUpdateDialog = (jobPost: JobPost) => {
-        setSelectedJobPost(jobPost);
+    const handleOpenUpdateDialog = (csa: CSADataType) => {
+        setSelectedCSA(csa);
         // Small delay to allow dropdown to close before opening dialog
         setTimeout(() => {
             setUpdateDialogOpen(true);
         }, 0);
     };
-    const handleOpenUpdatePhotoDialog = (jobPost: JobPost) => {
-        setSelectedJobPost(jobPost);
+    const handleOpenUpdatePhotoDialog = (csa: CSADataType) => {
+        setSelectedCSA(csa);
         // Small delay to allow dropdown to close before opening dialog
         setTimeout(() => {
             setUpdatePhotoDialogOpen(true);
         }, 0);
     };
 
-    const handleOpenDeleteDialog = (jobPost: JobPost) => {
-        setSelectedJobPost(jobPost);
+    const handleOpenDeleteDialog = (csa: CSADataType) => {
+        setSelectedCSA(csa);
         // Small delay to allow dropdown to close before opening dialog
         setTimeout(() => {
             setDeleteDialogOpen(true);
         }, 0);
     };
 
-    const columns: ColumnDef<JobPost>[] = React.useMemo(
+    const columns: ColumnDef<CSADataType>[] = React.useMemo(
         () => [
             {
                 id: 'select',
@@ -128,6 +129,26 @@ export function JobPostDataTable() {
                 enableHiding: false,
             },
             {
+                accessorKey: 'image',
+                header: 'image',
+                cell: ({ row }) => {
+                    const csa = row.original;
+                    return (
+                        <Avatar className="h-10 w-10">
+                            <AvatarImage src={csa.image || '/placeholder.svg'} alt={csa.title} />
+                            <AvatarFallback>
+                                {csa.title
+                                    .split(' ')
+                                    .map((n) => n[0])
+                                    .join('')
+                                    .toUpperCase()}
+                            </AvatarFallback>
+                        </Avatar>
+                    );
+                },
+                enableSorting: false,
+            },
+            {
                 accessorKey: 'title',
                 header: ({ column }) => {
                     return (
@@ -140,71 +161,36 @@ export function JobPostDataTable() {
                 cell: ({ row }) => <div className="font-medium">{row.getValue('title')}</div>,
             },
             {
-                id: 'employee_type',
+                id: 'date',
                 header: ({ column }) => (
                     <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-                        Employee Type
+                        Date
                         <ArrowUpDown />
                     </Button>
                 ),
-                accessorFn: (row) => row.employee_type,
+                accessorFn: (row) => row.date,
                 cell: ({ getValue }) => {
                     const value = getValue() as string;
                     return <div className="font-medium" dangerouslySetInnerHTML={{ __html: value }} />;
                 },
             },
             {
-                id: 'created_at',
-                header: ({ column }) => (
-                    <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-                        Posted Date
-                        <ArrowUpDown />
-                    </Button>
-                ),
-                accessorFn: (row) => row.created_at,
-                cell: ({ getValue }) => {
-                    const value = getValue() as string;
-
-                    if (!value) return '-';
-
-                    const date = new Date(value);
-
-                    const formattedDate = [
-                        String(date.getDate()).padStart(2, '0'),
-                        String(date.getMonth() + 1).padStart(2, '0'),
-                        date.getFullYear(),
-                    ].join('-');
-
-                    return <div className="font-medium">{formattedDate}</div>;
-                },
-            },
-            {
-                id: 'experience_level',
-                header: ({ column }) => (
-                    <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-                        Experience Level
-                        <ArrowUpDown />
-                    </Button>
-                ),
-                accessorFn: (row) => row.experience_level,
-                cell: ({ getValue }) => {
-                    const value = getValue() as string;
-                    return <div className="font-medium" dangerouslySetInnerHTML={{ __html: value }} />;
-                },
-            },
-            {
-                accessorKey: 'is_active',
+                accessorKey: 'is_donation',
                 header: ({ column }) => {
                     return (
                         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-                            Status
+                            Type
                             <ArrowUpDown />
                         </Button>
                     );
                 },
                 cell: ({ row }) => (
                     <div className="font-medium">
-                        {row.getValue('is_active') == 1 ? <div className="text-green-500">Active</div> : <div className="text-red-500">Inactive</div>}
+                        {row.getValue('is_donation') == 1 ? (
+                            <div className="text-green-500">Donation</div>
+                        ) : (
+                            <div className="text-red-500">Program</div>
+                        )}
                     </div>
                 ),
             },
@@ -212,7 +198,7 @@ export function JobPostDataTable() {
                 id: 'actions',
                 enableHiding: false,
                 cell: ({ row }) => {
-                    const jobPost = row.original;
+                    const csa = row.original;
 
                     return (
                         <DropdownMenu>
@@ -224,14 +210,14 @@ export function JobPostDataTable() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                <DropdownMenuItem onClick={() => navigator.clipboard.writeText(jobPost.id.toString())}>Copy ID</DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => navigator.clipboard.writeText(csa.id.toString())}>Copy ID</DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem onClick={() => handleOpenUpdateDialog(jobPost)}>
+                                <DropdownMenuItem onClick={() => handleOpenUpdateDialog(csa)}>
                                     <Pencil className="mr-2 h-4 w-4" />
                                     Update
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem onClick={() => handleOpenDeleteDialog(jobPost)} className="text-destructive focus:text-destructive">
+                                <DropdownMenuItem onClick={() => handleOpenDeleteDialog(csa)} className="text-destructive focus:text-destructive">
                                     <Trash2 className="mr-2 h-4 w-4" />
                                     Delete
                                 </DropdownMenuItem>
@@ -272,7 +258,7 @@ export function JobPostDataTable() {
                     <Input placeholder="Filter by name or email..." disabled className="max-w-sm" value="" onChange={() => {}} />
                     <div className="ml-auto flex items-center gap-2">
                         <Button disabled className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
-                            Add Job Post
+                            Add CSA
                         </Button>
                         {/* <Button variant="outline" disabled>
                             Columns <ChevronDown />
@@ -284,11 +270,9 @@ export function JobPostDataTable() {
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="w-12"></TableHead>
+                                <TableHead>Image</TableHead>
                                 <TableHead>Title</TableHead>
-                                <TableHead>Employee Type</TableHead>
-                                <TableHead>Posted Date</TableHead>
-                                <TableHead>Experience Level</TableHead>
-                                <TableHead>Status</TableHead>
+                                <TableHead>Date</TableHead>
                                 <TableHead></TableHead>
                             </TableRow>
                         </TableHeader>
@@ -308,12 +292,6 @@ export function JobPostDataTable() {
                                         <div className="h-4 w-32 animate-pulse rounded bg-muted"></div>
                                     </TableCell>
                                     <TableCell>
-                                        <div className="h-4 w-32 animate-pulse rounded bg-muted"></div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="h-4 w-32 animate-pulse rounded bg-muted"></div>
-                                    </TableCell>
-                                    <TableCell>
                                         <div className="h-8 w-8 animate-pulse rounded bg-muted"></div>
                                     </TableCell>
                                 </TableRow>
@@ -321,7 +299,7 @@ export function JobPostDataTable() {
                         </TableBody>
                     </Table>
                 </div>
-                <div className="flex items-center justify-center py-8 text-sm text-muted-foreground">Loading job Posts...</div>
+                <div className="flex items-center justify-center py-8 text-sm text-muted-foreground">Loading CSA Data...</div>
             </div>
         );
     }
@@ -336,7 +314,31 @@ export function JobPostDataTable() {
                     className="max-w-sm"
                 />
                 <div className="ml-auto flex items-center gap-2">
-                    <AddJobPost onSuccess={fetchJobPosts} />
+                    <AddCSA onSuccess={fetchCSA} />
+                    {/* <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline">
+                                Columns <ChevronDown />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            {table
+                                .getAllColumns()
+                                .filter((column) => column.getCanHide())
+                                .map((column) => {
+                                    return (
+                                        <DropdownMenuCheckboxItem
+                                            key={column.id}
+                                            className="capitalize"
+                                            checked={column.getIsVisible()}
+                                            onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                                        >
+                                            {column.id}
+                                        </DropdownMenuCheckboxItem>
+                                    );
+                                })}
+                        </DropdownMenuContent>
+                    </DropdownMenu> */}
                 </div>
             </div>
             <div className="overflow-hidden rounded-md border">
@@ -387,20 +389,10 @@ export function JobPostDataTable() {
                 </div>
             </div>
 
-            {selectedJobPost && (
+            {selectedCSA && (
                 <>
-                    <UpdateJobPostDialog
-                        jobPost={selectedJobPost}
-                        open={updateDialogOpen}
-                        onOpenChange={handleUpdateDialogChange}
-                        onSuccess={fetchJobPosts}
-                    />
-                    <DeleteJobPostDialog
-                        jobPost={selectedJobPost}
-                        open={deleteDialogOpen}
-                        onOpenChange={handleDeleteDialogChange}
-                        onSuccess={fetchJobPosts}
-                    />
+                    <UpdateCSADialog csa={selectedCSA} open={updateDialogOpen} onOpenChange={handleUpdateDialogChange} onSuccess={fetchCSA} />
+                    <DeleteCSADialog csa={selectedCSA} open={deleteDialogOpen} onOpenChange={handleDeleteDialogChange} onSuccess={fetchCSA} />
                 </>
             )}
         </div>
