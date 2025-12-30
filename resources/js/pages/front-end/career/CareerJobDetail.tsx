@@ -1,8 +1,8 @@
 'use client';
-
 import { DotLoading } from '@/components/front-end/core/dot-loading';
 import FrontEndLayout from '@/layouts/front-end-layout';
 import { JobPost } from '@/types';
+import { sanitizeHtml } from '@/utils/sanitize';
 import { Link, usePage } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import { Briefcase, ChevronLeft, Clock, DollarSign, GraduationCap, Users } from 'lucide-react';
@@ -23,7 +23,6 @@ export default function CareerJobDetail() {
             })
             .catch((err) => console.log(err));
     }, [id]);
-    console.log(job);
 
     if (!job && !loading) {
         return (
@@ -111,9 +110,12 @@ export default function CareerJobDetail() {
                                         transition={{ duration: 0.5 }}
                                     >
                                         <h2 className="mb-4 text-lg font-bold text-foreground md:text-2xl">About the Role</h2>
-                                        <p className="text-base leading-relaxed whitespace-pre-line text-muted-foreground md:text-lg">
-                                            {job.description}
-                                        </p>
+                                        <p
+                                            className="text-base leading-relaxed whitespace-pre-line text-muted-foreground md:text-lg"
+                                            dangerouslySetInnerHTML={{
+                                                __html: sanitizeHtml(job.description),
+                                            }}
+                                        ></p>
                                     </motion.section>
 
                                     {/* Requirements */}
@@ -125,15 +127,12 @@ export default function CareerJobDetail() {
                                     >
                                         <h2 className="mb-4 text-lg font-bold text-foreground md:text-2xl">Requirements</h2>
                                         <div className="space-y-3">
-                                            {job.requirement.split('\n').map(
-                                                (req: string, idx: number) =>
-                                                    req.trim() && (
-                                                        <div key={idx} className="flex gap-3">
-                                                            <div className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
-                                                            <span className="text-muted-foreground">{req.replace(/^[-•] /, '')}</span>
-                                                        </div>
-                                                    ),
-                                            )}
+                                            <p
+                                                className="text-base leading-relaxed whitespace-pre-line text-muted-foreground md:text-lg"
+                                                dangerouslySetInnerHTML={{
+                                                    __html: sanitizeHtml(job.requirement),
+                                                }}
+                                            ></p>
                                         </div>
                                     </motion.section>
 
@@ -146,15 +145,12 @@ export default function CareerJobDetail() {
                                     >
                                         <h2 className="mb-4 text-lg font-bold text-foreground md:text-2xl">Benefits</h2>
                                         <div className="space-y-3">
-                                            {job.benefits.split('\n').map(
-                                                (benefit: string, idx: number) =>
-                                                    benefit.trim() && (
-                                                        <div key={idx} className="flex gap-3">
-                                                            <div className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
-                                                            <span className="text-muted-foreground">{benefit.replace(/^[-•] /, '')}</span>
-                                                        </div>
-                                                    ),
-                                            )}
+                                            <p
+                                                className="text-base leading-relaxed whitespace-pre-line text-muted-foreground md:text-lg"
+                                                dangerouslySetInnerHTML={{
+                                                    __html: sanitizeHtml(job.benefits),
+                                                }}
+                                            ></p>
                                         </div>
                                     </motion.section>
 
@@ -167,15 +163,12 @@ export default function CareerJobDetail() {
                                     >
                                         <h2 className="mb-4 text-lg font-bold text-foreground md:text-2xl">Why Join Us</h2>
                                         <div className="space-y-3">
-                                            {job.highlights.split('\n').map(
-                                                (highlight: string, idx: number) =>
-                                                    highlight.trim() && (
-                                                        <div key={idx} className="flex gap-3">
-                                                            <div className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
-                                                            <span className="text-muted-foreground">{highlight.replace(/^[-•] /, '')}</span>
-                                                        </div>
-                                                    ),
-                                            )}
+                                            <p
+                                                className="text-base leading-relaxed whitespace-pre-line text-muted-foreground md:text-lg"
+                                                dangerouslySetInnerHTML={{
+                                                    __html: sanitizeHtml(job.highlights),
+                                                }}
+                                            ></p>
                                         </div>
                                     </motion.section>
 
@@ -187,9 +180,12 @@ export default function CareerJobDetail() {
                                         transition={{ duration: 0.5, delay: 0.4 }}
                                     >
                                         <h2 className="md:text-2xlfont-bold mb-4 text-lg text-foreground">Career Growth</h2>
-                                        <p className="text-base leading-relaxed whitespace-pre-line text-muted-foreground md:text-lg">
-                                            {job.career_growth}
-                                        </p>
+                                        <p
+                                            className="text-base leading-relaxed whitespace-pre-line text-muted-foreground md:text-lg"
+                                            dangerouslySetInnerHTML={{
+                                                __html: sanitizeHtml(job.career_growth),
+                                            }}
+                                        ></p>
                                     </motion.section>
                                 </div>
 

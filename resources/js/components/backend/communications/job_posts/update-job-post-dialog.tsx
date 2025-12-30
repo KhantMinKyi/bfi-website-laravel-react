@@ -6,76 +6,53 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { JobPost } from '@/types';
 import { router } from '@inertiajs/react';
-import { Check, Plus } from 'lucide-react';
+import { Check, Edit } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
-interface AddJobPostProps {
+interface UpdateJobPostProps {
+    jobPost: JobPost;
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
     onSuccess?: () => void;
 }
 
-export function AddJobPost({ onSuccess }: AddJobPostProps) {
-    const [open, setOpen] = React.useState(false);
+export function UpdateJobPostDialog({ jobPost, open, onOpenChange, onSuccess }: UpdateJobPostProps) {
     const [formData, setFormData] = React.useState({
-        title: '',
-        function: '',
-        sub_function: '',
-        gender: 'Both' as const,
-        experience_level: 'Entry Level' as const,
-        education_level: 'High School Diploma' as const,
-        number_of_post: 1,
-        type: 'Full Time' as const,
-        computer_skill: 'Beginner' as const,
-        industry: 'IT/Computer' as const,
-        maximun_salary: 0,
-        is_hide_salary: false,
-        employee_type: 'Both' as const,
-        email: '',
-        description: '',
-        requirement: '',
-        benefits: '',
-        highlights: '',
-        career_growth: '',
-        is_active: true,
+        title: jobPost.title,
+        function: jobPost.function,
+        sub_function: jobPost.sub_function,
+        gender: jobPost.gender,
+        experience_level: jobPost.experience_level,
+        education_level: jobPost.education_level,
+        number_of_post: jobPost.number_of_post,
+        type: jobPost.type,
+        computer_skill: jobPost.computer_skill,
+        industry: jobPost.industry,
+        maximun_salary: jobPost.maximun_salary,
+        is_hide_salary: jobPost.is_hide_salary,
+        employee_type: jobPost.employee_type,
+        email: jobPost.email,
+        description: jobPost.description,
+        requirement: jobPost.requirement,
+        benefits: jobPost.benefits,
+        highlights: jobPost.highlights,
+        career_growth: jobPost.career_growth,
+        is_active: jobPost.is_active,
     });
     const [isSubmitting, setIsSubmitting] = React.useState(false);
-
-    const resetForm = () => {
-        setFormData({
-            title: '',
-            function: '',
-            sub_function: '',
-            gender: 'Both',
-            experience_level: 'Entry Level',
-            education_level: 'High School Diploma',
-            number_of_post: 1,
-            type: 'Full Time',
-            computer_skill: 'Beginner',
-            industry: 'IT/Computer',
-            maximun_salary: 0,
-            is_hide_salary: false,
-            employee_type: 'Both',
-            email: '',
-            description: '',
-            requirement: '',
-            benefits: '',
-            highlights: '',
-            career_growth: '',
-            is_active: true,
-        });
-    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        router.post('/api/communications/jobs', formData, {
+        router.put(`/api/communications/jobs/${jobPost.id}`, formData, {
             preserveScroll: true,
             onSuccess: () => {
-                toast.success('Job Post created successfully!');
-                resetForm();
-                setOpen(false);
+                toast.success('Job Post updated successfully!');
+                onOpenChange(false);
 
                 if (onSuccess) {
                     onSuccess();
@@ -83,7 +60,7 @@ export function AddJobPost({ onSuccess }: AddJobPostProps) {
             },
             onError: (errors) => {
                 const msg = Object.values(errors).join(' • ');
-                toast.error(msg || 'Failed to create Job Post');
+                toast.error(msg || 'Failed to update Job Post');
             },
             onFinish: () => {
                 setIsSubmitting(false);
@@ -92,17 +69,17 @@ export function AddJobPost({ onSuccess }: AddJobPostProps) {
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogTrigger asChild>
-                <Button className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
-                    <Plus className="h-4 w-4" />
-                    Add Job Post
+                <Button className="cursor-pointer gap-2 bg-blue-700 text-white hover:bg-blue-900">
+                    <Edit className="h-4 w-4" />
+                    Edit
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[1200px]">
                 <DialogHeader>
-                    <DialogTitle>Add New Job Post</DialogTitle>
-                    <DialogDescription>Create a new Job Post. Fill in the details below and click save when you're done.</DialogDescription>
+                    <DialogTitle>Update Job Post</DialogTitle>
+                    <DialogDescription>Update the Job Post details below and click save when you're done.</DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-4 py-4">
@@ -346,14 +323,14 @@ export function AddJobPost({ onSuccess }: AddJobPostProps) {
                         <Button
                             type="button"
                             variant="outline"
-                            onClick={() => setOpen(false)}
+                            onClick={() => onOpenChange(false)}
                             className="cursor-pointer gap-2 bg-red-500 text-white hover:bg-red-700"
                         >
                             Cancel
                         </Button>
-                        <Button type="submit" disabled={isSubmitting} className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
+                        <Button type="submit" disabled={isSubmitting} className="cursor-pointer gap-2 bg-blue-700 text-white hover:bg-blue-900">
                             <Check />
-                            {isSubmitting ? 'Saving...' : 'Save Job Post'}
+                            {isSubmitting ? 'Updating...' : 'Update Job Post'}
                         </Button>
                     </DialogFooter>
                 </form>

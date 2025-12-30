@@ -34,7 +34,7 @@ return new class extends Migration
             $table->text('career_growth');
             $table->boolean('is_active')->default(1);
             $table->foreignId('created_user_id')->constrained('users');
-            $table->foreignId('updated_user_id')->constrained('users');
+            $table->foreignId('updated_user_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }
