@@ -28,6 +28,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { BfiOlympiad } from '@/types';
+import { AddBfiOlympiad } from './add-olympiad-dialog';
+import { DeleteBfiOlympiadDialog } from './delete-olympiad-dialog';
+import { UpdateBfiOlympiadDialog } from './update-olympiad-dialog';
 export function BfiOlympiadDataTable() {
     const [data, setData] = React.useState<BfiOlympiad[]>([]);
     const [loading, setLoading] = React.useState(true);
@@ -44,7 +47,7 @@ export function BfiOlympiadDataTable() {
     const fetchBfiOlympiads = React.useCallback(async () => {
         try {
             setLoading(true);
-            const response = await fetch('/api/public_data/bfi_olympaids');
+            const response = await fetch('/api/public_data/bfi_olympiads');
 
             if (!response.ok) {
                 throw new Error('Failed to fetch BfiOlympiads');
@@ -266,7 +269,7 @@ export function BfiOlympiadDataTable() {
                     className="max-w-sm"
                 />
                 <div className="ml-auto flex items-center gap-2">
-                    {/* <AddCompetition onSuccess={fetchBfiOlympiads} /> */}
+                    <AddBfiOlympiad onSuccess={fetchBfiOlympiads} />
                     {/* <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline">
@@ -343,18 +346,18 @@ export function BfiOlympiadDataTable() {
 
             {selectedBfiOlympiad && (
                 <>
-                    {/* <UpdateCompetitionDialog
+                    <UpdateBfiOlympiadDialog
                         bfiOlympiad={selectedBfiOlympiad}
                         open={updateDialogOpen}
                         onOpenChange={handleUpdateDialogChange}
                         onSuccess={fetchBfiOlympiads}
                     />
-                    <DeleteCompetitionDialog
+                    <DeleteBfiOlympiadDialog
                         bfiOlympiad={selectedBfiOlympiad}
                         open={deleteDialogOpen}
                         onOpenChange={handleDeleteDialogChange}
                         onSuccess={fetchBfiOlympiads}
-                    />*/}
+                    />
                 </>
             )}
         </div>

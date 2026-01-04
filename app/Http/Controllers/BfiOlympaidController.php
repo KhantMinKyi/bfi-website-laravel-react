@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BfiOlympaid;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BfiOlympaidController extends Controller
 {
@@ -24,7 +25,17 @@ class BfiOlympaidController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $data = $request->validate(
+        [
+            'title'         =>'required|string',
+            'information'   => 'required|string',
+            'date'          =>'nullable|date'
+        ]
+        );
+        $data['created_user_id'] =Auth::user()->id;
+        BfiOlympaid::create($data);
+
+        return back()->with('success', 'Olympiad created successfully!');
     }
 
     /**
@@ -40,7 +51,17 @@ class BfiOlympaidController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate(
+            [
+                'title'         =>'required|string',
+                'information'   => 'required|string',
+                'date'          =>'nullable|date'
+            ]
+            );
+        $data['updated_user_id'] =Auth::user()->id;
+        BfiOlympaid::findOrFail($id)->update($data);
+
+        return back()->with('success', 'Olympiad updated successfully!');
     }
 
     /**
@@ -48,6 +69,8 @@ class BfiOlympaidController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        BfiOlympaid::findOrFail($id)->delete();
+
+        return back()->with('success', 'Olympiad deleted successfully!');
     }
 }
