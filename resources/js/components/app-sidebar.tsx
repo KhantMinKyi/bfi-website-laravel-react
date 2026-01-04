@@ -15,7 +15,6 @@ import { Link } from '@inertiajs/react';
 import {
     Award,
     BadgeCheck,
-    BookKeyIcon,
     BookOpenText,
     BriefcaseBusiness,
     CalendarDays,
@@ -111,11 +110,11 @@ const mainNavItems: NavItem[] = [
         haveSubItems: true,
         isActive: false,
         subItems: [
-            {
-                title: 'About BFI',
-                href: '/site_profile/about_bfi/dashboard',
-                icon: BookKeyIcon,
-            },
+            // {
+            //     title: 'About BFI',
+            //     href: '/site_profile/about_bfi/dashboard',
+            //     icon: BookKeyIcon,
+            // },
             {
                 title: 'CSA',
                 href: '/site_profile/csa/dashboard',

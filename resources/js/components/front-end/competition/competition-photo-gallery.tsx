@@ -23,24 +23,36 @@ const sizeVariants = [
 const CompetitionPhotoGallery = ({ slug }: { slug: string }) => {
     const [photos, setPhotos] = useState<PhotoItem[]>([]);
     const [loading, setLoading] = useState(true);
-
     useEffect(() => {
+        if (!slug) return; // ✅ wait until slug is ready
+
+        let isMounted = true;
+
         async function fetchData() {
             try {
+                setLoading(true);
+
                 const response = await fetch(`/api/competition/get-competition-photo/${slug}`);
+
                 const result: ApiResponse = await response.json();
 
-                console.log('API Response:', result);
-
-                setPhotos(result.data);
+                if (isMounted) {
+                    setPhotos(result.data);
+                }
             } catch (error) {
                 console.error('Error fetching photos:', error);
             } finally {
-                setLoading(false);
+                if (isMounted) {
+                    setLoading(false);
+                }
             }
         }
 
         fetchData();
+
+        return () => {
+            isMounted = false; // ✅ prevent state update on unmount
+        };
     }, [slug]);
 
     const getRandomSize = (index: number) => {

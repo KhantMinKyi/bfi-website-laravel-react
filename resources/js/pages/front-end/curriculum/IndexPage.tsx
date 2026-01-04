@@ -22,7 +22,6 @@ function IndexPage() {
                 setCurriculumDataLoading(false);
             });
     }, [data]);
-    console.log(data);
 
     return (
         <FrontEndLayout>

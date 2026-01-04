@@ -20,7 +20,6 @@ const IndexPage = () => {
                 setCompetitionDataLoading(false);
             });
     }, [data]);
-    console.log(competitionData);
     return (
         <FrontEndLayout>
             <div

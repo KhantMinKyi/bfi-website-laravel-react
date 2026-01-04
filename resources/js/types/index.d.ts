@@ -361,3 +361,15 @@ export type CSADataType = {
     created_at: string;
     updated_at: string;
 };
+export interface BfiOlympiad {
+    id: number;
+    title: string;
+    information: string;
+    date: string;
+    created_user_id: number;
+    updated_user_id?: number;
+    created_user: User;
+    updated_user?: User;
+    created_at: string;
+    updated_at: string;
+}
