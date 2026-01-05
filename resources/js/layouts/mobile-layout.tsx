@@ -251,7 +251,10 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
             </div> */}
             {/* BFI Olympiads */}
             <div>
-                <Link href="#" className="block py-2">
+                <Link
+                    href={route('bfi_olympiads')}
+                    className={`${currentPath === routePath('bfi_olympiads') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                >
                     BFI Olympiads
                 </Link>
             </div>

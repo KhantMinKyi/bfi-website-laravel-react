@@ -8,7 +8,6 @@ import PostCarousel from '@/components/front-end/core/post-lists';
 import PostLoadingSkeleton from '@/components/front-end/core/post-loading-skeleton';
 import PullUpHeader from '@/components/front-end/core/pull-up-header';
 import ContactBanner from '@/components/front-end/home/contact-banner';
-import HeroBanner from '@/components/front-end/home/hero-banner';
 import Information from '@/components/front-end/home/information';
 import PhotoGallery from '@/components/front-end/home/photo-gallery';
 import SisterSchoolCards from '@/components/front-end/home/sister-school-cards';
@@ -184,7 +183,6 @@ function Welcome() {
                 )}
                 <Counter />
                 <AboutTestimonial />
-                <HeroBanner />
                 <PhotoGallery />
 
                 <ContactBanner />

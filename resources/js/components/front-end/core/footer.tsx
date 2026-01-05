@@ -1,3 +1,5 @@
+import { SisterSchoolNav } from '@/layouts/front-end-layout';
+import { Link } from '@inertiajs/react';
 import { ReactNode } from 'react';
 
 interface LinkGroupProps {
@@ -9,20 +11,29 @@ interface LinkGroupProps {
 interface NavLinkProps {
     link: string;
     label: string;
+    className?: string;
 }
-const Footer = () => {
+const Footer = ({
+    currentPath,
+    routePath,
+    sisterSchools,
+}: {
+    currentPath: string;
+    routePath: (name: string) => string;
+    sisterSchools: SisterSchoolNav[];
+}) => {
     return (
         <>
             <footer className="relative z-10 bg-gray-200 pt-10 pb-10 lg:pt-[80px] lg:pb-10 dark:bg-gray-900">
                 <div className="container mx-auto">
-                    <div className="flex">
-                        <div className="mb-10">
-                            <a href="/#" className="mb-6 flex justify-center md:max-w-[160px]">
+                    <div className="flex flex-col justify-center sm:flex-row">
+                        <div className="mb-10 md:w-1/4">
+                            <Link href={route('home')} className="mb-6 flex justify-center md:max-w-[160px]">
                                 <img src="/img/bfi.png" alt="logo" className="w-32 dark:hidden" />
                                 <img src="/img/bfi_b.png" alt="logo" className="hidden w-32 dark:block" />
-                            </a>
+                            </Link>
                             <p className="mb-7 text-center text-base text-gray-800 md:text-left dark:text-gray-300">
-                                Sed ut perspiciatis undmnis is iste natus error sit amet voluptatem totam rem aperiam.
+                                Inspiring Brilliance, Building Brighter Futures
                             </p>
                             <p className="text-dark flex items-center justify-center text-sm font-medium md:justify-start dark:text-white">
                                 {/* Phone Icon */}
@@ -49,29 +60,101 @@ const Footer = () => {
                                         </defs>
                                     </svg>
                                 </span>
-                                <span>+012 (345) 678 99</span>
+                                <span>+019410010</span>
                             </p>
                         </div>
-                        <LinkGroup header="About Us" className="hidden md:block">
-                            <NavLink link="/#" label="Our History" />
-                            <NavLink link="/#" label="Vision , Mission & Value" />
-                            <NavLink link="/#" label="User Flow" />
-                            <NavLink link="/#" label="User Strategy" />
-                        </LinkGroup>
-                        <LinkGroup header="BFI Olympiads" className="hidden md:block">
-                            <NavLink link="/#" label="The Mathemania Compitation" />
-                            <NavLink link="/#" label="Spelling Bee" />
-                        </LinkGroup>
-                        <LinkGroup header="Keep in touch" className="hidden md:block">
-                            <NavLink link="/#" label="Contact Us" />
-                            <NavLink link="/#" label="Career" />
-                        </LinkGroup>
-                    </div>
-                    <div className="flex items-center justify-center text-center md:hidden">
-                        <LinkGroup header="Keep in touch" className="">
-                            <NavLink link="/#" label="Contact Us" />
-                            <NavLink link="/#" label="Career" />
-                        </LinkGroup>
+                        <div className="flex-1 justify-evenly sm:flex">
+                            <LinkGroup header="About Us" className="w-full text-center sm:text-left md:block">
+                                <NavLink
+                                    link={route('our_history')}
+                                    label="Our History"
+                                    className={
+                                        currentPath === routePath('our_history')
+                                            ? 'text-blue-700 hover:text-blue-900 dark:text-green-700 dark:hover:text-green-900'
+                                            : 'text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700'
+                                    }
+                                />
+                                <NavLink
+                                    link={route('vision_mission_value')}
+                                    label="Vision , Mission & Value"
+                                    className={
+                                        currentPath === routePath('vision_mission_value')
+                                            ? 'text-blue-700 hover:text-blue-900 dark:text-green-700 dark:hover:text-green-900'
+                                            : 'text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700'
+                                    }
+                                />
+                                <NavLink
+                                    link={route('philosophy')}
+                                    label="Philosophy"
+                                    className={
+                                        currentPath === routePath('philosophy')
+                                            ? 'text-blue-700 hover:text-blue-900 dark:text-green-700 dark:hover:text-green-900'
+                                            : 'text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700'
+                                    }
+                                />
+                                <NavLink
+                                    link={route('community_service_activities')}
+                                    label="Community Service Activities"
+                                    className={
+                                        currentPath === routePath('community_service_activities')
+                                            ? 'text-blue-700 hover:text-blue-900 dark:text-green-700 dark:hover:text-green-900'
+                                            : 'text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700'
+                                    }
+                                />
+                            </LinkGroup>
+                            <LinkGroup header="Sister Schools" className="w-full text-center sm:text-left md:block">
+                                {sisterSchools.map((school) => (
+                                    <NavLink
+                                        key={school.slug}
+                                        link={route('sister_school.data', school.slug)}
+                                        label={school.name}
+                                        className={
+                                            currentPath === route('sister_school.data', school.slug)
+                                                ? 'text-blue-700 hover:text-blue-900 dark:text-green-700 dark:hover:text-green-900'
+                                                : 'text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700'
+                                        }
+                                    />
+                                ))}
+                            </LinkGroup>
+                            <LinkGroup header="Community" className="w-full text-center sm:text-left md:block">
+                                <NavLink
+                                    link={route('news_and_event')}
+                                    label="News & Event"
+                                    className={
+                                        currentPath === routePath('news_and_event')
+                                            ? 'text-blue-700 hover:text-blue-900 dark:text-green-700 dark:hover:text-green-900'
+                                            : 'text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700'
+                                    }
+                                />
+                                <NavLink
+                                    link={route('contact_us')}
+                                    label="Contact Us"
+                                    className={
+                                        currentPath === routePath('contact_us')
+                                            ? 'text-blue-700 hover:text-blue-900 dark:text-green-700 dark:hover:text-green-900'
+                                            : 'text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700'
+                                    }
+                                />
+                                <NavLink
+                                    link={route('faq')}
+                                    label="FAQ"
+                                    className={
+                                        currentPath === routePath('faq')
+                                            ? 'text-blue-700 hover:text-blue-900 dark:text-green-700 dark:hover:text-green-900'
+                                            : 'text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700'
+                                    }
+                                />
+                                <NavLink
+                                    link={route('career')}
+                                    label="Career"
+                                    className={
+                                        currentPath === routePath('career')
+                                            ? 'text-blue-700 hover:text-blue-900 dark:text-green-700 dark:hover:text-green-900'
+                                            : 'text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700'
+                                    }
+                                />
+                            </LinkGroup>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -134,7 +217,7 @@ export default Footer;
 const LinkGroup = ({ children, header, className }: LinkGroupProps) => {
     return (
         <>
-            <div className={`w-full px-4 sm:w-1/2 lg:w-2/12 ${className}`}>
+            <div className={`w-full px-4 sm:w-1/2 lg:w-4/12 ${className}`}>
                 <div className="mb-10 w-full">
                     <h4 className="text-dark mb-9 text-lg font-semibold dark:text-white">{header}</h4>
                     <ul className="space-y-3">{children}</ul>
@@ -144,12 +227,12 @@ const LinkGroup = ({ children, header, className }: LinkGroupProps) => {
     );
 };
 
-const NavLink = ({ link, label }: NavLinkProps) => {
+const NavLink = ({ link, label, className }: NavLinkProps) => {
     return (
         <li>
-            <a href={link} className="inline-block text-base leading-loose text-gray-800 hover:text-primary dark:text-gray-300">
+            <Link href={link} className={`inline-block text-base leading-loose ${className}`}>
                 {label}
-            </a>
+            </Link>
         </li>
     );
 };

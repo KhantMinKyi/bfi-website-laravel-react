@@ -1,13 +1,14 @@
 import AppearanceToggleDropdown from '@/components/appearance-dropdown';
 import Footer from '@/components/front-end/core/footer';
 import { Link, usePage } from '@inertiajs/react';
+import { MailIcon, MapPinIcon, PhoneIcon } from 'lucide-react';
 import React, { useEffect, useState, type ReactNode } from 'react';
 import MobileLayout from './mobile-layout';
 
 interface FrondendLayoutProps {
     children: ReactNode;
 }
-interface SisterSchoolNav {
+export interface SisterSchoolNav {
     slug: string;
     name: string;
     // add any other fields
@@ -92,8 +93,8 @@ export default ({ children }: FrondendLayoutProps) => {
                             <div className={`col-span-12 lg:col-span-10 ${scrolled ? 'hidden' : 'block'}`}>
                                 <div className="hidden flex-wrap justify-center sm:flex lg:justify-end">
                                     <div className="mx-3 pr-2 text-left sm:flex">
-                                        <div className="col:mb-1 mr-2 h-8 w-8 rounded-full border-[2px] border-[#F7F6F1] text-center leading-8 sm:float-none sm:mx-auto sm:mb-1 sm:h-12 sm:w-12 sm:leading-[48px]">
-                                            <i className="fi flaticon-phone-call text-blue-500 sm:text-lg"></i>
+                                        <div className="col:mb-1 mr-2 flex h-8 w-8 items-center justify-center rounded-full border-[2px] border-[#F7F6F1] leading-8 sm:float-none sm:mx-auto sm:mb-1 sm:h-12 sm:w-12 sm:leading-[48px]">
+                                            <PhoneIcon className="size-5 text-blue-500 sm:text-lg dark:text-green-500" />
                                         </div>
                                         <div className="ml-5 overflow-hidden">
                                             <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Call Us:</span>
@@ -103,8 +104,8 @@ export default ({ children }: FrondendLayoutProps) => {
                                         </div>
                                     </div>
                                     <div className="mx-3 pr-2 text-left sm:flex">
-                                        <div className="col:mb-1 mr-2 h-8 w-8 rounded-full border-[2px] border-[#F7F6F1] text-center leading-8 sm:float-none sm:mx-auto sm:mb-1 sm:h-12 sm:w-12 sm:leading-[48px]">
-                                            <i className="fi flaticon-email text-blue-500 sm:text-lg"></i>
+                                        <div className="col:mb-1 mr-2 flex h-8 w-8 items-center justify-center rounded-full border-[2px] border-[#F7F6F1] leading-8 sm:float-none sm:mx-auto sm:mb-1 sm:h-12 sm:w-12 sm:leading-[48px]">
+                                            <MailIcon className="size-5 text-blue-500 sm:text-lg dark:text-green-500" />
                                         </div>
                                         <div className="ml-5 overflow-hidden">
                                             <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Email:</span>
@@ -114,8 +115,8 @@ export default ({ children }: FrondendLayoutProps) => {
                                         </div>
                                     </div>
                                     <div className="mx-3 pr-2 text-left sm:flex">
-                                        <div className="col:mb-1 mr-2 h-8 w-8 rounded-full border-[2px] border-[#F7F6F1] text-center leading-8 sm:float-none sm:mx-auto sm:mb-1 sm:h-12 sm:w-12 sm:leading-[48px]">
-                                            <i className="fi flaticon-placeholder text-blue-500 sm:text-lg"></i>
+                                        <div className="col:mb-1 mr-2 flex h-8 w-8 items-center justify-center rounded-full border-[2px] border-[#F7F6F1] leading-8 sm:float-none sm:mx-auto sm:mb-1 sm:h-12 sm:w-12 sm:leading-[48px]">
+                                            <MapPinIcon className="size-5 text-blue-500 sm:text-lg dark:text-green-500" />
                                         </div>
                                         <div className="ml-5 overflow-hidden">
                                             <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Address:</span>
@@ -443,7 +444,7 @@ export default ({ children }: FrondendLayoutProps) => {
                 </div>
             </div>
             {children}
-            <Footer />
+            <Footer currentPath={currentPath} routePath={routePath} sisterSchools={sisterSchools} />
         </React.Fragment>
     );
 };

@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import * as motion from 'motion/react-client';
 function ContactBanner() {
     return (
@@ -27,17 +28,17 @@ function ContactBanner() {
                     </p>
                     <div className="flex flex-col gap-4 sm:flex-row">
                         <a
-                            href="tel:+15551234567"
+                            href="tel:+019410010"
                             className="my-4 cursor-pointer border-2 border-white px-4 py-2 font-semibold text-white transition hover:border-blue-900 hover:bg-blue-900 hover:text-white md:my-0 md:px-5 md:py-3 dark:hover:border-white dark:hover:bg-white dark:hover:text-black"
                         >
                             Call Us
                         </a>
-                        <a
-                            href="/contact"
+                        <Link
+                            href={route('contact_us')}
                             className="my-4 cursor-pointer border-2 border-white px-4 py-2 font-semibold text-white transition hover:border-blue-900 hover:bg-blue-900 hover:text-white md:my-0 md:px-5 md:py-3 dark:hover:border-white dark:hover:bg-white dark:hover:text-black"
                         >
                             Contact Us
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </motion.div>
