@@ -85,7 +85,7 @@ export default ({ children }: FrondendLayoutProps) => {
                     <div className="mx-auto max-w-11/12 sm:max-w-9/12">
                         <div className="grid grid-cols-12 items-center gap-4">
                             <div className="relative top-16 left-5 z-20 col-span-2 hidden lg:block">
-                                <Link href={route('home')}>
+                                <Link prefetch href={route('home')}>
                                     <img src="/img/bfi.png" className="max-w-28 transition-all dark:hidden" alt="" />
                                     <img src="/img/bfi_b.png" className="hidden max-w-28 transition-all dark:block" alt="" />
                                 </Link>
@@ -133,7 +133,7 @@ export default ({ children }: FrondendLayoutProps) => {
                 <div
                     className={`absolute top-2 left-36 z-20 lg:left-40 xl:left-56 2xl:left-64 dark:grayscale ${scrolled ? 'hidden lg:block' : 'hidden'}`}
                 >
-                    <Link href={route('home')} className="scroll-smooth">
+                    <Link prefetch href={route('home')} className="scroll-smooth">
                         <img src="/img/bfi.png " className="block max-w-18 dark:hidden" alt="" />
                         <img src="/img/bfi_b.png " className="hidden max-w-18 dark:block" alt="" />
                     </Link>
@@ -162,7 +162,7 @@ export default ({ children }: FrondendLayoutProps) => {
                             <ul className={`hidden text-[#14212b] lg:block dark:text-gray-50 ${scrolled ? '' : 'sm:hidden lg:block'} `}>
                                 {/* Home */}
                                 <li className="group relative inline-block">
-                                    <Link href={route('home')} className={`${currentPath === routePath('home') ? activeLink : baseLink}`}>
+                                    <Link prefetch href={route('home')} className={`${currentPath === routePath('home') ? activeLink : baseLink}`}>
                                         Home
                                     </Link>
                                 </li>
@@ -185,6 +185,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
                                         <li>
                                             <Link
+                                                prefetch
                                                 href={route('our_history')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('our_history') ? subLinkActive : ''} `}
                                             >
@@ -193,6 +194,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         </li>
                                         <li>
                                             <Link
+                                                prefetch
                                                 href={route('vision_mission_value')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('vision_mission_value') ? subLinkActive : ''}`}
                                             >
@@ -201,6 +203,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         </li>
                                         <li>
                                             <Link
+                                                prefetch
                                                 href={route('philosophy')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('philosophy') ? subLinkActive : ''} `}
                                             >
@@ -210,7 +213,7 @@ export default ({ children }: FrondendLayoutProps) => {
 
                                         {/*                                         
                                         <li>
-                                            <Link
+                                            <Link prefetch
                                                 href={route('leadership_teams')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('leadership_teams') ? subLinkActive : ''} `}
                                             >
@@ -219,6 +222,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         </li> */}
                                         <li>
                                             <Link
+                                                prefetch
                                                 href={route('bfi_advantage')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('bfi_advantage') ? subLinkActive : ''}`}
                                             >
@@ -228,6 +232,7 @@ export default ({ children }: FrondendLayoutProps) => {
 
                                         <li>
                                             <Link
+                                                prefetch
                                                 href={route('community_service_activities')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('community_service_activities') ? subLinkActive : ''} `}
                                             >
@@ -239,6 +244,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                 {/* Sister Schools */}
                                 <li className="group relative inline-block">
                                     <Link
+                                        prefetch
                                         href="#"
                                         className={`${
                                             sisterSchools.some((ss) => currentPath === '/sister_schools/school-data/' + ss.slug)
@@ -252,6 +258,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         {sisterSchools.map((ss) => (
                                             <li key={ss.slug}>
                                                 <Link
+                                                    prefetch
                                                     href={route('sister_school.data', ss.slug)}
                                                     className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === '/sister_schools/school-data/' + ss.slug ? subLinkActive : ''}`}
                                                 >
@@ -264,6 +271,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                 {/* Curriculum */}
                                 <li className="group relative inline-block">
                                     <Link
+                                        prefetch
                                         href="#"
                                         className={`${
                                             curriculum.some((cc) => currentPath === '/curriculum/curriculum-data/' + cc.slug) ? activeLink : baseLink
@@ -275,6 +283,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         {curriculum.map((cc) => (
                                             <li key={cc.slug}>
                                                 <Link
+                                                    prefetch
                                                     href={route('curriculum.data', cc.slug)}
                                                     className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === '/curriculum/curriculum-data/' + cc.slug ? subLinkActive : ''}`}
                                                 >
@@ -300,6 +309,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         {competitions.map((ct) => (
                                             <li key={ct.slug}>
                                                 <Link
+                                                    prefetch
                                                     href={route('competition.data', ct.slug)}
                                                     className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === '/competition/competition-data/' + ct.slug ? subLinkActive : ''}`}
                                                 >
@@ -308,7 +318,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </li>
                                         ))}
                                         {/* <li>
-                                            <Link
+                                            <Link prefetch
                                                 href={route('apply_to_bfi_sister_schools')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('apply_to_bfi_sister_schools') ? subLinkActive : ''}`}
                                             >
@@ -316,7 +326,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link
+                                            <Link prefetch
                                                 href={route('admission_policies')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('admission_policies') ? subLinkActive : ''}`}
                                             >
@@ -324,7 +334,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link
+                                            <Link prefetch
                                                 href={route('admission_policies')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('admission_policies') ? subLinkActive : ''}`}
                                             >
@@ -332,7 +342,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link
+                                            <Link prefetch
                                                 href={route('admission_policies')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('admission_policies') ? subLinkActive : ''}`}
                                             >
@@ -340,7 +350,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link
+                                            <Link prefetch
                                                 href={route('admission_policies')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('admission_policies') ? subLinkActive : ''}`}
                                             >
@@ -348,7 +358,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             </Link>
                                         </li> */}
                                         {/* <li>
-                                            <Link
+                                            <Link prefetch
                                                 href={route('faq')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('faq') ? subLinkActive : ''}`}
                                             >
@@ -360,6 +370,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                 {/* BFI Olympiads */}
                                 <li className="group relative inline-block">
                                     <Link
+                                        prefetch
                                         href={route('bfi_olympiads')}
                                         className={`${currentPath === routePath('bfi_olympiads') ? activeLink : baseLink}`}
                                     >
@@ -379,6 +390,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
                                         <li>
                                             <Link
+                                                prefetch
                                                 href={route('news_and_event')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('news_and_event') ? subLinkActive : ''}`}
                                             >
@@ -387,6 +399,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         </li>
                                         <li>
                                             <Link
+                                                prefetch
                                                 href={route('contact_us')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('contact_us') ? subLinkActive : ''}`}
                                             >
@@ -395,6 +408,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         </li>
                                         <li>
                                             <Link
+                                                prefetch
                                                 href={route('faq')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('faq') ? subLinkActive : ''}`}
                                             >
@@ -406,6 +420,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                 {/* Career */}
                                 <li className="group relative inline-block">
                                     <Link
+                                        prefetch
                                         href={route('career')}
                                         className={`${currentPath === routePath('career') || currentPath.startsWith('/career/job-detail/') ? activeLink : baseLink}`}
                                     >

@@ -37,6 +37,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
             {/* Home */}
             <div>
                 <Link
+                    prefetch
                     href={route('home')}
                     className={`block py-2 uppercase ${currentPath === routePath('home') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                 >
@@ -71,6 +72,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
                         <li>
                             <Link
+                                prefetch
                                 href={route('our_history')}
                                 className={`${currentPath === routePath('our_history') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
@@ -79,6 +81,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         </li>
                         <li>
                             <Link
+                                prefetch
                                 href={route('vision_mission_value')}
                                 className={`${currentPath === routePath('vision_mission_value') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
@@ -87,6 +90,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         </li>
                         <li>
                             <Link
+                                prefetch
                                 href={route('philosophy')}
                                 className={`${currentPath === routePath('philosophy') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
@@ -95,7 +99,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         </li>
 
                         {/* <li>
-                            <Link
+                            <Link prefetch
                                 href={route('leadership_teams')}
                                 className={`${currentPath === routePath('leadership_teams') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
@@ -104,6 +108,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         </li> */}
                         <li>
                             <Link
+                                prefetch
                                 href={route('bfi_advantage')}
                                 className={`${currentPath === routePath('bfi_advantage') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
@@ -112,6 +117,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         </li>
                         <li>
                             <Link
+                                prefetch
                                 href={route('community_service_activities')}
                                 className={`${currentPath === routePath('community_service_activities') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
@@ -143,6 +149,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         {sisterSchools.map((ss) => (
                             <li key={ss.slug}>
                                 <Link
+                                    prefetch
                                     href={route('sister_school.data', ss.slug)}
                                     className={`${currentPath === '/sister_schools/school-data/' + ss.slug ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                                 >
@@ -175,6 +182,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         {curriculum.map((cc) => (
                             <li key={cc.slug}>
                                 <Link
+                                    prefetch
                                     href={route('curriculum.data', cc.slug)}
                                     className={`${currentPath === '/curriculum/curriculum-data/' + cc.slug ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                                 >
@@ -207,6 +215,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         {competitions.map((cp) => (
                             <li key={cp.slug}>
                                 <Link
+                                    prefetch
                                     href={route('competition.data', cp.slug)}
                                     className={`${currentPath === '/competition/competition-data/' + cp.slug ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                                 >
@@ -241,10 +250,10 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
                         <li>
-                            <Link href="#"> Mathemania Competition</Link>
+                            <Link prefetch href="#"> Mathemania Competition</Link>
                         </li>
                         <li>
-                            <Link href="#">Spelling Bee Contest</Link>
+                            <Link prefetch href="#">Spelling Bee Contest</Link>
                         </li>
                     </ul>
                 </div>
@@ -252,6 +261,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
             {/* BFI Olympiads */}
             <div>
                 <Link
+                    prefetch
                     href={route('bfi_olympiads')}
                     className={`${currentPath === routePath('bfi_olympiads') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                 >
@@ -279,6 +289,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
                         <li>
                             <Link
+                                prefetch
                                 href={route('contact_us')}
                                 className={`${currentPath === routePath('contact_us') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
@@ -288,6 +299,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         </li>
                         <li>
                             <Link
+                                prefetch
                                 href={route('faq')}
                                 className={`${currentPath === routePath('faq') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
@@ -300,13 +312,14 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
 
             {/* Career
             <div>
-                <Link href="#" className="block py-2">
+                <Link prefetch href="#" className="block py-2">
                     Contact
                 </Link>
             </div> */}
             {/* Career */}
             <div>
                 <Link
+                    prefetch
                     href={route('career')}
                     className={`${currentPath === routePath('career') || currentPath?.startsWith('/career/job-detail/') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                 >
