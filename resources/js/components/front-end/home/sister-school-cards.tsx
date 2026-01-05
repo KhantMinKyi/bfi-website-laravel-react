@@ -1,8 +1,8 @@
+import { SisterSchool } from '@/types';
 import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { FiMail, FiMapPin } from 'react-icons/fi';
+import { FiMail } from 'react-icons/fi';
 import GradualSpacingHeader from '../core/gradual-spacing-header';
-import { SisterSchool } from '@/types';
 interface CenterImageProps {
     isMobile: boolean; // string for mobile, MotionValue for large screens
 }
@@ -91,10 +91,8 @@ const CenterImage: React.FC<CenterImageProps> = ({ isMobile }) => {
 };
 
 const ParallaxImages = () => {
-
-    
     return (
-        <div className="mx-auto max-w-5xl px-4 pb-[200px]">
+        <div className="relative mx-auto max-w-5xl px-4 pb-[200px]">
             <ParallaxImg src="img/skt_riverside_campus.png" alt="And example of a space launch" start={-200} end={200} className="w-1/4" />
             <ParallaxImg src="img/bfi.png" alt="An example of a space launch" start={-100} end={-250} className="mx-auto w-2/4" />
             <ParallaxImg src="img/misa.png" alt="Orbiting satellite" start={-200} end={200} className="ml-auto w-1/4" />
@@ -118,7 +116,11 @@ const ParallaxImg = ({ className, alt, src, start, end }: { className?: string; 
     const y = useTransform(scrollYProgress, [0.5, 1], [start, end]);
     const transform = useMotionTemplate`translateY(${y}px) scale(${scale})`;
 
-    return <motion.img src={src} alt={alt} className={className} ref={ref} style={{ transform, opacity }} />;
+    return (
+        <motion.div ref={ref} className={`relative ${className}`}>
+            <motion.img src={src} alt={alt} style={{ transform, opacity }} />
+        </motion.div>
+    );
 };
 
 const Schedule = () => {
@@ -144,10 +146,10 @@ const Schedule = () => {
                 Our Sister Schools
             </motion.h1> */}
             <GradualSpacingHeader text="Our Sister Schools" />
-            {sisterSchoolData.map((e)=>(
+            {sisterSchoolData.map((e) => (
                 <ScheduleItem key={e.name} name={e.name} address={e.address} email={e.email} link={e.website_url} />
             ))}
-           {/* <ScheduleItem title="GOES-U" date="Mar 8th" location="California" />
+            {/* <ScheduleItem title="GOES-U" date="Mar 8th" location="California" />
             <ScheduleItem title="ASTRA 1P" date="Apr 8th" location="Texas" /> */}
         </section>
     );

@@ -1,4 +1,3 @@
-import AboutTestimonial from '@/components/front-end/core/about-testimonial';
 import AccordionGallery from '@/components/front-end/core/accordion-gallery';
 import CarouselBanner from '@/components/front-end/core/carousel-banner';
 import Counter from '@/components/front-end/core/counter';
@@ -182,7 +181,7 @@ function Welcome() {
                     <EducationProgramme curriculums={curriculum} />
                 )}
                 <Counter />
-                <AboutTestimonial />
+                {/* <AboutTestimonial /> */}
                 <PhotoGallery />
 
                 <ContactBanner />

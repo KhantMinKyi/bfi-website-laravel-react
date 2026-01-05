@@ -16,6 +16,7 @@ interface PostsCarouselProps {
 
 const PostCarousel: React.FC<PostsCarouselProps> = ({ posts, categories, onPostClick, onFilterChange }) => {
     // const allCategories = categories || ['All', ...Array.from(new Set(posts.map((c) => c.description)))];
+    const slidesCount = posts.length;
     const allCategories = categories || [];
     const [selectedCategory, setSelectedCategory] = useState<number | 'All'>('All');
 
@@ -71,10 +72,10 @@ const PostCarousel: React.FC<PostsCarouselProps> = ({ posts, categories, onPostC
                 spaceBetween={20}
                 // slidesPerView={3}
                 navigation={true} // enable navigation arrows
-                autoplay={{ delay: 2500 }}
-                centeredSlides={true}
+                autoplay={slidesCount > 1 ? { delay: 3000 } : false}
+                centeredSlides={slidesCount > 1}
                 // pagination={true}
-                loop={true}
+                loop={slidesCount > 1}
                 breakpoints={{
                     '@0.00': {
                         slidesPerView: 1,

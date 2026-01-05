@@ -8,6 +8,7 @@ type EducationProgrammeProps = {
 };
 
 function EducationProgramme({ curriculums }: EducationProgrammeProps) {
+    const slidesCount = curriculums.length;
     return (
         <div className="container mx-auto py-12">
             <div className="mb-10 text-center">
@@ -30,27 +31,15 @@ function EducationProgramme({ curriculums }: EducationProgrammeProps) {
                 modules={[EffectCreative, Navigation, Autoplay, Pagination]}
                 slidesPerView={4}
                 spaceBetween={50}
-                autoplay={{ delay: 3000 }}
-                centeredSlides={true}
+                autoplay={slidesCount > 1 ? { delay: 3000 } : false}
+                centeredSlides={slidesCount > 1}
                 // pagination={true}
-                loop={true}
+                loop={slidesCount > 1}
                 breakpoints={{
-                    '@0.00': {
-                        slidesPerView: 1,
-                        spaceBetween: 10,
-                    },
-                    '@0.75': {
-                        slidesPerView: 2,
-                        spaceBetween: 20,
-                    },
-                    '@1.00': {
-                        slidesPerView: 3,
-                        spaceBetween: 40,
-                    },
-                    '@1.50': {
-                        slidesPerView: 4,
-                        spaceBetween: 50,
-                    },
+                    '@0.00': { slidesPerView: 1, spaceBetween: 10 },
+                    '@0.75': { slidesPerView: 2, spaceBetween: 20 },
+                    '@1.00': { slidesPerView: 3, spaceBetween: 40 },
+                    '@1.50': { slidesPerView: 4, spaceBetween: 50 },
                 }}
             >
                 <div className="m-10">
