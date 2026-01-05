@@ -7,6 +7,7 @@ use App\Http\Requests\JobPostStoreUpdateRequest;
 use App\Models\JobPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class JobPostController extends Controller
 {
@@ -40,7 +41,9 @@ class JobPostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Inertia::render('front-end/career/CareerJobDetail', [
+            'id' => $id, // now this works
+        ]);
     }
 
     /**

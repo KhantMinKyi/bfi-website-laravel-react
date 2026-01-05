@@ -3,7 +3,6 @@
 use App\Http\Controllers\GeneralRouteController;
 use App\Http\Controllers\SisterSchoolController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 
 // test

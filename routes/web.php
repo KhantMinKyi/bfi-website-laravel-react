@@ -1,17 +1,11 @@
 <?php
 
 use App\Http\Controllers\GeneralRouteController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', [function () {
-    return Inertia::render('front-end/Welcome');
-}])->name('home');
-Route::get('/post/post-detail/{postId}', function ($postId) {
-    return Inertia::render('front-end/PostDetail', [
-        'postId' => $postId, // now this works
-    ]);
-})->name('post-detail');
+Route::inertia('/','front-end/Welcome')->name('home');
+Route::get('/post/post-detail/{postId}', [PostController::class, 'show'])->name('post-detail');
 
 
 require __DIR__ . '/route_groups/front_end/data_fetch.php';
@@ -26,9 +20,7 @@ require __DIR__ . '/route_groups/front_end/career.php';
 require __DIR__ . '/route_groups/front_end/bfi_olympiads.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('backend/Index');
-    })->name('dashboard');
+    Route::inertia('dashboard', 'backend/Index')->name('dashboard');
     Route::prefix('api')->group(function () {
         Route::get('/admin/get-dashboard-data', [GeneralRouteController::class, 'getAdminDashboardData']);
     });

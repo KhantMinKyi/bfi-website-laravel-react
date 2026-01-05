@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -110,9 +111,11 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($postId)
     {
-        //
+        return Inertia::render('front-end/PostDetail', [
+            'postId' => $postId,
+        ]);
     }
 
     /**
