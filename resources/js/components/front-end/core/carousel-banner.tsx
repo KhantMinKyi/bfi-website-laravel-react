@@ -48,7 +48,7 @@ function CarouselBanner({ carouselData, webUrl }: carouselDataProps) {
                                         </div>
                                         <div>
                                             <p className="font-base-font col:leading-[25px] col:mb-[30px] relative mb-[40px] text-[18px] leading-[35px] text-[#e2e2e2] md:text-[22px]">
-                                                Embedded Code
+                                                BFI Education Services Co., Ltd
                                             </p>
                                         </div>
                                         <div className="relative">
