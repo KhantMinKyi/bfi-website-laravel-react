@@ -21,21 +21,21 @@ const handleCardClick = (card: Post) => {
 
 const carouselData = [
     {
-        banner_image: '/img/skt_6.jpg',
+        banner_image: '/img/SKT_6.jpg',
         title: 'BFI',
         bottom_sub_title: 'EDUCATION SERVIES.',
         top_sub_title: '4 Sister Schools',
     },
 
     {
-        banner_image: '/img/skt_9.jpg',
+        banner_image: '/img/SKT_9.jpg',
         title: 'Inspiring Brilance',
         bottom_sub_title: 'Building Brighter Futures.',
         top_sub_title: '90% Foreign Teachers',
     },
 
     {
-        banner_image: '/img/skt_5.jpg',
+        banner_image: '/img/SKT_5.jpg',
         title: 'WORLD-CLASS EDUCATION IN A',
         bottom_sub_title: 'SAFE AND FRIENDLY ENVIRONMENT',
         top_sub_title: 'The IB Diploma Programme',
