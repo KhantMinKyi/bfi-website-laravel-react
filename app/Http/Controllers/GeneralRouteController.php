@@ -11,6 +11,7 @@ use App\Models\Faq;
 use App\Models\JobPost;
 use App\Models\Post;
 use App\Models\SisterSchool;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -169,6 +170,19 @@ class GeneralRouteController extends Controller
         return response()->json([
             'message' => 'success',
             'data' => $bfi_olympiads,
+        ], 200);
+    }
+    public function getAdminDashboardData()
+    {
+        $data = [
+            ['title' => 'Users', 'count' => User::count(), 'route' => '/user-management/dashboard'],
+            ['title' => 'Posts', 'count' => Post::count(), 'route' => '/public_data/event_and_post/dashboard'],
+            ['title' => 'Job Posts', 'count' => JobPost::count(), 'route' => '/communications/jobs/dashboard'],
+            ['title' => 'Sister Schools', 'count' => SisterSchool::count(), 'route' => '/sister_schools/dashboard'],
+        ];
+        return response()->json([
+            'message' => 'success',
+            'data' => $data,
         ], 200);
     }
 }

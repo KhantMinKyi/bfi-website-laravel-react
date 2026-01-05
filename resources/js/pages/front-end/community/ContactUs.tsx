@@ -2,18 +2,18 @@ import SisterSchoolAccordion from '@/components/front-end/admissions/apply-to-si
 import ContactForm from '@/components/front-end/contact_is/contact-form';
 import { DotLoading } from '@/components/front-end/core/dot-loading';
 import FrontEndLayout from '@/layouts/front-end-layout';
-import { schoolAccordionType } from '@/types';
+import { SisterSchool } from '@/types';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 function ContactUs() {
-    const [schoolAccordions, setSchoolAccordions] = useState<schoolAccordionType[]>([]);
+    const [schoolAccordions, setSchoolAccordions] = useState<SisterSchool[]>([]);
     const [imagesLoading, setImagesLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        fetch('/dummy-json/sister-school-accordions.json')
+        fetch('/api/sister_schools/get-all-sister-school')
             .then((res) => res.json())
-            .then((data: schoolAccordionType[]) => {
-                setSchoolAccordions(data);
+            .then((res) => {
+                setSchoolAccordions(res.data);
                 setImagesLoading(false);
             })
             .catch((err) => console.log(err));

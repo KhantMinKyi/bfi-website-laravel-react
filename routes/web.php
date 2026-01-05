@@ -29,7 +29,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('backend/Index');
     })->name('dashboard');
-
+    Route::prefix('api')->group(function () {
+        Route::get('/admin/get-dashboard-data', [GeneralRouteController::class, 'getAdminDashboardData']);
+    });
     require __DIR__ . '/route_groups/back_end/user-management/user-management.php';
     require __DIR__ . '/route_groups/back_end/communications/form-submissions.php';
     require __DIR__ . '/route_groups/back_end/communications/jobs.php';

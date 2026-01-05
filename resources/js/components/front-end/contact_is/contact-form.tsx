@@ -67,7 +67,7 @@ const ContactForm = () => {
                                         </div>
                                         <div className="w-full">
                                             <h4 className="text-dark mb-1 text-xl font-bold dark:text-white">Phone Number</h4>
-                                            <p className="text-body-color dark:text-dark-6 text-base">01450396</p>
+                                            <p className="text-body-color dark:text-dark-6 text-base">019410010</p>
                                         </div>
                                     </div>
 

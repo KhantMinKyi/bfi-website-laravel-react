@@ -1,8 +1,8 @@
-import { schoolAccordionType, TeamCardType } from '@/types';
+import { SisterSchool, TeamCardType } from '@/types';
 import { motion } from 'motion/react';
 import React from 'react';
 type Props = {
-    schoolAccordions: schoolAccordionType[];
+    schoolAccordions: SisterSchool[];
     title?: string;
     body?: string;
 };
@@ -34,7 +34,7 @@ const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions, title = null
                             viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                             transition={{ duration: (i + 1) * 0.2, ease: 'easeInOut' }} // longer duration
                         >
-                            <SisterSchoolAccordionCard name={t.title} imagesrc={t.src} websiteUrl={t.websiteUrl} />
+                            <SisterSchoolAccordionCard name={t.name} imagesrc={t.logo} websiteUrl={t.website_url} />
                         </motion.div>
                     ))}
                 </div>
