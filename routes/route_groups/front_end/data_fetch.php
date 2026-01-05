@@ -29,4 +29,6 @@ Route::prefix('api')->group(function () {
 
 
     Route::get('/about_us/get-csa-data/{param}', [GeneralRouteController::class, 'getCSAData']);
+
+    Route::get('/bfi_olympiads/get-bfi_olympiads-data', [GeneralRouteController::class, 'getBFIOlympiadsData']);
 });

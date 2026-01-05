@@ -23,6 +23,7 @@ require __DIR__ . '/route_groups/front_end/community.php';
 require __DIR__ . '/route_groups/front_end/curriculum.php';
 require __DIR__ . '/route_groups/front_end/competition.php';
 require __DIR__ . '/route_groups/front_end/career.php';
+require __DIR__ . '/route_groups/front_end/bfi_olympiads.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {

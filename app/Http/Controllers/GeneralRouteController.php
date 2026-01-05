@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BfiOlympaid;
 use App\Models\CategoryTag;
 use App\Models\CommunityServiceActivity;
 use App\Models\Competition;
@@ -160,6 +161,14 @@ class GeneralRouteController extends Controller
         return response()->json([
             'message' => 'success',
             'data' => $csa,
+        ], 200);
+    }
+    public function getBFIOlympiadsData()
+    {
+        $bfi_olympiads = BfiOlympaid::orderBy('created_at', 'desc')->get();
+        return response()->json([
+            'message' => 'success',
+            'data' => $bfi_olympiads,
         ], 200);
     }
 }

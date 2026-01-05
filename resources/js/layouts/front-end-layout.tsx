@@ -358,7 +358,10 @@ export default ({ children }: FrondendLayoutProps) => {
                                 </li>
                                 {/* BFI Olympiads */}
                                 <li className="group relative inline-block">
-                                    <Link href="#" className={`${currentPath === '/career' ? activeLink : baseLink}`}>
+                                    <Link
+                                        href={route('bfi_olympiads')}
+                                        className={`${currentPath === routePath('bfi_olympiads') ? activeLink : baseLink}`}
+                                    >
                                         BFI Olympiads
                                     </Link>
                                 </li>
