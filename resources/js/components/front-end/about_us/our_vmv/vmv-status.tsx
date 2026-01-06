@@ -34,12 +34,8 @@ function VmvStatus() {
                                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                             >
                                 <p className="mb-5">
-                                    operate 4 main campuses and 4 kindergartens in Myanmar. Our campuses are located in Yangon, Mandalay and Nay Pyi
-                                    Taw. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse aspernatur, expedita aut odio id repudiandae
-                                    quidem, cum quam porro ex enim sed. Veritatis nulla iure laboriosam maiores consequuntur eligendi ex? operate 4
-                                    main campuses and 4 kindergartens in Myanmar. Our campuses are located in Yangon, Mandalay and Nay Pyi Taw. Lorem,
-                                    ipsum dolor sit amet consectetur adipisicing elit. Esse aspernatur, expedita aut odio id repudiandae quidem, cum
-                                    quam porro ex enim sed. Veritatis nulla iure laboriosam maiores consequuntur eligendi ex?
+                                    We empower our students to join world-class universities and become lifelong learners and compassionate global
+                                    citizens.
                                 </p>
                             </motion.div>
                         </div>
@@ -59,9 +55,8 @@ function VmvStatus() {
                                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                             >
                                 <p className="mb-5">
-                                    operate 4 main campuses and 4 kindergartens in Myanmar. Our campuses are located in Yangon, Mandalay and Nay Pyi
-                                    Taw. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse aspernatur, expedita aut odio id repudiandae
-                                    quidem, cum quam porro ex enim sed. Veritatis nulla iure laboriosam maiores consequuntur eligendi ex?
+                                    We nurture students to become lifelong learners, responsible global citizens, and compassionate individuals
+                                    through a challenging and balanced curriculum in a safe and caring environment.
                                 </p>
                             </motion.div>
                         </div>
@@ -81,15 +76,21 @@ function VmvStatus() {
                                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                             >
                                 <p className="mb-5">
-                                    operate 4 main campuses and 4 kindergartens in Myanmar. Our campuses are located in Yangon, Mandalay and Nay Pyi
-                                    Taw. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse aspernatur, expedita aut odio id repudiandae
-                                    quidem, cum quam porro ex enim sed. Veritatis nulla iure laboriosam maiores consequuntur eligendi ex? operate 4
-                                    main campuses and 4 kindergartens in Myanmar. Our campuses are located in Yangon, Mandalay and Nay Pyi Taw. Lorem,
-                                    ipsum dolor sit amet consectetur adipisicing elit. Esse aspernatur, expedita aut odio id repudiandae quidem, cum
-                                    quam porro ex enim sed. Veritatis nulla iure laboriosam maiores consequuntur eligendi ex? operate 4 main campuses
-                                    and 4 kindergartens in Myanmar. Our campuses are located in Yangon, Mandalay and Nay Pyi Taw. Lorem, ipsum dolor
-                                    sit amet consectetur adipisicing elit. Esse aspernatur, expedita aut odio id repudiandae quidem, cum quam porro ex
-                                    enim sed. Veritatis nulla iure laboriosam maiores consequuntur eligendi ex?
+                                    Our school philosophy revolves around five pillars, each representing a core aspect of our commitment to
+                                    excellence and holistic development. Science and Mathematics: Building Foundations for Inquiry and Discovery Our
+                                    curriculum is designed to ignite curiosity, encourage critical thinking, and instill a passion for inquiry-based
+                                    learning. We empower our students to tackle real-world challenges and contribute meaningfully to a rapidly
+                                    evolving global society. Technology Integration: Shaping Future Innovators Through a dynamic and evolving
+                                    curriculum, we prepare our students to be adaptive, creative, and ethical users of technology, positioning them as
+                                    leaders in an increasingly digital world. Physical Education - Sports, Games, and Events: Fostering Wellness and
+                                    Team Spirit By fostering inclusivity and providing diverse opportunities for physical activity, we aim to instill
+                                    a lifelong love for fitness, teamwork, and sportsmanship, nurturing well-rounded individuals who understand the
+                                    importance of a healthy lifestyle. Internationalism: Cultivating Global Citizens We strive to create a global
+                                    learning environment by incorporating international perspectives into our curriculum, promoting cultural exchange
+                                    programs, and encouraging an appreciation for diversity. Character and Values Education: Shaping Ethical Leaders
+                                    Our curriculum places a strong emphasis on the development of moral integrity, empathy, and resilience. We aim to
+                                    cultivate ethical leaders who not only excel academically but also contribute positively to their communities,
+                                    demonstrating a commitment to social responsibility.
                                 </p>
                             </motion.div>
                         </div>
@@ -109,9 +110,13 @@ function VmvStatus() {
                                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                             >
                                 <p className="mb-5">
-                                    operate 4 main campuses and 4 kindergartens in Myanmar. Our campuses are located in Yangon, Mandalay and Nay Pyi
-                                    Taw. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse aspernatur, expedita aut odio id repudiandae
-                                    quidem, cum quam porro ex enim sed. Veritatis nulla iure laboriosam maiores consequuntur eligendi ex?
+                                    Respect We place great value on the importance of having honour and regard for the worth of oneself and others.
+                                    Responsibility We hold in high esteem the notion of individual and collective responsibility towards ourselves,
+                                    the wider community, and the environment. Integrity We focus on the state of being whole and undivided; having the
+                                    strength of character and conscience. Compassion We encourage and uphold the sense of having concern for the
+                                    sufferings or misfortunes of others and using this to strive towards selﬂessness. Excellence We value the process
+                                    of striving for excellence, for individual and collective achievement in all aspects of schooling and community
+                                    action.
                                 </p>
                             </motion.div>
                         </div>

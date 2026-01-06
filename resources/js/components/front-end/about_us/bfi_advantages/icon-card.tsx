@@ -28,8 +28,7 @@ function IconCardGroup() {
                         <div className="px-6 py-4">
                             <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Community Focus</div>
                             <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                                exercitationem praesentium nihil.
+                                We build a supportive school community where students, families, and educators work together for student success.
                             </p>
                         </div>
                         <div className="px-6 pt-4 pb-2">
@@ -73,8 +72,8 @@ function IconCardGroup() {
                         <div className="px-6 py-4">
                             <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Explicit Teaching Model</div>
                             <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                                exercitationem praesentium nihil.
+                                Our clear and structured teaching approach ensures students understand what to learn, how to learn, and why it
+                                matters.
                             </p>
                         </div>
                         <div className="px-6 pt-4 pb-2">
@@ -113,8 +112,7 @@ function IconCardGroup() {
                         <div className="px-6 py-4">
                             <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Academic Success</div>
                             <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                                exercitationem praesentium nihil.
+                                Strong curricula, skilled teachers, and consistent assessment help students achieve excellent academic outcomes.
                             </p>
                         </div>
                         <div className="px-6 pt-4 pb-2">
@@ -151,8 +149,7 @@ function IconCardGroup() {
                         <div className="px-6 py-4">
                             <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Education Awards</div>
                             <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                                exercitationem praesentium nihil.
+                                Our schools are recognised with education awards that reflect our commitment to quality, innovation, and excellence.¡
                             </p>
                         </div>
                         <div className="px-6 pt-4 pb-2">

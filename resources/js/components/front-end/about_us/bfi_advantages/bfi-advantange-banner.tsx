@@ -38,19 +38,12 @@ function BFIAdvantageBanner() {
                             What is The BFI Advantage?
                         </p>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam explicabo in eum fuga, illum ipsa mollitia cum
-                            perferendis dignissimos aut ipsam nostrum officiis placeat odit a corrupti! Soluta, esse repellat. Lorem ipsum dolor sit
-                            amet consectetur, adipisicing elit. Magnam explicabo in eum fuga, illum ipsa mollitia cum perferendis dignissimos aut
-                            ipsam nostrum officiis placeat odit a corrupti! Soluta, esse repellat. Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Magnam explicabo in eum fuga, illum ipsa mollitia cum perferendis dignissimos aut ipsam nostrum officiis placeat
-                            odit a corrupti! Soluta, esse repellat. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam explicabo in eum
-                            fuga, illum ipsa mollitia cum perferendis dignissimos aut ipsam nostrum officiis placeat odit a corrupti! Soluta, esse
-                            repellat. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam explicabo in eum fuga, illum ipsa mollitia cum
-                            perferendis dignissimos aut ipsam nostrum officiis placeat odit a corrupti! Soluta, esse repellat. Lorem ipsum dolor sit
-                            amet consectetur, adipisicing elit. Magnam explicabo in eum fuga, illum ipsa mollitia cum perferendis dignissimos aut
-                            ipsam nostrum officiis placeat odit a corrupti! Soluta, esse repellat. Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Magnam explicabo in eum fuga, illum ipsa mollitia cum perferendis dignissimos aut ipsam nostrum officiis placeat
-                            odit a corrupti! Soluta, esse repellat.
+                            BFI offers a strong and trusted education network through its group of four or more sister international schools. This
+                            connection allows students to benefit from shared academic standards, experienced leadership teams, and proven teaching
+                            practices across all campuses. BFI schools provide a consistent, high-quality learning environment while respecting each
+                            campus’s unique culture and community. With access to shared resources, teacher training, and student development
+                            programs, BFI ensures stability, innovation, and continuous improvement. Parents can trust BFI to deliver a globally
+                            focused education that prepares students for future academic success and life beyond the classroom.
                         </p>
                     </div>
                 </motion.div>
