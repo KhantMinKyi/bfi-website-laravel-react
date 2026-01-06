@@ -60,7 +60,7 @@ const Footer = ({
                                         </defs>
                                     </svg>
                                 </span>
-                                <span>+019410010</span>
+                                <span>+9519410010</span>
                             </p>
                         </div>
                         <div className="flex-1 justify-evenly sm:flex">

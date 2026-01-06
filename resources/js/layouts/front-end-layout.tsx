@@ -99,7 +99,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         <div className="ml-5 overflow-hidden">
                                             <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Call Us:</span>
                                             <p className="font-heading-font leading-5 font-medium text-[#232323] sm:text-sm dark:text-white">
-                                                019410010
+                                                +9519410010
                                             </p>
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         <div className="ml-5 overflow-hidden">
                                             <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Address:</span>
                                             <p className="font-heading-font leading-5 font-medium text-[#232323] sm:text-sm dark:text-white">
-                                                No.235, Shu Khinn Thar Myo Pat Road,Thaketa, Yangon.
+                                                No.235, Shu Khinn Thar Myo Pat Road, Thaketa, Yangon.
                                             </p>
                                         </div>
                                     </div>

@@ -22,8 +22,8 @@ const ContactForm = () => {
                                         GET IN TOUCH WITH US
                                     </h2>
                                     <p className="font-merriweather mb-9 text-base leading-relaxed text-gray-700 dark:text-gray-300">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius tempor incididunt ut labore e dolore
-                                        magna aliqua. Ut enim adiqua minim veniam quis nostrud exercitation ullamco
+                                        We nurture students to become lifelong learners responsible global citizens, and compassionate individuals
+                                        through a challenging and balanced curriculum in a safe and caring environment.
                                     </p>
 
                                     <div className="mb-8 flex w-full max-w-[370px]">
@@ -67,7 +67,7 @@ const ContactForm = () => {
                                         </div>
                                         <div className="w-full">
                                             <h4 className="text-dark mb-1 text-xl font-bold dark:text-white">Phone Number</h4>
-                                            <p className="text-body-color dark:text-dark-6 text-base">019410010</p>
+                                            <p className="text-body-color dark:text-dark-6 text-base">+9519410010</p>
                                         </div>
                                     </div>
 

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 
@@ -43,9 +44,23 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'name' => config('app.name'),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
-            'sisterSchools' => fn() => \App\Models\SisterSchool::orderBy('name', 'desc')->get(['slug', 'name']),
-            'curriculum' => fn() => \App\Models\Curriculum::orderBy('name', 'desc')->get(['slug', 'name']),
-            'competitions' => fn() => \App\Models\Competition::orderBy('name', 'desc')->get(['slug', 'name']),
+            'sisterSchools' => fn() => Cache::remember('shared_sister_schools', 3600, function () {
+                return \App\Models\SisterSchool::orderBy('name', 'desc')
+                    ->get(['slug', 'name'])
+                    ->toArray();
+            }),
+
+            'curriculum' => fn() => Cache::remember('shared_curriculum', 3600, function () {
+                return \App\Models\Curriculum::orderBy('name', 'desc')
+                    ->get(['slug', 'name'])
+                    ->toArray();
+            }),
+
+            'competitions' => fn() => Cache::remember('shared_competitions', 3600, function () {
+                return \App\Models\Competition::orderBy('name', 'desc')
+                    ->get(['slug', 'name'])
+                    ->toArray();
+            }),
             'auth' => [
                 'user' => $request->user(),
             ],

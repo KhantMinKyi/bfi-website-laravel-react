@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import * as motion from 'motion/react-client';
 function Information() {
     return (
@@ -34,9 +35,12 @@ function Information() {
                                         <p>It has survived not only five centuries the leap into.</p>
                                     </li>
                                 </ul>
-                                <a className="rounded-4xl bg-blue-800 px-6 py-4 text-white hover:bg-green-800 hover:shadow-2xl" href="about.html">
+                                <Link
+                                    className="rounded-4xl bg-blue-800 px-6 py-4 text-white hover:bg-green-800 hover:shadow-2xl"
+                                    href={route('contact_us')}
+                                >
                                     Get In Touch
-                                </a>
+                                </Link>
                             </div>
                         </motion.div>
                     </div>

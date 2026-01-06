@@ -17,7 +17,7 @@ const FAQList: React.FC<Props> = ({ faq, isLoading }) => {
                     <p className="font-merriweather mt-6 text-lg text-neutral-700 md:text-lg dark:text-neutral-300">
                         Below you will find a comprehensive list of the most frequently asked questions we receive. Should you have a question we have
                         not listed below, please contact BFI Education Services on{' '}
-                        <span className="text-blue-900 dark:text-green-700">+959123456789</span> .
+                        <span className="text-blue-900 dark:text-green-700">+9519410010</span> .
                     </p>
                 </div>
                 {isLoading ? (
