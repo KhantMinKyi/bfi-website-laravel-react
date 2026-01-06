@@ -5,7 +5,6 @@ import { DotLoading } from '@/components/front-end/core/dot-loading';
 import EducationProgramme from '@/components/front-end/core/education-programme';
 import PostCarousel from '@/components/front-end/core/post-lists';
 import PostLoadingSkeleton from '@/components/front-end/core/post-loading-skeleton';
-import FrontEndLayout from '@/layouts/front-end-layout';
 import type { Post } from '@/types';
 import { Head, router } from '@inertiajs/react';
 import React, { Suspense, useEffect, useMemo, useState } from 'react';
@@ -123,88 +122,86 @@ const Welcome = () => {
     );
 
     return (
-        <FrontEndLayout>
-            <>
-                <Head title={pageTitle}>
-                    <meta name="description" content={pageDescription} />
-                    {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
-                    <meta name="robots" content="index,follow" />
-                    <meta property="og:type" content="website" />
-                    <meta property="og:title" content={pageTitle} />
-                    <meta property="og:description" content={pageDescription} />
-                    <meta property="og:url" content={canonicalUrl} />
-                    <meta property="og:image" content="/img/bfi.png" />
-                    <meta name="twitter:card" content="summary_large_image" />
-                    <meta name="twitter:title" content={pageTitle} />
-                    <meta name="twitter:description" content={pageDescription} />
-                    <meta name="twitter:image" content="/img/bfi.png" />
-                    <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
-                </Head>
-                <h1 className="sr-only">{pageTitle}</h1>
-                <Suspense fallback={<DotLoading />}>
-                    <CarouselBanner carouselData={carouselData} />
-                </Suspense>
-                <Suspense fallback={<DotLoading />}>
-                    <SisterSchoolCards />
-                </Suspense>
+        // <FrontEndLayout>
+        <>
+            <Head title={pageTitle}>
+                <meta name="description" content={pageDescription} />
+                {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+                <meta name="robots" content="index,follow" />
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={pageTitle} />
+                <meta property="og:description" content={pageDescription} />
+                <meta property="og:url" content={canonicalUrl} />
+                <meta property="og:image" content="/img/bfi.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={pageTitle} />
+                <meta name="twitter:description" content={pageDescription} />
+                <meta name="twitter:image" content="/img/bfi.png" />
+                <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+            </Head>
+            <h1 className="sr-only">{pageTitle}</h1>
+            <Suspense fallback={<DotLoading />}>
+                <CarouselBanner carouselData={carouselData} />
+            </Suspense>
+            <Suspense fallback={<DotLoading />}>
+                <SisterSchoolCards />
+            </Suspense>
 
-                <div className="container mx-auto mt-10">
-                    {cardLoading ? (
-                        <div className="flex h-[50dvh] justify-center gap-10">
-                            <PostLoadingSkeleton />
-                            <PostLoadingSkeleton className={'hidden md:block'} />
-                            <PostLoadingSkeleton className={'hidden md:block'} />
-                        </div>
-                    ) : cardsError ? (
-                        <div className="flex h-[50dvh] items-center justify-center text-red-500">Failed to load posts. Please try again.</div>
-                    ) : (
-                        <PostCarousel posts={cardsData} categories={categoryTagData} onPostClick={handleCardClick} />
-                    )}
+            <div className="container mx-auto mt-10">
+                {cardLoading ? (
+                    <div className="flex h-[50dvh] justify-center gap-10">
+                        <PostLoadingSkeleton />
+                        <PostLoadingSkeleton className={'hidden md:block'} />
+                        <PostLoadingSkeleton className={'hidden md:block'} />
+                    </div>
+                ) : cardsError ? (
+                    <div className="flex h-[50dvh] items-center justify-center text-red-500">Failed to load posts. Please try again.</div>
+                ) : (
+                    <PostCarousel posts={cardsData} categories={categoryTagData} onPostClick={handleCardClick} />
+                )}
+            </div>
+            <Suspense fallback={<DotLoading />}>
+                <Information />
+            </Suspense>
+            {imagesLoading ? (
+                <div className="container mx-auto flex justify-center gap-10">
+                    <div className="flex h-64 items-center justify-center text-lg text-gray-500">
+                        <DotLoading />
+                    </div>
                 </div>
+            ) : imagesError ? (
+                <div className="container mx-auto flex justify-center gap-10">
+                    <div className="flex h-64 items-center justify-center text-red-500">Failed to load gallery. Please try again.</div>
+                </div>
+            ) : (
                 <Suspense fallback={<DotLoading />}>
-                    <Information />
+                    <AccordionGallery images={images} />
                 </Suspense>
-                {imagesLoading ? (
-                    <div className="container mx-auto flex justify-center gap-10">
-                        <div className="flex h-64 items-center justify-center text-lg text-gray-500">
-                            <DotLoading />
-                        </div>
-                    </div>
-                ) : imagesError ? (
-                    <div className="container mx-auto flex justify-center gap-10">
-                        <div className="flex h-64 items-center justify-center text-red-500">Failed to load gallery. Please try again.</div>
-                    </div>
-                ) : (
-                    <Suspense fallback={<DotLoading />}>
-                        <AccordionGallery images={images} />
-                    </Suspense>
-                )}
+            )}
 
-                {curriculumLoading ? (
-                    <div className="container mx-auto flex justify-center gap-10">
-                        <div className="flex h-64 items-center justify-center text-lg text-gray-500">
-                            <DotLoading />
-                        </div>
+            {curriculumLoading ? (
+                <div className="container mx-auto flex justify-center gap-10">
+                    <div className="flex h-64 items-center justify-center text-lg text-gray-500">
+                        <DotLoading />
                     </div>
-                ) : curriculumError ? (
-                    <div className="container mx-auto flex justify-center gap-10">
-                        <div className="flex h-64 items-center justify-center text-red-500">
-                            Failed to load education programmes. Please try again.
-                        </div>
-                    </div>
-                ) : (
-                    <EducationProgramme curriculums={curriculum} />
-                )}
+                </div>
+            ) : curriculumError ? (
+                <div className="container mx-auto flex justify-center gap-10">
+                    <div className="flex h-64 items-center justify-center text-red-500">Failed to load education programmes. Please try again.</div>
+                </div>
+            ) : (
+                <EducationProgramme curriculums={curriculum} />
+            )}
 
-                <Counter />
-                <Suspense fallback={<DotLoading />}>
-                    <PhotoGallery />
-                </Suspense>
-                <Suspense fallback={<DotLoading />}>
-                    <ContactBanner />
-                </Suspense>
-            </>
-        </FrontEndLayout>
+            <Counter />
+            <Suspense fallback={<DotLoading />}>
+                <PhotoGallery />
+            </Suspense>
+            <Suspense fallback={<DotLoading />}>
+                <ContactBanner />
+            </Suspense>
+        </>
+        // </FrontEndLayout>
     );
 };
 
