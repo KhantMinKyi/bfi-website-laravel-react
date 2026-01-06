@@ -1,7 +1,7 @@
 import AppearanceToggleDropdown from '@/components/appearance-dropdown';
 import Footer from '@/components/front-end/core/footer';
 import { Link, usePage } from '@inertiajs/react';
-import { MailIcon, MapPinIcon, PhoneIcon } from 'lucide-react';
+import { MailIcon, MapPinIcon, MenuIcon, PhoneIcon } from 'lucide-react';
 import React, { useEffect, useState, type ReactNode } from 'react';
 import MobileLayout from './mobile-layout';
 
@@ -148,7 +148,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                     onClick={toggleMenu}
                                 >
                                     {' '}
-                                    <i className="fa fa-solid fa-bars"></i>{' '}
+                                    <MenuIcon />{' '}
                                 </button>
                             </div>
                         </div>

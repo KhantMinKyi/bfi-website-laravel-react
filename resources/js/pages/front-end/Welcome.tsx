@@ -1,59 +1,62 @@
-import AccordionGallery from '@/components/front-end/core/accordion-gallery';
-import CarouselBanner from '@/components/front-end/core/carousel-banner';
+'use client';
+
 import Counter from '@/components/front-end/core/counter';
 import { DotLoading } from '@/components/front-end/core/dot-loading';
 import EducationProgramme from '@/components/front-end/core/education-programme';
 import PostCarousel from '@/components/front-end/core/post-lists';
 import PostLoadingSkeleton from '@/components/front-end/core/post-loading-skeleton';
-import PullUpHeader from '@/components/front-end/core/pull-up-header';
-import ContactBanner from '@/components/front-end/home/contact-banner';
-import Information from '@/components/front-end/home/information';
-import PhotoGallery from '@/components/front-end/home/photo-gallery';
-import SisterSchoolCards from '@/components/front-end/home/sister-school-cards';
 import FrontEndLayout from '@/layouts/front-end-layout';
-import { CategoryTag, Curriculum, ImageItem, Post } from '@/types';
+import type { Post } from '@/types';
 import { Head, router } from '@inertiajs/react';
-import { useEffect, useMemo, useState } from 'react';
+import React, { Suspense, useEffect, useMemo, useState } from 'react';
+const PhotoGallery = React.lazy(() => import('@/components/front-end/home/photo-gallery'));
+const Information = React.lazy(() => import('@/components/front-end/home/information'));
+const ContactBanner = React.lazy(() => import('@/components/front-end/home/contact-banner'));
+const CarouselBanner = React.lazy(() => import('@/components/front-end/core/carousel-banner'));
+const AccordionGallery = React.lazy(() => import('@/components/front-end/core/accordion-gallery'));
+const SisterSchoolCards = React.lazy(() => import('@/components/front-end/home/sister-school-cards'));
 
-const handleCardClick = (card: Post) => {
-    router.visit(route('post-detail', { postId: card.id }));
+const useFetchData = (url: string, initialState: any = null) => {
+    const [data, setData] = useState(initialState);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
+                const result = await response.json();
+                if (isMounted) {
+                    setData(result.data || result);
+                    setLoading(false);
+                }
+            } catch (err) {
+                if (isMounted) {
+                    setError(err instanceof Error ? err.message : 'An error occurred');
+                    setLoading(false);
+                }
+            }
+        };
+
+        fetchData();
+        return () => {
+            isMounted = false;
+        };
+    }, [url]);
+
+    return { data, loading, error };
 };
 
-const carouselData = [
-    {
-        banner_image: '/img/SKT_6.jpg',
-        title: 'BFI',
-        bottom_sub_title: 'EDUCATION SERVIES.',
-        top_sub_title: '4 Sister Schools',
-    },
-
-    {
-        banner_image: '/img/SKT_9.jpg',
-        title: 'Inspiring Brilance',
-        bottom_sub_title: 'Building Brighter Futures.',
-        top_sub_title: '90% Foreign Teachers',
-    },
-
-    {
-        banner_image: '/img/SKT_5.jpg',
-        title: 'WORLD-CLASS EDUCATION IN A',
-        bottom_sub_title: 'SAFE AND FRIENDLY ENVIRONMENT',
-        top_sub_title: 'The IB Diploma Programme',
-    },
-];
-
-function Welcome() {
-    const [curriculum, setCurriculum] = useState<Curriculum[]>([]);
-    const [images, setImages] = useState<ImageItem[]>([]);
-    const [cardsData, setCardsData] = useState<Post[]>([]);
-    const [categoryTadData, setCategoryTadData] = useState<CategoryTag[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [imagesLoading, setImagesLoading] = useState<boolean>(true);
-    const [cardLoading, setCardLoading] = useState<boolean>(true);
-
+const Welcome = () => {
     const pageTitle = 'BFI Education Services ';
     const pageDescription =
         'BFI Education Services manages 4+ international sister schools across Myanmar, offering world-class programmes, foreign teachers, IB Diploma pathways, events, and admissions support.';
+
     const canonicalUrl = useMemo(() => {
         try {
             return route('home');
@@ -61,6 +64,36 @@ function Welcome() {
             return '';
         }
     }, []);
+
+    const { data: curriculum = [], loading: curriculumLoading, error: curriculumError } = useFetchData('/api/education/get-all-curriculum', []);
+    const { data: images = [], loading: imagesLoading, error: imagesError } = useFetchData('/dummy-json/homepage-according-images.json', []);
+    const { data: cardsData = [], loading: cardLoading, error: cardsError } = useFetchData('/api/home/get-post-data?limit=6', []);
+    const { data: categoryTagData = [], loading: categoryLoading, error: categoryError } = useFetchData('/api/home/get-category-tag-data', []);
+
+    const handleCardClick = (card: Post) => {
+        router.visit(route('post-detail', { postId: card.id }));
+    };
+
+    const carouselData = [
+        {
+            banner_image: '/img/SKT_6.jpg',
+            title: 'BFI',
+            bottom_sub_title: 'EDUCATION SERVIES.',
+            top_sub_title: '4 Sister Schools',
+        },
+        {
+            banner_image: '/img/SKT_9.jpg',
+            title: 'Inspiring Brilance',
+            bottom_sub_title: 'Building Brighter Futures.',
+            top_sub_title: '90% Foreign Teachers',
+        },
+        {
+            banner_image: '/img/SKT_5.jpg',
+            title: 'WORLD-CLASS EDUCATION IN A',
+            bottom_sub_title: 'SAFE AND FRIENDLY ENVIRONMENT',
+            top_sub_title: 'The IB Diploma Programme',
+        },
+    ];
 
     const structuredData = useMemo(
         () => ({
@@ -89,35 +122,6 @@ function Welcome() {
         [canonicalUrl, pageDescription],
     );
 
-    useEffect(() => {
-        fetch('/api/education/get-all-curriculum')
-            .then((res) => res.json())
-            .then((res) => {
-                setCurriculum(res.data);
-                setLoading(false);
-            })
-            .catch((err) => console.log(err));
-        fetch('/dummy-json/homepage-according-images.json')
-            .then((res) => res.json())
-            .then((data: ImageItem[]) => {
-                setImages(data);
-                setImagesLoading(false);
-            })
-            .catch((err) => console.log(err));
-        fetch('/api/home/get-post-data?limit=6')
-            .then((res) => res.json())
-            .then((res) => {
-                setCardsData(res.data);
-                setCardLoading(false);
-            })
-            .catch((err) => console.log(err));
-        fetch('/api/home/get-category-tag-data')
-            .then((res) => res.json())
-            .then((res) => {
-                setCategoryTadData(res.data);
-            })
-            .catch((err) => console.log(err));
-    }, []);
     return (
         <FrontEndLayout>
             <>
@@ -137,57 +141,71 @@ function Welcome() {
                     <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
                 </Head>
                 <h1 className="sr-only">{pageTitle}</h1>
-                <CarouselBanner carouselData={carouselData} />
-                <SisterSchoolCards />
+                <Suspense fallback={<DotLoading />}>
+                    <CarouselBanner carouselData={carouselData} />
+                </Suspense>
+                <Suspense fallback={<DotLoading />}>
+                    <SisterSchoolCards />
+                </Suspense>
+
                 <div className="container mx-auto mt-10">
                     {cardLoading ? (
-                        <div className="container mx-auto">
-                            <h2 className="mb-4">
-                                <PullUpHeader text="Events & News" />
-                            </h2>
-                            <div className="flex h-[50dvh] justify-center gap-10">
-                                <PostLoadingSkeleton />
-                                <PostLoadingSkeleton className={'hidden md:block'} />
-                                <PostLoadingSkeleton className={'hidden md:block'} />
-                            </div>
+                        <div className="flex h-[50dvh] justify-center gap-10">
+                            <PostLoadingSkeleton />
+                            <PostLoadingSkeleton className={'hidden md:block'} />
+                            <PostLoadingSkeleton className={'hidden md:block'} />
                         </div>
+                    ) : cardsError ? (
+                        <div className="flex h-[50dvh] items-center justify-center text-red-500">Failed to load posts. Please try again.</div>
                     ) : (
-                        <PostCarousel
-                            posts={cardsData}
-                            categories={categoryTadData}
-                            onPostClick={handleCardClick}
-                            // onFilterChange={handleFilterChange}
-                        />
+                        <PostCarousel posts={cardsData} categories={categoryTagData} onPostClick={handleCardClick} />
                     )}
                 </div>
-                <Information />
-
+                <Suspense fallback={<DotLoading />}>
+                    <Information />
+                </Suspense>
                 {imagesLoading ? (
                     <div className="container mx-auto flex justify-center gap-10">
                         <div className="flex h-64 items-center justify-center text-lg text-gray-500">
                             <DotLoading />
                         </div>
                     </div>
+                ) : imagesError ? (
+                    <div className="container mx-auto flex justify-center gap-10">
+                        <div className="flex h-64 items-center justify-center text-red-500">Failed to load gallery. Please try again.</div>
+                    </div>
                 ) : (
-                    <AccordionGallery images={images} />
+                    <Suspense fallback={<DotLoading />}>
+                        <AccordionGallery images={images} />
+                    </Suspense>
                 )}
-                {loading ? (
+
+                {curriculumLoading ? (
                     <div className="container mx-auto flex justify-center gap-10">
                         <div className="flex h-64 items-center justify-center text-lg text-gray-500">
                             <DotLoading />
                         </div>
                     </div>
+                ) : curriculumError ? (
+                    <div className="container mx-auto flex justify-center gap-10">
+                        <div className="flex h-64 items-center justify-center text-red-500">
+                            Failed to load education programmes. Please try again.
+                        </div>
+                    </div>
                 ) : (
                     <EducationProgramme curriculums={curriculum} />
                 )}
-                <Counter />
-                {/* <AboutTestimonial /> */}
-                <PhotoGallery />
 
-                <ContactBanner />
+                <Counter />
+                <Suspense fallback={<DotLoading />}>
+                    <PhotoGallery />
+                </Suspense>
+                <Suspense fallback={<DotLoading />}>
+                    <ContactBanner />
+                </Suspense>
             </>
         </FrontEndLayout>
     );
-}
+};
 
 export default Welcome;

@@ -26,13 +26,13 @@ function Information() {
                                         <i className="absolute top-1 left-0">
                                             <img src="assets/images/about/4.png" alt="" />
                                         </i>
-                                        <p>It has survived not only five centuries the leap into.</p>
+                                        <p>SKT International Schools</p>
                                     </li>
                                     <li className="relative inline-block py-1 pl-6 text-base font-semibold text-[#687693]">
                                         <i className="absolute top-1 left-0">
                                             <img src="assets/images/about/5.png" alt="" />
                                         </i>
-                                        <p>It has survived not only five centuries the leap into.</p>
+                                        <p>MISA and NISA</p>
                                     </li>
                                 </ul>
                                 <Link

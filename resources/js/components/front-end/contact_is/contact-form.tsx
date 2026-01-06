@@ -37,7 +37,9 @@ const ContactForm = () => {
                                         </div>
                                         <div className="w-full">
                                             <h4 className="text-dark mb-1 text-xl font-bold dark:text-white">Our Location</h4>
-                                            <p className="text-body-color dark:text-dark-6 text-base">Shukhinthar Mayopat Road, Yangon</p>
+                                            <p className="text-body-color dark:text-dark-6 text-base">
+                                                No.235, Shu Khinn Thar Myo Pat Road, Thaketa, Yangon
+                                            </p>
                                         </div>
                                     </div>
 
