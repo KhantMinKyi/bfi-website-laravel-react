@@ -25,7 +25,7 @@ const IndexPage = () => {
             <div
                 className="relative bg-cover bg-center bg-no-repeat text-white"
                 style={{
-                    backgroundImage: "url('/img/SKT_11.jpg')", // put your image path here
+                    backgroundImage: `url(${competitionData.banner})`, // put your image path here
                 }}
             >
                 {/* Overlay */}
@@ -49,9 +49,9 @@ const IndexPage = () => {
             </div>
 
             <CompetitionBanner name={competitionData.name} introduction={competitionData.introduction} />
-            <div className="container mx-auto flex justify-center">
+            {/* <div className="container mx-auto flex justify-center">
                 <img src={competitionData.banner} className="max-h-screen" alt="" />
-            </div>
+            </div> */}
             <CompetitionInformations body={competitionData.body} footer={competitionData.footer} />
             <CompetitionPhotoGallery slug={competitionData.slug} />
         </FrontEndLayout>

@@ -14,9 +14,10 @@ interface ApiResponse {
 
 // Random size configurations for masonry layout
 const sizeVariants = [
-    { span: 'md:col-span-1 md:row-span-1', height: 'h-64' },
+    { span: 'md:col-span-1 md:row-span-2', height: 'h-full' },
     { span: 'md:col-span-2 md:row-span-1', height: 'h-64' },
     { span: 'md:col-span-1 md:row-span-2', height: 'h-full' },
+    { span: 'md:col-span-2 md:row-span-1', height: 'h-64' },
     // { span: 'md:col-span-2 md:row-span-2', height: 'h-96' },
 ];
 
