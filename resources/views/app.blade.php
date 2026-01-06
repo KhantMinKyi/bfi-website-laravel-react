@@ -38,7 +38,9 @@
 
     <link rel="preload" href="/assets/fonts/Oswald-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
     @routes
-    @viteReactRefresh
+    @env('local')
+        @viteReactRefresh
+    @endenv
     @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
     @inertiaHead
 </head>
