@@ -9,6 +9,7 @@ use App\Models\Competition;
 use App\Models\CompetitionPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\ValidationException;
@@ -78,7 +79,7 @@ class CompetitionController extends Controller
                 CompetitionPhoto::insert($savedCompetitionPhotos);
             }
             DB::commit();
-
+            Cache::forget('shared_competitions');
             return back()->with('success', 'Competition Created Successfully.');
         } catch (\Exception $e) {
 
@@ -133,7 +134,7 @@ class CompetitionController extends Controller
             $competition->update($data);
 
             DB::commit();
-
+            Cache::forget('shared_competitions');
             return back()->with('success', 'Competition Updates Successfully.');
         } catch (\Exception $e) {
 
@@ -161,7 +162,7 @@ class CompetitionController extends Controller
 
                 // Delete main record
                 $competition->delete();
-
+                Cache::forget('shared_competitions');
                 // Delete Files
                 if (File::exists($filePath)) {
                     File::deleteDirectory($filePath);
@@ -245,7 +246,7 @@ class CompetitionController extends Controller
                 }
             }
             DB::commit();
-
+            Cache::forget('shared_competitions');
             return back()->with('success', 'Competition Photo Updated Successfully.');
         } catch (\Exception $e) {
             DB::rollBack();

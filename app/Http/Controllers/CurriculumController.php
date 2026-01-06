@@ -9,6 +9,7 @@ use App\Models\Curriculum;
 use App\Models\CurriculumPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\ValidationException;
@@ -93,7 +94,7 @@ class CurriculumController extends Controller
                 CurriculumPhoto::insert($savedCurricula);
             }
             DB::commit();
-
+            Cache::forget('shared_curriculum');
             return back()->with('success', 'Curriculum Created Successfully.');
         } catch (\Exception $e) {
 
@@ -165,7 +166,7 @@ class CurriculumController extends Controller
             $curriculum->update($data);
 
             DB::commit();
-
+            Cache::forget('shared_curriculum');
             return back()->with('success', 'Curriculum Updates Successfully.');
         } catch (\Exception $e) {
 
@@ -193,7 +194,7 @@ class CurriculumController extends Controller
 
                 // Delete main record
                 $curriculum->delete();
-
+                Cache::forget('shared_curriculum');
                 // Delete Files
                 if (File::exists($filePath)) {
                     File::deleteDirectory($filePath);
@@ -277,7 +278,7 @@ class CurriculumController extends Controller
                 }
             }
             DB::commit();
-
+            Cache::forget('shared_curriculum');
             return back()->with('success', 'Curriculum Photo Updated Successfully.');
         } catch (\Exception $e) {
             DB::rollBack();

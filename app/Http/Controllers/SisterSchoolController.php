@@ -11,6 +11,7 @@ use App\Models\SisterSchoolBanner;
 use App\Models\SisterSchoolLeadership;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\ValidationException;
@@ -137,7 +138,7 @@ class SisterSchoolController extends Controller
             }
 
             DB::commit();
-
+            Cache::forget('shared_sister_schools');
             return back()->with('success', 'Sister School Created Successfully.');
         } catch (\Exception $e) {
 
@@ -226,7 +227,7 @@ class SisterSchoolController extends Controller
             $sister_school->update($data);
 
             DB::commit();
-
+            Cache::forget('shared_sister_schools');
             return back()->with('success', 'Sister School Updates Successfully.');
         } catch (\Exception $e) {
 
@@ -255,7 +256,7 @@ class SisterSchoolController extends Controller
 
                 // Delete main record
                 $sister_school->delete();
-
+                Cache::forget('shared_sister_schools');
                 // Delete Files
                 if (File::exists($filePath)) {
                     File::deleteDirectory($filePath);
@@ -340,7 +341,7 @@ class SisterSchoolController extends Controller
                 }
             }
             DB::commit();
-
+            Cache::forget('shared_sister_schools');
             return back()->with('success', 'Sister School Banner Updated Successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -414,7 +415,7 @@ class SisterSchoolController extends Controller
                 }
             }
             DB::commit();
-
+            Cache::forget('shared_sister_schools');
             return back()->with('success', 'Sister School Leadership Updated Successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
