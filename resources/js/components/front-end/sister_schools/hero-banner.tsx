@@ -1,11 +1,12 @@
 import { SisterSchoolBannerType } from '@/types';
+import DOMPurify from 'dompurify';
 import * as motion from 'motion/react-client';
 import React from 'react';
-
 interface HeroBannerProps {
     data: SisterSchoolBannerType;
 }
 const HeroBanner: React.FC<HeroBannerProps> = ({ data }) => {
+    const sanitizedSchoolOverview = DOMPurify.sanitize(data.schoolOverview ?? '');
     return (
         <div className="relative py-20">
             {/* Overlay */}
@@ -36,7 +37,12 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ data }) => {
                         <p className="font-merriweather my-6 rounded-2xl px-4 py-2 text-center text-xl font-bold text-blue-900 shadow-2xl md:text-2xl dark:text-green-800 dark:shadow-gray-950">
                             {data.shortName} — Where Bright Minds Grow
                         </p>
-                        <p className="font-merriweather mt-2 text-lg italic md:text-xl">{data.schoolOverview}</p>
+                        <p
+                            className="font-merriweather mt-2 text-lg italic md:text-xl"
+                            dangerouslySetInnerHTML={{
+                                __html: sanitizedSchoolOverview,
+                            }}
+                        ></p>
                     </div>
                 </motion.div>
             </div>

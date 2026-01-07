@@ -1,10 +1,11 @@
 import { SisterSchoolOverViewType } from '@/types';
+import DOMPurify from 'dompurify';
 import * as motion from 'motion/react-client';
-
 interface OverviewBannerProps {
     data: SisterSchoolOverViewType;
 }
 const OverviewBanner = ({ data }: OverviewBannerProps) => {
+    const sanitizedHistory = DOMPurify.sanitize(data.history ?? '');
     return (
         <div className="relative bg-blue-950 py-20 dark:bg-green-950">
             {/* Overlay */}
@@ -20,7 +21,12 @@ const OverviewBanner = ({ data }: OverviewBannerProps) => {
                 >
                     <div className="flex flex-col items-center justify-center">
                         <h2 className="font-merriweather my-10 text-4xl font-bold text-white md:text-6xl">Welcome</h2>
-                        <p className="font-merriweather my-10 pr-4 text-lg text-white md:text-xl">{data.history}</p>
+                        <p
+                            className="font-merriweather my-10 pr-4 text-lg text-white md:text-xl"
+                            dangerouslySetInnerHTML={{
+                                __html: sanitizedHistory,
+                            }}
+                        ></p>
                     </div>
                 </motion.div>
                 <motion.div

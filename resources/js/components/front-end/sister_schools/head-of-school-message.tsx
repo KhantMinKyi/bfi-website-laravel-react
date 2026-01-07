@@ -1,10 +1,11 @@
 import { SisterSchoolHOSMessageType } from '@/types';
+import DOMPurify from 'dompurify';
 import * as motion from 'motion/react-client';
-
 interface HeadOfSchoolMessageProps {
     data: SisterSchoolHOSMessageType;
 }
 const HeadOfSchoolMessage = ({ data }: HeadOfSchoolMessageProps) => {
+    const sanitizedHosMessage = DOMPurify.sanitize(data.hosMessage ?? '');
     return (
         <div>
             <section
@@ -36,7 +37,12 @@ const HeadOfSchoolMessage = ({ data }: HeadOfSchoolMessageProps) => {
                                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                             >
-                                <p className="mb-5 text-lg italic">{data.hosMessage}</p>
+                                <p
+                                    className="mb-5 text-lg italic"
+                                    dangerouslySetInnerHTML={{
+                                        __html: sanitizedHosMessage,
+                                    }}
+                                ></p>
                             </motion.div>
                         </div>
                     </div>
