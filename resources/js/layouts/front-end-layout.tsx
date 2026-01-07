@@ -252,7 +252,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 : baseLink
                                         }`}
                                     >
-                                        Sister Schools
+                                        Schools
                                     </Link>
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
                                         {sisterSchools.map((ss) => (
@@ -368,7 +368,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                     </ul>
                                 </li>
                                 {/* BFI Olympiads */}
-                                <li className="group relative inline-block">
+                                {/* <li className="group relative inline-block">
                                     <Link
                                         prefetch
                                         href={route('bfi_olympiads')}
@@ -376,7 +376,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                     >
                                         BFI Olympiads
                                     </Link>
-                                </li>
+                                </li> */}
                                 {/* Community */}
                                 <li className="group relative inline-block">
                                     <a

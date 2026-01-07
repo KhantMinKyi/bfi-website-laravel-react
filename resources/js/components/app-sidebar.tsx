@@ -13,7 +13,6 @@ import {
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import {
-    Award,
     BadgeCheck,
     BookOpenText,
     BriefcaseBusiness,
@@ -63,7 +62,7 @@ const mainNavItems: NavItem[] = [
         ],
     },
     {
-        title: 'Sister Schools',
+        title: 'Group of Schools',
         href: '/sister_schools/dashboard',
         icon: School,
         haveSubItems: false,
@@ -90,11 +89,11 @@ const mainNavItems: NavItem[] = [
                 href: '/public_data/competitions/dashboard',
                 icon: Percent,
             },
-            {
-                title: 'BFI Olympiads',
-                href: '/public_data/bfi_olympiads/dashboard',
-                icon: Award,
-            },
+            // {
+            //     title: 'BFI Olympiads',
+            //     href: '/public_data/bfi_olympiads/dashboard',
+            //     icon: Award,
+            // },
         ],
     },
     {

@@ -72,6 +72,8 @@ export type TeamCardType = {
     profession?: string;
     imagesrc?: string;
     websiteUrl?: string;
+    phone?: string;
+    address?: string;
 };
 export type DonationDataType = {
     title: string;

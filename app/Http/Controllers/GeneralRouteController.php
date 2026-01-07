@@ -82,7 +82,7 @@ class GeneralRouteController extends Controller
     }
     public function getAllSisterSchool()
     {
-        $sister_schools = SisterSchool::orderBy('name', 'desc')->get(['name', 'address', 'email', 'logo', 'website_url']);
+        $sister_schools = SisterSchool::orderBy('name', 'desc')->get(['name', 'address', 'email', 'logo', 'website_url', 'phone']);
         return response()->json([
             'message' => 'success',
             'data' => $sister_schools,
@@ -178,7 +178,7 @@ class GeneralRouteController extends Controller
             ['title' => 'Users', 'count' => User::count(), 'route' => '/user-management/dashboard'],
             ['title' => 'Posts', 'count' => Post::count(), 'route' => '/public_data/event_and_post/dashboard'],
             ['title' => 'Job Posts', 'count' => JobPost::count(), 'route' => '/communications/jobs/dashboard'],
-            ['title' => 'Sister Schools', 'count' => SisterSchool::count(), 'route' => '/sister_schools/dashboard'],
+            ['title' => 'Group of Schools', 'count' => SisterSchool::count(), 'route' => '/sister_schools/dashboard'],
         ];
         return response()->json([
             'message' => 'success',

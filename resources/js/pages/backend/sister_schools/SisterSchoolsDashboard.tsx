@@ -5,7 +5,7 @@ import { Head } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Sister Schools Dashboard',
+        title: ' Schools Dashboard',
         href: '/sister_schools/dashboard',
     },
 ];
@@ -13,7 +13,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 function SisterSchoolsDashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Sister Schools Dashboard" />
+            <Head title=" Schools Dashboard" />
             <div className="p-10">
                 <SisterSchoolDataTable />
             </div>

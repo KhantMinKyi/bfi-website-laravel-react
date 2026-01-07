@@ -102,7 +102,7 @@ const Footer = ({
                                     }
                                 />
                             </LinkGroup>
-                            <LinkGroup header="Sister Schools" className="w-full text-center sm:text-left md:block">
+                            <LinkGroup header="Group of Schools" className="w-full text-center sm:text-left md:block">
                                 {sisterSchools.map((school) => (
                                     <NavLink
                                         key={school.slug}

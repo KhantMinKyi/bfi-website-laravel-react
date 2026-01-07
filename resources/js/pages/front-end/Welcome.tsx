@@ -55,7 +55,7 @@ const useFetchData = (url: string, initialState: any = null) => {
 const Welcome = () => {
     const pageTitle = 'BFI Education Services ';
     const pageDescription =
-        'BFI Education Services manages 4+ international sister schools across Myanmar, offering world-class programmes, foreign teachers, IB Diploma pathways, events, and admissions support.';
+        'BFI Education Services manages 4+ international Group of schools across Myanmar, offering world-class programmes, foreign teachers, IB Diploma pathways, events, and admissions support.';
 
     const canonicalUrl = useMemo(() => {
         try {
@@ -79,7 +79,7 @@ const Welcome = () => {
             banner_image: '/img/SKT_6.jpg',
             title: 'BFI',
             bottom_sub_title: 'EDUCATION SERVIES.',
-            top_sub_title: '4 Sister Schools',
+            top_sub_title: '9 Group of Schools',
         },
         {
             banner_image: '/img/SKT_9.jpg',
@@ -114,8 +114,8 @@ const Welcome = () => {
             department: [
                 {
                     '@type': 'School',
-                    name: 'BFI Sister Schools',
-                    description: 'Network of 4-8 international sister schools operated by BFI Education Services.',
+                    name: 'BFI Group of Schools',
+                    description: 'Network of 9 international schools operated by BFI Education Services.',
                 },
             ],
         }),

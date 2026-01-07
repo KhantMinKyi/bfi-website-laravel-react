@@ -130,7 +130,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
             {/* Sister Schools */}
             <div>
                 <button onClick={() => toggleSubMenu('sister_schools')} className="flex w-full items-center justify-between py-2 text-left uppercase">
-                    Sister Schools
+                    Schools
                     <span>{activeSubMenu === 'sister_schools' ? '▲' : '▼'}</span>
                 </button>
                 <div
@@ -259,7 +259,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                 </div>
             </div> */}
             {/* BFI Olympiads */}
-            <div>
+            {/* <div>
                 <Link
                     prefetch
                     href={route('bfi_olympiads')}
@@ -267,7 +267,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                 >
                     BFI Olympiads
                 </Link>
-            </div>
+            </div> */}
             {/* Community */}
             <div>
                 <button onClick={() => toggleSubMenu('community')} className="flex w-full items-center justify-between py-2 text-left uppercase">

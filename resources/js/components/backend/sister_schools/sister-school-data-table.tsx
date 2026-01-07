@@ -298,7 +298,7 @@ export function SisterSchoolDataTable() {
                     <Input placeholder="Filter by name or email..." disabled className="max-w-sm" value="" onChange={() => {}} />
                     <div className="ml-auto flex items-center gap-2">
                         <Button disabled className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
-                            Add Sister Schools
+                            Add Schools
                         </Button>
                         {/* <Button variant="outline" disabled>
                             Columns <ChevronDown />
@@ -343,7 +343,7 @@ export function SisterSchoolDataTable() {
                         </TableBody>
                     </Table>
                 </div>
-                <div className="flex items-center justify-center py-8 text-sm text-muted-foreground">Loading Sister Schools Data...</div>
+                <div className="flex items-center justify-center py-8 text-sm text-muted-foreground">Loading Schools Data...</div>
             </div>
         );
     }

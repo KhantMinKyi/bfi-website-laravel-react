@@ -1,4 +1,5 @@
 import { SisterSchool, TeamCardType } from '@/types';
+import { MapPin, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
 import React from 'react';
 type Props = {
@@ -34,7 +35,13 @@ const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions, title = null
                             viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                             transition={{ duration: (i + 1) * 0.2, ease: 'easeInOut' }} // longer duration
                         >
-                            <SisterSchoolAccordionCard name={t.name} imagesrc={t.logo} websiteUrl={t.website_url} />
+                            <SisterSchoolAccordionCard
+                                name={t.name}
+                                imagesrc={t.logo}
+                                websiteUrl={t.website_url}
+                                phone={t.phone}
+                                address={t.address}
+                            />
                         </motion.div>
                     ))}
                 </div>
@@ -45,24 +52,26 @@ const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions, title = null
 
 export default SisterSchoolAccordion;
 
-const SisterSchoolAccordionCard: React.FC<TeamCardType> = ({ imagesrc, name, websiteUrl }) => {
+const SisterSchoolAccordionCard: React.FC<TeamCardType> = ({ imagesrc, name, websiteUrl, phone, address }) => {
     return (
         <>
-            <a className="w-full cursor-pointer px-4 md:w-1/2 xl:w-1/4" href={websiteUrl} target="__blank">
-                <div className="mx-auto mb-10 w-44 max-w-[370px] md:w-84">
+            <div className="w-full cursor-pointer px-4 md:w-1/2 xl:w-1/4">
+                <div className="mx-auto mb-10 w-88 max-w-[370px]">
                     <div
                         className="relative overflow-hidden rounded-lg transition-all hover:scale-110"
                         style={{
                             backgroundImage: `url(${imagesrc})`, // put your image path here
-                            backgroundPosition: 'center',
+                            backgroundPosition: 'top',
                             backgroundSize: 'contain',
                             backgroundRepeat: 'no-repeat',
                         }}
                     >
-                        <div className="h-56 w-44 md:h-96 md:w-84"> </div>
-                        {/* <img src={imagesrc} alt="" className="h-56 w-44 md:h-96 md:w-84" /> */}
-                        <div className="absolute bottom-5 left-0 w-44 text-center md:w-84">
-                            <div className="relative mx-5 overflow-hidden rounded-lg bg-white px-3 py-5 dark:bg-gray-900">
+                        <div className="h-[450px] w-88"> </div>
+                        <div className="absolute bottom-5 left-0 w-92 text-center">
+                            <div className="relative mx-5 overflow-hidden rounded-lg bg-white px-3 pb-5 dark:bg-gray-900">
+                                <div className="flex justify-center">
+                                    <img src={imagesrc} alt="" className="h-44" />
+                                </div>
                                 <h3 className="text-dark text-base font-semibold md:text-lg">{name}</h3>
                                 {/* <p className="text-body-color text-xs text-blue-800 dark:text-green-800">{profession}</p> */}
                                 <div>
@@ -96,11 +105,30 @@ const SisterSchoolAccordionCard: React.FC<TeamCardType> = ({ imagesrc, name, web
                                         </svg>
                                     </span>
                                 </div>
+                                <div>
+                                    <div className="flex gap-6">
+                                        <MapPin className="w-4 text-green-600" />
+                                        <h2 className="text-left">{address}</h2>
+                                    </div>
+                                    <div className="mt-2 flex gap-6">
+                                        <Phone className="w-6 text-green-600" />
+                                        <h2 className="text-left"> {phone}</h2>
+                                    </div>
+                                    <div className="mt-2 text-center">
+                                        <a
+                                            href={websiteUrl}
+                                            target="__blank"
+                                            className="rounded-xl border border-blue-800 px-4 py-2 text-white hover:border-blue-600 dark:border-green-800 hover:dark:border-green-600"
+                                        >
+                                            Visit Website
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </>
     );
 };

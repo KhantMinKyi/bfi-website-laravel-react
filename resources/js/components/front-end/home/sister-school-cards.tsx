@@ -145,7 +145,7 @@ const Schedule = () => {
             >
                 Our Sister Schools
             </motion.h1> */}
-            <GradualSpacingHeader text="Our Sister Schools" />
+            <GradualSpacingHeader text="BFI Group of Schools" />
             {sisterSchoolData.map((e) => (
                 <ScheduleItem key={e.name} name={e.name} address={e.address} email={e.email} link={e.website_url} />
             ))}

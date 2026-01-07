@@ -45,6 +45,7 @@ function ContactUs() {
                     </div>
                 </motion.div>
             </div>
+            <ContactForm />
             {imagesLoading ? (
                 <div className="container mx-auto flex justify-center gap-10">
                     <div className="flex h-64 items-center justify-center text-lg text-gray-500">
@@ -55,10 +56,9 @@ function ContactUs() {
                 <SisterSchoolAccordion
                     schoolAccordions={schoolAccordions}
                     title="Vist to Our Schools Websites"
-                    body="Discover our sister schools online and learn more about their campuses, programs, admissions, and student life. "
+                    body="Discover our group of schools online and learn more about their campuses, programs, admissions, and student life. "
                 />
             )}
-            <ContactForm />
         </FrontEndLayout>
     );
 }
