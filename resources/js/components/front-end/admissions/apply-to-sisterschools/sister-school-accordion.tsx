@@ -57,15 +57,7 @@ const SisterSchoolAccordionCard: React.FC<TeamCardType> = ({ imagesrc, name, web
         <>
             <div className="w-full cursor-pointer px-4 md:w-1/2 xl:w-1/4">
                 <div className="mx-auto mb-10 w-88 max-w-[370px]">
-                    <div
-                        className="relative overflow-hidden rounded-lg transition-all hover:scale-110"
-                        style={{
-                            backgroundImage: `url(${imagesrc})`, // put your image path here
-                            backgroundPosition: 'top',
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat',
-                        }}
-                    >
+                    <div className="relative overflow-hidden rounded-lg transition-all hover:scale-110">
                         <div className="h-[450px] w-88"> </div>
                         <div className="absolute bottom-5 left-0 w-92 text-center">
                             <div className="relative mx-5 overflow-hidden rounded-lg bg-white px-3 pb-5 dark:bg-gray-900">
