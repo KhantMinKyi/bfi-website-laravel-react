@@ -79,7 +79,7 @@ const CenterImage: React.FC<CenterImageProps> = ({ isMobile }) => {
                 opacity,
                 backgroundImage: `
       linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-      url('img/SKT_11.jpg')
+      url('img/SKT_11.webp')
     `,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',

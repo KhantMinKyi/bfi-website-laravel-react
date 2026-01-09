@@ -76,19 +76,19 @@ const Welcome = () => {
 
     const carouselData = [
         {
-            banner_image: '/img/SKT_6.jpg',
+            banner_image: '/img/SKT_6.webp',
             title: 'BFI',
             bottom_sub_title: 'EDUCATION SERVIES.',
             top_sub_title: '9 Group of Schools',
         },
         {
-            banner_image: '/img/SKT_9.jpg',
+            banner_image: '/img/SKT_9.webp',
             title: 'Inspiring Brilance',
             bottom_sub_title: 'Building Brighter Futures.',
             top_sub_title: '90% Foreign Teachers',
         },
         {
-            banner_image: '/img/SKT_5.jpg',
+            banner_image: '/img/SKT_5.webp',
             title: 'WORLD-CLASS EDUCATION IN A',
             bottom_sub_title: 'SAFE AND FRIENDLY ENVIRONMENT',
             top_sub_title: 'The IB Diploma Programme',

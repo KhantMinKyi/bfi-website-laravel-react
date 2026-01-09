@@ -40,8 +40,12 @@
     @routes
     @env('local')
         @viteReactRefresh
+        @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
     @endenv
-    @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
+
+    @env('production')
+        @vite(['resources/js/app.tsx'])
+    @endenv
     @inertiaHead
 </head>
 

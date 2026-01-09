@@ -28,7 +28,7 @@ function IndexPage() {
             <div
                 className="relative bg-cover bg-center bg-no-repeat text-white"
                 style={{
-                    backgroundImage: "url('/img/SKT_11.jpg')", // put your image path here
+                    backgroundImage: "url('/img/SKT_11.webp')", // put your image path here
                 }}
             >
                 {/* Overlay */}

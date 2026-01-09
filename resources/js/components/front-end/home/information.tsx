@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react';
+import { MapPinIcon } from 'lucide-react';
 import * as motion from 'motion/react-client';
 function Information() {
     return (
@@ -23,14 +24,14 @@ function Information() {
                                 </p>
                                 <ul className="col:block mb-8 flex">
                                     <li className="relative inline-block py-1 pl-6 text-base font-semibold text-[#687693]">
-                                        <i className="absolute top-1 left-0">
-                                            <img src="assets/images/about/4.png" alt="" />
+                                        <i className="absolute top-2 left-0">
+                                            <MapPinIcon className="h-4" />
                                         </i>
                                         <p>SKT International Schools</p>
                                     </li>
                                     <li className="relative inline-block py-1 pl-6 text-base font-semibold text-[#687693]">
-                                        <i className="absolute top-1 left-0">
-                                            <img src="assets/images/about/5.png" alt="" />
+                                        <i className="absolute top-2 left-0">
+                                            <MapPinIcon className="h-4" />
                                         </i>
                                         <p>MISA and NISA</p>
                                     </li>
@@ -53,13 +54,12 @@ function Information() {
                         transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                     >
                         <div className="mt-14 pl-0 md:pl-12">
-                            <div className="col:p-2 relative z-10 w-full border border-yellow-200 p-5 dark:border-0">
+                            <div className="col:p-2 relative z-10 w-full p-5 dark:border-0">
                                 <div>
                                     <img src="/img/bfi.png" alt="" className="w-full" />
                                 </div>
                                 <div className="col:w-[160px] col:h-[150px] absolute bottom-[-25px] left-[-25px] flex items-center justify-center rounded-[8px] bg-yellow-600 text-center backdrop-blur-[15px] md:bottom-0 md:left-0 lg:h-[235px] lg:w-[201px]">
                                     <div className="block">
-                                        <img src="assets/images/about/badge.svg" alt="" className="mx-auto mt-2 max-w-[40px] lg:max-w-[80px]" />
                                         <span className="mx-auto block max-w-[100px] pt-4 text-center text-sm font-medium text-white capitalize lg:max-w-[133px] lg:text-base">
                                             National Awards 2020
                                         </span>
