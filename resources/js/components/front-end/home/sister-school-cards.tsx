@@ -93,11 +93,11 @@ const CenterImage: React.FC<CenterImageProps> = ({ isMobile }) => {
 const ParallaxImages = () => {
     return (
         <div className="relative mx-auto max-w-5xl px-4 pb-[200px]">
-            <ParallaxImg src="img/skt_riverside_campus.png" alt="And example of a space launch" start={-200} end={200} className="w-1/4" />
-            <ParallaxImg src="img/bfi.png" alt="An example of a space launch" start={-100} end={-250} className="mx-auto w-2/4" />
-            <ParallaxImg src="img/misa.png" alt="Orbiting satellite" start={-200} end={200} className="ml-auto w-1/4" />
-            <ParallaxImg src="img/nisa.png" alt="Orbiting satellite" start={0} end={-500} className="mx-auto w-4/12" />
-            <ParallaxImg src="img/skt_city_campus.png" alt="Orbiting satellite" start={-800} end={-1000} className="mr-auto w-4/12" />
+            <ParallaxImg src="img/skt_riverside_campus.webp" alt="And example of a space launch" start={-200} end={200} className="w-1/4" />
+            <ParallaxImg src="img/bfi.webp" alt="An example of a space launch" start={-100} end={-250} className="mx-auto w-2/4" />
+            <ParallaxImg src="img/misa.webp" alt="Orbiting satellite" start={-200} end={200} className="ml-auto w-1/4" />
+            <ParallaxImg src="img/nisa.webp" alt="Orbiting satellite" start={0} end={-500} className="mx-auto w-4/12" />
+            <ParallaxImg src="img/skt_city_campus.webp" alt="Orbiting satellite" start={-800} end={-1000} className="mr-auto w-4/12" />
         </div>
     );
 };

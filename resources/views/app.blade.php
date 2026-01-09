@@ -36,7 +36,8 @@
     <link rel="icon" href="{{ asset('/icon.png') }}" type="image/png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    <link rel="preload" href="/assets/fonts/Oswald-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/assets/fonts/oswald-v57-latin-regular.woff2" as="font" type="font/ttf"
+        crossorigin />
     @routes
     @env('local')
         @viteReactRefresh

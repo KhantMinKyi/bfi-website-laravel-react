@@ -8,7 +8,7 @@ const ContactBanner = ({ data }: ContactBannerProps) => {
         <div
             className="relative bg-cover bg-center bg-no-repeat text-white"
             style={{
-                backgroundImage: "url('/img/footer-banner.png')", // put your image path here
+                backgroundImage: "url('/img/footer-banner.webp')", // put your image path here
             }}
         >
             {/* Overlay */}

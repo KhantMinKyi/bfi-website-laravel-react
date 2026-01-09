@@ -23,7 +23,7 @@ function VisionMissionValue() {
                     transition={{ duration: 0.5, ease: 'easeInOut' }} // longer duration
                 >
                     <div className="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center md:py-40 lg:py-52">
-                        <img src="/img/bfi.png" className="max-w-40" alt="" />
+                        <img src="/img/bfi.webp" className="max-w-40" alt="" />
                         <h2 className="font-merriweather mb-4 text-3xl font-bold md:text-5xl">Our Philosophy</h2>
                         <p className="mb-6 max-w-2xl text-lg md:text-xl">The foundation of who we are and what we aim to achieve.</p>
                     </div>
@@ -41,7 +41,7 @@ function VisionMissionValue() {
             <section
                 className="relative z-20 flex flex-col justify-center overflow-hidden dark:bg-neutral-950"
                 style={{
-                    backgroundImage: "url('/img/footer-banner.png')", // put your image path here
+                    backgroundImage: "url('/img/footer-banner.webp')", // put your image path here
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
@@ -49,8 +49,8 @@ function VisionMissionValue() {
             >
                 {/* <div className="absolute inset-0 dark:bg-black/80"></div> */}
                 <div className="flex flex-col items-center justify-center px-4 py-10 text-center md:py-10 lg:py-10">
-                    <img src="/img/bfi.png" className="max-w-40 dark:hidden" alt="" />
-                    <img src="/img/bfi_b.png" className="hidden max-w-40 dark:block" alt="" />
+                    <img src="/img/bfi.webp" className="max-w-40 dark:hidden" alt="" />
+                    <img src="/img/bfi_b.webp" className="hidden max-w-40 dark:block" alt="" />
                 </div>
                 <div className="mx-auto max-w-7xl">
                     {/* <div className="grid grid-cols-12 gap-x-4"> */}
@@ -89,8 +89,8 @@ function VisionMissionValue() {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                 >
-                    <img src="/img/skt_riverside_campus.png" alt="" className="w-60 rotate-6 opacity-20 dark:hidden" />
-                    <img src="/img/skt_riverside_campus_b.png" alt="" className="hidden w-60 rotate-6 opacity-40 dark:block" />
+                    <img src="/img/skt_riverside_campus.webp" alt="" className="w-60 rotate-6 opacity-20 dark:hidden" />
+                    <img src="/img/skt_riverside_campus_b.webp" alt="" className="hidden w-60 rotate-6 opacity-40 dark:block" />
                 </motion.div>
                 <motion.div
                     className="absolute top-1/8 right-[40px] -z-10 -translate-y-1/8"
@@ -100,8 +100,8 @@ function VisionMissionValue() {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                 >
-                    <img src="/img/misa.png" alt="" className="w-60 -rotate-z-6 opacity-20 dark:hidden" />
-                    <img src="/img/misa_b.png" alt="" className="hidden w-60 -rotate-z-6 opacity-40 dark:block" />
+                    <img src="/img/misa.webp" alt="" className="w-60 -rotate-z-6 opacity-20 dark:hidden" />
+                    <img src="/img/misa_b.webp" alt="" className="hidden w-60 -rotate-z-6 opacity-40 dark:block" />
                 </motion.div>
                 <motion.div
                     className="absolute top-8/8 left-[40px] -z-10 -translate-y-8/8"
@@ -111,8 +111,8 @@ function VisionMissionValue() {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                 >
-                    <img src="/img/nisa.png" alt="" className="w-60 -rotate-z-6 opacity-20 dark:hidden" />
-                    <img src="/img/nisa_b.png" alt="" className="hidden w-60 -rotate-z-6 opacity-40 dark:block" />
+                    <img src="/img/nisa.webp" alt="" className="w-60 -rotate-z-6 opacity-20 dark:hidden" />
+                    <img src="/img/nisa_b.webp" alt="" className="hidden w-60 -rotate-z-6 opacity-40 dark:block" />
                 </motion.div>
                 <motion.div
                     className="absolute top-8/8 right-[40px] -z-10 -translate-y-8/8"
@@ -122,8 +122,8 @@ function VisionMissionValue() {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                 >
-                    <img src="/img/skt_city_campus.png" alt="" className="w-60 rotate-6 opacity-20 dark:hidden" />
-                    <img src="/img/skt_city_campus_b.png" alt="" className="hidden w-60 rotate-6 opacity-40 dark:block" />
+                    <img src="/img/skt_city_campus.webp" alt="" className="w-60 rotate-6 opacity-20 dark:hidden" />
+                    <img src="/img/skt_city_campus_b.webp" alt="" className="hidden w-60 rotate-6 opacity-40 dark:block" />
                 </motion.div>
             </section>
         </FrontEndLayout>

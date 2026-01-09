@@ -5,7 +5,7 @@ function ContactBanner() {
         <div
             className="relative bg-cover bg-center bg-no-repeat text-white"
             style={{
-                backgroundImage: "url('/img/footer-banner.png')", // put your image path here
+                backgroundImage: "url('/img/footer-banner.webp')", // put your image path here
             }}
         >
             {/* Overlay */}
@@ -21,7 +21,7 @@ function ContactBanner() {
                 transition={{ duration: 0.5, ease: 'easeInOut' }} // longer duration
             >
                 <div className="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center">
-                    <img src="/img/bfi.png" className="max-w-40" alt="" />
+                    <img src="/img/bfi.webp" className="max-w-40" alt="" />
                     <h2 className="font-merriweather mb-4 text-3xl font-bold md:text-5xl">Get in Touch With Our Education Network</h2>
                     <p className="mb-6 max-w-2xl text-lg md:text-xl">
                         Get in touch with our education group — connecting schools, students, and communities for a brighter future.

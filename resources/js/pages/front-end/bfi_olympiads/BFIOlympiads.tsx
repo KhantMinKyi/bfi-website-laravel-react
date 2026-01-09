@@ -35,7 +35,7 @@ function BFIOlympiads() {
                     transition={{ duration: 0.5, ease: 'easeInOut' }} // longer duration
                 >
                     <div className="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center md:py-40 lg:py-52">
-                        <img src="/img/bfi.png" className="max-w-40" alt="" />
+                        <img src="/img/bfi.webp" className="max-w-40" alt="" />
                         <h2 className="font-merriweather mb-4 text-3xl font-bold md:text-5xl">BFI Olympiads</h2>
                         <p className="mb-6 max-w-2xl text-lg md:text-xl">Our path through innovation, challenge, and achievement.</p>
                     </div>

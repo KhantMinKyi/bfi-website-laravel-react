@@ -6,7 +6,7 @@ interface CounterPrps {
 const Counter = ({ data }: CounterPrps) => {
     return (
         <div>
-            <section className="bg-cover bg-fixed bg-center bg-no-repeat" style={{ backgroundImage: "url('/img/home_banner5.jpg')" }}>
+            <section className="bg-cover bg-fixed bg-center bg-no-repeat" style={{ backgroundImage: "url('/img/home_banner5.webp')" }}>
                 <div className="relative z-10 py-20 text-center before:absolute before:top-0 before:left-0 before:-z-10 before:h-full before:w-full before:bg-[#0001] md:pb-12 dark:before:bg-gray-900/90">
                     <div className="wraper">
                         <div className="grid grid-cols-12 gap-x-4">

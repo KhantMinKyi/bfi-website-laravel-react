@@ -12,7 +12,7 @@ const CompetitionInformations: React.FC<Props> = ({ body, footer }) => {
         <section
             className="relative z-20 flex flex-col justify-center overflow-hidden dark:bg-neutral-950"
             style={{
-                backgroundImage: "url('/img/banner2.png')", // put your image path here
+                backgroundImage: "url('/img/banner2.webp')", // put your image path here
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
@@ -21,10 +21,10 @@ const CompetitionInformations: React.FC<Props> = ({ body, footer }) => {
         >
             {/* <div className="absolute inset-0 dark:bg-black/80"></div> */}
             <div className="flex flex-col items-center justify-center px-4 pt-10 text-center">
-                <img src="/img/bfi.png" className="max-w-40 dark:hidden" alt="" />
-                <img src="/img/bfi_b.png" className="hidden max-w-40 dark:block" alt="" />
+                <img src="/img/bfi.webp" className="max-w-40 dark:hidden" alt="" />
+                <img src="/img/bfi_b.webp" className="hidden max-w-40 dark:block" alt="" />
                 <div className="flex gap-2">
-                    <img src="/img/bfi.png" className="my-2 h-20" alt="" />
+                    <img src="/img/bfi.webp" className="my-2 h-20" alt="" />
                 </div>
             </div>
             <div className="mx-auto">

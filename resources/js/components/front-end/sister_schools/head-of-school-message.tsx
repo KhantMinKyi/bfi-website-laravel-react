@@ -11,7 +11,7 @@ const HeadOfSchoolMessage = ({ data }: HeadOfSchoolMessageProps) => {
             <section
                 className="relative z-20 flex flex-col justify-center overflow-hidden dark:bg-neutral-950"
                 style={{
-                    backgroundImage: "url('/img/footer-banner.png')", // put your image path here
+                    backgroundImage: "url('/img/footer-banner.webp')", // put your image path here
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',

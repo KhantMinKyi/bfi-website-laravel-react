@@ -33,7 +33,7 @@ function IconCardGroup() {
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <span className="mr-2 mb-2 inline-block rounded-full bg-blue-800 px-3 py-1 text-sm font-semibold text-white dark:bg-green-800 dark:text-black">
-                                #photography
+                                #Community
                             </span>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ function IconCardGroup() {
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <span className="mr-2 mb-2 inline-block rounded-full bg-blue-800 px-3 py-1 text-sm font-semibold text-white dark:bg-green-800 dark:text-black">
-                                #travel
+                                #Teaching
                             </span>
                         </div>
                     </div>
@@ -117,7 +117,7 @@ function IconCardGroup() {
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <span className="mr-2 mb-2 inline-block rounded-full bg-blue-800 px-3 py-1 text-sm font-semibold text-white dark:bg-green-800 dark:text-black">
-                                #winter
+                                #Success
                             </span>
                         </div>
                     </div>
@@ -154,7 +154,7 @@ function IconCardGroup() {
                         </div>
                         <div className="px-6 pt-4 pb-2">
                             <span className="mr-2 mb-2 inline-block rounded-full bg-blue-800 px-3 py-1 text-sm font-semibold text-white dark:bg-green-800 dark:text-black">
-                                #travel
+                                #Awards
                             </span>
                         </div>
                     </div>

@@ -73,12 +73,12 @@ export default ({ children }: FrondendLayoutProps) => {
                 className={` ${scrolled ? 'sticky top-4 z-50 bg-transparent' : 'relative bg-white dark:bg-gray-950'} scroll-smooth transition-all duration-300 ease-in-out`}
             >
                 <div className={`absolute top-4 left-24 ${scrolled ? 'hidden' : 'sm:hidden lg:block'}`}>
-                    <img src="/img/bfi.png" alt="" className="w-28 rotate-z-8 opacity-15 dark:hidden" />
-                    <img src="/img/bfi_b.png" alt="" className="hidden w-28 rotate-z-8 dark:block dark:opacity-80" />
+                    <img src="/img/bfi.webp" alt="" className="w-28 rotate-z-8 opacity-15 dark:hidden" />
+                    <img src="/img/bfi_b.webp" alt="" className="hidden w-28 rotate-z-8 dark:block dark:opacity-80" />
                 </div>
                 <div className={`absolute top-4 right-20 ${scrolled ? 'hidden' : 'sm:hidden lg:block'} `}>
-                    <img src="/img/bfi.png" alt="" className="w-44 -rotate-z-6 opacity-15 dark:hidden" />
-                    <img src="/img/bfi_b.png" alt="" className="hidden w-44 -rotate-z-6 dark:block dark:opacity-80" />
+                    <img src="/img/bfi.webp" alt="" className="w-44 -rotate-z-6 opacity-15 dark:hidden" />
+                    <img src="/img/bfi_b.webp" alt="" className="hidden w-44 -rotate-z-6 dark:block dark:opacity-80" />
                 </div>
                 {/* <h1 className="hidden">section heading hidden</h1> */}
                 <div className={`z-20 py-[10px] lg:py-0 ${scrolled ? 'hidden' : 'block'} transition-all duration-300 ease-in-out`}>
@@ -86,8 +86,8 @@ export default ({ children }: FrondendLayoutProps) => {
                         <div className="grid grid-cols-12 items-center gap-4">
                             <div className="relative top-16 left-5 z-20 col-span-2 hidden lg:block">
                                 <Link prefetch href={route('home')}>
-                                    <img src="/img/bfi.png" className="max-w-28 transition-all dark:hidden" alt="" />
-                                    <img src="/img/bfi_b.png" className="hidden max-w-28 transition-all dark:block" alt="" />
+                                    <img src="/img/bfi.webp" className="max-w-28 transition-all dark:hidden" alt="" />
+                                    <img src="/img/bfi_b.webp" className="hidden max-w-28 transition-all dark:block" alt="" />
                                 </Link>
                             </div>
                             <div className={`col-span-12 lg:col-span-10 ${scrolled ? 'hidden' : 'block'}`}>
@@ -134,8 +134,8 @@ export default ({ children }: FrondendLayoutProps) => {
                     className={`absolute top-2 left-36 z-20 lg:left-40 xl:left-56 2xl:left-64 dark:grayscale ${scrolled ? 'hidden lg:block' : 'hidden'}`}
                 >
                     <Link prefetch href={route('home')} className="scroll-smooth">
-                        <img src="/img/bfi.png " className="block max-w-18 dark:hidden" alt="" />
-                        <img src="/img/bfi_b.png " className="hidden max-w-18 dark:block" alt="" />
+                        <img src="/img/bfi.webp " className="block max-w-18 dark:hidden" alt="" />
+                        <img src="/img/bfi_b.webp " className="hidden max-w-18 dark:block" alt="" />
                     </Link>
                 </div>
 
@@ -155,8 +155,8 @@ export default ({ children }: FrondendLayoutProps) => {
                         <div>
                             <div className="col:w-[150px] col:ml-[50px] block w-[150px] sm:w-[195px] md:w-[200px] lg:hidden">
                                 <a className="flex items-center justify-end pr-2 text-white lg:justify-center" href={route('home')}>
-                                    <img className="max-w-20 dark:hidden" src="/img/bfi.png" alt="" />
-                                    <img className="hidden max-w-20 dark:block" src="/img/bfi_b.png" alt="" />
+                                    <img className="max-w-20 dark:hidden" src="/img/bfi.webp" alt="" />
+                                    <img className="hidden max-w-20 dark:block" src="/img/bfi_b.webp" alt="" />
                                 </a>
                             </div>
                             <ul className={`hidden text-[#14212b] lg:block dark:text-gray-50 ${scrolled ? '' : 'sm:hidden lg:block'} `}>

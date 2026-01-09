@@ -56,7 +56,7 @@ function Information() {
                         <div className="mt-14 pl-0 md:pl-12">
                             <div className="col:p-2 relative z-10 w-full p-5 dark:border-0">
                                 <div>
-                                    <img src="/img/bfi.png" alt="" className="w-full" />
+                                    <img src="/img/bfi.webp" alt="" className="w-full" />
                                 </div>
                                 <div className="col:w-[160px] col:h-[150px] absolute bottom-[-25px] left-[-25px] flex items-center justify-center rounded-[8px] bg-yellow-600 text-center backdrop-blur-[15px] md:bottom-0 md:left-0 lg:h-[235px] lg:w-[201px]">
                                     <div className="block">
@@ -78,7 +78,7 @@ function Information() {
                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
             >
-                <img src="img/skt_riverside_campus.png" alt="" className="w-60 rotate-6 opacity-20" />
+                <img src="img/skt_riverside_campus.webp" alt="" className="w-60 rotate-6 opacity-20" />
             </motion.div>
             <motion.div
                 className="absolute top-1/8 right-[40px] -z-10 -translate-y-1/8"
@@ -88,7 +88,7 @@ function Information() {
                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
             >
-                <img src="img/misa.png" alt="" className="w-60 -rotate-z-6 opacity-20" />
+                <img src="img/misa.webp" alt="" className="w-60 -rotate-z-6 opacity-20" />
             </motion.div>
             <motion.div
                 className="absolute top-8/8 left-[40px] -z-10 -translate-y-8/8"
@@ -98,7 +98,7 @@ function Information() {
                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
             >
-                <img src="img/nisa.png" alt="" className="w-60 -rotate-z-6 opacity-20" />
+                <img src="img/nisa.webp" alt="" className="w-60 -rotate-z-6 opacity-20" />
             </motion.div>
             <motion.div
                 className="absolute top-8/8 right-[40px] -z-10 -translate-y-8/8"
@@ -108,7 +108,7 @@ function Information() {
                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
             >
-                <img src="img/skt_city_campus.png" alt="" className="w-60 rotate-6 opacity-20" />
+                <img src="img/skt_city_campus.webp" alt="" className="w-60 rotate-6 opacity-20" />
             </motion.div>
         </section>
     );

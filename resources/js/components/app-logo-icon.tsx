@@ -8,8 +8,8 @@ export default function AppLogoIcon() {
         // //     />
         // </svg>
         <div>
-            <img src="/img/bfi.png" alt="" className="block h-9 dark:hidden" />
-            <img src="/img/bfi_b.png" alt="" className="hidden h-9 dark:block" />
+            <img src="/img/webp" alt="" className="block h-9 dark:hidden" />
+            <img src="/img/bfi_b.webp" alt="" className="hidden h-9 dark:block" />
         </div>
     );
 }

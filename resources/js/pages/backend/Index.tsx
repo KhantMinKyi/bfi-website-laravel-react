@@ -76,7 +76,7 @@ export default function Dashboard() {
                                     <div className="flex items-center justify-between">
                                         <CardTitle className="text-sm font-medium text-gray-500">Total {d.title}</CardTitle>
                                         <div className="rounded-lg p-2 shadow">
-                                            <img src="/img/bfi.png" className="h-10" />
+                                            <img src="/img/bfi.webp" className="h-10" />
                                         </div>
                                     </div>
                                 </CardHeader>

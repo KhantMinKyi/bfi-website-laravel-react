@@ -133,11 +133,11 @@ const Welcome = () => {
                     <meta property="og:title" content={pageTitle} />
                     <meta property="og:description" content={pageDescription} />
                     <meta property="og:url" content={canonicalUrl} />
-                    <meta property="og:image" content="/img/bfi.png" />
+                    <meta property="og:image" content="/img/bfi.webp" />
                     <meta name="twitter:card" content="summary_large_image" />
                     <meta name="twitter:title" content={pageTitle} />
                     <meta name="twitter:description" content={pageDescription} />
-                    <meta name="twitter:image" content="/img/bfi.png" />
+                    <meta name="twitter:image" content="/img/bfi.webp" />
                     <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
                 </Head>
                 <h1 className="sr-only">{pageTitle}</h1>

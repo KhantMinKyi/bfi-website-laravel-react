@@ -4,7 +4,7 @@ function HistoryBanner() {
         <div
             className="relative bg-cover bg-center bg-no-repeat py-20"
             style={{
-                backgroundImage: "url('/img/history-banner-backdrop.png')", // put your image path here
+                backgroundImage: "url('/img/history-banner-backdrop.webp')", // put your image path here
                 opacity: 0.9,
             }}
         >
@@ -21,8 +21,8 @@ function HistoryBanner() {
                 >
                     <div className="flex flex-col items-center">
                         <h2 className="font-merriweather my-10 text-4xl font-bold md:text-6xl">Our Journey</h2>
-                        <img src="/img/bfi.png" className="max-w-64 dark:hidden" alt="BFI Logo" />
-                        <img src="/img/bfi_b.png" className="hidden max-w-64 dark:block" alt="BFI Logo" />
+                        <img src="/img/bfi.webp" className="max-w-64 dark:hidden" alt="BFI Logo" />
+                        <img src="/img/bfi_b.webp" className="hidden max-w-64 dark:block" alt="BFI Logo" />
                     </div>
                 </motion.div>
                 <motion.div

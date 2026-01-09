@@ -15,8 +15,8 @@ const ContactForm = () => {
                                 transition={{ duration: 0.5, ease: 'easeInOut' }} // longer duration
                             >
                                 <div className="mb-12 max-w-[570px] lg:mb-0">
-                                    <img src="/img/bfi.png" alt="" className="block h-16 dark:hidden" />
-                                    <img src="/img/bfi_b.png" alt="" className="hidden h-16 dark:block" />
+                                    <img src="/img/bfi.webp" alt="" className="block h-16 dark:hidden" />
+                                    <img src="/img/bfi_b.webp" alt="" className="hidden h-16 dark:block" />
                                     <span className="mb-4 block text-base font-semibold text-primary">Contact Us</span>
                                     <h2 className="font-merriweather mb-6 text-[32px] font-bold text-blue-700 uppercase sm:text-[40px] lg:text-[36px] xl:text-[40px] dark:text-green-700">
                                         GET IN TOUCH WITH US

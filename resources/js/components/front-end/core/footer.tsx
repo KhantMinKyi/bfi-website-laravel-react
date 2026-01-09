@@ -29,8 +29,8 @@ const Footer = ({
                     <div className="flex flex-col justify-center sm:flex-row">
                         <div className="mb-10 md:w-1/4">
                             <Link href={route('home')} className="mb-6 flex justify-center md:max-w-[160px]">
-                                <img src="/img/bfi.png" alt="logo" className="w-32 dark:hidden" />
-                                <img src="/img/bfi_b.png" alt="logo" className="hidden w-32 dark:block" />
+                                <img src="/img/bfi.webp" alt="logo" className="w-32 dark:hidden" />
+                                <img src="/img/bfi_b.webp" alt="logo" className="hidden w-32 dark:block" />
                             </Link>
                             <p className="mb-7 text-center text-base text-gray-800 md:text-left dark:text-gray-300">
                                 Inspiring Brilliance, Building Brighter Futures

@@ -105,7 +105,7 @@ export function UserDataTable() {
                     const user = row.original;
                     return (
                         <Avatar className="h-10 w-10">
-                            <AvatarImage src={user.avatar || '/img/bfi.png'} alt={user.name} />
+                            <AvatarImage src={user.avatar || '/img/bfi.webp'} alt={user.name} />
                             <AvatarFallback>
                                 {user.name
                                     .split(' ')
