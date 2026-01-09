@@ -133,7 +133,7 @@
 }
 @font-face {
     font-family: 'Oswald';
-    src: url('/assets/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+    src: url('/assets/fonts/oswald-v57-latin-regular.woff2') format('truetype');
     font-weight: 200 700; /* VARIABLE RANGE */
     font-style: normal;
     font-display: swap;
