@@ -4,7 +4,7 @@ use App\Http\Controllers\GeneralRouteController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::inertia('/','front-end/Welcome')->name('home');
+Route::inertia('/', 'front-end/Welcome')->name('home');
 Route::get('/post/post-detail/{postId}', [PostController::class, 'show'])->name('post-detail');
 
 
@@ -45,3 +45,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
+Route::get('/ping', function () {
+    return response('pong', 200);
+});
