@@ -27,9 +27,9 @@ const CurriculumTagline: React.FC<Props> = ({ name, sub_title, introduction }) =
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >
                     <div className="flex flex-col items-center justify-center">
-                        <h2 className="font-merriweather my-10 text-4xl font-bold text-white md:text-6xl">{name}</h2>
+                        <h2 className="font-merriweather my-10 text-center text-3xl font-bold text-white md:text-5xl">{name}</h2>
                         <br />
-                        <h6 className="font-merriweather text-2xl font-bold text-white md:text-4xl">{sub_title}</h6>
+                        <h6 className="font-merriweather text-xl font-bold text-white md:text-3xl">{sub_title}</h6>
                     </div>
                 </motion.div>
                 <motion.div
