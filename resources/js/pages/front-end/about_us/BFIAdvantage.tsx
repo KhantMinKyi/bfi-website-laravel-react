@@ -24,7 +24,7 @@ function BFIAdvantage() {
             <div
                 className="relative bg-cover bg-center bg-no-repeat text-white"
                 style={{
-                    backgroundImage: "url('/img/SKT_11.webp')", // put your image path here
+                    backgroundImage: "url('/img/banner4.webp')", // put your image path here
                 }}
             >
                 {/* Overlay */}
@@ -41,7 +41,7 @@ function BFIAdvantage() {
                 >
                     <div className="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center md:py-40 lg:py-52">
                         <img src="/img/bfi.webp" className="max-w-40" alt="" />
-                        <h2 className="font-merriweather mb-4 text-3xl font-bold md:text-5xl">BFI Advantages</h2>
+                        <h2 className="font-merriweather mb-4 text-3xl font-bold md:text-5xl">BFI CORE VALUES</h2>
                         <p className="mb-6 max-w-2xl text-lg md:text-xl">Our path through innovation, challenge, and achievement.</p>
                     </div>
                 </motion.div>

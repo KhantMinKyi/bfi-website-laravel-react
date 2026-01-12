@@ -110,7 +110,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         <div className="ml-5 overflow-hidden">
                                             <span className="mb-1 text-xs leading-4 font-normal text-green-500 lg:text-base">Email:</span>
                                             <p className="font-heading-font leading-5 font-medium text-[#232323] sm:text-sm dark:text-white">
-                                                contact@bfi.edu.mm
+                                                contact@bfi-edu.com
                                             </p>
                                         </div>
                                     </div>
@@ -226,7 +226,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 href={route('bfi_advantage')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('bfi_advantage') ? subLinkActive : ''}`}
                                             >
-                                                BFI Advantage
+                                                BFI CORE VALUES
                                             </Link>
                                         </li>
 

@@ -1,22 +1,32 @@
 [
     {
-        "src": "/img/skt_riverside_campus.webp",
-        "title": "SKT Riverside Campus",
-        "desc": "Our Parallel Education Model delivers teaching and learning in a way that recognises the unique and changing social, emotional and educational needs of all students."
+        "src": "/img/banner4.webp",
+        "title": "EXCELLENCE",
+        "desc": ""
     },
     {
-        "src": "/img/skt_city_campus.webp",
-        "title": "SKT City Campus",
-        "desc": "All schools under BFI are above all an integrated and passionate community of students, teachers, parents, guardians and alumni, working together to ensure BFI remains a supportive and enriching environment in which to learn and socialise."
+        "src": "/img/SKT_11.webp",
+        "title": "COMPASSION",
+        "desc": "Show concern for the wellbeing of all people."
     },
     {
-        "src": "/img/misa.webp",
-        "title": "MISA",
-        "desc": "Our innovative Explicit Teaching Model provides the best possible start for all BFI Junior School students, helping them engage with and master the core skills of Literacy and Numeracy."
+        "src": "/img/banner6.webp",
+        "title": "RESPECT",
+        "desc": "Treat yourself and those around you with dignity."
     },
     {
-        "src": "/img/nisa.webp",
-        "title": "NISA",
-        "desc": "All schools under BFI has achieved national recognition and received a host of respected awards – the results of a unique combination of innovation, unrivalled educators and extraordinary results."
+        "src": "/img/banner3.webp",
+        "title": "INTEGRITY",
+        "desc": "Embody strong character and moral principles."
+    },
+    {
+        "src": "/img/banner5.webp",
+        "title": "BELIEF",
+        "desc": "Know that you can make a positive change."
+    },
+    {
+        "src": "/img/SKT_9.webp",
+        "title": "SELF - DISCIPLINE",
+        "desc": "Focused and committed to goals, even in the face of challenges or distractions."
     }
 ]

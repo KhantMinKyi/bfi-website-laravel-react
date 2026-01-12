@@ -51,15 +51,6 @@ function CarouselBanner({ carouselData, webUrl }: carouselDataProps) {
                                                 BFI Education Services Co., Ltd
                                             </p>
                                         </div>
-                                        <div className="relative">
-                                            <a
-                                                href={webUrl ?? '#'}
-                                                target="__blank"
-                                                className="rounded-4xl bg-blue-900 px-6 py-4 text-base hover:bg-green-900 hover:shadow-2xl"
-                                            >
-                                                Explore more
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

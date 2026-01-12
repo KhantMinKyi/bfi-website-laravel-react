@@ -112,7 +112,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                                 href={route('bfi_advantage')}
                                 className={`${currentPath === routePath('bfi_advantage') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
-                                BFI Advantage
+                                BFI Core Values
                             </Link>
                         </li>
                         <li>

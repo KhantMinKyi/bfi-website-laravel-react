@@ -35,7 +35,7 @@ function BFIAdvantageBanner() {
                 >
                     <div className="font-merriweather flex flex-col items-center">
                         <p className="font-merriweather my-10 border-l-4 border-l-blue-800 pl-4 text-4xl font-bold text-blue-800 md:text-6xl dark:border-l-green-800 dark:text-green-800">
-                            What is The BFI Advantage?
+                            What is The BFI Core Values?
                         </p>
                         <p>
                             BFI offers a strong and trusted education network through its group of four or more sister international schools. This
