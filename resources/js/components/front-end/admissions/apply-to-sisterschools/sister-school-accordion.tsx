@@ -106,11 +106,11 @@ const SisterSchoolAccordionCard: React.FC<TeamCardType> = ({ imagesrc, name, web
                                         <Phone className="w-6 text-green-600" />
                                         <h2 className="text-left"> {phone}</h2>
                                     </div>
-                                    <div className="mt-2 text-center">
+                                    <div className="mt-6 text-center">
                                         <a
                                             href={websiteUrl}
                                             target="__blank"
-                                            className="rounded-xl border border-blue-800 px-4 py-2 text-white hover:border-blue-600 dark:border-green-800 hover:dark:border-green-600"
+                                            className="rounded-xl border border-blue-800 px-4 py-2 text-blue-800 hover:border-blue-600 dark:border-green-800 dark:text-green-600 hover:dark:border-green-600"
                                         >
                                             Visit Website
                                         </a>
