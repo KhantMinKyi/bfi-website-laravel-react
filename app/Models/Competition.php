@@ -13,6 +13,7 @@ class Competition extends Model
         'introduction',
         'body',
         'footer',
+        'website_url',
         'created_user_id',
         'updated_user_id',
     ];

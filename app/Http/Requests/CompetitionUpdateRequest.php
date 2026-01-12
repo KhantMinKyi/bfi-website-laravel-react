@@ -28,6 +28,7 @@ class CompetitionUpdateRequest extends FormRequest
             'introduction'                                  => ['required', 'string'],
             'body'                                          => ['nullable', 'string'],
             'footer'                                        => ['nullable', 'string'],
+            'website_url'                                   => ['nullable', 'string'],
             'banner'                                        => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
     }

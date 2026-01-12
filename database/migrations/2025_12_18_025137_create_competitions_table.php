@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('introduction');
             $table->longText('body')->nullable();
             $table->longText('footer')->nullable();
+            $table->string('website_url')->nullable();
             $table->foreignId('created_user_id')->constrained('users');
             $table->foreignId('updated_user_id')->nullable()->constrained('users');
             $table->timestamps();

@@ -28,6 +28,7 @@ class CompetitionStoreRequest extends FormRequest
             'introduction'                                  => ['required', 'string'],
             'body'                                          => ['nullable', 'string'],
             'footer'                                        => ['nullable', 'string'],
+            'website_url'                                   => ['nullable', 'string'],
             'banner'                                        => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'competition_photo'                             => ['required', 'array', 'min:4'],
             'competition_photo.*.title'                     => ['required', 'string'],

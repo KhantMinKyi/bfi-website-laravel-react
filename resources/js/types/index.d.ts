@@ -308,6 +308,7 @@ export interface Competition {
     introduction: string;
     body?: string;
     footer?: string;
+    website_url?: string;
     created_user: User;
     updated_user?: User;
     related_photos: CompetitionPhoto[];

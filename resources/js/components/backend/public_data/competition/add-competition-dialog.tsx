@@ -24,6 +24,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
         introduction: '',
         body: '',
         footer: '',
+        website_url: '',
     });
 
     const [bannerPreview, setBannerPreview] = React.useState<string>('');
@@ -38,6 +39,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
             introduction: '',
             body: '',
             footer: '',
+            website_url: '',
         });
         setCompetitionPhotos([]);
         setBannerPreview('');
@@ -104,6 +106,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
         submitData.append('introduction', formData.introduction);
         submitData.append('body', formData.body);
         submitData.append('footer', formData.footer);
+        submitData.append('website_url', formData.website_url);
 
         if (formData.banner) {
             submitData.append('banner', formData.banner);
@@ -179,7 +182,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
                         </div>
 
                         {/* Banner */}
-                        <div className="grid grid-cols-1 gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
                                 <Label htmlFor="banner">
                                     Banner <span className="text-red-500">*</span>
@@ -194,6 +197,15 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
                                         />
                                     </div>
                                 )}
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="website_url">Website Url</Label>
+                                <Input
+                                    id="website_url"
+                                    placeholder="Enter Website Url"
+                                    value={formData.website_url}
+                                    onChange={(e) => setFormData({ ...formData, website_url: e.target.value })}
+                                />
                             </div>
                         </div>
 

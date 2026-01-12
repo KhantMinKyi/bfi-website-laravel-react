@@ -3,8 +3,9 @@ import * as motion from 'motion/react-client';
 type Props = {
     name: string;
     introduction: string;
+    website_url?: string;
 };
-const CompetitionBanner: React.FC<Props> = ({ name, introduction }) => {
+const CompetitionBanner: React.FC<Props> = ({ name, introduction, website_url }) => {
     const sanitizedDescription = DOMPurify.sanitize(introduction ?? '');
     return (
         <div
@@ -46,6 +47,18 @@ const CompetitionBanner: React.FC<Props> = ({ name, introduction }) => {
                                 __html: sanitizedDescription,
                             }}
                         ></p>
+                    </div>
+                    <div className="mt-4">
+                        {website_url && (
+                            <a
+                                href={website_url}
+                                target="_blank"
+                                className="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-800 dark:bg-green-600 hover:dark:bg-green-800"
+                            >
+                                {' '}
+                                Go to Website
+                            </a>
+                        )}
                     </div>
                 </motion.div>
             </div>
