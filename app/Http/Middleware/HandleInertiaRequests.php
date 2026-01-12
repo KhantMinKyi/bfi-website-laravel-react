@@ -51,7 +51,7 @@ class HandleInertiaRequests extends Middleware
             }),
 
             'curriculum' => fn() => Cache::remember('shared_curriculum', 3600, function () {
-                return \App\Models\Curriculum::orderBy('name', 'desc')
+                return \App\Models\Curriculum::orderBy('id', 'desc')
                     ->get(['slug', 'name'])
                     ->toArray();
             }),
