@@ -105,7 +105,7 @@ export function UpdateCurriculumPhotoDialog({ curriculumPhotos, open, curriculum
         router.post(`/api/education/curriculum/${curriculumId}/photos`, submitData, {
             preserveScroll: true,
             onSuccess: () => {
-                toast.success('Curriculum Photos updated successfully!');
+                toast.success('Academic Photos updated successfully!');
                 if (onSuccess) {
                     onSuccess();
                 }
@@ -113,7 +113,7 @@ export function UpdateCurriculumPhotoDialog({ curriculumPhotos, open, curriculum
             },
             onError: (errors) => {
                 const msg = Object.values(errors).join(' • ');
-                toast.error(msg || 'Failed to update Curriculum Photos');
+                toast.error(msg || 'Failed to update Academic Photos');
             },
             onFinish: () => {
                 setIsSubmitting(false);
@@ -130,14 +130,14 @@ export function UpdateCurriculumPhotoDialog({ curriculumPhotos, open, curriculum
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[1200px]">
                 <DialogHeader>
-                    <DialogTitle>Update Curriculum Photoss</DialogTitle>
-                    <DialogDescription>Update the Curriculum Photos details below and click save when you're done.</DialogDescription>
+                    <DialogTitle>Update Academic Photos</DialogTitle>
+                    <DialogDescription>Update the Academic Photos details below and click save when you're done.</DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-4 py-4">
                         <div className="grid gap-4">
                             <div className="flex items-center justify-between">
-                                <Label className="text-lg font-semibold">Curriculum Photo</Label>
+                                <Label className="text-lg font-semibold">Academic Photo</Label>
                                 <Button type="button" onClick={handleAddPhoto} variant="outline" size="sm" className="gap-2 bg-transparent">
                                     <Plus className="h-4 w-4" />
                                     Add Photo

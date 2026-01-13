@@ -60,23 +60,48 @@ function VisionMissionValue() {
                                 {' '}
                                 <GradualSpacingHeader text="Our Philosophy" className="z-10 text-blue-800 dark:text-green-600" />{' '}
                             </h2>
-                            <motion.div
-                                className="orico-about-text-wrap 111"
-                                initial={{ opacity: 0, x: -50 }} // start 50px below
-                                whileInView={{ opacity: 1, x: 1 }} // slide up and fade in
-                                exit={{ opacity: 0, x: -50 }} // fade out and slide down
-                                viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
-                                transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
-                            >
-                                <p className="mb-5">
-                                    operate 4 main campuses and 4 kindergartens in Myanmar. Our campuses are located in Yangon, Mandalay and Nay Pyi
-                                    Taw. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse aspernatur, expedita aut odio id repudiandae
-                                    quidem, cum quam porro ex enim sed. Veritatis nulla iure laboriosam maiores consequuntur eligendi ex? operate 4
-                                    main campuses and 4 kindergartens in Myanmar. Our campuses are located in Yangon, Mandalay and Nay Pyi Taw. Lorem,
-                                    ipsum dolor sit amet consectetur adipisicing elit. Esse aspernatur, expedita aut odio id repudiandae quidem, cum
-                                    quam porro ex enim sed. Veritatis nulla iure laboriosam maiores consequuntur eligendi ex?
-                                </p>
-                            </motion.div>
+                            <div className="grid md:grid-cols-2 md:gap-10">
+                                <div className="flex justify-center align-middle">
+                                    <img src="/img/our_philosophy.webp" alt="" />
+                                </div>
+                                <div className="mb-5 text-xl">
+                                    Our school philosophy revolves around five pillars, each representing a core aspect of our commitment to
+                                    excellence and holistic development.
+                                    <h2 className="font-merriweather my-2 text-2xl font-bold">Science and Mathematics:</h2>
+                                    <p>
+                                        Building Foundations for Inquiry and Discovery Our curriculum is designed to ignite curiosity, encourage
+                                        critical thinking, and instill a passion for inquiry-based learning. We empower our students to tackle
+                                        real-world challenges and contribute meaningfully to a rapidly evolving global society.
+                                    </p>
+                                    <hr className="my-2" />
+                                    <h2 className="font-merriweather my-2 text-2xl font-bold">Technology Integration:</h2>
+                                    <p>
+                                        Shaping Future Innovators Through a dynamic and evolving curriculum, we prepare our students to be adaptive,
+                                        creative, and ethical users of technology, positioning them as leaders in an increasingly digital world.
+                                    </p>
+                                    <hr className="my-2" />
+                                    <h2 className="font-merriweather my-2 text-2xl font-bold">Physical Education:</h2>
+                                    <p>
+                                        Sports, Games, and Events: Fostering Wellness and Team Spirit By fostering inclusivity and providing diverse
+                                        opportunities for physical activity, we aim to instill a lifelong love for fitness, teamwork, and
+                                        sportsmanship, nurturing well-rounded individuals who understand the importance of a healthy lifestyle.
+                                    </p>
+                                    <hr className="my-2" />
+                                    <h2 className="font-merriweather my-2 text-2xl font-bold">Internationalism:</h2>
+                                    <p>
+                                        Cultivating Global Citizens We strive to create a global learning environment by incorporating international
+                                        perspectives into our curriculum, promoting cultural exchange programs, and encouraging an appreciation for
+                                        diversity.
+                                    </p>
+                                    <hr className="my-2" />
+                                    <h2 className="font-merriweather my-2 text-2xl font-bold">Character and Values Education:</h2>
+                                    <p>
+                                        Shaping Ethical Leaders Our curriculum places a strong emphasis on the development of moral integrity,
+                                        empathy, and resilience. We aim to cultivate ethical leaders who not only excel academically but also
+                                        contribute positively to their communities, demonstrating a commitment to social responsibility.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {/* </div> */}

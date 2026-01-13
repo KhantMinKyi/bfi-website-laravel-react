@@ -62,6 +62,15 @@ const Footer = ({
                                 </span>
                                 <span>+9519410010</span>
                             </p>
+                            <div className="mt-10 flex flex-col items-center justify-center sm:mt-0 sm:hidden">
+                                <div className="mb-6 flex flex-col gap-10 md:flex-row">
+                                    <img src="/img/cambridge.webp" alt="logo" className="h-18 md:h-14 dark:hidden" />
+                                    <img src="/img/cambridge_b.webp" alt="logo" className="hidden h-18 md:h-14 dark:block" />
+                                    <img src="/img/ib.webp" alt="logo" className="h-14" />
+                                    <img src="/img/pyp.webp" alt="logo" className="h-14 dark:hidden" />
+                                    <img src="/img/pyp_b.webp" alt="logo" className="hidden h-14 dark:block" />
+                                </div>
+                            </div>
                         </div>
                         <div className="flex-1 justify-evenly sm:flex">
                             <LinkGroup header="About Us" className="w-full text-center sm:text-left md:block">
@@ -200,6 +209,15 @@ const Footer = ({
                             </defs>
                         </svg>
                     </span>
+                </div>
+                <div className="hidden flex-col items-center justify-center sm:flex">
+                    <div className="mb-6 flex flex-col gap-10 sm:flex-row">
+                        <img src="/img/cambridge.webp" alt="logo" className="h-18 md:h-14 dark:hidden" />
+                        <img src="/img/cambridge_b.webp" alt="logo" className="hidden h-18 md:h-14 dark:block" />
+                        <img src="/img/ib.webp" alt="logo" className="h-14" />
+                        <img src="/img/pyp.webp" alt="logo" className="h-14 dark:hidden" />
+                        <img src="/img/pyp_b.webp" alt="logo" className="hidden h-14 dark:block" />
+                    </div>
                 </div>
                 <div className="flex flex-col items-center justify-center">
                     <hr className="w-1/2" />

@@ -11,42 +11,7 @@ function IconCardGroup() {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 0.5, ease: 'anticipate' }} // longer duration
                 >
-                    <div className="flex max-w-xs flex-col items-center overflow-hidden text-center">
-                        {/* Icon */}
-                        <svg width="116px" height="116px" viewBox="0 0 512 512" version="1.1" className="fill-blue-800 dark:fill-green-800">
-                            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                {' '}
-                                <g id="give_love-hand-heart-love-valentine">
-                                    {' '}
-                                    <path d="M430.16,286.16c10.24,9.36,9.6,26.08-0.24,35.92l-84.53,84.53c-6.012,6.012-14.167,9.39-22.67,9.39H173.28 c-14.192,0-21.375,7.609-32.021,18.627c-3.535,3.659-8.651,5.486-13.695,4.822C96.194,435.323,72,408.5,72,376v-33.373 c0-4.244,1.686-8.313,4.687-11.314l25.923-25.923c6.012-6.012,14.167-9.39,22.67-9.39h45.44c26.16,0,24.32,24,50.56,24H280 c12.56,0,24,10.16,24,24c0,13.12-10.48,24-24,24H176c0,8.8,7.2,16,16,16h94.905c8.487,0,16.626-3.372,22.627-9.373l87.587-87.587 c4.64-4.64,10.8-7.04,16.96-7.04C419.84,280,425.6,282.08,430.16,286.16z M164.48,179.2c-23.68-24-27.76-62.48-7.2-89.2 c24.8-32.32,71.04-34.48,98.72-6.48c27.68-28,73.92-25.84,98.72,6.48c7.957,10.351,12.19,22.535,13.035,34.898 c24.141-10.574,52.367-3.454,68.667,17.747c17.531,22.824,14.914,56.086-6.086,77.371c0,0.004-0.008,0.004-0.008,0.008 l-48.719,49.281c-6.859,6.914-15.953,10.715-25.609,10.715s-18.75-3.801-25.602-10.703l-36.011-36.427l-11.828,11.99 c-14.64,14.8-38.48,14.8-53.12,0L164.48,179.2z M293.055,208.781l48.711,49.273c7.625,7.688,20.836,7.699,28.477-0.012 l48.711-49.27c15.406-15.625,17.469-39.863,4.781-56.383c-12.398-16.125-34.328-21.02-52.156-11.637 c-3.57,2.023-6.977,4.598-9.922,7.543c-1.5,1.5-3.531,2.344-5.656,2.344c-0.008,0-0.016,0-0.023,0 c-2.133-0.008-4.172-0.863-5.664-2.375c-7.773-7.863-18.313-12.254-29.227-12.254c-0.836,0-1.68,0.027-2.523,0.078 c-12.023,0.746-22.789,6.539-30.297,16.309C275.578,168.91,277.641,193.152,293.055,208.781z M98.272,237.585 c3.14,3.219,8.315,3.219,11.455,0l19.952-20.46c7.017-7.196,8.387-18.749,2.104-26.594c-7.145-8.922-20.021-9.403-27.784-1.442 c-7.763-7.96-20.64-7.479-27.784,1.442c-6.283,7.845-4.913,19.398,2.104,26.594L98.272,237.585z"></path>{' '}
-                                </g>{' '}
-                                <g id="Layer_1"></g>{' '}
-                            </g>
-                        </svg>
-                        <div className="px-6 py-4">
-                            <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Community Focus</div>
-                            <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
-                                We build a supportive school community where students, families, and educators work together for student success.
-                            </p>
-                        </div>
-                        <div className="px-6 pt-4 pb-2">
-                            <span className="mr-2 mb-2 inline-block rounded-full bg-blue-800 px-3 py-1 text-sm font-semibold text-white dark:bg-green-800 dark:text-black">
-                                #Community
-                            </span>
-                        </div>
-                    </div>
-                </motion.div>
-                <motion.div
-                    className="orico-about-text-wrap 111"
-                    initial={{ opacity: 0, y: -50 }} // start 50px below
-                    whileInView={{ opacity: 1, y: 1 }} // slide up and fade in
-                    exit={{ opacity: 0, y: -50 }} // fade out and slide down
-                    viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
-                    transition={{ duration: 1, ease: 'anticipate' }} // longer duration
-                >
-                    <div className="flex max-w-xs flex-col items-center overflow-hidden text-center">
+                    <div className="flex max-w-2xs flex-col items-center overflow-hidden text-center">
                         {/* Icon */}
                         <svg
                             height="110px"
@@ -70,16 +35,57 @@ function IconCardGroup() {
                             </g>
                         </svg>
                         <div className="px-6 py-4">
-                            <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Explicit Teaching Model</div>
-                            <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
-                                Our clear and structured teaching approach ensures students understand what to learn, how to learn, and why it
-                                matters.
-                            </p>
+                            <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Science and Mathematics</div>
+                            {/* <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
+                                Building Foundations for Inquiry and Discovery Our curriculum is designed to ignite curiosity, encourage critical
+                                thinking, and instill a passion for inquiry-based learning. We empower our students to tackle real-world challenges
+                                and contribute meaningfully to a rapidly evolving global society.
+                            </p> */}
                         </div>
-                        <div className="px-6 pt-4 pb-2">
-                            <span className="mr-2 mb-2 inline-block rounded-full bg-blue-800 px-3 py-1 text-sm font-semibold text-white dark:bg-green-800 dark:text-black">
-                                #Teaching
-                            </span>
+                    </div>
+                </motion.div>
+                <motion.div
+                    className="orico-about-text-wrap 111"
+                    initial={{ opacity: 0, y: -50 }} // start 50px below
+                    whileInView={{ opacity: 1, y: 1 }} // slide up and fade in
+                    exit={{ opacity: 0, y: -50 }} // fade out and slide down
+                    viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
+                    transition={{ duration: 1, ease: 'anticipate' }} // longer duration
+                >
+                    <div className="flex max-w-2xs flex-col items-center overflow-hidden text-center">
+                        {/* Icon */}
+                        <svg
+                            className="fill-blue-800 dark:fill-green-800"
+                            height="110px"
+                            width="110px"
+                            version="1.1"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 496 496"
+                        >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                {' '}
+                                <g>
+                                    {' '}
+                                    <g>
+                                        {' '}
+                                        <g>
+                                            {' '}
+                                            <path d="M280,272.044c17.648,0,32-14.352,32-32s-14.352-32-32-32s-32,14.352-32,32S262.352,272.044,280,272.044z M280,224.044 c8.824,0,16,7.176,16,16c0,8.824-7.176,16-16,16c-8.824,0-16-7.176-16-16C264,231.22,271.176,224.044,280,224.044z"></path>{' '}
+                                            <path d="M374.296,202.732c-1.024-1.872-2.024-3.76-3.128-5.584c24.352-68.456,30.648-127.664,1.52-144.8 c-18.112-10.64-44.44-1.64-76.688,25.984V16.044h16v-16H184v16h16v62.312c-32.264-27.656-58.608-36.664-76.712-26.008 c-18.568,10.912-23.832,40.376-15.224,85.2l15.72-3.016c-6.904-35.96-4.064-61.528,7.616-68.392 c12.784-7.528,38.328,5.112,68.6,33.784v36.32c-25.656,9.032-47.448,24.728-63.776,44.776 c-3.496-10.648-6.584-21.024-9.016-30.896l-15.528,3.832c3.36,13.664,7.856,28.184,13.16,43.184 c-1.104,1.824-2.104,3.712-3.128,5.584C44.336,216.892,0,242.052,0,272.044c0,33.304,52.512,56.76,121.856,69.328 c0.96,1.736,2.056,3.368,3.08,5.056c-27.288,76.88-27.968,129.744-1.648,145.216c4.888,2.872,10.432,4.312,16.568,4.312 c3.904,0,8.064-0.584,12.44-1.76c26.208-7.024,60.344-35.776,95.232-78.184c0.16,0.008,0.312,0.032,0.472,0.032 c0.152,0,0.296-0.024,0.448-0.024c34.896,42.408,69.024,71.16,95.232,78.176c4.376,1.168,8.528,1.76,12.44,1.76 c6.144,0,11.68-1.44,16.568-4.312c26.304-15.48,25.64-68.336-1.64-145.184c1.04-1.704,2.144-3.36,3.112-5.112 c15.736-2.888,30.608-6.264,44.104-10.232l-4.512-15.344c-9.776,2.872-20.352,5.416-31.4,7.704 c6.136-16,9.648-33.296,9.648-51.432c0-18.04-3.368-35.376-9.456-51.432C449.696,234.484,480,255.988,480,272.044 c0,13.048-18.48,27.152-50.696,38.68l5.392,15.064C474.808,311.428,496,292.852,496,272.044 C496,242.052,451.664,216.892,374.296,202.732z M296,99.908c30.248-28.64,55.792-41.312,68.576-33.76 c16.608,9.76,15.472,53.624-4.728,114.968c-16.336-20.08-38.152-35.816-63.848-44.864V99.908z M210.352,149.692l5.648-1.736 V16.044h64v131.912l5.648,1.736c13.608,4.184,26.088,10.44,37.152,18.352H173.2C184.264,160.132,196.744,153.876,210.352,149.692 z M230.528,184.044c-3.312,9.288-12.112,16-22.528,16s-19.216-6.712-22.528-16H230.528z M154.96,184.044h13.856 c3.72,18.232,19.872,32,39.192,32s35.472-13.768,39.192-32h93.84c4.536,4.784,8.68,9.904,12.416,15.328 c-11.832,31.952-28.352,67.792-49.752,105.52c-5.872,10.352-11.912,20.4-18.032,30.184c-12.36,0.592-24.912,0.968-37.672,0.968 c-12.936,0-25.504-0.304-37.656-0.88c-4.376-6.992-8.688-14.16-12.944-21.448c11.144-7.104,18.6-19.504,18.6-33.672 c0-22.056-17.944-40-40-40c-5.424,0-10.592,1.104-15.32,3.072c-6.808-14.944-12.816-29.6-18.08-43.84 C146.32,193.892,150.448,188.804,154.96,184.044z M167.56,257.652c2.64-0.992,5.464-1.608,8.44-1.608c13.232,0,24,10.768,24,24 c0,8.232-4.168,15.496-10.504,19.824C181.632,285.756,174.304,271.644,167.56,257.652z M173.4,303.78 c-12-1.32-21.4-11.392-21.4-23.736c0-4.168,1.168-8.04,3.048-11.464C160.768,280.268,166.928,292.028,173.4,303.78z M16,272.044 c0-16.056,30.304-37.56,97.456-51.432c-6.088,16.056-9.456,33.392-9.456,51.432c0,18.184,3.528,35.528,9.704,51.56 C52.904,311.052,16,290.884,16,272.044z M120,272.044c0-19.544,4.424-38.152,12.32-54.896 c4.552,11.528,9.504,23.248,14.984,35.144c-6.968,7.2-11.304,16.968-11.304,27.752c0,22.056,17.944,40,40,40 c2.128,0,4.168-0.304,6.208-0.624c2.848,4.912,5.704,9.776,8.608,14.56c-20.888-1.536-40.376-3.872-58.176-6.848 C124.624,310.42,120,291.78,120,272.044z M148.16,478.748c-6.944,1.848-12.584,1.552-16.76-0.896 c-14.256-8.376-17.68-47.064,4.848-115.168c22.432,27.608,54.88,46.648,91.736,51.808 C198.072,449.388,169.544,473.02,148.16,478.748z M142.784,344.756c18.784,2.712,38.448,4.68,58.4,5.872 c11.176,17.456,22.616,33.776,34.072,48.768C196.968,395.596,163.632,374.828,142.784,344.756z M247.984,389.7 c-9.08-11.896-18.152-24.624-27.096-38.144c9.04,0.312,18.096,0.488,27.112,0.488c9.12,0,18.136-0.192,27.08-0.488 C266.136,365.068,257.064,377.804,247.984,389.7z M294.744,350.684c20.328-1.192,39.88-3.224,58.456-5.912 c-20.848,30.064-54.192,50.832-92.488,54.624C272.16,384.42,283.576,368.116,294.744,350.684z M364.576,477.852 c-4.168,2.456-9.816,2.744-16.76,0.896c-21.384-5.728-49.912-29.36-79.824-64.256c36.856-5.16,69.304-24.184,91.736-51.784 C382.24,430.796,378.824,469.468,364.576,477.852z M363.424,327.012c-18.288,3.064-37.824,5.36-58.208,6.872 c4.192-6.904,8.344-13.912,12.416-21.096c17.648-31.112,33.504-64.008,46.032-95.672C371.576,233.868,376,252.492,376,272.044 C376,291.732,371.4,310.332,363.424,327.012z"></path>{' '}
+                                        </g>{' '}
+                                    </g>{' '}
+                                </g>{' '}
+                            </g>
+                        </svg>
+                        <div className="px-6 py-4">
+                            <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Technology Integration</div>
+                            {/* <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
+                                Shaping Future Innovators Through a dynamic and evolving curriculum, we prepare our students to be adaptive, creative,
+                                and ethical users of technology, positioning them as leaders in an increasingly digital world.
+                            </p> */}
                         </div>
                     </div>
                 </motion.div>
@@ -91,34 +97,31 @@ function IconCardGroup() {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 1.5, ease: 'anticipate' }} // longer duration
                 >
-                    <div className="flex max-w-xs flex-col items-center overflow-hidden text-center">
+                    <div className="flex max-w-2xs flex-col items-center overflow-hidden text-center">
                         {/* Icon */}
                         <svg
-                            width="110px"
-                            height="110px"
-                            viewBox="0 0 48 48"
-                            id="Layer_1"
-                            version="1.1"
                             className="fill-blue-800 dark:fill-green-800"
+                            height="110px"
+                            width="110px"
+                            version="1.1"
+                            id="Capa_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 326.845 326.845"
                         >
-                            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="3.936"></g>
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
-                                <style type="text/css"> </style>
-                                <path d="M7.5,41.5h11h11h11c0.276,0,0.5-0.224,0.5-0.5V30c0-0.276-0.224-0.5-0.5-0.5H30V24c0-0.276-0.224-0.5-0.5-0.5 h-11c-0.276,0-0.5,0.224-0.5,0.5v8H7.5C7.224,32,7,32.224,7,32.5V41C7,41.276,7.224,41.5,7.5,41.5z M40,30.5v10H30v-10H40z M19,24.5 h10V30v10.5H19v-8V24.5z M8,33h10v7.5H8V33z"></path>
-                                <path d="M27.596,15.365h0.287c0.909,0,1.766-0.354,2.416-1c0.644-0.647,0.997-1.504,0.997-2.413 c0-1.441-0.922-2.713-2.244-3.196l0.081-0.551v0c0.06-0.396-0.055-0.796-0.315-1.098C28.559,6.804,28.18,6.63,27.78,6.63h-7.62 c-0.405,0-0.788,0.175-1.05,0.479c-0.26,0.301-0.374,0.701-0.314,1.096l0.084,0.566c-0.437,0.167-0.838,0.427-1.178,0.766 c-0.644,0.644-0.998,1.501-0.998,2.415c0,1.882,1.531,3.413,3.413,3.413h0.218c0.456,0.657,1.092,1.179,1.846,1.515v2.43 c-1.153,0.25-2.021,1.275-2.021,2.502c0,0.276,0.224,0.5,0.5,0.5h6.682c0.276,0,0.5-0.224,0.5-0.5c0-1.252-0.903-2.292-2.091-2.515 v-2.417C26.503,16.546,27.141,16.023,27.596,15.365z M23.18,17.197c0.255,0.044,0.514,0.073,0.79,0.073 c0.279,0,0.534-0.029,0.78-0.072v2.052h-1.57V17.197z M30.297,11.952c0,0.643-0.251,1.25-0.704,1.706 c-0.395,0.393-0.903,0.622-1.446,0.681c0.1-0.277,0.17-0.564,0.209-0.857l0.547-3.707C29.732,10.164,30.297,11.005,30.297,11.952z M17.703,11.952c0-0.646,0.25-1.253,0.705-1.708c0.184-0.184,0.398-0.323,0.624-0.437l0.542,3.667 c0.038,0.288,0.111,0.574,0.212,0.857C18.613,14.169,17.703,13.17,17.703,11.952z M21.021,14.616 c-0.246-0.416-0.398-0.843-0.455-1.278l-0.781-5.282c-0.021-0.146,0.043-0.247,0.084-0.294C19.91,7.712,20.005,7.63,20.16,7.63h7.62 c0.147,0,0.239,0.081,0.28,0.128s0.106,0.15,0.085,0.297l-0.14,0.947c0,0.001-0.001,0.001-0.001,0.002c0,0.001,0,0.002,0,0.003 l-0.641,4.337c-0.06,0.449-0.211,0.875-0.454,1.271c-0.403,0.677-1.052,1.201-1.818,1.471c-0.105,0.035-0.22,0.07-0.339,0.098 c-0.481,0.116-1.072,0.118-1.582-0.001c-0.113-0.026-0.228-0.062-0.325-0.094C22.071,15.815,21.423,15.292,21.021,14.616z M26.759,21.313h-5.518c0.209-0.617,0.794-1.063,1.48-1.063h2.528h0.028C25.965,20.25,26.55,20.695,26.759,21.313z"></path>
+                                {' '}
+                                <path d="M264.693,326.845h-38.079c-4.418,0-8-3.582-8-8v-30.464H108.231v30.464c0,4.418-3.582,8-8,8H62.152c-4.418,0-8-3.582-8-8 v-6.939H24.074c-4.418,0-8-3.582-8-8V224.03c0-4.418,3.582-8,8-8h30.077v-6.938c0-4.418,3.582-8,8-8h38.079c4.418,0,8,3.582,8,8 v30.464h110.384v-30.464c0-4.418,3.582-8,8-8h38.079c4.418,0,8,3.582,8,8v6.938h30.077c4.418,0,8,3.582,8,8v79.875 c0,4.418-3.582,8-8,8h-30.077v6.939C272.693,323.263,269.112,326.845,264.693,326.845z M234.615,310.845h22.079v-93.753h-22.079 V310.845z M70.152,310.845h22.079v-93.753H70.152V310.845z M272.693,295.905h22.077V232.03h-22.077V295.905z M32.074,295.905h22.077 V232.03H32.074V295.905z M108.231,272.381h110.384v-16.825H108.231V272.381z M145.443,223.376c-1.331,0-2.68-0.332-3.922-1.032 c-3.849-2.17-5.209-7.05-3.04-10.898c14.273-25.312,33.543-46.712,56.214-63.181c-9.894-13.703-21.197-26.173-33.681-37.227 c-31.019,33.403-73.355,55.896-120.395,61.599c1.042,4.209,2.303,8.368,3.784,12.468c1.501,4.155-0.65,8.741-4.806,10.242 c-4.158,1.502-8.741-0.651-10.242-4.807c-5.571-15.424-8.396-31.599-8.396-48.077C20.959,63.908,84.868,0,163.423,0 c78.554,0,142.462,63.908,142.462,142.463c0,14.179-2.104,28.201-6.255,41.68c-1.301,4.223-5.78,6.589-10,5.291 c-4.223-1.3-6.591-5.777-5.291-10c3.68-11.951,5.546-24.39,5.546-36.971c0-4.869-0.276-9.673-0.814-14.4 c-25.871,2.997-50.403,11.521-72.172,24.662c4.713,7.504,9.017,15.253,12.873,23.202c1.928,3.975,0.269,8.761-3.706,10.689 c-3.975,1.925-8.762,0.269-10.689-3.707c-3.573-7.366-7.501-14.486-11.761-21.341c-20.629,15.091-38.175,34.642-51.196,57.736 C150.948,221.911,148.236,223.376,145.443,223.376z M66.601,61.193c-18.492,21.994-29.642,50.354-29.642,81.27 c0,4.834,0.274,9.639,0.819,14.399c43.257-5.019,82.233-25.484,110.873-56.012C124.555,82.391,96.76,68.814,66.601,61.193z M171.329,98.998c13.625,12.048,25.936,25.664,36.611,40.442c23.598-14.378,50.218-23.758,78.307-27.155 c-9.987-40.635-39.667-73.615-78.299-88.194C201.125,51.937,188.433,77.333,171.329,98.998z M79.321,48.096 c28.682,8.458,55.914,22.357,79.681,40.709c15.771-20.065,27.435-43.606,33.62-69.402C183.248,17.179,173.468,16,163.423,16 C131.162,16,101.686,28.14,79.321,48.096z"></path>{' '}
                             </g>
                         </svg>
                         <div className="px-6 py-4">
-                            <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Academic Success</div>
-                            <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
-                                Strong curricula, skilled teachers, and consistent assessment help students achieve excellent academic outcomes.
-                            </p>
-                        </div>
-                        <div className="px-6 pt-4 pb-2">
-                            <span className="mr-2 mb-2 inline-block rounded-full bg-blue-800 px-3 py-1 text-sm font-semibold text-white dark:bg-green-800 dark:text-black">
-                                #Success
-                            </span>
+                            <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Physical Education</div>
+                            {/* <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
+                                Sports, Games, and Events: Fostering Wellness and Team Spirit By fostering inclusivity and providing diverse
+                                opportunities for physical activity, we aim to instill a lifelong love for fitness, teamwork, and sportsmanship,
+                                nurturing well-rounded individuals who understand the importance of a healthy lifestyle.
+                            </p> */}
                         </div>
                     </div>
                 </motion.div>
@@ -130,7 +133,48 @@ function IconCardGroup() {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                     transition={{ duration: 2, ease: 'anticipate' }} // longer duration
                 >
-                    <div className="flex max-w-xs flex-col items-center overflow-hidden text-center">
+                    <div className="flex max-w-2xs flex-col items-center overflow-hidden text-center">
+                        {/* Icon */}
+                        <svg
+                            height="110px"
+                            width="110px"
+                            version="1.1"
+                            id="Capa_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 413.182 413.182"
+                            className="fill-blue-800 dark:fill-green-800"
+                        >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                {' '}
+                                <g>
+                                    {' '}
+                                    <path
+                                        className="fill-blue-800 dark:fill-green-800"
+                                        d="M413.182,200.621h-0.143c-1.402-48.666-19.905-95.154-52.544-131.468 c-38.051-42.341-92.093-66.99-148.826-68.154V0.886h-4.195h-1.772h-4.195v0.113C144.774,2.163,90.732,26.812,52.687,69.153 c-32.645,36.314-51.142,82.802-52.55,131.468H0v5.967v5.967h0.137c1.408,48.666,19.911,95.148,52.556,131.468 c38.045,42.347,92.093,66.996,148.82,68.16v0.113h4.195h1.772h4.195v-0.113c56.733-1.164,110.775-25.813,148.826-68.154 c32.639-36.314,51.136-82.808,52.544-131.474h0.131v-5.716c0-0.084,0.006-0.167,0.006-0.251V200.621z M401.147,200.621h-78.936 c-0.656-27.907-5.919-55.009-15.687-80.726c18.33-10.084,34.882-22.77,49.334-37.836 C383.879,115.414,399.816,157.069,401.147,200.621z M121.802,298.931c24.512-11.832,50.677-18.223,77.939-19.034v111.98 C165.986,370.307,138.676,337.764,121.802,298.931z M213.441,145.219c28.802-0.811,56.453-7.482,82.391-19.876 c8.956,24.005,13.807,49.262,14.446,75.278h-96.836V145.219z M213.441,133.285V21.305c33.749,21.564,61.059,54.102,77.939,92.946 C266.868,126.077,240.704,132.473,213.441,133.285z M199.735,133.285c-27.257-0.812-53.415-7.208-77.939-19.04 c16.874-38.838,44.185-71.376,77.939-92.94V133.285z M117.344,125.343c25.938,12.393,53.582,19.064,82.385,19.876v55.402h-96.83 C103.543,174.606,108.388,149.342,117.344,125.343z M199.741,212.555v55.402c-28.802,0.811-56.453,7.482-82.385,19.882 c-8.962-24.005-13.807-49.268-14.452-75.284H199.741z M213.441,279.891c27.257,0.817,53.421,7.208,77.945,19.034 c-16.874,38.844-44.185,71.382-77.945,92.94V279.891z M295.837,287.833c-25.938-12.393-53.588-19.064-82.396-19.876v-55.402h96.836 C309.645,238.57,304.794,263.834,295.837,287.833z M347.767,73.061c-13.425,14.124-28.79,26.039-45.814,35.569 c-17.28-39.334-44.769-72.509-78.709-95.166C270.466,17.343,314.908,38.555,347.767,73.061z M189.931,13.464 c-33.94,22.656-61.435,55.832-78.709,95.166c-17.023-9.529-32.388-21.445-45.82-35.569 C98.268,38.555,142.704,17.343,189.931,13.464z M57.318,82.059c14.452,15.066,31.004,27.752,49.334,37.836 c-9.762,25.723-15.031,52.819-15.687,80.726H12.023C13.36,157.069,29.297,115.408,57.318,82.059z M12.023,212.555h78.948 c0.656,27.919,5.925,55.015,15.687,80.732c-18.336,10.084-34.888,22.77-49.334,37.83C29.303,297.768,13.36,256.113,12.023,212.555z M65.409,340.115c13.425-14.112,28.784-26.033,45.82-35.569c17.28,39.334,44.769,72.509,78.715,95.166 C142.716,395.839,98.28,374.627,65.409,340.115z M223.244,399.712c33.94-22.656,61.435-55.832,78.709-95.166 c17.035,9.541,32.406,21.457,45.826,35.569C314.913,374.621,270.472,395.839,223.244,399.712z M355.864,331.117 c-14.446-15.054-30.992-27.74-49.334-37.836c9.768-25.717,15.031-52.813,15.687-80.726h78.936 C399.822,256.113,383.885,297.768,355.864,331.117z"
+                                    ></path>{' '}
+                                </g>{' '}
+                            </g>
+                        </svg>
+                        <div className="px-6 py-4">
+                            <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Internationalism</div>
+                            {/* <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
+                                Cultivating Global Citizens We strive to create a global learning environment by incorporating international
+                                perspectives into our curriculum, promoting cultural exchange programs, and encouraging an appreciation for diversity.
+                            </p> */}
+                        </div>
+                    </div>
+                </motion.div>
+                <motion.div
+                    className="orico-about-text-wrap 111"
+                    initial={{ opacity: 0, y: -50 }} // start 50px below
+                    whileInView={{ opacity: 1, y: 1 }} // slide up and fade in
+                    exit={{ opacity: 0, y: -50 }} // fade out and slide down
+                    viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
+                    transition={{ duration: 2, ease: 'anticipate' }} // longer duration
+                >
+                    <div className="flex max-w-2xs flex-col items-center overflow-hidden text-center">
                         {/* Icon */}
                         <svg
                             width="100px"
@@ -147,15 +191,12 @@ function IconCardGroup() {
                             </g>
                         </svg>
                         <div className="px-6 py-4">
-                            <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Education Awards</div>
-                            <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
-                                Our schools are recognised with education awards that reflect our commitment to quality, innovation, and excellence.¡
-                            </p>
-                        </div>
-                        <div className="px-6 pt-4 pb-2">
-                            <span className="mr-2 mb-2 inline-block rounded-full bg-blue-800 px-3 py-1 text-sm font-semibold text-white dark:bg-green-800 dark:text-black">
-                                #Awards
-                            </span>
+                            <div className="font-merriweather my-2 text-2xl font-bold md:text-4xl">Character and Values Education</div>
+                            {/* <p className="font-merriweather text-base text-gray-700 dark:text-gray-400">
+                                Shaping Ethical Leaders Our curriculum places a strong emphasis on the development of moral integrity, empathy, and
+                                resilience. We aim to cultivate ethical leaders who not only excel academically but also contribute positively to
+                                their communities, demonstrating a commitment to social responsibility.
+                            </p> */}
                         </div>
                     </div>
                 </motion.div>

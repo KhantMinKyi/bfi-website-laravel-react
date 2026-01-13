@@ -143,7 +143,7 @@ export function AddCurriculum({ onSuccess }: AddCurriculumProps) {
         router.post('/api/education/curriculum', submitData, {
             preserveScroll: true,
             onSuccess: () => {
-                toast.success('Curriculum created successfully!');
+                toast.success('Academic created successfully!');
                 resetForm();
                 setOpen(false);
 
@@ -153,7 +153,7 @@ export function AddCurriculum({ onSuccess }: AddCurriculumProps) {
             },
             onError: (errors) => {
                 const msg = Object.values(errors).join(' • ');
-                toast.error(msg || 'Failed to create Curriculum');
+                toast.error(msg || 'Failed to create Academic');
             },
             onFinish: () => {
                 setIsSubmitting(false);
@@ -166,13 +166,13 @@ export function AddCurriculum({ onSuccess }: AddCurriculumProps) {
             <DialogTrigger asChild>
                 <Button className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
                     <Plus className="h-4 w-4" />
-                    Add Curriculum
+                    Add Academics
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[1200px]">
                 <DialogHeader>
-                    <DialogTitle>Add New Curriculum</DialogTitle>
-                    <DialogDescription>Create a new Curriculum. Fill in the details below and click save when you're done.</DialogDescription>
+                    <DialogTitle>Add New Academic</DialogTitle>
+                    <DialogDescription>Create a new Academic. Fill in the details below and click save when you're done.</DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-4 py-4">
@@ -275,16 +275,16 @@ export function AddCurriculum({ onSuccess }: AddCurriculumProps) {
                         {/* Curriculum Photos Section */}
                         <div className="grid gap-4 rounded-lg border p-4">
                             <div className="flex items-center justify-between">
-                                <Label className="text-lg font-semibold">Curriculum Photos</Label>
+                                <Label className="text-lg font-semibold">Academic Photos</Label>
                                 <Button type="button" onClick={handleAddCurriculumPhoto} size="sm" className="gap-2">
                                     <Plus className="h-4 w-4" />
-                                    Add Curriculum Photo
+                                    Add Academic Photo
                                 </Button>
                             </div>
 
                             {curriculumPhotos.length === 0 && (
                                 <p className="text-center text-sm text-muted-foreground">
-                                    No photo added yet. Click "Add Curriculum Photo" to create one.
+                                    No photo added yet. Click "Add Academic Photo" to create one.
                                 </p>
                             )}
 
@@ -352,7 +352,7 @@ export function AddCurriculum({ onSuccess }: AddCurriculumProps) {
                         </Button>
                         <Button type="submit" disabled={isSubmitting} className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
                             <Check />
-                            {isSubmitting ? 'Saving...' : 'Save Curriculum'}
+                            {isSubmitting ? 'Saving...' : 'Save Academic'}
                         </Button>
                     </DialogFooter>
                 </form>

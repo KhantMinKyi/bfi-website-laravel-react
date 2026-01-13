@@ -84,7 +84,7 @@ const ContactForm = () => {
                                         </div>
                                         <div className="w-full">
                                             <h4 className="text-dark mb-1 text-xl font-bold dark:text-white">Email Address</h4>
-                                            <p className="text-body-color dark:text-dark-6 text-base">info@bif.edu.mm</p>
+                                            <p className="text-body-color dark:text-dark-6 text-base">contact@bfi-edu.com</p>
                                         </div>
                                     </div>
                                 </div>

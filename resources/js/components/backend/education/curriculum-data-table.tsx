@@ -240,7 +240,7 @@ export function CurriculumDataTable() {
                     <Input placeholder="Filter by name or email..." disabled className="max-w-sm" value="" onChange={() => {}} />
                     <div className="ml-auto flex items-center gap-2">
                         <Button disabled className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
-                            Add Curriculum
+                            Add Academic
                         </Button>
                         {/* <Button variant="outline" disabled>
                             Columns <ChevronDown />
@@ -281,7 +281,7 @@ export function CurriculumDataTable() {
                         </TableBody>
                     </Table>
                 </div>
-                <div className="flex items-center justify-center py-8 text-sm text-muted-foreground">Loading Curriculum Data...</div>
+                <div className="flex items-center justify-center py-8 text-sm text-muted-foreground">Loading Academic Data...</div>
             </div>
         );
     }

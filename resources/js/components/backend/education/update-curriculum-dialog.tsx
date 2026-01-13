@@ -100,7 +100,7 @@ export function UpdateCurriculumDialog({ curriculum, open, onOpenChange, onSucce
         router.post(`/api/education/curriculum/${curriculum.id}`, submitData, {
             preserveScroll: true,
             onSuccess: () => {
-                toast.success('Curriculum updated successfully!');
+                toast.success('Academic updated successfully!');
                 onOpenChange(false);
 
                 if (onSuccess) {
@@ -109,7 +109,7 @@ export function UpdateCurriculumDialog({ curriculum, open, onOpenChange, onSucce
             },
             onError: (errors) => {
                 const msg = Object.values(errors).join(' • ');
-                toast.error(msg || 'Failed to update Curriculum');
+                toast.error(msg || 'Failed to update Academic');
             },
             onFinish: () => {
                 setIsSubmitting(false);
@@ -127,8 +127,8 @@ export function UpdateCurriculumDialog({ curriculum, open, onOpenChange, onSucce
             </DialogTrigger>
             <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[1200px]">
                 <DialogHeader>
-                    <DialogTitle>Update Curriculum</DialogTitle>
-                    <DialogDescription>Update the curriculum details below and click save when you're done.</DialogDescription>
+                    <DialogTitle>Update Academic</DialogTitle>
+                    <DialogDescription>Update the Academic details below and click save when you're done.</DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-4 py-4">
@@ -242,7 +242,7 @@ export function UpdateCurriculumDialog({ curriculum, open, onOpenChange, onSucce
                         </Button>
                         <Button type="submit" disabled={isSubmitting} className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
                             <Check />
-                            {isSubmitting ? 'Updating...' : 'Update Curriculum'}
+                            {isSubmitting ? 'Updating...' : 'Update Academic'}
                         </Button>
                     </DialogFooter>
                 </form>

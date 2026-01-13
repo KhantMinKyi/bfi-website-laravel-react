@@ -176,6 +176,16 @@ const Welcome = () => {
                     </div>
                 ) : (
                     <Suspense fallback={<DotLoading />}>
+                        <div className="flex flex-col items-center justify-center text-center">
+                            <span className="font-base-font mb-10 text-sm font-bold text-blue-800 dark:text-green-800">
+                                WHY BFI EDUCATION SERVICES{' '}
+                            </span>
+                            <h1 className="font-merriweather mb-5 text-3xl font-bold sm:text-4xl lg:text-6xl">The BFI Philosophy</h1>
+                            <p className="mb-10 max-w-4xl p-4 text-base leading-10 font-semibold text-gray-700 md:p-0">
+                                Our philosophy revolves around five pillars, each representing a core aspect of our commitment to excellence and
+                                holistic development.
+                            </p>
+                        </div>
                         <AccordionGallery images={images} />
                     </Suspense>
                 )}

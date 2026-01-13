@@ -63,7 +63,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                             currentPath === routePath('vision_mission_value') ||
                             currentPath === routePath('philosophy') ||
                             // currentPath === routePath('leadership_teams') ||
-                            currentPath === routePath('community_service_activities') ||
+
                             currentPath === routePath('bfi_advantage'))
                             ? 'max-h-64'
                             : 'max-h-0'
@@ -115,15 +115,6 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                                 BFI Core Values
                             </Link>
                         </li>
-                        <li>
-                            <Link
-                                prefetch
-                                href={route('community_service_activities')}
-                                className={`${currentPath === routePath('community_service_activities') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
-                            >
-                                Community Service Activities
-                            </Link>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -163,7 +154,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
             {/* Curriculum*/}
             <div>
                 <button onClick={() => toggleSubMenu('curriculum')} className="flex w-full items-center justify-between py-2 text-left uppercase">
-                    Curriculum
+                    Academics
                     <span>{activeSubMenu === 'curriculum' ? '▲' : '▼'}</span>
                 </button>
                 <div
@@ -281,7 +272,10 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'curriculum' &&
                         activeSubMenu !== 'admissions' &&
                         activeSubMenu !== 'competition' &&
-                        (activeSubMenu === 'community' || currentPath === routePath('contact_us') || currentPath === routePath('faq'))
+                        (activeSubMenu === 'community' ||
+                            currentPath === routePath('contact_us') ||
+                            currentPath === routePath('community_service_activities') ||
+                            currentPath === routePath('faq'))
                             ? 'max-h-screen'
                             : 'max-h-0'
                     }`}
@@ -295,6 +289,15 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                             >
                                 {' '}
                                 Contact Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                prefetch
+                                href={route('community_service_activities')}
+                                className={`${currentPath === routePath('community_service_activities') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                Service Activities
                             </Link>
                         </li>
                         <li>

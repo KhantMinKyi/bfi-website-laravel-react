@@ -229,16 +229,6 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 BFI CORE VALUES
                                             </Link>
                                         </li>
-
-                                        <li>
-                                            <Link
-                                                prefetch
-                                                href={route('community_service_activities')}
-                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('community_service_activities') ? subLinkActive : ''} `}
-                                            >
-                                                COMMUNITY SERVICE ACTIVITIES
-                                            </Link>
-                                        </li>
                                     </ul>
                                 </li>
                                 {/* Sister Schools */}
@@ -277,7 +267,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                             curriculum.some((cc) => currentPath === '/curriculum/curriculum-data/' + cc.slug) ? activeLink : baseLink
                                         }`}
                                     >
-                                        Curriculum
+                                        Academics
                                     </Link>
                                     <ul className="shadow-[0px_2px_20px_0px_rgba(62,65,159,0.09);] invisible absolute top-[110%] left-0 z-[111] w-[240px] space-y-5 bg-blue-50 px-[7px] pt-[20px] pb-[15px] opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100 dark:bg-gray-800">
                                         {curriculum.map((cc) => (
@@ -382,7 +372,11 @@ export default ({ children }: FrondendLayoutProps) => {
                                     <a
                                         href="#"
                                         className={`${
-                                            currentPath === routePath('contact_us') || currentPath === routePath('faq') ? activeLink : baseLink
+                                            currentPath === routePath('contact_us') ||
+                                            currentPath === routePath('faq') ||
+                                            currentPath === routePath('community_service_activities')
+                                                ? activeLink
+                                                : baseLink
                                         }`}
                                     >
                                         Community
@@ -395,6 +389,15 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('news_and_event') ? subLinkActive : ''}`}
                                             >
                                                 News & Events
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                prefetch
+                                                href={route('community_service_activities')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('community_service_activities') ? subLinkActive : ''} `}
+                                            >
+                                                SERVICE ACTIVITIES
                                             </Link>
                                         </li>
                                         <li>
