@@ -240,7 +240,7 @@ export function UpdateJobPostDialog({ jobPost, open, onOpenChange, onSuccess }: 
                         </div>
 
                         {/* Dropdowns - Row 3 */}
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-4 gap-4">
                             <div className="grid gap-2">
                                 <Label htmlFor="industry">Industry</Label>
                                 <Select value={formData.industry} onValueChange={(value: any) => setFormData({ ...formData, industry: value })}>
@@ -279,6 +279,21 @@ export function UpdateJobPostDialog({ jobPost, open, onOpenChange, onSuccess }: 
                                     value={formData.maximun_salary}
                                     onChange={(e) => setFormData({ ...formData, maximun_salary: Number.parseFloat(e.target.value) || 0 })}
                                 />
+                            </div>
+                            <div className="grid items-end gap-2">
+                                <Label htmlFor="is_hide_salary">Hide Salary</Label>
+                                <Select
+                                    value={formData.is_hide_salary ? 'true' : 'false'}
+                                    onValueChange={(value: string) => setFormData({ ...formData, is_hide_salary: value === 'true' })}
+                                >
+                                    <SelectTrigger id="is_hide_salary">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="false">Show</SelectItem>
+                                        <SelectItem value="true">Hide</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
 

@@ -62,7 +62,8 @@ function VisionMissionValue() {
                             </h2>
                             <div className="grid md:grid-cols-2 md:gap-10">
                                 <div className="flex justify-center align-middle">
-                                    <img src="/img/our_philosophy.webp" alt="" />
+                                    <img src="/img/philosophy.webp" alt="" className="block max-h-10/12 dark:hidden" />
+                                    <img src="/img/philosophy_b.webp" alt="" className="hidden max-h-10/12 dark:block" />
                                 </div>
                                 <div className="mb-5 text-xl">
                                     Our school philosophy revolves around five pillars, each representing a core aspect of our commitment to

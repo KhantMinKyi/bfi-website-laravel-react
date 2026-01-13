@@ -53,19 +53,32 @@ function Information() {
                         viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                         transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                     >
-                        <div className="mt-14 pl-0 md:pl-12">
-                            <div className="col:p-2 relative z-10 w-full p-5 dark:border-0">
-                                <div>
-                                    <img src="/img/bfi.webp" alt="" className="w-full" />
+                        <div className="mt-14 flex flex-col items-center justify-center gap-4 pl-0 md:pl-12">
+                            <div>
+                                <img src="/img/bfi.webp" alt="" className="h-44 dark:hidden" />
+                                <img src="/img/bfi_b.webp" alt="" className="hidden h-44 dark:block" />
+                            </div>
+                            <div className="flex flex-col sm:flex-row">
+                                <div className="flex flex-row gap-2 md:flex-col lg:flex-row">
+                                    <img src="/img/skt_riverside_campus.webp" alt="" className="h-24 dark:hidden" />
+                                    <img src="/img/skt_riverside_campus_b.webp" alt="" className="hidden h-24 dark:block" />
+                                    <img src="/img/skt_city_campus.webp" alt="" className="h-24 dark:hidden" />
+                                    <img src="/img/skt_city_campus_b.webp" alt="" className="hidden h-24 dark:block" />
                                 </div>
-                                <div className="col:w-[160px] col:h-[150px] absolute bottom-[-25px] left-[-25px] flex items-center justify-center rounded-[8px] bg-yellow-600 text-center backdrop-blur-[15px] md:bottom-0 md:left-0 lg:h-[235px] lg:w-[201px]">
-                                    <div className="block">
-                                        <span className="mx-auto block max-w-[100px] pt-4 text-center text-sm font-medium text-white capitalize lg:max-w-[133px] lg:text-base">
-                                            National Awards 2020
-                                        </span>
-                                    </div>
+                                <div className="flex flex-row gap-2 md:flex-col lg:flex-row">
+                                    <img src="/img/misa.webp" alt="" className="h-24 dark:hidden" />
+                                    <img src="/img/misa_b.webp" alt="" className="hidden h-24 dark:block" />
+                                    <img src="/img/nisa.webp" alt="" className="h-24 dark:hidden" />
+                                    <img src="/img/nisa_b.webp" alt="" className="hidden h-24 dark:block" />
                                 </div>
                             </div>
+                            {/* <div className="col:w-[160px] col:h-[150px] absolute bottom-[-25px] left-[-25px] flex items-center justify-center rounded-[8px] bg-yellow-600 text-center backdrop-blur-[15px] md:bottom-0 md:left-0 lg:h-[235px] lg:w-[201px]">
+                                    <div className="flex flex-col">
+                                        <img src="/img/cambridge.webp" className="w-20" alt="" />
+                                        <img src="/img/cambridge.webp" className="w-20" alt="" />
+                                        <img src="/img/cambridge.webp" className="w-20" alt="" />
+                                    </div>
+                                </div> */}
                         </div>
                     </motion.div>
                 </div>
@@ -78,7 +91,7 @@ function Information() {
                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
             >
-                <img src="img/skt_riverside_campus.webp" alt="" className="w-60 rotate-6 opacity-20" />
+                <img src="img/skt_riverside_campus.webp" alt="" className="hidden w-60 rotate-6 opacity-10 sm:block" />
             </motion.div>
             <motion.div
                 className="absolute top-1/8 right-[40px] -z-10 -translate-y-1/8"
@@ -88,7 +101,7 @@ function Information() {
                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
             >
-                <img src="img/misa.webp" alt="" className="w-60 -rotate-z-6 opacity-20" />
+                <img src="img/misa.webp" alt="" className="hidden w-60 -rotate-z-6 opacity-10 sm:block" />
             </motion.div>
             <motion.div
                 className="absolute top-8/8 left-[40px] -z-10 -translate-y-8/8"
@@ -98,7 +111,7 @@ function Information() {
                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
             >
-                <img src="img/nisa.webp" alt="" className="w-60 -rotate-z-6 opacity-20" />
+                <img src="img/nisa.webp" alt="" className="hidden w-60 -rotate-z-6 opacity-10 sm:block" />
             </motion.div>
             <motion.div
                 className="absolute top-8/8 right-[40px] -z-10 -translate-y-8/8"
@@ -108,7 +121,7 @@ function Information() {
                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
             >
-                <img src="img/skt_city_campus.webp" alt="" className="w-60 rotate-6 opacity-20" />
+                <img src="img/skt_city_campus.webp" alt="" className="hidden w-60 rotate-6 opacity-10 sm:block" />
             </motion.div>
         </section>
     );

@@ -249,7 +249,7 @@ export default function CareerJobDetail() {
                                                     Salary
                                                 </div>
                                                 <p className="mt-1 text-foreground">
-                                                    {job.is_hide_salary ? 'Confidential' : `Up to $${(job.maximun_salary / 1000).toFixed(0)}k`}
+                                                    {job.is_hide_salary ? 'Negotiable' : `Up to $${(job.maximun_salary / 1000).toFixed(0)}k`}
                                                 </p>
                                             </div>
                                         </div>
