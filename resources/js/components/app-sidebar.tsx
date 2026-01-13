@@ -11,7 +11,7 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import {
     BadgeCheck,
     BookOpenText,
@@ -139,6 +139,29 @@ const mainNavItems: NavItem[] = [
 // ];
 
 export function AppSidebar() {
+    const { auth }: any = usePage().props; // adjust to your props shape
+    const isAdmin = auth?.user?.is_admin === 1;
+    console.log(isAdmin);
+
+    // clone and filter nav items
+    const filteredNavItems = mainNavItems
+        .map((item) => {
+            // hide the entire "User Management"
+            if (!isAdmin && item.title === 'User Management') {
+                return null;
+            }
+
+            // hide "Jobs" sub-item when not admin
+            if (!isAdmin && item.subItems) {
+                return {
+                    ...item,
+                    subItems: item.subItems.filter((sub) => sub.title !== 'Jobs'),
+                };
+            }
+
+            return item;
+        })
+        .filter(Boolean); // remove nulls
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
@@ -154,7 +177,7 @@ export function AppSidebar() {
             </SidebarHeader>
 
             <SidebarContent>
-                <NavMain items={mainNavItems} />
+                <NavMain items={filteredNavItems as any} />
                 <SidebarGroup />
             </SidebarContent>
 
