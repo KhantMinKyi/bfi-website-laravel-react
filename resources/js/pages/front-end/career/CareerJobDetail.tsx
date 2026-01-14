@@ -161,7 +161,7 @@ export default function CareerJobDetail() {
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.5, delay: 0.3 }}
                                     >
-                                        <h2 className="mb-4 text-lg font-bold text-foreground md:text-2xl">Why Join Us</h2>
+                                        <h2 className="mb-4 text-lg font-bold text-foreground md:text-2xl">Job Overview</h2>
                                         <div className="space-y-3">
                                             <p
                                                 className="text-base leading-relaxed whitespace-pre-line text-muted-foreground md:text-lg"
@@ -179,7 +179,7 @@ export default function CareerJobDetail() {
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.5, delay: 0.4 }}
                                     >
-                                        <h2 className="md:text-2xlfont-bold mb-4 text-lg text-foreground">Career Growth</h2>
+                                        <h2 className="md:text-2xlfont-bold mb-4 text-lg text-foreground">Working Schedule</h2>
                                         <p
                                             className="text-base leading-relaxed whitespace-pre-line text-muted-foreground md:text-lg"
                                             dangerouslySetInnerHTML={{

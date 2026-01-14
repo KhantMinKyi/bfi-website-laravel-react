@@ -344,14 +344,14 @@ export function AddJobPost({ onSuccess }: AddJobPostProps) {
 
                         <RichTextEditor
                             id="highlights"
-                            label="Highlights"
+                            label="Job Overview"
                             value={formData.highlights}
                             onChange={(content) => setFormData({ ...formData, highlights: content })}
                         />
 
                         <RichTextEditor
                             id="career_growth"
-                            label="Career Growth Opportunities"
+                            label="Working Schedule"
                             value={formData.career_growth}
                             onChange={(content) => setFormData({ ...formData, career_growth: content })}
                         />
