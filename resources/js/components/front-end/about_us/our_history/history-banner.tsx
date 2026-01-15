@@ -35,17 +35,17 @@ function HistoryBanner() {
                 >
                     <div className="font-merriweather flex flex-col items-center">
                         <p className="my-10 border-l-4 border-l-blue-800 pl-4 text-blue-800 dark:border-l-green-800 dark:text-green-800">
-                            Established in June 2000 in Yangon, SKT International School is committed to providing high-quality international
-                            education. Every parent hopes for the best learning environment for their child—one that is positive, enriching, and
-                            well-equipped to prepare them for future challenges in an increasingly interconnected world.
+                            Established in June 2000 in Yangon, BFI schools (formerly Horizon International Schools) are committed to providing
+                            high-quality international education. Every parent hopes for the best learning environment for their child—one that is
+                            positive, enriching, and well-equipped to prepare them for future challenges in an increasingly interconnected world.
                         </p>
                         <p>
-                            Since its founding, Horizon has expanded to four campuses across three cities. The SKT International School City Campus in
-                            Yangon offers Primary, Secondary, and High School programs from Grades 1 to 12. Located on a spacious and well-designed
-                            campus, the school features modern facilities including a soccer pitch, basketball court, playground, and dining hall—all
-                            contributing to a well-rounded educational experience. With a diverse teaching staff from around the world, the school
-                            proudly welcomes all families seeking international education. The preschool in Bahan, opened in 2005, is conveniently
-                            located near the main campus on Pho Sein Road.
+                            Since its founding, BFI Schools have expanded to four campuses across three cities. The SKT International School (City
+                            Campus) in Yangon offers Primary, Secondary, and High School programs from Grades 1 to 10. Located on a spacious and
+                            well-designed campus, the school features modern facilities including a soccer pitch, basketball court, playground, and
+                            dining hall—all contributing to a well-rounded educational experience. With a diverse teaching staff from around the
+                            world, the school proudly welcomes all families seeking international education. The preschool in Bahan, opened in 2005,
+                            is conveniently located near the main campus on Pho Sein Road.
                         </p>
                     </div>
                 </motion.div>

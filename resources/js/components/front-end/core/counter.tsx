@@ -14,7 +14,7 @@ const Counter = ({ data }: CounterPrps) => {
                                 <div>
                                     <h3 className="font-heading-font flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl">
                                         <CountUp
-                                            end={data?.firstNumber ?? 2000}
+                                            end={data?.firstNumber ?? 3000}
                                             duration={2}
                                             enableScrollSpy={true}
                                             separator=","
@@ -44,7 +44,7 @@ const Counter = ({ data }: CounterPrps) => {
                                 <div>
                                     <h3 className="font-heading-font flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl">
                                         <CountUp
-                                            end={data?.thirdNumber ?? 90}
+                                            end={data?.thirdNumber ?? 82}
                                             duration={2}
                                             enableScrollSpy={true}
                                             separator=","

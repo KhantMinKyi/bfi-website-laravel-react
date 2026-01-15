@@ -76,15 +76,41 @@ function VmvStatus() {
                                 viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
                                 transition={{ duration: 1, ease: 'easeInOut' }} // longer duration
                             >
-                                <p className="mb-5 text-justify text-xl">
-                                    Respect We place great value on the importance of having honour and regard for the worth of oneself and others.
-                                    Responsibility We hold in high esteem the notion of individual and collective responsibility towards ourselves,
-                                    the wider community, and the environment. Integrity We focus on the state of being whole and undivided; having the
-                                    strength of character and conscience. Compassion We encourage and uphold the sense of having concern for the
-                                    sufferings or misfortunes of others and using this to strive towards selﬂessness. Excellence We value the process
-                                    of striving for excellence, for individual and collective achievement in all aspects of schooling and community
-                                    action.
-                                </p>
+                                <div className="text-justify text-xl">
+                                    <div className="mb-4">
+                                        <span className="font-merriweather my-2 text-2xl font-bold">Respect : </span>
+                                        <span>
+                                            We place great value on the importance of having honour and regard for the worth of oneself and others.
+                                        </span>
+                                    </div>
+                                    <div className="mb-4">
+                                        <span className="font-merriweather my-2 text-2xl font-bold">Responsibility : </span>
+                                        <span>
+                                            We hold in high esteem the notion of individual and collective responsibility towards ourselves, the wider
+                                            community, and the environment.
+                                        </span>
+                                    </div>
+                                    <div className="mb-4">
+                                        <span className="font-merriweather my-2 text-2xl font-bold">Integrity : </span>
+                                        <span>
+                                            We focus on the state of being whole and undivided; having the strength of character and conscience.
+                                        </span>
+                                    </div>
+                                    <div className="mb-4">
+                                        <span className="font-merriweather my-2 text-2xl font-bold">Compassion</span>
+                                        <span>
+                                            We encourage and uphold the sense of having concern for the sufferings or misfortunes of others and using
+                                            this to strive towards selﬂessness.
+                                        </span>
+                                    </div>
+                                    <div className="mb-4">
+                                        <span className="font-merriweather my-2 text-2xl font-bold">Excellence : </span>
+                                        <span>
+                                            We value the process of striving for excellence, for individual and collective achievement in all aspects
+                                            of schooling and community action.
+                                        </span>
+                                    </div>
+                                </div>
                             </motion.div>
                         </div>
                     </div>
