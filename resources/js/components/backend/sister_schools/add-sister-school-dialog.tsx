@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { SisterSchoolBanner, SisterSchoolLeadership } from '@/types';
+import { SisterSchoolBanner, SisterSchoolLeadership, SisterSchoolRelatedCampus } from '@/types';
 import { router } from '@inertiajs/react';
 import { Check, Plus, X } from 'lucide-react';
 import React from 'react';
@@ -40,6 +40,7 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
 
     const [sisterSchoolBanners, setSisterSchoolBanners] = React.useState<SisterSchoolBanner[]>([]);
     const [sisterSchoolLeaderships, setSisterSchoolLeaderships] = React.useState<SisterSchoolLeadership[]>([]);
+    const [sisterSchoolRelatedCampus, setSisterSchoolRelatedCampus] = React.useState<SisterSchoolRelatedCampus[]>([]);
     const [isSubmitting, setIsSubmitting] = React.useState(false);
 
     const resetForm = () => {
@@ -61,6 +62,7 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
         });
         setSisterSchoolBanners([]);
         setSisterSchoolLeaderships([]);
+        setSisterSchoolRelatedCampus([]);
         setLogoPreview('');
         setLogoBPreview('');
         setHosImagePreview('');
@@ -127,12 +129,23 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
         };
         setSisterSchoolLeaderships([...sisterSchoolLeaderships, newLeadership]);
     };
+    const handleAddRelatedCampus = () => {
+        const newRelatedCampus: SisterSchoolRelatedCampus = {
+            id: `banner-${Date.now()}`,
+            image: null,
+            campus_name: '',
+        };
+        setSisterSchoolRelatedCampus([...sisterSchoolRelatedCampus, newRelatedCampus]);
+    };
 
     const handleRemoveBanner = (id: string) => {
         setSisterSchoolBanners(sisterSchoolBanners.filter((banner) => banner.id !== id));
     };
     const handleRemoveLeadership = (id: string) => {
         setSisterSchoolLeaderships(sisterSchoolLeaderships.filter((leadershipId) => leadershipId.id !== id));
+    };
+    const handleRemoveRelatedCampus = (id: string) => {
+        setSisterSchoolRelatedCampus(sisterSchoolRelatedCampus.filter((relatedCampusId) => relatedCampusId.id !== id));
     };
 
     const handleBannerChange = (id: string, field: keyof SisterSchoolBanner, value: string | File | null) => {
@@ -176,6 +189,29 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
                     return updatedLeadership;
                 }
                 return leadership;
+            }),
+        );
+    };
+    const handleRelatedCampusChange = (id: string, field: keyof SisterSchoolRelatedCampus, value: string | File | null) => {
+        setSisterSchoolRelatedCampus(
+            sisterSchoolRelatedCampus.map((relatedCampus) => {
+                if (relatedCampus.id === id) {
+                    const updatedRelatedCampus = { ...relatedCampus, [field]: value };
+
+                    // Handle image previews
+                    if (field === 'image' && value instanceof File) {
+                        const reader = new FileReader();
+                        reader.onloadend = () => {
+                            setSisterSchoolRelatedCampus((prev) =>
+                                prev.map((b) => (b.id === id ? { ...b, relatedCampusImagePreview: reader.result as string } : b)),
+                            );
+                        };
+                        reader.readAsDataURL(value);
+                    }
+
+                    return updatedRelatedCampus;
+                }
+                return relatedCampus;
             }),
         );
     };
@@ -223,6 +259,12 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
             }
             submitData.append(`sister_school_leadership[${leadershipIndex}][name]`, leadership.name);
             submitData.append(`sister_school_leadership[${leadershipIndex}][position]`, leadership.position);
+        });
+        sisterSchoolRelatedCampus.forEach((relatedCampus, relatedCampusIndex) => {
+            if (relatedCampus.image) {
+                submitData.append(`sister_school_related_campus[${relatedCampusIndex}][image]`, relatedCampus.image);
+            }
+            submitData.append(`sister_school_related_campus[${relatedCampusIndex}][campus_name]`, relatedCampus.campus_name);
         });
 
         router.post('/api/sister_schools/sister-schools', submitData, {
@@ -401,7 +443,7 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
                         />
 
                         {/* Head of School Information */}
-                        <div className="grid grid-cols-2 gap-4">
+                        {/* <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
                                 <Label htmlFor="hos_name">Head of School Name</Label>
                                 <Input
@@ -432,7 +474,7 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
                             label="Head of School Message"
                             value={formData.hos_message}
                             onChange={(content) => setFormData({ ...formData, hos_message: content })}
-                        />
+                        /> */}
 
                         {/* Sister School Banners Section */}
                         <div className="grid gap-4 rounded-lg border p-4">
@@ -518,8 +560,8 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
                             ))}
                         </div>
 
-                        {/* Sister School Leaderships Section */}
-                        <div className="grid gap-4 rounded-lg border p-4">
+                        {/* Sister School Related Campus Section */}
+                        {/* <div className="grid gap-4 rounded-lg border p-4">
                             <div className="flex items-center justify-between">
                                 <Label className="text-lg font-semibold">Sister School Leaderships</Label>
                                 <Button type="button" onClick={handleAddLeadership} size="sm" className="gap-2">
@@ -588,6 +630,71 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
                                             placeholder="Enter Position"
                                             value={leadership.position}
                                             onChange={(e) => handleLeadershipChange(leadership.id, 'position', e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div> */}
+                        {/* Sister School RelatedCampus Section */}
+                        <div className="grid gap-4 rounded-lg border p-4">
+                            <div className="flex items-center justify-between">
+                                <Label className="text-lg font-semibold">Sister School Related Campus</Label>
+                                <Button type="button" onClick={handleAddRelatedCampus} size="sm" className="gap-2">
+                                    <Plus className="h-4 w-4" />
+                                    Add Related Campus
+                                </Button>
+                            </div>
+
+                            {sisterSchoolRelatedCampus.length === 0 && (
+                                <p className="text-center text-sm text-muted-foreground">
+                                    No banners added yet. Click "Add Related Campus" to create one.
+                                </p>
+                            )}
+
+                            {sisterSchoolRelatedCampus.map((relatedCampus, index) => (
+                                <div key={relatedCampus.id} className="grid gap-4 rounded-lg border bg-muted/50 p-4">
+                                    <div className="flex items-center justify-between">
+                                        <Label className="font-semibold">Campus {index + 1}</Label>
+                                        <Button
+                                            type="button"
+                                            onClick={() => handleRemoveRelatedCampus(relatedCampus.id)}
+                                            size="sm"
+                                            variant="destructive"
+                                            className="gap-2"
+                                        >
+                                            <X className="h-4 w-4" />
+                                            Remove
+                                        </Button>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 gap-4">
+                                        <div className="grid gap-2">
+                                            <Label htmlFor={`related-campus-image-${relatedCampus.id}`}>Campus Image</Label>
+                                            <Input
+                                                id={`related-campus-image-${relatedCampus.id}`}
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => handleRelatedCampusChange(relatedCampus.id, 'image', e.target.files?.[0] || null)}
+                                            />
+                                            {relatedCampus.relatedCampusImagePreview && (
+                                                <div className="mt-2">
+                                                    <img
+                                                        src={relatedCampus.relatedCampusImagePreview || '/placeholder.svg'}
+                                                        alt="Campus Image preview"
+                                                        className="h-24 w-24 rounded border object-cover"
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <div className="grid gap-2">
+                                        <Label htmlFor={`campus0-name-${relatedCampus.id}`}>Name</Label>
+                                        <Input
+                                            id={`campus-name-${relatedCampus.id}`}
+                                            placeholder="Enter Name"
+                                            value={relatedCampus.campus_name}
+                                            onChange={(e) => handleRelatedCampusChange(relatedCampus.id, 'campus_name', e.target.value)}
                                         />
                                     </div>
                                 </div>

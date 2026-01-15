@@ -129,6 +129,7 @@ export interface SisterSchoolBannerType {
 export interface SisterSchoolOverViewType {
     history: string;
     leadership: SisterSchoolLeadership[];
+    related_campuses: SisterSchoolRelatedCampus[];
 }
 export interface SisterSchoolHOSMessageType {
     hosImg: string;
@@ -246,6 +247,13 @@ export interface SisterSchoolLeadership {
     position: string;
     leadershipImagePreview?: string;
 }
+export interface SisterSchoolRelatedCampus {
+    id: string;
+    sister_school_id?: number;
+    image: File | null;
+    campus_name: string;
+    relatedCampusImagePreview?: string;
+}
 export interface SisterSchool {
     id: number;
     name: string;
@@ -267,6 +275,7 @@ export interface SisterSchool {
     updated_user?: User;
     banners: SisterSchoolBanner[];
     leaderships: SisterSchoolLeadership[];
+    related_campuses: SisterSchoolRelatedCampus[];
 }
 export interface CurriculumPhoto {
     id: StringIterator;

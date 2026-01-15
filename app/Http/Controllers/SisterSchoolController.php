@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SisterSchoolBannerUpdateRequest;
 use App\Http\Requests\SisterSchoolLeadershipUpdateRequest;
+use App\Http\Requests\SisterSchoolRelatedCampusUpdateRequest;
 use App\Http\Requests\SisterSchoolStoreRequest;
 use App\Http\Requests\SisterSchoolUpdateRequest;
 use App\Models\SisterSchool;
 use App\Models\SisterSchoolBanner;
 use App\Models\SisterSchoolLeadership;
+use App\Models\SisterSchoolRelatedCampus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -23,7 +25,7 @@ class SisterSchoolController extends Controller
      */
     public function index()
     {
-        $sister_schools = SisterSchool::with('banners', 'leaderships')->orderBy('name', 'desc')->get();
+        $sister_schools = SisterSchool::with('banners', 'leaderships', 'related_campuses')->orderBy('name', 'desc')->get();
         return response()->json(
             [
                 'message' => 'success',
@@ -114,27 +116,50 @@ class SisterSchoolController extends Controller
                 SisterSchoolBanner::insert($savedBanners);
             }
 
-            // Create Sister School banners
-            $leaderships = $data['sister_school_leadership'] ?? [];
-            if (!empty($leaderships)) {
-                $folderPath = "img/sister_schools_data/" . $data['slug'] . "/leaderships";
+            // Create Sister School Leadership
+            // $leaderships = $data['sister_school_leadership'] ?? [];
+            // if (!empty($leaderships)) {
+            //     $folderPath = "img/sister_schools_data/" . $data['slug'] . "/leaderships";
+            //     if (!File::exists($folderPath)) {
+            //         File::makeDirectory($folderPath, 0755, true);
+            //     }
+
+            //     $savedLeaderships = [];
+            //     foreach ($leaderships as $leadership) {
+            //         if (!empty($leadership['image'])) {
+            //             $file = $leadership['image'];
+            //             $fileName = "sister_school_" . uniqid('', true) . "." . $file->getClientOriginalExtension();
+            //             $file->move($folderPath, $fileName);
+            //             $leadership['image'] = "/" . $folderPath . "/" . $fileName;
+            //         }
+            //         $leadership['sister_school_id'] = $sister_school->id;
+            //         $leadership['created_user_id']  = $data['created_user_id'];
+            //         $savedLeaderships[] = $leadership;
+            //     }
+            //     SisterSchoolLeadership::insert($savedLeaderships);
+            // }
+
+            // Create Sister School Related Campuses
+            $related_campuses = $data['sister_school_related_campus'] ?? [];
+            if (!empty($related_campuses)) {
+                $folderPath = "img/sister_schools_data/" . $data['slug'] . "/related_campuses";
                 if (!File::exists($folderPath)) {
                     File::makeDirectory($folderPath, 0755, true);
                 }
 
-                $savedLeaderships = [];
-                foreach ($leaderships as $leadership) {
-                    if (!empty($leadership['image'])) {
-                        $file = $leadership['image'];
+                $savedRelatedCampuses = [];
+                foreach ($related_campuses as $related_campus) {
+                    if (!empty($related_campus['image'])) {
+                        $file = $related_campus['image'];
                         $fileName = "sister_school_" . uniqid('', true) . "." . $file->getClientOriginalExtension();
                         $file->move($folderPath, $fileName);
-                        $leadership['image'] = "/" . $folderPath . "/" . $fileName;
+                        $related_campus['image'] = "/" . $folderPath . "/" . $fileName;
                     }
-                    $leadership['sister_school_id'] = $sister_school->id;
-                    $leadership['created_user_id']  = $data['created_user_id'];
-                    $savedLeaderships[] = $leadership;
+                    $related_campus['sister_school_id'] = $sister_school->id;
+                    $related_campus['created_user_id']  = $data['created_user_id'];
+                    $savedRelatedCampuses[] = $related_campus;
                 }
-                SisterSchoolLeadership::insert($savedLeaderships);
+                SisterSchoolRelatedCampus::insert($savedRelatedCampuses);
             }
 
             DB::commit();
@@ -244,7 +269,7 @@ class SisterSchoolController extends Controller
      */
     public function destroy(string $id)
     {
-        $sister_school = SisterSchool::with('banners', 'leaderships')->findOrFail($id);
+        $sister_school = SisterSchool::with('banners', 'leaderships', 'related_campuses')->findOrFail($id);
         try {
             DB::transaction(function () use ($sister_school) {
 
@@ -253,6 +278,7 @@ class SisterSchoolController extends Controller
                 // Delete relations
                 $sister_school->banners()->delete();
                 $sister_school->leaderships()->delete();
+                $sister_school->related_campuses()->delete();
 
                 // Delete main record
                 $sister_school->delete();
@@ -417,6 +443,80 @@ class SisterSchoolController extends Controller
             DB::commit();
             Cache::forget('shared_sister_schools');
             return back()->with('success', 'Sister School Leadership Updated Successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            // Handle the error
+            throw ValidationException::withMessages([
+                'title' =>  $e->getMessage()
+            ]);
+        }
+    }
+    public function relatedCampusUpdate(SisterSchoolRelatedCampusUpdateRequest $request, $id)
+    {
+        $data = $request->validated();
+        try {
+            DB::beginTransaction();
+            $sister_school = SisterSchool::findOrFail($id);
+            // Create Sister School Related Campuses
+            $related_campuses = $data['sister_school_related_campuses'] ?? [];
+
+            // Delete Data
+            $existingIds = SisterSchoolRelatedCampus::where('sister_school_id', $id)
+                ->pluck('id')
+                ->toArray();
+
+            $sentIds = collect($related_campuses)
+                ->pluck('id')
+                ->filter() // remove null
+                ->toArray();
+            $idsToDelete = array_diff($existingIds, $sentIds);
+
+            if (!empty($idsToDelete)) {
+                $delete_related_campuses = SisterSchoolRelatedCampus::whereIn('id', $idsToDelete)->get();
+
+                foreach ($delete_related_campuses as $del) {
+                    if (!empty($del->image) && File::exists(public_path($del->image))) {
+                        File::delete(public_path($del->image));
+                    }
+                    $del->delete();
+                }
+            }
+
+            if (!empty($related_campuses)) {
+
+                $folderPath = "img/sister_schools_data/" . $sister_school->slug . "/related_campuses";
+                if (!File::exists($folderPath)) {
+                    File::makeDirectory($folderPath, 0755, true);
+                }
+                foreach ($related_campuses as $key => $related_campus) {
+                    $old_sister_school_related_campus = SisterSchoolRelatedCampus::find($related_campus['id']);
+                    if (!empty($related_campus['image'])) {
+                        if (isset($old_sister_school_related_campus)) {
+                            if (File::exists(public_path($old_sister_school_related_campus->image))) {
+                                File::delete(public_path($old_sister_school_related_campus->image));
+                            }
+                        }
+                        $file = $related_campus['image'];
+                        $fileName = "sister_school_" . uniqid('', true) . "." . $file->getClientOriginalExtension();
+                        $file->move($folderPath, $fileName);
+                        $related_campus['image'] = "/" . $folderPath . "/" . $fileName;
+                    } else {
+                        unset($related_campus['image']); // prevent overwriting if no new file
+                    }
+                    $related_campus['updated_user_id']  = Auth::user()->id;
+                    if (isset($old_sister_school_related_campus)) {
+                        $old_sister_school_related_campus->update($related_campus);
+                    } else {
+                        unset($related_campus['id']);
+                        $related_campus['created_user_id']  = Auth::user()->id;
+                        $related_campus['sister_school_id']  = $id;
+                        SisterSchoolRelatedCampus::create($related_campus);
+                    }
+                }
+            }
+            DB::commit();
+            Cache::forget('shared_sister_schools');
+            return back()->with('success', 'Sister School Related Campus Updated Successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
             // Handle the error

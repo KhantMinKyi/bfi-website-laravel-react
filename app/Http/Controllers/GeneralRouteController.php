@@ -64,7 +64,7 @@ class GeneralRouteController extends Controller
     }
     public function getSisterSchoolData($slug)
     {
-        $sister_school = SisterSchool::with('banners', 'leaderships')->where('slug', $slug)->firstOrFail();
+        $sister_school = SisterSchool::with('banners', 'leaderships', 'related_campuses')->where('slug', $slug)->firstOrFail();
         return response()->json([
             'message' => 'success',
             'data' => $sister_school,

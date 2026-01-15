@@ -36,6 +36,10 @@ class SisterSchool extends Model
     {
         return $this->hasMany(SisterSchoolLeadership::class);
     }
+    public function related_campuses(): HasMany
+    {
+        return $this->hasMany(SisterSchoolRelatedCampus::class);
+    }
     public function created_user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_user_id');

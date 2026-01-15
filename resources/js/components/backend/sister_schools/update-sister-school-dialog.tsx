@@ -306,7 +306,7 @@ export function UpdateSisterSchoolDialog({ sisterSchool, open, onOpenChange, onS
                         />
 
                         {/* Head of School Information */}
-                        <div className="grid grid-cols-2 gap-4">
+                        {/* <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
                                 <Label htmlFor="hos_name">Head of School Name</Label>
                                 <Input
@@ -337,7 +337,7 @@ export function UpdateSisterSchoolDialog({ sisterSchool, open, onOpenChange, onS
                             label="Head of School Message"
                             value={formData.hos_message}
                             onChange={(content) => setFormData({ ...formData, hos_message: content })}
-                        />
+                        /> */}
                     </div>
 
                     <DialogFooter>

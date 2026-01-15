@@ -33,7 +33,7 @@ import { AddSisterSchool } from './add-sister-school-dialog';
 import { DeleteSisterSchoolDialog } from './delete-sister-school-dialog';
 import { UpdateSisterSchoolBannerDialog } from './update-sister-school-banner-dialog';
 import { UpdateSisterSchoolDialog } from './update-sister-school-dialog';
-import { UpdateSisterSchoolLeadershipDialog } from './update-sister-school-leadership-dialog';
+import { UpdateSisterSchoolRelatedCampusDialog } from './update-sister-school-related-campus-dialog';
 
 export function SisterSchoolDataTable() {
     const [data, setData] = React.useState<SisterSchool[]>([]);
@@ -46,6 +46,7 @@ export function SisterSchoolDataTable() {
     const [updateDialogOpen, setUpdateDialogOpen] = React.useState(false);
     const [updateBannerDialogOpen, setUpdateBannerDialogOpen] = React.useState(false);
     const [updateLeadershipDialogOpen, setUpdateLeadershipDialogOpen] = React.useState(false);
+    const [updateRelatedCampusDialogOpen, setUpdateRelatedCampusDialogOpen] = React.useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
     const [selectedSisterSchool, setSelectedSisterSchool] = React.useState<SisterSchool | null>(null);
 
@@ -89,6 +90,13 @@ export function SisterSchoolDataTable() {
             setSelectedSisterSchool(null);
         }
     };
+    const handleUpdateRelatedCampusDialogChange = (open: boolean) => {
+        setUpdateRelatedCampusDialogOpen(open);
+        if (!open) {
+            // Reset selected sisterSchool setting when dialog closes
+            setSelectedSisterSchool(null);
+        }
+    };
 
     const handleDeleteDialogChange = (open: boolean) => {
         setDeleteDialogOpen(open);
@@ -117,6 +125,13 @@ export function SisterSchoolDataTable() {
         // Small delay to allow dropdown to close before opening dialog
         setTimeout(() => {
             setUpdateLeadershipDialogOpen(true);
+        }, 0);
+    };
+    const handleOpenUpdateRelatedCampusDialog = (sisterSchool: SisterSchool) => {
+        setSelectedSisterSchool(sisterSchool);
+        // Small delay to allow dropdown to close before opening dialog
+        setTimeout(() => {
+            setUpdateRelatedCampusDialogOpen(true);
         }, 0);
     };
 
@@ -248,10 +263,14 @@ export function SisterSchoolDataTable() {
                                     <ImagePlus className="mr-2 h-4 w-4" />
                                     Update Banner
                                 </DropdownMenuItem>
-
+                                {/* 
                                 <DropdownMenuItem onClick={() => handleOpenUpdateLeadershipDialog(sisterSchool)}>
                                     <UserCog className="mr-2 h-4 w-4" />
                                     Update Leadership
+                                </DropdownMenuItem> */}
+                                <DropdownMenuItem onClick={() => handleOpenUpdateRelatedCampusDialog(sisterSchool)}>
+                                    <UserCog className="mr-2 h-4 w-4" />
+                                    Update Related Campus
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
@@ -454,11 +473,18 @@ export function SisterSchoolDataTable() {
                         onOpenChange={handleUpdateBannerDialogChange}
                         onSuccess={fetchSisterSchools}
                     />
-                    <UpdateSisterSchoolLeadershipDialog
+                    {/* <UpdateSisterSchoolLeadershipDialog
                         sisterSchoolLeaderships={selectedSisterSchool.leaderships}
                         sisterSchoolId={selectedSisterSchool.id}
                         open={updateLeadershipDialogOpen}
                         onOpenChange={handleUpdateLeadershipDialogChange}
+                        onSuccess={fetchSisterSchools}
+                    /> */}
+                    <UpdateSisterSchoolRelatedCampusDialog
+                        sisterSchoolRelatedCampuses={selectedSisterSchool.related_campuses}
+                        sisterSchoolId={selectedSisterSchool.id}
+                        open={updateRelatedCampusDialogOpen}
+                        onOpenChange={handleUpdateRelatedCampusDialogChange}
                         onSuccess={fetchSisterSchools}
                     />
                 </>

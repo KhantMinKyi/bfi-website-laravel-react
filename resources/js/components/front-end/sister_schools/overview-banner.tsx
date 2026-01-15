@@ -37,7 +37,7 @@ const OverviewBanner = ({ data }: OverviewBannerProps) => {
                     viewport={{ once: false, amount: 0.4 }} // trigger when 40% visible
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >
-                    <p className="text-2xl text-blue-100">School's Leadership</p>
+                    <p className="text-2xl text-blue-100">School's Related Campuses</p>
                     {/* <div className="grid gap-4 pt-10 md:grid-cols-2">
                         {data.leadership.map((l, i) => (
                             <div className="flex items-center justify-center" key={i}>
@@ -45,20 +45,19 @@ const OverviewBanner = ({ data }: OverviewBannerProps) => {
                             </div>
                         ))}
                     </div> */}
-                    <div className="grid gap-4 pt-10 md:grid-cols-2">
-                        {data.leadership.map((l, i) => (
+                    <div className="grid gap-4 pt-10 lg:grid-cols-2">
+                        {data.related_campuses.map((l, i) => (
                             <div key={i} className="group relative flex items-center justify-center">
                                 {/* Image */}
                                 <img
                                     src={String(l.image)}
-                                    alt={l.name}
-                                    className="h-28 w-28 rounded-full object-cover transition-transform duration-300 group-hover:scale-105 lg:h-40 lg:w-40"
+                                    alt={l.campus_name}
+                                    className="h-40 w-40 object-cover transition-transform duration-300 group-hover:scale-105 md:h-48 md:w-48 lg:h-60 lg:w-60"
                                 />
 
                                 {/* Overlay */}
-                                <div className="bg-opacity-70 absolute inset-0 flex cursor-pointer flex-col items-center justify-center rounded-full bg-neutral-950/90 px-2 text-center text-white opacity-0 transition-opacity duration-300 group-hover:scale-110 group-hover:opacity-100">
-                                    <h3 className="text-sm font-bold lg:text-lg">{l.name}</h3>
-                                    <p className="text-xs lg:text-sm">{l.position}</p>
+                                <div className="bg-opacity-70 absolute inset-0 flex cursor-pointer flex-col items-center justify-center bg-neutral-950/90 px-2 text-center text-white opacity-0 transition-opacity duration-300 group-hover:scale-110 group-hover:opacity-100">
+                                    <h3 className="text-sm font-bold lg:text-lg">{l.campus_name}</h3>
                                 </div>
                             </div>
                         ))}

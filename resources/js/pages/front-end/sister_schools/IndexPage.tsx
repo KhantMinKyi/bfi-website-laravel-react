@@ -1,7 +1,6 @@
 'use client';
 import CarouselBanner from '@/components/front-end/core/carousel-banner';
 import { DotLoading } from '@/components/front-end/core/dot-loading';
-import HeadOfSchoolMessage from '@/components/front-end/sister_schools/head-of-school-message';
 import HeroBanner from '@/components/front-end/sister_schools/hero-banner';
 import OverviewBanner from '@/components/front-end/sister_schools/overview-banner';
 import FrontEndLayout from '@/layouts/front-end-layout';
@@ -34,15 +33,16 @@ const MainHeader = memo(({ carouselData, schoolData }: any) => (
                 schoolOverview: schoolData.introduction,
             }}
         />
-        <OverviewBanner data={{ history: schoolData.description, leadership: schoolData.leaderships }} />
-        <HeadOfSchoolMessage
+        <OverviewBanner
+            data={{ history: schoolData.description, leadership: schoolData.leaderships, related_campuses: schoolData.related_campuses }}
+        />
+        {/* <HeadOfSchoolMessage
             data={{
-                hosImg: schoolData.hos_image,
                 hosMessage: schoolData.hos_message,
                 logo: schoolData.logo,
                 logo_b: schoolData.logo_b,
             }}
-        />
+        /> */}
     </>
 ));
 
@@ -102,7 +102,7 @@ function IndexPage() {
                         <LazyIconCardGroup />
                     </Suspense>
 
-                    <Suspense fallback={<LazyLoadingSkeleton />}>
+                    {/* <Suspense fallback={<LazyLoadingSkeleton />}>
                         <LazyCounter
                             data={{
                                 firstNumber: 160,
@@ -115,7 +115,7 @@ function IndexPage() {
                                 fourthTitle: 'Winning Award',
                             }}
                         />
-                    </Suspense>
+                    </Suspense> */}
 
                     <Suspense fallback={<LazyLoadingSkeleton />}>
                         <LazyContactBanner data={{ logoUrl: schoolData.logo, logoUrlB: schoolData.logo_b, websiteLink: schoolData.website_url }} />
