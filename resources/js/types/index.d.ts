@@ -322,6 +322,25 @@ export interface Competition {
     updated_user?: User;
     related_photos: CompetitionPhoto[];
 }
+export interface AlumniPhoto {
+    id: StringIterator;
+    image: File | null;
+    title: string;
+    alumniPhotoPreview?: string;
+    created_user?: User;
+    updated_user?: User;
+}
+export interface Alumni {
+    id: number;
+    title: string;
+    banner: string;
+    introduction: string;
+    body?: string;
+    footer?: string;
+    website_url?: string;
+    created_user: User;
+    updated_user?: User;
+}
 export interface JobPost {
     id: number;
     title: string;

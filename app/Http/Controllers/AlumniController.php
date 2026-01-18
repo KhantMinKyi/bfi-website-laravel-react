@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumni;
 use Illuminate\Http\Request;
 
 class AlumniController extends Controller
@@ -11,7 +12,11 @@ class AlumniController extends Controller
      */
     public function index()
     {
-        //
+        $alumni = Alumni::with('created_user', 'updated_user')->orderBy('title', 'desc')->get();
+        return response()->json([
+            'message' => 'success',
+            'alumni' => $alumni
+        ], 200);
     }
 
     /**

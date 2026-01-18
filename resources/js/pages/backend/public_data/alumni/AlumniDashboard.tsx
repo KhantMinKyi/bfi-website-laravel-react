@@ -1,4 +1,4 @@
-import { CompetitionDataTable } from '@/components/backend/public_data/competition/competition-data-table';
+import { AlumniDataTable } from '@/components/backend/public_data/alumni/alumni-data-table';
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
@@ -15,7 +15,7 @@ function AlumniDashboard() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Alumni Dashboard" />
             <div className="p-10">
-                <CompetitionDataTable />
+                <AlumniDataTable />
             </div>
         </AppLayout>
     );
