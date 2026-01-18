@@ -33,6 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     require __DIR__ . '/route_groups/back_end/public_data/event_and_post.php';
     require __DIR__ . '/route_groups/back_end/public_data/faq.php';
     require __DIR__ . '/route_groups/back_end/public_data/competitions.php';
+    require __DIR__ . '/route_groups/back_end/public_data/alumni.php';
     require __DIR__ . '/route_groups/back_end/public_data/bfi_olympiads.php';
 
 

@@ -26,6 +26,7 @@ import {
     School,
     TextSearch,
     UserCog2Icon,
+    Users,
 } from 'lucide-react';
 import AppLogo from './app-logo';
 
@@ -88,6 +89,11 @@ const mainNavItems: NavItem[] = [
                 title: 'Competitions',
                 href: '/public_data/competitions/dashboard',
                 icon: Percent,
+            },
+            {
+                title: 'Alumni',
+                href: '/public_data/alumni/dashboard',
+                icon: Users,
             },
             // {
             //     title: 'BFI Olympiads',
