@@ -18,7 +18,7 @@ const DonationCardGroup: React.FC<Props> = ({ DonationData }) => {
                             </h2>
                             <p className="text-body-color font-merriweather text-lg text-gray-800 dark:text-green-600">
                                 As part of BFI community service activities every year food packages are prepared and donated to needy people. In 2013
-                                more than 1000 packages onach worth 25,000 Kyats) were distributed around townships where HorizonNow BFI) campuses are
+                                more than 1000 packages (each worth 25,000 Kyats) were distributed around townships where HorizonNow BFI) campuses are
                                 located.
                             </p>
                         </div>

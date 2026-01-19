@@ -161,14 +161,14 @@ const ScheduleItem = ({ name, address, email, link }: { name: string; address: s
             initial={{ y: 48, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ ease: 'easeInOut', duration: 0.75 }}
-            className="mb-9 flex items-center justify-between border-b border-zinc-800 px-3 pb-9"
+            className="mb-9 flex flex-col items-center justify-between gap-4 border-b border-zinc-800 px-3 pb-9 sm:flex-row"
             href={link}
         >
             <div>
-                <p className="mb-1.5 text-xl">{name}</p>
+                <p className="mb-3 text-xl">{name}</p>
                 <p className="text-sm uppercase">{address}</p>
             </div>
-            <div className="flex items-center gap-1.5 text-end text-sm uppercase">
+            <div className="flex items-center gap-3 text-end text-sm uppercase dark:text-green-600">
                 <p>{email}</p>
                 <FiMail />
             </div>
