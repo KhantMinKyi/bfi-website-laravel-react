@@ -13,6 +13,7 @@ use App\Models\Faq;
 use App\Models\JobPost;
 use App\Models\Post;
 use App\Models\SisterSchool;
+use App\Models\SisterSchoolRelatedCampus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -85,9 +86,11 @@ class GeneralRouteController extends Controller
     public function getAllSisterSchool()
     {
         $sister_schools = SisterSchool::orderBy('name', 'desc')->get(['name', 'address', 'email', 'logo', 'website_url', 'phone']);
+        $related_campuses = SisterSchoolRelatedCampus::all();
         return response()->json([
             'message' => 'success',
             'data' => $sister_schools,
+            'related_campuses' => $related_campuses,
         ], 200);
     }
     public function getCurriculumData($slug)

@@ -5,8 +5,21 @@ import FrontEndLayout from '@/layouts/front-end-layout';
 import { SisterSchool } from '@/types';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+
+interface SisterSchoolRelatedCampusLocal {
+    id: string;
+    sister_school_id?: number;
+    image: string;
+    campus_name: string;
+    address: string;
+    phone: string;
+    website_url: string;
+    relatedCampusImagePreview?: string;
+}
+
 function ContactUs() {
     const [schoolAccordions, setSchoolAccordions] = useState<SisterSchool[]>([]);
+    const [schoolRelatedCampuses, setSchoolRelatedCampuses] = useState<SisterSchoolRelatedCampusLocal[]>([]);
     const [imagesLoading, setImagesLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -14,6 +27,7 @@ function ContactUs() {
             .then((res) => res.json())
             .then((res) => {
                 setSchoolAccordions(res.data);
+                setSchoolRelatedCampuses(res.related_campuses);
                 setImagesLoading(false);
             })
             .catch((err) => console.log(err));
@@ -55,6 +69,7 @@ function ContactUs() {
             ) : (
                 <SisterSchoolAccordion
                     schoolAccordions={schoolAccordions}
+                    schoolRelatedCampuses={schoolRelatedCampuses}
                     title="Vist to Our Schools Websites"
                     body="Discover our group of schools online and learn more about their campuses, programs, admissions, and student life. "
                 />

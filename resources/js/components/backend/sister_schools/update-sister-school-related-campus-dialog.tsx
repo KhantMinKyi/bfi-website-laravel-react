@@ -22,6 +22,9 @@ interface RelatedCampusFormData {
     id: string;
     image: File | null;
     campus_name: string;
+    address: string;
+    phone: string;
+    website_url: string;
     old_image?: File | null;
     relatedCampusImagePreview?: string;
     existingImageUrl?: string;
@@ -45,6 +48,9 @@ export function UpdateSisterSchoolRelatedCampusDialog({
                     image: null,
                     old_image: relatedCampus.image,
                     campus_name: relatedCampus.campus_name,
+                    address: relatedCampus.address,
+                    phone: relatedCampus.phone,
+                    website_url: relatedCampus.website_url,
                     relatedCampusImagePreview: relatedCampus.relatedCampusImagePreview,
                     existingImageUrl: relatedCampus.relatedCampusImagePreview,
                 })),
@@ -59,6 +65,9 @@ export function UpdateSisterSchoolRelatedCampusDialog({
                 id: `new-${Date.now()}`,
                 image: null,
                 campus_name: '',
+                address: '',
+                phone: '',
+                website_url: '',
                 relatedCampusImagePreview: undefined,
             },
         ]);
@@ -106,6 +115,9 @@ export function UpdateSisterSchoolRelatedCampusDialog({
         selectedRelatedCampuses.forEach((relatedCampus, index) => {
             submitData.append(`sister_school_related_campuses[${index}][id]`, relatedCampus.id);
             submitData.append(`sister_school_related_campuses[${index}][campus_name]`, relatedCampus.campus_name);
+            submitData.append(`sister_school_related_campuses[${index}][address]`, relatedCampus.address);
+            submitData.append(`sister_school_related_campuses[${index}][phone]`, relatedCampus.phone);
+            submitData.append(`sister_school_related_campuses[${index}][website_url]`, relatedCampus.website_url);
 
             if (relatedCampus.image) {
                 submitData.append(`sister_school_related_campuses[${index}][image]`, relatedCampus.image);
@@ -220,6 +232,42 @@ export function UpdateSisterSchoolRelatedCampusDialog({
                                                 placeholder="Enter name"
                                                 value={relatedCampus.campus_name}
                                                 onChange={(e) => handleRelatedCampusChange(index, 'campus_name', e.target.value)}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="grid gap-2">
+                                            <Label htmlFor={`address-${index}`}>
+                                                Address <span className="text-red-500">*</span>
+                                            </Label>
+                                            <Input
+                                                id={`address-${index}`}
+                                                placeholder="Enter Address"
+                                                value={relatedCampus.address}
+                                                onChange={(e) => handleRelatedCampusChange(index, 'address', e.target.value)}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="grid gap-2">
+                                            <Label htmlFor={`phone-${index}`}>
+                                                Phone <span className="text-red-500">*</span>
+                                            </Label>
+                                            <Input
+                                                id={`phone-${index}`}
+                                                placeholder="Enter Phone"
+                                                value={relatedCampus.phone}
+                                                onChange={(e) => handleRelatedCampusChange(index, 'phone', e.target.value)}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="grid gap-2">
+                                            <Label htmlFor={`website_url-${index}`}>
+                                                Website Url <span className="text-red-500">*</span>
+                                            </Label>
+                                            <Input
+                                                id={`website_url-${index}`}
+                                                placeholder="Enter Website Url"
+                                                value={relatedCampus.website_url}
+                                                onChange={(e) => handleRelatedCampusChange(index, 'website_url', e.target.value)}
                                                 required
                                             />
                                         </div>

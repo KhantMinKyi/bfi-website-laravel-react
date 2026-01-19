@@ -16,6 +16,9 @@ return new class extends Migration
             $table->foreignId('sister_school_id')->constrained('sister_schools');
             $table->string('image');
             $table->string('campus_name', 100);
+            $table->text('address');
+            $table->text('phone');
+            $table->string('website_url');
             $table->foreignId('created_user_id')->constrained('users');
             $table->foreignId('updated_user_id')->nullable()->constrained('users');
             $table->timestamps();

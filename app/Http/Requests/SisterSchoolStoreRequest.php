@@ -48,6 +48,8 @@ class SisterSchoolStoreRequest extends FormRequest
             'sister_school_leadership.*.image'              => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'sister_school_related_campus'                  => ['nullable', 'array', 'min:1'],
             'sister_school_related_campus.*.campus_name'    => ['nullable', 'string'],
+            'sister_school_related_campus.*.address'        => ['nullable', 'string'],
+            'sister_school_related_campus.*.phone'          => ['nullable', 'string'],
             'sister_school_related_campus.*.image'          => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
     }

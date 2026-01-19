@@ -252,6 +252,9 @@ export interface SisterSchoolRelatedCampus {
     sister_school_id?: number;
     image: File | null;
     campus_name: string;
+    address: string;
+    phone: string;
+    website_url: string;
     relatedCampusImagePreview?: string;
 }
 export interface SisterSchool {

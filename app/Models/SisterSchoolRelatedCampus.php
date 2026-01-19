@@ -11,6 +11,9 @@ class SisterSchoolRelatedCampus extends Model
         'sister_school_id',
         'image',
         'campus_name',
+        'address',
+        'phone',
+        'website_url',
         'created_user_id',
         'updated_user_id',
     ];

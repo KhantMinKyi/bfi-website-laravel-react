@@ -134,6 +134,9 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
             id: `banner-${Date.now()}`,
             image: null,
             campus_name: '',
+            address: '',
+            phone: '',
+            website_url: '',
         };
         setSisterSchoolRelatedCampus([...sisterSchoolRelatedCampus, newRelatedCampus]);
     };
@@ -265,6 +268,9 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
                 submitData.append(`sister_school_related_campus[${relatedCampusIndex}][image]`, relatedCampus.image);
             }
             submitData.append(`sister_school_related_campus[${relatedCampusIndex}][campus_name]`, relatedCampus.campus_name);
+            submitData.append(`sister_school_related_campus[${relatedCampusIndex}][address]`, relatedCampus.address);
+            submitData.append(`sister_school_related_campus[${relatedCampusIndex}][phone]`, relatedCampus.phone);
+            submitData.append(`sister_school_related_campus[${relatedCampusIndex}][website_url]`, relatedCampus.website_url);
         });
 
         router.post('/api/sister_schools/sister-schools', submitData, {
@@ -695,6 +701,35 @@ export function AddSisterSchool({ onSuccess }: AddSisterSchoolProps) {
                                             placeholder="Enter Name"
                                             value={relatedCampus.campus_name}
                                             onChange={(e) => handleRelatedCampusChange(relatedCampus.id, 'campus_name', e.target.value)}
+                                        />
+                                    </div>
+
+                                    <div className="grid gap-2">
+                                        <Label htmlFor={`campus0-name-${relatedCampus.id}`}>Address</Label>
+                                        <Input
+                                            id={`campus-address-${relatedCampus.id}`}
+                                            placeholder="Enter address"
+                                            value={relatedCampus.address}
+                                            onChange={(e) => handleRelatedCampusChange(relatedCampus.id, 'address', e.target.value)}
+                                        />
+                                    </div>
+
+                                    <div className="grid gap-2">
+                                        <Label htmlFor={`campus0-phone-${relatedCampus.id}`}>Phone</Label>
+                                        <Input
+                                            id={`campus-phone-${relatedCampus.id}`}
+                                            placeholder="Enter Phone"
+                                            value={relatedCampus.phone}
+                                            onChange={(e) => handleRelatedCampusChange(relatedCampus.id, 'phone', e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor={`campus0-website_url-${relatedCampus.id}`}>Website Url</Label>
+                                        <Input
+                                            id={`campus-website_url-${relatedCampus.id}`}
+                                            placeholder="Enter Wesite Url"
+                                            value={relatedCampus.website_url}
+                                            onChange={(e) => handleRelatedCampusChange(relatedCampus.id, 'website_url', e.target.value)}
                                         />
                                     </div>
                                 </div>

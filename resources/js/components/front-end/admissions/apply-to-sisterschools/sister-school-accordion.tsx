@@ -2,12 +2,23 @@ import { SisterSchool, TeamCardType } from '@/types';
 import { MapPin, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
 import React from 'react';
+interface SisterSchoolRelatedCampusLocal {
+    id: string;
+    sister_school_id?: number;
+    image: string;
+    campus_name: string;
+    address: string;
+    phone: string;
+    website_url: string;
+    relatedCampusImagePreview?: string;
+}
 type Props = {
     schoolAccordions: SisterSchool[];
+    schoolRelatedCampuses: SisterSchoolRelatedCampusLocal[];
     title?: string;
     body?: string;
 };
-const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions, title = null, body = null }) => {
+const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions, schoolRelatedCampuses, title = null, body = null }) => {
     return (
         <section className="pt-20 pb-10 lg:pt-[120px] lg:pb-20 dark:bg-gray-950">
             <div className="container mx-auto">
@@ -44,6 +55,25 @@ const SisterSchoolAccordion: React.FC<Props> = ({ schoolAccordions, title = null
                             />
                         </motion.div>
                     ))}
+                    {schoolRelatedCampuses.map((rc, i) => (
+                        <motion.div
+                            className="orico-about-text-wrap 111"
+                            key={i}
+                            initial={{ opacity: 0, y: -50 }} // start 50px below
+                            whileInView={{ opacity: 1, y: 1 }} // slide up and fade in
+                            exit={{ opacity: 0, y: -50 }} // fade out and slide down
+                            viewport={{ once: false, amount: 0.4 }} // trigger when 20% visible
+                            transition={{ duration: (i + 1) * 0.2, ease: 'easeInOut' }} // longer duration
+                        >
+                            <SisterSchoolAccordionCard
+                                name={rc.campus_name}
+                                imagesrc={rc.image}
+                                websiteUrl={rc.website_url}
+                                phone={rc.phone}
+                                address={rc.address}
+                            />
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </section>
@@ -61,9 +91,7 @@ const SisterSchoolAccordionCard: React.FC<TeamCardType> = ({ imagesrc, name, web
                         <div className="h-[450px] w-88"> </div>
                         <div className="absolute bottom-5 left-0 w-92 text-center">
                             <div className="relative mx-5 overflow-hidden rounded-lg bg-white px-3 pb-5 dark:bg-gray-900">
-                                <div className="flex justify-center">
-                                    <img src={imagesrc} alt="" className="h-44" />
-                                </div>
+                                <div className="flex justify-center">{imagesrc && <img src={imagesrc} alt="" className="h-44" />}</div>
                                 <h3 className="text-dark text-base font-semibold md:text-lg">{name}</h3>
                                 {/* <p className="text-body-color text-xs text-blue-800 dark:text-green-800">{profession}</p> */}
                                 <div>

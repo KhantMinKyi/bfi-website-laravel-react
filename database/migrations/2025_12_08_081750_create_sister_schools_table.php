@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('slug', 50)->unique();
             $table->string('logo');
             $table->string('logo_b');
-            $table->string('address');
+            $table->text('address');
             $table->string('email');
-            $table->string('phone');
+            $table->text('phone');
             $table->string('website_url');
             $table->longText('introduction');
             $table->longText('description');
