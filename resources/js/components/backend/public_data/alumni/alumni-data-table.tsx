@@ -28,7 +28,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Alumni } from '@/types';
+import { Alumni, AlumniPhoto } from '@/types';
+import { AddAlumni } from './add-alumni-dialog';
+import { DeleteAlumniDialog } from './delete-alumni-dialog';
+import { UpdateAlumniDialog } from './update-alumni-dialog';
+import { UpdateAlumniPhotoDialog } from './update-alumni-photo-dialog';
 // import { AddCompetition } from './add-competition-dialog';
 // import { DeleteCompetitionDialog } from './delete-competition-dialog';
 // import { UpdateCompetitionDialog } from './update-competition-dialog';
@@ -36,6 +40,7 @@ import { Alumni } from '@/types';
 
 export function AlumniDataTable() {
     const [data, setData] = React.useState<Alumni[]>([]);
+    const [alumniPhoto, setAlumniPhoto] = React.useState<AlumniPhoto[]>([]);
     const [loading, setLoading] = React.useState(true);
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -57,6 +62,7 @@ export function AlumniDataTable() {
             }
             const result = await response.json();
             setData(result.alumni);
+            setAlumniPhoto(result.alumni_photos);
         } catch (error) {
             console.error('Error fetching Alumni:', error);
         } finally {
@@ -300,7 +306,7 @@ export function AlumniDataTable() {
                     className="max-w-sm"
                 />
                 <div className="ml-auto flex items-center gap-2">
-                    {/* <AddCompetition onSuccess={fetchCompetitions} /> */}
+                    <AddAlumni onSuccess={fetchAlumni} />
                     {/* <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline">
@@ -377,25 +383,25 @@ export function AlumniDataTable() {
 
             {selectedAlumni && (
                 <>
-                    {/* <UpdateCompetitionDialog
-                        competition={selectedCompetition}
+                    <UpdateAlumniDialog
+                        alumni={selectedAlumni}
                         open={updateDialogOpen}
                         onOpenChange={handleUpdateDialogChange}
-                        onSuccess={fetchCompetitions}
+                        onSuccess={fetchAlumni}
                     />
-                    <DeleteCompetitionDialog
-                        competition={selectedCompetition}
+                    <DeleteAlumniDialog
+                        alumni={selectedAlumni}
                         open={deleteDialogOpen}
                         onOpenChange={handleDeleteDialogChange}
-                        onSuccess={fetchCompetitions}
+                        onSuccess={fetchAlumni}
                     />
-                    <UpdateCompetitionPhotoDialog
-                        competitionPhotos={selectedCompetition.related_photos}
-                        competitionId={selectedCompetition.id}
+                    <UpdateAlumniPhotoDialog
+                        alumniPhotos={alumniPhoto}
+                        alumniId={selectedAlumni.id}
                         open={updatePhotoDialogOpen}
                         onOpenChange={handleUpdatePhotoDialogChange}
-                        onSuccess={fetchCompetitions}
-                    /> */}
+                        onSuccess={fetchAlumni}
+                    />
                 </>
             )}
         </div>

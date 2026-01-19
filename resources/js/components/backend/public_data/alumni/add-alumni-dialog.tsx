@@ -5,21 +5,20 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { CompetitionPhoto } from '@/types';
+import { AlumniPhoto } from '@/types';
 import { router } from '@inertiajs/react';
 import { Check, Plus, X } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
-interface AddCompetitionProps {
+interface AddAlumniProps {
     onSuccess?: () => void;
 }
 
-export function AddCompetition({ onSuccess }: AddCompetitionProps) {
+export function AddAlumni({ onSuccess }: AddAlumniProps) {
     const [open, setOpen] = React.useState(false);
     const [formData, setFormData] = React.useState({
-        name: '',
-        slug: '',
+        title: '',
         banner: null as File | null,
         introduction: '',
         body: '',
@@ -28,20 +27,19 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
     });
 
     const [bannerPreview, setBannerPreview] = React.useState<string>('');
-    const [competitionPhotos, setCompetitionPhotos] = React.useState<CompetitionPhoto[]>([]);
+    const [alumniPhotos, setAlumniPhotos] = React.useState<AlumniPhoto[]>([]);
     const [isSubmitting, setIsSubmitting] = React.useState(false);
 
     const resetForm = () => {
         setFormData({
-            name: '',
-            slug: '',
+            title: '',
             banner: null,
             introduction: '',
             body: '',
             footer: '',
             website_url: '',
         });
-        setCompetitionPhotos([]);
+        setAlumniPhotos([]);
         setBannerPreview('');
     };
 
@@ -59,38 +57,36 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
         }
     };
 
-    const handleAddCompetitionPhoto = () => {
-        const newCompetitionPhoto: CompetitionPhoto = {
-            id: `competition-${Date.now()}`,
+    const handleAddAlumniPhoto = () => {
+        const newAlumniPhoto: AlumniPhoto = {
+            id: `alumni-${Date.now()}`,
             image: null,
             title: '',
         };
-        setCompetitionPhotos([...competitionPhotos, newCompetitionPhoto]);
+        setAlumniPhotos([...alumniPhotos, newAlumniPhoto]);
     };
-    const handleRemoveCompetitionPhoto = (id: string) => {
-        setCompetitionPhotos(competitionPhotos.filter((competitionPhoto) => competitionPhoto.id !== id));
+    const handleRemoveAlumniPhoto = (id: string) => {
+        setAlumniPhotos(alumniPhotos.filter((alumniPhoto) => alumniPhoto.id !== id));
     };
 
-    const handleCompetitionPhotoChange = (id: string, field: keyof CompetitionPhoto, value: string | File | null) => {
-        setCompetitionPhotos(
-            competitionPhotos.map((competitionPhoto) => {
-                if (competitionPhoto.id === id) {
-                    const updatedCompetitionPhoto = { ...competitionPhoto, [field]: value };
+    const handleAlumniPhotoChange = (id: string, field: keyof AlumniPhoto, value: string | File | null) => {
+        setAlumniPhotos(
+            alumniPhotos.map((alumniPhoto) => {
+                if (alumniPhoto.id === id) {
+                    const updatedAlumniPhoto = { ...alumniPhoto, [field]: value };
 
                     // Handle image previews
                     if (field === 'image' && value instanceof File) {
                         const reader = new FileReader();
                         reader.onloadend = () => {
-                            setCompetitionPhotos((prev) =>
-                                prev.map((b) => (b.id === id ? { ...b, competitionPhotoPreview: reader.result as string } : b)),
-                            );
+                            setAlumniPhotos((prev) => prev.map((b) => (b.id === id ? { ...b, alumniPhotoPreview: reader.result as string } : b)));
                         };
                         reader.readAsDataURL(value);
                     }
 
-                    return updatedCompetitionPhoto;
+                    return updatedAlumniPhoto;
                 }
-                return competitionPhoto;
+                return alumniPhoto;
             }),
         );
     };
@@ -101,8 +97,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
 
         const submitData = new FormData();
 
-        submitData.append('name', formData.name);
-        submitData.append('slug', formData.slug);
+        submitData.append('title', formData.title);
         submitData.append('introduction', formData.introduction);
         submitData.append('body', formData.body);
         submitData.append('footer', formData.footer);
@@ -112,17 +107,17 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
             submitData.append('banner', formData.banner);
         }
 
-        competitionPhotos.forEach((competitionPhoto, index) => {
-            if (competitionPhoto.image) {
-                submitData.append(`competition_photo[${index}][image]`, competitionPhoto.image);
+        alumniPhotos.forEach((alumniPhoto, index) => {
+            if (alumniPhoto.image) {
+                submitData.append(`alumni_photo[${index}][image]`, alumniPhoto.image);
             }
-            submitData.append(`competition_photo[${index}][title]`, competitionPhoto.title);
+            submitData.append(`alumni_photo[${index}][title]`, alumniPhoto.title);
         });
 
-        router.post('/api/public_data/competitions', submitData, {
+        router.post('/api/public_data/alumni', submitData, {
             preserveScroll: true,
             onSuccess: () => {
-                toast.success('Competition created successfully!');
+                toast.success('Alumni Data created successfully!');
                 resetForm();
                 setOpen(false);
 
@@ -132,7 +127,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
             },
             onError: (errors) => {
                 const msg = Object.values(errors).join(' • ');
-                toast.error(msg || 'Failed to create Competition');
+                toast.error(msg || 'Failed to create Alumni Data');
             },
             onFinish: () => {
                 setIsSubmitting(false);
@@ -145,38 +140,27 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
             <DialogTrigger asChild>
                 <Button className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
                     <Plus className="h-4 w-4" />
-                    Add Competition
+                    Add Alumni
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-[1200px]">
                 <DialogHeader>
-                    <DialogTitle>Add New Competition</DialogTitle>
-                    <DialogDescription>Create a new Competition. Fill in the details below and click save when you're done.</DialogDescription>
+                    <DialogTitle>Add New Alumni</DialogTitle>
+                    <DialogDescription>Create a new Alumni. Fill in the details below and click save when you're done.</DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit}>
                     <div className="grid gap-4 py-4">
                         {/* Basic Information */}
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-4">
                             <div className="grid gap-2">
                                 <Label htmlFor="name">
-                                    Name <span className="text-red-500">*</span>
+                                    Title <span className="text-red-500">*</span>
                                 </Label>
                                 <Input
                                     id="name"
                                     placeholder="Enter Name"
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                />
-                            </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="slug">
-                                    Slug <span className="text-red-500">*</span>
-                                </Label>
-                                <Input
-                                    id="slug"
-                                    placeholder="Enter slug"
-                                    value={formData.slug}
-                                    onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+                                    value={formData.title}
+                                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                                 />
                             </div>
                         </div>
@@ -231,29 +215,29 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
                             onChange={(content) => setFormData({ ...formData, footer: content })}
                         />
 
-                        {/* Competition Photos Section */}
+                        {/* Alumni Photos Section */}
                         <div className="grid gap-4 rounded-lg border p-4">
                             <div className="flex items-center justify-between">
-                                <Label className="text-lg font-semibold">Competition Photos</Label>
-                                <Button type="button" onClick={handleAddCompetitionPhoto} size="sm" className="gap-2">
+                                <Label className="text-lg font-semibold">Alumni Photos</Label>
+                                <Button type="button" onClick={handleAddAlumniPhoto} size="sm" className="gap-2">
                                     <Plus className="h-4 w-4" />
-                                    Add Competition Photo
+                                    Add Alumni Photo
                                 </Button>
                             </div>
 
-                            {competitionPhotos.length === 0 && (
+                            {alumniPhotos.length === 0 && (
                                 <p className="text-center text-sm text-muted-foreground">
-                                    No photo added yet. Click "Add Competition Photo" to create one.
+                                    No photo added yet. Click "Add Alumni Photo" to create one.
                                 </p>
                             )}
 
-                            {competitionPhotos.map((competitionPhoto, index) => (
-                                <div key={competitionPhoto.id} className="grid gap-4 rounded-lg border bg-muted/50 p-4">
+                            {alumniPhotos.map((alumniPhoto, index) => (
+                                <div key={alumniPhoto.id} className="grid gap-4 rounded-lg border bg-muted/50 p-4">
                                     <div className="flex items-center justify-between">
-                                        <Label className="font-semibold">Competition Photo {index + 1}</Label>
+                                        <Label className="font-semibold">Alumni Photo {index + 1}</Label>
                                         <Button
                                             type="button"
-                                            onClick={() => handleRemoveCompetitionPhoto(competitionPhoto.id)}
+                                            onClick={() => handleRemoveAlumniPhoto(alumniPhoto.id)}
                                             size="sm"
                                             variant="destructive"
                                             className="gap-2"
@@ -265,20 +249,18 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
 
                                     <div className="grid grid-cols-1 gap-4">
                                         <div className="grid gap-2">
-                                            <Label htmlFor={`image-${competitionPhoto.id}`}>Photo</Label>
+                                            <Label htmlFor={`image-${alumniPhoto.id}`}>Photo</Label>
                                             <Input
-                                                id={`image-${competitionPhoto.id}`}
+                                                id={`image-${alumniPhoto.id}`}
                                                 type="file"
                                                 accept="image/*"
-                                                onChange={(e) =>
-                                                    handleCompetitionPhotoChange(competitionPhoto.id, 'image', e.target.files?.[0] || null)
-                                                }
+                                                onChange={(e) => handleAlumniPhotoChange(alumniPhoto.id, 'image', e.target.files?.[0] || null)}
                                             />
-                                            {competitionPhoto.competitionPhotoPreview && (
+                                            {alumniPhoto.alumniPhotoPreview && (
                                                 <div className="mt-2">
                                                     <img
-                                                        src={competitionPhoto.competitionPhotoPreview || '/placeholder.svg'}
-                                                        alt="Competition Photo preview"
+                                                        src={alumniPhoto.alumniPhotoPreview || '/placeholder.svg'}
+                                                        alt="Alumni Photo preview"
                                                         className="h-40 w-full rounded border object-cover"
                                                     />
                                                 </div>
@@ -287,12 +269,12 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
                                     </div>
 
                                     <div className="grid gap-2">
-                                        <Label htmlFor={`title-${competitionPhoto.id}`}>Title</Label>
+                                        <Label htmlFor={`title-${alumniPhoto.id}`}>Title</Label>
                                         <Input
-                                            id={`title-${competitionPhoto.id}`}
+                                            id={`title-${alumniPhoto.id}`}
                                             placeholder="Enter title"
-                                            value={competitionPhoto.title}
-                                            onChange={(e) => handleCompetitionPhotoChange(competitionPhoto.id, 'title', e.target.value)}
+                                            value={alumniPhoto.title}
+                                            onChange={(e) => handleAlumniPhotoChange(alumniPhoto.id, 'title', e.target.value)}
                                         />
                                     </div>
                                 </div>
@@ -311,7 +293,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
                         </Button>
                         <Button type="submit" disabled={isSubmitting} className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
                             <Check />
-                            {isSubmitting ? 'Saving...' : 'Save Competition'}
+                            {isSubmitting ? 'Saving...' : 'Save Alumni'}
                         </Button>
                     </DialogFooter>
                 </form>
