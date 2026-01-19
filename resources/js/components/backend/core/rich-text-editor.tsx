@@ -29,27 +29,75 @@ export function RichTextEditor({ id, label, value, onChange, required }: RichTex
     };
 
     const executeCommand = (command: string, value?: string) => {
-        document.execCommand(command, false, value);
         editorRef.current?.focus();
+        document.execCommand(command, false, value);
+        handleInput();
     };
 
     const insertHeading = (level: number) => {
-        const selection = window.getSelection();
-        if (selection && selection.rangeCount > 0) {
-            const range = selection.getRangeAt(0);
-            const heading = document.createElement(`h${level}`);
-            heading.textContent = selection.toString() || `Heading ${level}`;
-            range.deleteContents();
-            range.insertNode(heading);
-            selection.removeAllRanges();
-        }
         editorRef.current?.focus();
+        document.execCommand('formatBlock', false, `<h${level}>`);
     };
 
     const insertLink = () => {
         const url = prompt('Enter URL:');
         if (url) {
             executeCommand('createLink', url);
+        }
+    };
+
+    const handlePaste = (e: React.ClipboardEvent) => {
+        e.preventDefault();
+        const text = e.clipboardData.getData('text/html') || e.clipboardData.getData('text/plain');
+
+        if (!text) return;
+
+        // Create a temporary container to parse the pasted content
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = text;
+
+        // Remove all style attributes and background colors
+        const allElements = tempDiv.querySelectorAll('*');
+        allElements.forEach((el) => {
+            el.removeAttribute('style');
+            el.removeAttribute('bgcolor');
+        });
+
+        // Ensure lists are preserved properly
+        const lists = tempDiv.querySelectorAll('ul, ol');
+        lists.forEach((list) => {
+            list.removeAttribute('style');
+            const items = list.querySelectorAll('li');
+            items.forEach((item) => {
+                item.removeAttribute('style');
+            });
+        });
+
+        // Get the cleaned HTML
+        let cleanedHTML = tempDiv.innerHTML;
+
+        // Insert the cleaned content
+        const selection = window.getSelection();
+        if (selection && selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+
+            const fragment = document.createElement('div');
+            fragment.innerHTML = cleanedHTML;
+
+            while (fragment.firstChild) {
+                range.insertNode(fragment.firstChild);
+            }
+
+            // Move cursor to the end of inserted content
+            range.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+
+        // Trigger the onChange event
+        if (editorRef.current) {
+            onChange(editorRef.current.innerHTML);
         }
     };
 
@@ -147,7 +195,8 @@ export function RichTextEditor({ id, label, value, onChange, required }: RichTex
                     ref={editorRef}
                     contentEditable
                     onInput={handleInput}
-                    className="prose prose-sm min-h-[200px] max-w-none p-4 focus:outline-none"
+                    onPaste={handlePaste}
+                    className="prose prose-sm min-h-[200px] max-w-none p-4 text-foreground focus:outline-none"
                     style={{
                         wordWrap: 'break-word',
                         overflowWrap: 'break-word',
