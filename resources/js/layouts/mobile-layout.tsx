@@ -274,6 +274,8 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                         activeSubMenu !== 'competition' &&
                         (activeSubMenu === 'community' ||
                             currentPath === routePath('contact_us') ||
+                            currentPath === routePath('news_and_event') ||
+                            currentPath === routePath('alumni') ||
                             currentPath === routePath('community_service_activities') ||
                             currentPath === routePath('faq'))
                             ? 'max-h-screen'
@@ -281,6 +283,26 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     }`}
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
+                        <li>
+                            <Link
+                                prefetch
+                                href={route('news_and_event')}
+                                className={`${currentPath === routePath('news_and_event') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                {' '}
+                                News & Events
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                prefetch
+                                href={route('alumni')}
+                                className={`${currentPath === routePath('alumni') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
+                            >
+                                {' '}
+                                Alumni
+                            </Link>
+                        </li>
                         <li>
                             <Link
                                 prefetch

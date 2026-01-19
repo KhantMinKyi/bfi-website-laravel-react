@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumni;
+use App\Models\AlumniPhoto;
 use App\Models\BfiOlympaid;
 use App\Models\CategoryTag;
 use App\Models\CommunityServiceActivity;
@@ -170,6 +172,24 @@ class GeneralRouteController extends Controller
         return response()->json([
             'message' => 'success',
             'data' => $bfi_olympiads,
+        ], 200);
+    }
+    public function getAlumniData()
+    {
+        $alumni = Alumni::with('created_user', 'updated_user')->orderBy('title', 'desc')->first();
+        $alumni_photos = AlumniPhoto::orderBy('created_at', 'desc')->get();
+        return response()->json([
+            'message' => 'success',
+            'alumni' => $alumni,
+            'alumni_photos' => $alumni_photos,
+        ], 200);
+    }
+    public function getAlumniPhoto()
+    {
+        $alumni_photos = AlumniPhoto::orderBy('created_at', 'desc')->get();
+        return response()->json([
+            'message' => 'success',
+            'alumni_photos' => $alumni_photos,
         ], 200);
     }
     public function getAdminDashboardData()

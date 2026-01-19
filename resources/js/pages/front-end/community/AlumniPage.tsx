@@ -1,20 +1,19 @@
-import SisterSchoolAccordion from '@/components/front-end/admissions/apply-to-sisterschools/sister-school-accordion';
-import ContactForm from '@/components/front-end/contact_us/contact-form';
-import { DotLoading } from '@/components/front-end/core/dot-loading';
+import AlumniInformations from '@/components/front-end/community/alumni/alumni-informations';
+import AlumniPhotoGallery from '@/components/front-end/community/alumni/alumni-photo-gallery';
+import ContactBanner from '@/components/front-end/home/contact-banner';
 import FrontEndLayout from '@/layouts/front-end-layout';
-import { SisterSchool } from '@/types';
+import { Alumni } from '@/types';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-function ContactUs() {
-    const [schoolAccordions, setSchoolAccordions] = useState<SisterSchool[]>([]);
-    const [imagesLoading, setImagesLoading] = useState<boolean>(true);
-
+function AlumniPage() {
+    const [alumni, setAlumni] = useState<Alumni>();
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('/api/sister_schools/get-all-sister-school')
+        fetch('/api/community/get-alumni-data')
             .then((res) => res.json())
             .then((res) => {
-                setSchoolAccordions(res.data);
-                setImagesLoading(false);
+                setAlumni(res.alumni);
+                setLoading(false);
             })
             .catch((err) => console.log(err));
     }, []);
@@ -23,13 +22,11 @@ function ContactUs() {
             <div
                 className="relative bg-cover bg-center bg-no-repeat text-white"
                 style={{
-                    backgroundImage: "url('/img/banner6.webp')", // put your image path here
+                    backgroundImage: "url('/img/SKT_11.webp')", // put your image path here
                 }}
             >
                 {/* Overlay */}
-                {/* <div className="absolute inset-0 bg-blue-950/60" /> */}
                 <div className="dark:from-dark-950/90 dark:to-dark-950/90 absolute inset-0 bg-gradient-to-r from-gray-900/60 to-gray-950/60" />
-                {/* Content */}
                 <motion.div
                     className="orico-about-text-wrap 111"
                     initial={{ opacity: 0, x: -50 }} // start 50px below
@@ -40,27 +37,24 @@ function ContactUs() {
                 >
                     <div className="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center md:py-40 lg:py-52">
                         <img src="/img/bfi.webp" className="max-w-40" alt="" />
-                        <h2 className="font-merriweather mb-4 text-3xl font-bold md:text-5xl">Contact Us</h2>
+                        <h2 className="font-merriweather mb-4 text-3xl font-bold md:text-5xl">Alumni</h2>
                         <p className="mb-6 max-w-2xl text-lg md:text-xl">Our path through innovation, challenge, and achievement.</p>
                     </div>
                 </motion.div>
             </div>
-            <ContactForm />
-            {imagesLoading ? (
-                <div className="container mx-auto flex justify-center gap-10">
-                    <div className="flex h-64 items-center justify-center text-lg text-gray-500">
-                        <DotLoading />
-                    </div>
+            <AlumniInformations introduction={alumni?.introduction} body={alumni?.body} footer={alumni?.footer} />
+            <div className="flex flex-col justify-center gap-10 bg-white py-10">
+                <h2 className="font-merriweather z-10 text-center text-3xl font-bold text-black sm:text-4xl lg:text-6xl dark:text-black">
+                    Alumni all Around the World
+                </h2>
+                <div className="container mx-auto">
+                    <img src={alumni?.banner} className="" alt="" />
                 </div>
-            ) : (
-                <SisterSchoolAccordion
-                    schoolAccordions={schoolAccordions}
-                    title="Vist to Our Schools Websites"
-                    body="Discover our group of schools online and learn more about their campuses, programs, admissions, and student life. "
-                />
-            )}
+            </div>
+            <AlumniPhotoGallery />
+            <ContactBanner />
         </FrontEndLayout>
     );
 }
 
-export default ContactUs;
+export default AlumniPage;

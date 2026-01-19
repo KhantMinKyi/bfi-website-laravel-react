@@ -374,6 +374,7 @@ export default ({ children }: FrondendLayoutProps) => {
                                         className={`${
                                             currentPath === routePath('contact_us') ||
                                             currentPath === routePath('faq') ||
+                                            currentPath === routePath('alumni') ||
                                             currentPath === routePath('community_service_activities')
                                                 ? activeLink
                                                 : baseLink
@@ -389,6 +390,15 @@ export default ({ children }: FrondendLayoutProps) => {
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('news_and_event') ? subLinkActive : ''}`}
                                             >
                                                 News & Events
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                prefetch
+                                                href={route('alumni')}
+                                                className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('alumni') ? subLinkActive : ''}`}
+                                            >
+                                                Alumni
                                             </Link>
                                         </li>
                                         <li>
