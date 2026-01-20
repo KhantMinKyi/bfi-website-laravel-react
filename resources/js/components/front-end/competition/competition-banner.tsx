@@ -1,12 +1,16 @@
 import DOMPurify from 'dompurify';
 import * as motion from 'motion/react-client';
+import { useState } from 'react';
 type Props = {
     name: string;
     introduction: string;
     website_url?: string;
+    social_media_banner?: string;
 };
-const CompetitionBanner: React.FC<Props> = ({ name, introduction, website_url }) => {
+const CompetitionBanner: React.FC<Props> = ({ name, introduction, website_url, social_media_banner }) => {
     const sanitizedDescription = DOMPurify.sanitize(introduction ?? '');
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div
             className="bg-opci relative bg-cover bg-center bg-no-repeat py-20"
@@ -28,8 +32,26 @@ const CompetitionBanner: React.FC<Props> = ({ name, introduction, website_url })
                 >
                     <div className="flex flex-col items-center">
                         <h2 className="font-merriweather my-10 text-4xl font-bold md:text-6xl">{name}</h2>
-                        <img src="/img/bfi.webp" className="max-w-64 dark:hidden" alt="" />
-                        <img src="/img/bfi_b.webp" className="hidden max-w-64 dark:block" alt="" />
+                        {social_media_banner && (
+                            <div className="group relative inline-block cursor-pointer">
+                                {/* Thumbnail Image */}
+                                <img
+                                    src={social_media_banner}
+                                    alt=""
+                                    className="max-w-64 transition-transform duration-300"
+                                    // onClick={() => window.open(social_media_banner, '_blank')}
+                                />
+
+                                {/* Overlay */}
+                                <div
+                                    onClick={() => window.open(social_media_banner, '_blank')}
+                                    className="bg-opacity-20 absolute inset-0 flex items-center justify-center bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                                >
+                                    <span className="text-lg font-semibold text-white">Click to View</span>
+                                </div>
+                            </div>
+                        )}
+                        {/* <img src="/img/bfi_b.webp" className="hidden max-w-64 dark:block" alt="" /> */}
                     </div>
                 </motion.div>
                 <motion.div

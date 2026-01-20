@@ -317,6 +317,7 @@ export interface Competition {
     name: string;
     slug: string;
     banner: string;
+    social_media_banner: string;
     introduction: string;
     body?: string;
     footer?: string;

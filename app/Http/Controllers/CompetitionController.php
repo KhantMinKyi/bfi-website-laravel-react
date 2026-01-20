@@ -53,6 +53,21 @@ class CompetitionController extends Controller
                 $photo->move($filePath, "/competition_" . $imageUid . "." . $extension);
                 $data['banner'] = "/" . $photoName;
             }
+            // create social_media_banner 
+            if (isset($data['social_media_banner'])) {
+                $filePath = "img/competition_data/" . $data['slug'];
+                if (!File::exists($filePath)) {
+                    $result = File::makeDirectory($filePath, 0755, true);
+                }
+
+                $photo = $data['social_media_banner'];
+                $extension = $photo->getClientOriginalExtension();
+                $imageUid = uniqid('', true);
+                $photoName = $filePath . "/competition_" . $imageUid . "." . $extension;
+
+                $photo->move($filePath, "/competition_" . $imageUid . "." . $extension);
+                $data['social_media_banner'] = "/" . $photoName;
+            }
             // create post
             $competition = Competition::create($data);
 
@@ -130,6 +145,23 @@ class CompetitionController extends Controller
 
                 $photo->move($filePath, "/competition_" . $imageUid . "." . $extension);
                 $data['banner'] = "/" . $photoName;
+            }
+            if (isset($data['social_media_banner'])) {
+                if (File::exists(public_path($competition->social_media_banner))) {
+                    File::delete(public_path($competition->social_media_banner));
+                }
+                $filePath = "img/competition_data/" . $data['slug'];
+                if (!File::exists($filePath)) {
+                    $result = File::makeDirectory($filePath, 0755, true);
+                }
+
+                $photo = $data['social_media_banner'];
+                $extension = $photo->getClientOriginalExtension();
+                $imageUid = uniqid('', true);
+                $photoName = $filePath . "/competition_" . $imageUid . "." . $extension;
+
+                $photo->move($filePath, "/competition_" . $imageUid . "." . $extension);
+                $data['social_media_banner'] = "/" . $photoName;
             }
             $competition->update($data);
 

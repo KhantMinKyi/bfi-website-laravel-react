@@ -10,6 +10,7 @@ class Competition extends Model
         'name',
         'slug',
         'banner',
+        'social_media_banner',
         'introduction',
         'body',
         'footer',

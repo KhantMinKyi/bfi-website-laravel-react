@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 100)->unique();
             $table->string('slug', 50)->unique();
             $table->string('banner')->nullable();
+            $table->string('social_media_banner')->nullable();
             $table->longText('introduction');
             $table->longText('body')->nullable();
             $table->longText('footer')->nullable();

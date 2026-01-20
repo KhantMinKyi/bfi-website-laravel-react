@@ -15,6 +15,7 @@ interface Competition {
     name: string;
     slug: string;
     banner?: string;
+    social_media_banner?: string;
     introduction: string;
     body?: string;
     footer?: string;
@@ -33,6 +34,7 @@ export function UpdateCompetitionDialog({ competition, open, onOpenChange, onSuc
         name: competition.name,
         slug: competition.slug,
         banner: null as File | null,
+        social_media_banner: null as File | null,
         introduction: competition.introduction,
         body: competition.body,
         footer: competition.footer,
@@ -40,6 +42,7 @@ export function UpdateCompetitionDialog({ competition, open, onOpenChange, onSuc
     });
 
     const [bannerPreview, setBannerPreview] = React.useState<string>(competition.banner || '');
+    const [socialMediaBannerPreview, setSocialMediaBannerPreview] = React.useState<string>(competition.social_media_banner || '');
     const [isSubmitting, setIsSubmitting] = React.useState(false);
 
     const handleBannerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +56,20 @@ export function UpdateCompetitionDialog({ competition, open, onOpenChange, onSuc
             reader.readAsDataURL(file);
         } else {
             setBannerPreview(competition.banner || '');
+        }
+    };
+
+    const handleSocialMediaBannerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0] || null;
+        setFormData({ ...formData, social_media_banner: file });
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setSocialMediaBannerPreview(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            setSocialMediaBannerPreview(competition.social_media_banner || '');
         }
     };
 
@@ -77,6 +94,9 @@ export function UpdateCompetitionDialog({ competition, open, onOpenChange, onSuc
         }
         if (formData.banner) {
             submitData.append('banner', formData.banner);
+        }
+        if (formData.social_media_banner) {
+            submitData.append('social_media_banner', formData.social_media_banner);
         }
 
         router.post(`/api/public_data/competitions/${competition.id}`, submitData, {
@@ -161,6 +181,25 @@ export function UpdateCompetitionDialog({ competition, open, onOpenChange, onSuc
                                     </div>
                                 )}
                             </div>
+
+                            {/* Social Media Banner */}
+                            <div className="grid gap-2">
+                                <Label htmlFor="social_media_banner">
+                                    Social Media Banner <span className="text-red-500">*</span>
+                                </Label>
+                                <Input id="social_media_banner" type="file" accept="image/*" onChange={handleSocialMediaBannerChange} />
+                                {socialMediaBannerPreview && (
+                                    <div className="mt-2">
+                                        <img
+                                            src={socialMediaBannerPreview || '/placeholder.svg'}
+                                            alt="Social Media Banner preview"
+                                            className="h-24 w-24 rounded border object-cover"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-1 gap-4">
                             <div className="gap-2">
                                 <Label htmlFor="website_url">Website Url</Label>
                                 <Input
@@ -171,7 +210,6 @@ export function UpdateCompetitionDialog({ competition, open, onOpenChange, onSuc
                                 />
                             </div>
                         </div>
-
                         {/* Descriptions */}
                         <RichTextEditor
                             id="introduction"

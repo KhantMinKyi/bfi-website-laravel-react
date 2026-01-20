@@ -21,6 +21,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
         name: '',
         slug: '',
         banner: null as File | null,
+        social_media_banner: null as File | null,
         introduction: '',
         body: '',
         footer: '',
@@ -28,6 +29,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
     });
 
     const [bannerPreview, setBannerPreview] = React.useState<string>('');
+    const [socialMediaBannerPreview, setSocialMediaBannerPreview] = React.useState<string>('');
     const [competitionPhotos, setCompetitionPhotos] = React.useState<CompetitionPhoto[]>([]);
     const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -36,6 +38,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
             name: '',
             slug: '',
             banner: null,
+            social_media_banner: null,
             introduction: '',
             body: '',
             footer: '',
@@ -43,6 +46,7 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
         });
         setCompetitionPhotos([]);
         setBannerPreview('');
+        setSocialMediaBannerPreview('');
     };
 
     const handleBannerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,6 +60,19 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
             reader.readAsDataURL(file);
         } else {
             setBannerPreview('');
+        }
+    };
+    const handleSocialMediaBannerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0] || null;
+        setFormData({ ...formData, social_media_banner: file });
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setSocialMediaBannerPreview(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            setSocialMediaBannerPreview('');
         }
     };
 
@@ -110,6 +127,9 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
 
         if (formData.banner) {
             submitData.append('banner', formData.banner);
+        }
+        if (formData.social_media_banner) {
+            submitData.append('social_media_banner', formData.social_media_banner);
         }
 
         competitionPhotos.forEach((competitionPhoto, index) => {
@@ -198,6 +218,25 @@ export function AddCompetition({ onSuccess }: AddCompetitionProps) {
                                     </div>
                                 )}
                             </div>
+                            {/* Social Media Banner */}
+                            <div className="grid gap-2">
+                                <Label htmlFor="social_media_banner">
+                                    Social Media Banner<span className="text-red-500">*</span>
+                                </Label>
+                                <Input id="social_media_banner" type="file" accept="image/*" onChange={handleSocialMediaBannerChange} />
+                                {socialMediaBannerPreview && (
+                                    <div className="mt-2">
+                                        <img
+                                            src={socialMediaBannerPreview || '/placeholder.svg'}
+                                            alt="Social Mdeia Banner preview"
+                                            className="h-24 w-24 rounded border object-cover"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-4">
                             <div className="grid gap-2">
                                 <Label htmlFor="website_url">Website Url</Label>
                                 <Input

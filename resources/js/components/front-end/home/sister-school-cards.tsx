@@ -48,7 +48,7 @@ const SECTION_HEIGHT = 1500;
 
 const Hero: React.FC<HeroProps> = ({ isMobile }) => {
     return (
-        <div style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)` }} className="relative w-full">
+        <div style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)` }} className="relative hidden w-full md:block">
             <CenterImage isMobile={isMobile} />
 
             <ParallaxImages />
@@ -92,12 +92,35 @@ const CenterImage: React.FC<CenterImageProps> = ({ isMobile }) => {
 
 const ParallaxImages = () => {
     return (
-        <div className="relative mx-auto max-w-5xl px-4 pb-[200px]">
-            <ParallaxImg src="img/skt_riverside_campus.webp" alt="And example of a space launch" start={-200} end={200} className="w-1/4" />
-            <ParallaxImg src="img/bfi.webp" alt="An example of a space launch" start={-100} end={-250} className="mx-auto w-2/4" />
-            <ParallaxImg src="img/misa.webp" alt="Orbiting satellite" start={-200} end={200} className="ml-auto w-1/4" />
-            <ParallaxImg src="img/nisa.webp" alt="Orbiting satellite" start={0} end={-500} className="mx-auto w-4/12" />
-            <ParallaxImg src="img/skt_city_campus.webp" alt="Orbiting satellite" start={-800} end={-1000} className="mr-auto w-4/12" />
+        <div className="relative mx-auto max-w-7xl px-4 pt-20 pb-[200px]">
+            {/* 1. Middle Image (BFI) - Centered */}
+            <div className="relative z-10 mb-10 flex justify-center">
+                <ParallaxImg
+                    src="img/bfi.webp"
+                    alt="An example of a space launch"
+                    start={0}
+                    end={-100}
+                    className="w-52" // Made slightly larger for emphasis
+                />
+            </div>
+
+            {/* 2. Other 4 Images - Side by Side (Grid) */}
+            {/* gap-4 creates space between them. items-start aligns them at the top of their row */}
+            <div className="relative z-0 grid grid-cols-4 gap-4 px-4">
+                <ParallaxImg src="img/skt_riverside_campus.webp" alt="Riverside Campus" start={100} end={-200} className="w-40" />
+
+                <ParallaxImg
+                    src="img/misa.webp"
+                    alt="Misa Satellite"
+                    start={100}
+                    end={-250} // Different speed for visual interest
+                    className="mt-10 w-40" // Added margin-top to stagger the starting position visually
+                />
+
+                <ParallaxImg src="img/nisa.webp" alt="Nisa Satellite" start={100} end={-250} className="mt-10 w-40" />
+
+                <ParallaxImg src="img/skt_city_campus.webp" alt="City Campus" start={100} end={-200} className="w-40" />
+            </div>
         </div>
     );
 };
@@ -107,18 +130,27 @@ const ParallaxImg = ({ className, alt, src, start, end }: { className?: string; 
 
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: [`${start}px end`, `end ${end * -1}px`],
+        // "start end" = when element top hits viewport bottom
+        // "end start" = when element bottom hits viewport top
+        offset: ['start end', 'end start'],
     });
 
-    const opacity = useTransform(scrollYProgress, [0.75, 1], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0.75, 1], [1, 0.85]);
+    const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
+    const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.1, 1]);
 
-    const y = useTransform(scrollYProgress, [0.5, 1], [start, end]);
+    // Maps scroll progress to the pixel values provided
+    const y = useTransform(scrollYProgress, [0, 1], [start, end]);
+
+    // Fixed syntax for motion template
     const transform = useMotionTemplate`translateY(${y}px) scale(${scale})`;
 
     return (
-        <motion.div ref={ref} className={`relative ${className}`}>
-            <motion.img src={src} alt={alt} style={{ transform, opacity }} />
+        <motion.div ref={ref} className={`relative ${className}`} style={{ transform, opacity }}>
+            <img
+                src={src}
+                alt={alt}
+                className="h-full w-full rounded-lg object-cover" // Added basic styling for the image itself
+            />
         </motion.div>
     );
 };
@@ -136,7 +168,7 @@ const Schedule = () => {
             .catch((err) => console.log(err));
     }, []);
     return (
-        <section id="launch-schedule" className="mx-auto max-w-5xl px-4 py-48">
+        <section id="launch-schedule" className="mx-auto max-w-5xl px-4 py-20">
             {/* <motion.h1
                 initial={{ y: 48, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -145,6 +177,8 @@ const Schedule = () => {
             >
                 Our Sister Schools
             </motion.h1> */}
+            <img src="/img/bfi.webp" alt="" className="mx-auto block w-40 dark:hidden" />
+            <img src="/img/bfi_b.webp" alt="" className="mx-auto hidden w-40 dark:block" />
             <GradualSpacingHeader text="BFI Group of Schools" />
             {sisterSchoolData.map((e) => (
                 <ScheduleItem key={e.name} name={e.name} address={e.address} email={e.email} link={e.website_url} />

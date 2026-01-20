@@ -48,7 +48,12 @@ const IndexPage = () => {
                 </motion.div>
             </div>
 
-            <CompetitionBanner name={competitionData.name} introduction={competitionData.introduction} website_url={competitionData.website_url} />
+            <CompetitionBanner
+                social_media_banner={competitionData.social_media_banner}
+                name={competitionData.name}
+                introduction={competitionData.introduction}
+                website_url={competitionData.website_url}
+            />
             {/* <div className="container mx-auto flex justify-center">
                 <img src={competitionData.banner} className="max-h-screen" alt="" />
             </div> */}

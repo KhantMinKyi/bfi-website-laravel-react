@@ -86,7 +86,7 @@ const SisterSchoolAccordionCard: React.FC<TeamCardType> = ({ imagesrc, name, web
     return (
         <>
             <div className="w-full cursor-pointer px-4 md:w-1/2 xl:w-1/4">
-                <div className="mx-auto mb-10 w-88 max-w-[370px]">
+                <div className="mx-auto mb-10 w-88 max-w-[400px]">
                     <div className="relative overflow-hidden rounded-lg transition-all hover:scale-110">
                         <div className="h-[450px] w-88"> </div>
                         <div className="absolute bottom-5 left-0 w-92 text-center">
