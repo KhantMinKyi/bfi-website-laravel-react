@@ -1,8 +1,8 @@
 [
     {
-        "src": "/img/banner4.webp",
-        "title": "EXCELLENCE",
-        "desc": "It is a habit"
+        "src": "/img/SKT_9.webp",
+        "title": "SELF - DISCIPLINE",
+        "desc": "Focused and committed to goals, even in the face of challenges or distractions."
     },
     {
         "src": "/img/SKT_11.webp",
@@ -25,8 +25,9 @@
         "desc": "Know that you can make a positive change."
     },
     {
-        "src": "/img/SKT_9.webp",
-        "title": "SELF - DISCIPLINE",
-        "desc": "Focused and committed to goals, even in the face of challenges or distractions."
+        "src": "/img/banner4.webp",
+        "title": "EXCELLENCE",
+        "desc": "It is a habit"
     }
+
 ]

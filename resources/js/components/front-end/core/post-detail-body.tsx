@@ -22,6 +22,8 @@ const PostDetailBody: React.FC<PostDetailProps> = ({ post, otherPosts, categorie
     const sanitizedDescription = DOMPurify.sanitize(post?.description ?? '');
     const sanitizedFooterDescription = DOMPurify.sanitize(post?.footer_description ?? '');
     const images = post?.images?.split(',');
+    const currentUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent(document.title);
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'News & Events',
@@ -102,33 +104,60 @@ const PostDetailBody: React.FC<PostDetailProps> = ({ post, otherPosts, categorie
                                 </div>
                                 <div className="share_sp mt-6">
                                     <h4 className="text-lg font-semibold">Share</h4>
+
                                     <ul className="mt-2 grid grid-cols-2 gap-4 lg:grid-cols-4">
+                                        {/* Facebook */}
                                         <li>
-                                            <a href="#" className="flex items-center gap-1 text-blue-600 hover:text-blue-800">
+                                            <a
+                                                href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-1 text-blue-600 hover:text-blue-800"
+                                            >
                                                 <FiFacebook />
                                                 Facebook
                                             </a>
                                         </li>
+
+                                        {/* Twitter / X */}
                                         <li>
-                                            <a href="#" className="flex items-center gap-1 text-blue-400 hover:text-blue-600">
+                                            <a
+                                                href={`https://twitter.com/intent/tweet?url=${currentUrl}&text=${pageTitle}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-1 text-blue-400 hover:text-blue-600"
+                                            >
                                                 <FiTwitter />
                                                 Twitter
                                             </a>
                                         </li>
+
+                                        {/* Instagram (no direct web share) */}
                                         <li>
-                                            <a href="#" className="flex items-center gap-1 text-pink-500 hover:text-pink-700">
+                                            <button
+                                                onClick={() => navigator.clipboard.writeText(window.location.href)}
+                                                className="flex items-center gap-1 text-pink-500 hover:text-pink-700"
+                                            >
                                                 <FiInstagram />
-                                                Instagram
-                                            </a>
+                                                Copy Link
+                                            </button>
                                         </li>
+
+                                        {/* LinkedIn */}
                                         <li>
-                                            <a href="#" className="flex items-center gap-1 text-blue-700 hover:text-blue-900">
+                                            <a
+                                                href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-1 text-blue-700 hover:text-blue-900"
+                                            >
                                                 <FiLinkedin />
                                                 Linkedin
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
+
                             </div>
                         </div>
                         {/* Right Side Data */}
@@ -158,26 +187,26 @@ const PostDetailBody: React.FC<PostDetailProps> = ({ post, otherPosts, categorie
                                 <div className="sidebar_title border-b border-gray-300 pb-2 text-3xl">
                                     <h4>Follow us</h4>
                                 </div>
-                                <div className="single_social grid grid-cols-2 gap-4 text-xs sm:text-base md:text-lg">
-                                    <div className="my-2 flex items-center gap-2 rounded bg-blue-600 p-2">
-                                        <FiFacebook />
+                                <div className="single_social grid grid-cols-2 gap-4 text-xs text-white sm:text-base md:text-lg">
+                                    <a className="my-2 flex items-center gap-2 rounded  bg-neutral-950 p-2" href='https://www.facebook.com/share/17irZtXNj1/' target='_blank'>
+                                        <FiFacebook className='text-blue-600' />
                                         <span className="item-list sm:block">150K Likes</span>
-                                    </div>
-
-                                    <div className="my-2 flex items-center gap-2 rounded bg-blue-300 p-2">
-                                        <FiTwitter />
+                                    </a>
+                                    {/* 
+                                    <div className="my-2 flex items-center gap-2 rounded  bg-gray-950 p-2">
+                                        <FiTwitter className='text-blue-500' />
                                         <span className="item-list sm:block">138K Followers</span>
                                     </div>
 
-                                    <div className="my-2 flex items-center gap-2 rounded bg-red-600 p-2">
-                                        <FiYoutube />
+                                    <div className="my-2 flex items-center gap-2 rounded bg-gray-950 dark:bg-gray-950 p-2">
+                                        <FiYoutube className='text-red-600' />
                                         <span className="item-list sm:block">90K Subscribers</span>
                                     </div>
 
-                                    <div className="my-2 flex items-center gap-2 rounded bg-gradient-to-r from-orange-500 to-yellow-500 p-2">
-                                        <FiInstagram />
+                                    <div className="my-2 flex items-center gap-2 rounded bg-gray-950 p-2">
+                                        <FiInstagram className='text-rose-600'/>
                                         <span className="item-list sm:block">350K Followers</span>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                             <div className="font-merriweather my-2 rounded-xl p-4 dark:bg-neutral-900">

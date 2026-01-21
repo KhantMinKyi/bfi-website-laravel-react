@@ -114,10 +114,10 @@ const ParallaxImages = () => {
                     alt="Misa Satellite"
                     start={100}
                     end={-250} // Different speed for visual interest
-                    className="mt-10 w-40" // Added margin-top to stagger the starting position visually
+                    className="mt-10 w-52" // Added margin-top to stagger the starting position visually
                 />
 
-                <ParallaxImg src="img/nisa.webp" alt="Nisa Satellite" start={100} end={-250} className="mt-10 w-40" />
+                <ParallaxImg src="img/nisa.webp" alt="Nisa Satellite" start={100} end={-250} className="mt-10 w-52" />
 
                 <ParallaxImg src="img/skt_city_campus.webp" alt="City Campus" start={100} end={-200} className="w-40" />
             </div>

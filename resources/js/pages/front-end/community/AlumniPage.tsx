@@ -44,9 +44,7 @@ function AlumniPage() {
             </div>
             <AlumniInformations introduction={alumni?.introduction} body={alumni?.body} footer={alumni?.footer} />
             <div className="flex flex-col justify-center gap-10 bg-white py-10">
-                <h2 className="font-merriweather z-10 text-center text-3xl font-bold text-black sm:text-4xl lg:text-6xl dark:text-black">
-                    Alumni all Around the World
-                </h2>
+
                 <div className="container mx-auto">
                     <img src={alumni?.banner} className="" alt="" />
                 </div>

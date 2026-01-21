@@ -177,7 +177,7 @@ const Welcome = () => {
                 ) : (
                     <Suspense fallback={<DotLoading />}>
                         <div className="flex flex-col items-center justify-center text-center">
-                            <span className="font-base-font mb-10 text-sm font-bold text-blue-800 dark:text-green-800">
+                            <span className="font-base-font my-10 text-sm font-bold text-blue-800 dark:text-green-800">
                                 WHY BFI EDUCATION SERVICES{' '}
                             </span>
                             <h1 className="font-merriweather mb-5 text-3xl font-bold sm:text-4xl lg:text-6xl">The BFI Philosophy</h1>

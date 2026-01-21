@@ -9,7 +9,7 @@ function HistoryBanner() {
             }}
         >
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r dark:from-blue-900/10 dark:to-green-900/10" />
+            <div className="absolute inset-0 bg-gradient-to-r dark:from-green-900/70 dark:to-gray-950/70" />
             <div className="container mx-auto grid grid-cols-1 p-10 md:grid-cols-2">
                 <motion.div
                     className="orico-about-text-wrap 111"
@@ -34,7 +34,7 @@ function HistoryBanner() {
                     transition={{ duration: 1, ease: 'anticipate' }} // longer duration
                 >
                     <div className="font-merriweather flex flex-col items-center">
-                        <p className="my-10 border-l-4 border-l-blue-800 pl-4 text-blue-800 dark:border-l-green-800 dark:text-green-800">
+                        <p className="my-10 border-l-4 border-l-blue-800 pl-4 text-blue-800 dark:border-l-green-600 dark:text-green-600">
                             Established in June 2000 in Yangon, BFI schools (formerly Horizon International Schools) are committed to providing
                             high-quality international education. Every parent hopes for the best learning environment for their child—one that is
                             positive, enriching, and well-equipped to prepare them for future challenges in an increasingly interconnected world.
