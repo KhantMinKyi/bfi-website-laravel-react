@@ -23,6 +23,7 @@ class JobPostStoreUpdateRequest extends FormRequest
     {
         return [
             'title'                             => ['required', 'string', 'max:255'],
+            'campus'                            => ['required', 'string', 'max:200'],
             'function'                          => ['required', 'string', 'max:100'],
             'sub_function'                      => ['required', 'string', 'max:100'],
             'gender'                            => ['required', 'in:Male,Female,Both'],

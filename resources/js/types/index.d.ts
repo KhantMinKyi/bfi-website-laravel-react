@@ -348,6 +348,7 @@ export interface Alumni {
 export interface JobPost {
     id: number;
     title: string;
+    campus: string;
     function: string;
     sub_function: string;
     gender: 'Male' | 'Female' | 'Both';

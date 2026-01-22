@@ -140,14 +140,14 @@ export function JobPostDataTable() {
                 cell: ({ row }) => <div className="font-medium">{row.getValue('title')}</div>,
             },
             {
-                id: 'employee_type',
+                id: 'campus',
                 header: ({ column }) => (
                     <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-                        Employee Type
+                        Campus
                         <ArrowUpDown />
                     </Button>
                 ),
-                accessorFn: (row) => row.employee_type,
+                accessorFn: (row) => row.campus,
                 cell: ({ getValue }) => {
                     const value = getValue() as string;
                     return <div className="font-medium" dangerouslySetInnerHTML={{ __html: value }} />;
@@ -269,7 +269,7 @@ export function JobPostDataTable() {
         return (
             <div className="w-full">
                 <div className="flex items-center gap-4 py-4">
-                    <Input placeholder="Filter by name or email..." disabled className="max-w-sm" value="" onChange={() => {}} />
+                    <Input placeholder="Filter by name or email..." disabled className="max-w-sm" value="" onChange={() => { }} />
                     <div className="ml-auto flex items-center gap-2">
                         <Button disabled className="cursor-pointer gap-2 bg-indigo-700 text-white hover:bg-indigo-900">
                             Add Job Post

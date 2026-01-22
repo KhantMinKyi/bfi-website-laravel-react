@@ -69,6 +69,10 @@ export default function CareerJobDetail() {
                                     {job.function}
                                 </div>
                                 <h1 className="mb-3 text-2xl font-bold text-foreground md:text-5xl">{job.title}</h1>
+                                {job.campus && (
+
+                                    <p className="text-lg font-semibold">({job.campus})</p>
+                                )}
                                 <p className="text-lg text-muted-foreground">{job.sub_function}</p>
                             </div>
 

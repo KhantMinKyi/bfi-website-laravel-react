@@ -147,7 +147,6 @@ const mainNavItems: NavItem[] = [
 export function AppSidebar() {
     const { auth }: any = usePage().props; // adjust to your props shape
     const isAdmin = auth?.user?.is_admin === 1;
-    console.log(isAdmin);
 
     // clone and filter nav items
     const filteredNavItems = mainNavItems

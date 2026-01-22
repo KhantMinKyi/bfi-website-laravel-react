@@ -3,7 +3,7 @@
 import { JobPost } from '@/types';
 import { Link } from '@inertiajs/react';
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar, ChevronRight, DollarSign, MapPin } from 'lucide-react';
+import { Briefcase, Calendar, ChevronRight, DollarSign, MapPin, Settings } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 const JOBS_PER_PAGE = 9;
@@ -102,11 +102,10 @@ export default function CareerJobList() {
                     >
                         <button
                             onClick={() => setSelectedFilter(null)}
-                            className={`rounded-full px-5 py-2 font-medium transition-all ${
-                                selectedFilter === null
-                                    ? 'bg-primary text-primary-foreground'
-                                    : 'border border-border bg-background text-foreground hover:border-primary hover:bg-primary/5'
-                            }`}
+                            className={`rounded-full px-5 py-2 font-medium transition-all ${selectedFilter === null
+                                ? 'bg-primary text-primary-foreground'
+                                : 'border border-border bg-background text-foreground hover:border-primary hover:bg-primary/5'
+                                }`}
                         >
                             All Jobs
                         </button>
@@ -115,11 +114,10 @@ export default function CareerJobList() {
                             <button
                                 key={fn}
                                 onClick={() => setSelectedFilter(fn)}
-                                className={`rounded-full px-5 py-2 font-medium transition-all ${
-                                    selectedFilter === fn
-                                        ? 'bg-primary text-primary-foreground'
-                                        : 'border border-border bg-background text-foreground hover:border-primary hover:bg-primary/5'
-                                }`}
+                                className={`rounded-full px-5 py-2 font-medium transition-all ${selectedFilter === fn
+                                    ? 'bg-primary text-primary-foreground'
+                                    : 'border border-border bg-background text-foreground hover:border-primary hover:bg-primary/5'
+                                    }`}
                             >
                                 {fn}
                             </button>
@@ -129,11 +127,10 @@ export default function CareerJobList() {
                             <button
                                 key={level}
                                 onClick={() => setSelectedFilter(level)}
-                                className={`rounded-full px-5 py-2 font-medium transition-all ${
-                                    selectedFilter === level
-                                        ? 'bg-primary text-primary-foreground'
-                                        : 'border border-border bg-background text-foreground hover:border-primary hover:bg-primary/5'
-                                }`}
+                                className={`rounded-full px-5 py-2 font-medium transition-all ${selectedFilter === level
+                                    ? 'bg-primary text-primary-foreground'
+                                    : 'border border-border bg-background text-foreground hover:border-primary hover:bg-primary/5'
+                                    }`}
                             >
                                 {level}
                             </button>
@@ -182,6 +179,11 @@ export default function CareerJobList() {
                                             <h3 className="line-clamp-2 text-xl font-bold text-foreground transition-colors group-hover:text-primary">
                                                 {job.title}
                                             </h3>
+                                            {job.campus && (
+                                                <h5 className="line-clamp-2 text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
+                                                    ({job.title})
+                                                </h5>
+                                            )}
                                             <p className="mt-2 text-sm text-muted-foreground">{job.sub_function}</p>
                                         </div>
 
@@ -209,11 +211,16 @@ export default function CareerJobList() {
                                                     <span>Negotiable</span>
                                                 </div>
                                             )}
-
                                             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                                <MapPin className="h-4 w-4" />
+                                                <Settings className="h-4 w-4" />
                                                 <span>{job.industry}</span>
                                             </div>
+                                            {job.campus && (
+                                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                                    <MapPin className="h-4 w-4" />
+                                                    <span>{job.campus} </span>
+                                                </div>
+                                            )}
                                         </div>
 
                                         {/* Footer */}
@@ -260,11 +267,10 @@ export default function CareerJobList() {
                             <button
                                 key={page}
                                 onClick={() => setCurrentPage(page)}
-                                className={`rounded-lg px-4 py-2 font-medium transition-all ${
-                                    currentPage === page
-                                        ? 'bg-primary text-primary-foreground'
-                                        : 'border border-border text-foreground hover:border-primary hover:bg-primary/5'
-                                }`}
+                                className={`rounded-lg px-4 py-2 font-medium transition-all ${currentPage === page
+                                    ? 'bg-primary text-primary-foreground'
+                                    : 'border border-border text-foreground hover:border-primary hover:bg-primary/5'
+                                    }`}
                             >
                                 {page}
                             </button>

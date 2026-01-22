@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('function');
+            $table->string('campus')->nullable();
             $table->string('sub_function');
             $table->enum('gender', ['Male', 'Female', 'Both'])->default('Both');
             $table->enum('experience_level', ['Entry Level', 'Experienced Non-Manager', 'Manager', 'Director and Above']);

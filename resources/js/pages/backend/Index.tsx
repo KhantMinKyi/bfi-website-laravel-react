@@ -3,7 +3,7 @@ import { UserDataTable } from '@/components/backend/user_management/user-data-ta
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
 
@@ -38,6 +38,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 export default function Dashboard() {
     const [data, setData] = React.useState<DashboardDataType[]>([]);
     const [loading, setLoading] = React.useState(true);
+    const { auth }: any = usePage().props;
+    const isAdmin = auth?.user?.is_admin === 1;
+    console.log(isAdmin);
+
     const fetchData = React.useCallback(async () => {
         try {
             setLoading(true);
@@ -84,9 +88,11 @@ export default function Dashboard() {
                                     <div className="text-2xl font-bold">{d.count}</div>
                                 </CardContent>
                                 <CardFooter className="pt-0">
-                                    <Link href={d.route} className="flex h-auto items-center p-0 text-blue-600">
-                                        View details <ArrowRight size={16} className="ml-1" />
-                                    </Link>
+                                    {isAdmin && (
+                                        <Link href={d.route} className="flex h-auto items-center p-0 text-blue-600">
+                                            View details <ArrowRight size={16} className="ml-1" />
+                                        </Link>
+                                    )}
                                     {/* <Link href={route('users')}></Link> */}
                                 </CardFooter>
                             </Card>
@@ -98,7 +104,9 @@ export default function Dashboard() {
                 </div>
                 {/* User Table */}
                 <div className="mb-8">
-                    <UserDataTable />
+                    {isAdmin && (
+                        <UserDataTable />
+                    )}
                 </div>
             </div>
         </AppLayout>

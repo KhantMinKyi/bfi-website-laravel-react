@@ -20,6 +20,7 @@ export function AddJobPost({ onSuccess }: AddJobPostProps) {
     const [formData, setFormData] = React.useState({
         title: '',
         function: '',
+        campus: '',
         sub_function: '',
         gender: 'Both' as const,
         experience_level: 'Entry Level' as const,
@@ -45,6 +46,7 @@ export function AddJobPost({ onSuccess }: AddJobPostProps) {
         setFormData({
             title: '',
             function: '',
+            campus: '',
             sub_function: '',
             gender: 'Both',
             experience_level: 'Entry Level',
@@ -120,19 +122,41 @@ export function AddJobPost({ onSuccess }: AddJobPostProps) {
                                 />
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="function">
-                                    Function <span className="text-red-500">*</span>
+                                <Label htmlFor="campus">
+                                    Campus  <span className="text-red-500">*</span>
                                 </Label>
                                 <Input
-                                    id="function"
-                                    placeholder="Enter function"
-                                    value={formData.function}
-                                    onChange={(e) => setFormData({ ...formData, function: e.target.value })}
+                                    id="campus"
+                                    placeholder="Enter Campus "
+                                    value={formData.campus}
+                                    onChange={(e) => setFormData({ ...formData, campus: e.target.value })}
                                 />
                             </div>
+
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-3 gap-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="function">Function  <span className="text-red-500">*</span></Label>
+                                <Select value={formData.function} onValueChange={(value: any) => setFormData({ ...formData, function: value })}>
+                                    <SelectTrigger id="function">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="Academic & Teaching">Academic & Teaching</SelectItem>
+                                        <SelectItem value="Sales & Marketing">Sales & Marketing</SelectItem>
+                                        <SelectItem value="Student Affairs & Admissions">Student Affairs & Admissions</SelectItem>
+                                        <SelectItem value="Technician">Technician</SelectItem>
+                                        <SelectItem value="Office Administration">Office Administration</SelectItem>
+                                        <SelectItem value="Operations">Operations</SelectItem>
+                                        <SelectItem value="Accounting/Finance">Accounting/Finance</SelectItem>
+                                        <SelectItem value="Human Resources">Human Resources</SelectItem>
+                                        <SelectItem value="IT & Technology">IT & Technology</SelectItem>
+                                        <SelectItem value="Management & Leadership">Management & Leadership</SelectItem>
+                                        <SelectItem value="Support Services">Support Services</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="sub_function">
                                     Sub Function <span className="text-red-500">*</span>
