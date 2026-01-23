@@ -205,7 +205,7 @@ export default function CareerJobList() {
                                                     <span>Up to ${(job.maximun_salary / 1000).toFixed(0)}k</span>
                                                 </div>
                                             )}
-                                            {job.is_hide_salary && (
+                                            {job.is_hide_salary == true && (
                                                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                                     <DollarSign className="h-4 w-4" />
                                                     <span>Negotiable</span>

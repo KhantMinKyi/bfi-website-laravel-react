@@ -4,9 +4,19 @@ import { Link, usePage } from '@inertiajs/react';
 import { MailIcon, MapPinIcon, MenuIcon, PhoneIcon } from 'lucide-react';
 import React, { useEffect, useState, type ReactNode } from 'react';
 import MobileLayout from './mobile-layout';
+import { useSeoHead } from '@/hooks/useSeoHead';
+import { getSEOConfig } from '@/seoConfig';
+import SEOHead from '@/components/SEOHead';
 
 interface FrondendLayoutProps {
     children: ReactNode;
+    seoOverride?: {
+        title?: string;
+        description?: string;
+        image?: string;
+        keywords?: string;
+        noIndex?: boolean;
+    };
 }
 export interface SisterSchoolNav {
     slug: string;
@@ -36,15 +46,49 @@ const activeLink =
     'font-heading-font before:content relative block px-[6px] py-[30px] text-sm font-bold uppercase transition-all before:invisible before:absolute before:top-0 before:left-0 before:h-[4px] before:w-full before:rounded-[3px] before:bg-blue-700 before:opacity-0 before:transition-all text-blue-800 dark:text-green-800 dark:before:bg-green-800 before:visible before:opacity-100 lg:text-[14px]  xl:px-[16px] xl:py-[35px]';
 
 export const routePath = (name: string) => new URL(route(name)).pathname;
-export default ({ children }: FrondendLayoutProps) => {
+
+const componentToRouteName = (component: string): string => {
+    // Handle Welcome page specially
+    if (component === 'Welcome' || component === 'front-end/Welcome') {
+        return 'home';
+    }
+
+    // Convert component path to lowercase and replace slashes with dots
+    let routeName = component
+        .toLowerCase()
+        .replace(/\//g, '.');
+
+    // Remove any leading/trailing dots
+    routeName = routeName.replace(/^\.+|\.+$/g, '');
+
+    return routeName;
+};
+
+export default ({ children, seoOverride }: FrondendLayoutProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const { url } = usePage();
+    const { url, component } = usePage();
     const currentPath = new URL(url, window.location.origin).pathname;
     const { sisterSchools, curriculum, competitions } = usePage<SharedProps>().props;
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const subLinkActive = 'after:w-[50%]';
+    // Extract route name from component path
+    const routeName = componentToRouteName(component);
+    // Get SEO config for this route
+    const defaultSEO = getSEOConfig(routeName);
 
+    // Merge with any overrides
+    const seoConfig = {
+        title: seoOverride?.title || defaultSEO.title,
+        description: seoOverride?.description || defaultSEO.description,
+        image: seoOverride?.image || defaultSEO.image,
+        keywords: seoOverride?.keywords || defaultSEO.keywords,
+        type: defaultSEO.type || 'website',
+        noIndex: seoOverride?.noIndex || false,
+        routeName: routeName,
+    };
+
+    const seoData = useSeoHead(seoConfig);
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
@@ -56,7 +100,7 @@ export default ({ children }: FrondendLayoutProps) => {
         const handleScroll = () => {
             if (window.scrollY > 0) {
                 setScrolled(true);
-                setTimeout(() => {}, 10);
+                setTimeout(() => { }, 10);
             } else {
                 setTimeout(() => {
                     setScrolled(false);
@@ -69,6 +113,16 @@ export default ({ children }: FrondendLayoutProps) => {
     }, []);
     return (
         <React.Fragment>
+            <SEOHead
+                title={seoData.title}
+                description={seoData.description}
+                canonicalUrl={seoData.canonicalUrl}
+                image={seoData.image}
+                type={seoData.type}
+                noIndex={seoData.noIndex}
+                keywords={seoData.keywords}
+                structuredData={seoData.structuredData}
+            />
             <header
                 className={` ${scrolled ? 'sticky top-4 z-50 bg-transparent' : 'relative bg-white dark:bg-gray-950'} scroll-smooth transition-all duration-300 ease-in-out`}
             >
@@ -170,15 +224,14 @@ export default ({ children }: FrondendLayoutProps) => {
                                 <li className="group relative inline-block">
                                     <a
                                         href="#"
-                                        className={` ${
-                                            currentPath === routePath('our_history') ||
+                                        className={` ${currentPath === routePath('our_history') ||
                                             currentPath === routePath('vision_mission_value') ||
                                             currentPath === routePath('philosophy') ||
                                             // currentPath === routePath('leadership_teams') ||
                                             currentPath === routePath('bfi_advantage')
-                                                ? activeLink
-                                                : baseLink
-                                        }`}
+                                            ? activeLink
+                                            : baseLink
+                                            }`}
                                     >
                                         About Us
                                     </a>
@@ -236,11 +289,10 @@ export default ({ children }: FrondendLayoutProps) => {
                                     <Link
                                         prefetch
                                         href="#"
-                                        className={`${
-                                            sisterSchools.some((ss) => currentPath === '/sister_schools/school-data/' + ss.slug)
-                                                ? activeLink
-                                                : baseLink
-                                        }`}
+                                        className={`${sisterSchools.some((ss) => currentPath === '/sister_schools/school-data/' + ss.slug)
+                                            ? activeLink
+                                            : baseLink
+                                            }`}
                                     >
                                         Schools
                                     </Link>
@@ -263,9 +315,8 @@ export default ({ children }: FrondendLayoutProps) => {
                                     <Link
                                         prefetch
                                         href="#"
-                                        className={`${
-                                            curriculum.some((cc) => currentPath === '/curriculum/curriculum-data/' + cc.slug) ? activeLink : baseLink
-                                        }`}
+                                        className={`${curriculum.some((cc) => currentPath === '/curriculum/curriculum-data/' + cc.slug) ? activeLink : baseLink
+                                            }`}
                                     >
                                         Academics
                                     </Link>
@@ -287,11 +338,10 @@ export default ({ children }: FrondendLayoutProps) => {
                                 <li className="group relative inline-block">
                                     <a
                                         href="#"
-                                        className={`${
-                                            competitions.some((ct) => currentPath === '/competition/competition-data/' + ct.slug)
-                                                ? activeLink
-                                                : baseLink
-                                        }`}
+                                        className={`${competitions.some((ct) => currentPath === '/competition/competition-data/' + ct.slug)
+                                            ? activeLink
+                                            : baseLink
+                                            }`}
                                     >
                                         COMPETITION
                                     </a>
@@ -371,14 +421,13 @@ export default ({ children }: FrondendLayoutProps) => {
                                 <li className="group relative inline-block">
                                     <a
                                         href="#"
-                                        className={`${
-                                            currentPath === routePath('contact_us') ||
+                                        className={`${currentPath === routePath('contact_us') ||
                                             currentPath === routePath('faq') ||
                                             currentPath === routePath('alumni') ||
                                             currentPath === routePath('community_service_activities')
-                                                ? activeLink
-                                                : baseLink
-                                        }`}
+                                            ? activeLink
+                                            : baseLink
+                                            }`}
                                     >
                                         Community
                                     </a>
@@ -451,16 +500,14 @@ export default ({ children }: FrondendLayoutProps) => {
             <div className={`overflow-auto transition-all duration-500 ease-in-out ${menuOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
                 <div
                     onClick={toggleMenu}
-                    className={`bg-opacity-50 fixed inset-0 bg-black transition-opacity duration-500 ${
-                        menuOpen ? 'visible opacity-100' : 'invisible opacity-0'
-                    }`}
+                    className={`bg-opacity-50 fixed inset-0 bg-black transition-opacity duration-500 ${menuOpen ? 'visible opacity-100' : 'invisible opacity-0'
+                        }`}
                 ></div>
 
                 {/* Sidebar */}
                 <div
-                    className={`fixed top-0 left-0 z-50 h-full w-72 transform overflow-auto bg-white shadow-xl transition-transform duration-500 dark:bg-gray-950 ${
-                        menuOpen ? 'translate-x-0' : '-translate-x-full'
-                    }`}
+                    className={`fixed top-0 left-0 z-50 h-full w-72 transform overflow-auto bg-white shadow-xl transition-transform duration-500 dark:bg-gray-950 ${menuOpen ? 'translate-x-0' : '-translate-x-full'
+                        }`}
                 >
                     {/* Close Button */}
                     <button onClick={toggleMenu} className="absolute top-4 right-4 text-2xl font-bold text-gray-700">

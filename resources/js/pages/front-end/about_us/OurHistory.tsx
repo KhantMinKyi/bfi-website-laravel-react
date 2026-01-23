@@ -1,6 +1,7 @@
 import HistoryBanner from '@/components/front-end/about_us/our_history/history-banner';
 import HistoryProgressBar from '@/components/front-end/about_us/our_history/history-progess-bar';
 import HistoryTagline from '@/components/front-end/about_us/our_history/history-tagline';
+import { useSeoHead } from '@/hooks/useSeoHead';
 import FrontEndLayout from '@/layouts/front-end-layout';
 import * as motion from 'motion/react-client';
 const events = [
