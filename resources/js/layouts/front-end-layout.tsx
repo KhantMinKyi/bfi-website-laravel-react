@@ -251,7 +251,7 @@ export default ({ children, seoOverride }: FrondendLayoutProps) => {
                                                 href={route('vision_mission_value')}
                                                 className={`group after:content font-heading-font relative inline-block overflow-hidden px-[15px] text-sm font-bold text-[#14212b] uppercase transition-all after:absolute after:bottom-0 after:left-[15px] after:h-[2px] after:w-0 after:bg-blue-700 after:transition-all hover:after:w-[50%] lg:text-sm dark:text-gray-50 dark:after:bg-white ${currentPath === routePath('vision_mission_value') ? subLinkActive : ''}`}
                                             >
-                                                Vision , Mission & Values
+                                                Vision & Mission
                                             </Link>
                                         </li>
                                         <li>

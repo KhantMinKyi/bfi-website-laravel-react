@@ -52,22 +52,21 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     <span>{activeSubMenu === 'about_us' ? '▲' : '▼'}</span>
                 </button>
                 <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                        activeSubMenu !== 'sister_schools' &&
-                        activeSubMenu !== 'curriculum' &&
-                        activeSubMenu !== 'admissions' &&
-                        activeSubMenu !== 'competition' &&
-                        activeSubMenu !== 'community' &&
-                        (activeSubMenu === 'about_us' ||
-                            currentPath === routePath('our_history') ||
-                            currentPath === routePath('vision_mission_value') ||
-                            currentPath === routePath('philosophy') ||
-                            // currentPath === routePath('leadership_teams') ||
+                    className={`overflow-hidden transition-all duration-300 ${activeSubMenu !== 'sister_schools' &&
+                            activeSubMenu !== 'curriculum' &&
+                            activeSubMenu !== 'admissions' &&
+                            activeSubMenu !== 'competition' &&
+                            activeSubMenu !== 'community' &&
+                            (activeSubMenu === 'about_us' ||
+                                currentPath === routePath('our_history') ||
+                                currentPath === routePath('vision_mission_value') ||
+                                currentPath === routePath('philosophy') ||
+                                // currentPath === routePath('leadership_teams') ||
 
-                            currentPath === routePath('bfi_advantage'))
+                                currentPath === routePath('bfi_advantage'))
                             ? 'max-h-64'
                             : 'max-h-0'
-                    }`}
+                        }`}
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
                         <li>
@@ -85,7 +84,7 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                                 href={route('vision_mission_value')}
                                 className={`${currentPath === routePath('vision_mission_value') ? 'underline decoration-blue-800 underline-offset-4 dark:decoration-green-800' : ''}`}
                             >
-                                Vision , Mission & Values
+                                Vision & Mission
                             </Link>
                         </li>
                         <li>
@@ -125,16 +124,15 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     <span>{activeSubMenu === 'sister_schools' ? '▲' : '▼'}</span>
                 </button>
                 <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                        activeSubMenu !== 'about_us' &&
-                        activeSubMenu !== 'curriculum' &&
-                        activeSubMenu !== 'admissions' &&
-                        activeSubMenu !== 'competition' &&
-                        activeSubMenu !== 'community' &&
-                        (activeSubMenu === 'sister_schools' || sisterSchools.some((ss) => currentPath === '/sister_schools/school-data/' + ss.slug))
+                    className={`overflow-hidden transition-all duration-300 ${activeSubMenu !== 'about_us' &&
+                            activeSubMenu !== 'curriculum' &&
+                            activeSubMenu !== 'admissions' &&
+                            activeSubMenu !== 'competition' &&
+                            activeSubMenu !== 'community' &&
+                            (activeSubMenu === 'sister_schools' || sisterSchools.some((ss) => currentPath === '/sister_schools/school-data/' + ss.slug))
                             ? 'max-h-screen'
                             : 'max-h-0'
-                    }`}
+                        }`}
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
                         {sisterSchools.map((ss) => (
@@ -158,16 +156,15 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     <span>{activeSubMenu === 'curriculum' ? '▲' : '▼'}</span>
                 </button>
                 <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                        activeSubMenu !== 'about_us' &&
-                        activeSubMenu !== 'sister_schools' &&
-                        activeSubMenu !== 'admissions' &&
-                        activeSubMenu !== 'competition' &&
-                        activeSubMenu !== 'community' &&
-                        (activeSubMenu === 'curriculum' || curriculum.some((cc) => currentPath === '/curriculum/curriculum-data/' + cc.slug))
+                    className={`overflow-hidden transition-all duration-300 ${activeSubMenu !== 'about_us' &&
+                            activeSubMenu !== 'sister_schools' &&
+                            activeSubMenu !== 'admissions' &&
+                            activeSubMenu !== 'competition' &&
+                            activeSubMenu !== 'community' &&
+                            (activeSubMenu === 'curriculum' || curriculum.some((cc) => currentPath === '/curriculum/curriculum-data/' + cc.slug))
                             ? 'max-h-screen'
                             : 'max-h-0'
-                    }`}
+                        }`}
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
                         {curriculum.map((cc) => (
@@ -191,16 +188,15 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     <span>{activeSubMenu === 'competition' ? '▲' : '▼'}</span>
                 </button>
                 <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                        activeSubMenu !== 'about_us' &&
-                        activeSubMenu !== 'sister_schools' &&
-                        activeSubMenu !== 'admissions' &&
-                        activeSubMenu !== 'curriculum' &&
-                        activeSubMenu !== 'community' &&
-                        (activeSubMenu === 'competition' || competitions.some((cp) => currentPath === '/competition/competition-data/' + cp.slug))
+                    className={`overflow-hidden transition-all duration-300 ${activeSubMenu !== 'about_us' &&
+                            activeSubMenu !== 'sister_schools' &&
+                            activeSubMenu !== 'admissions' &&
+                            activeSubMenu !== 'curriculum' &&
+                            activeSubMenu !== 'community' &&
+                            (activeSubMenu === 'competition' || competitions.some((cp) => currentPath === '/competition/competition-data/' + cp.slug))
                             ? 'max-h-screen'
                             : 'max-h-0'
-                    }`}
+                        }`}
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
                         {competitions.map((cp) => (
@@ -266,21 +262,20 @@ function MobileLayout({ toggleSubMenu, activeSubMenu, currentPath }: MobileLayou
                     <span>{activeSubMenu === 'community' ? '▲' : '▼'}</span>
                 </button>
                 <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                        activeSubMenu !== 'about_us' &&
-                        activeSubMenu !== 'sister_schools' &&
-                        activeSubMenu !== 'curriculum' &&
-                        activeSubMenu !== 'admissions' &&
-                        activeSubMenu !== 'competition' &&
-                        (activeSubMenu === 'community' ||
-                            currentPath === routePath('contact_us') ||
-                            currentPath === routePath('news_and_event') ||
-                            currentPath === routePath('alumni') ||
-                            currentPath === routePath('community_service_activities') ||
-                            currentPath === routePath('faq'))
+                    className={`overflow-hidden transition-all duration-300 ${activeSubMenu !== 'about_us' &&
+                            activeSubMenu !== 'sister_schools' &&
+                            activeSubMenu !== 'curriculum' &&
+                            activeSubMenu !== 'admissions' &&
+                            activeSubMenu !== 'competition' &&
+                            (activeSubMenu === 'community' ||
+                                currentPath === routePath('contact_us') ||
+                                currentPath === routePath('news_and_event') ||
+                                currentPath === routePath('alumni') ||
+                                currentPath === routePath('community_service_activities') ||
+                                currentPath === routePath('faq'))
                             ? 'max-h-screen'
                             : 'max-h-0'
-                    }`}
+                        }`}
                 >
                     <ul className="mt-2 ml-4 space-y-6 text-sm text-gray-600 dark:text-white">
                         <li>

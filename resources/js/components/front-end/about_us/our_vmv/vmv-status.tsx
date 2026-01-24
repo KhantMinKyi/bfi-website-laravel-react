@@ -62,7 +62,7 @@ function VmvStatus() {
                         </div>
                     </div>
 
-                    <div className="col-span-12 p-10 md:col-span-12">
+                    {/* <div className="col-span-12 p-10 md:col-span-12">
                         <div className="orico-about-text font-merriweather">
                             <h2 className="font-merriweather text-center text-3xl font-bold sm:text-4xl lg:text-6xl">
                                 {' '}
@@ -97,7 +97,7 @@ function VmvStatus() {
                                         </span>
                                     </div>
                                     <div className="mb-4">
-                                        <span className="font-merriweather my-2 text-2xl font-bold">Compassion</span>
+                                        <span className="font-merriweather my-2 text-2xl font-bold">Compassion : </span>
                                         <span>
                                             We encourage and uphold the sense of having concern for the sufferings or misfortunes of others and using
                                             this to strive towards selﬂessness.
@@ -113,7 +113,7 @@ function VmvStatus() {
                                 </div>
                             </motion.div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <motion.div
