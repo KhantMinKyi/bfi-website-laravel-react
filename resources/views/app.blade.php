@@ -33,6 +33,7 @@
 
     <title inertia>{{ config('app.name', 'BFI Education Services') }}</title>
 
+    <link rel="icon" sizes="32x32" href="{{ asset('/bfi.ico') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/img/bfi.webp') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/img/bfi.webp') }}">
     <link rel="apple-touch-icon" href="{{ asset('/img/bfi.webp') }}">
