@@ -10,7 +10,8 @@
     <link rel="shortcut icon" href="/img/bfi.webp">
     <meta name="description" content="Privacy Policy for BFI Education Services (BFI SIS). Learn how we collect, use, and protect your personal data.">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css'])
+    
 </head>
 <body class="bg-gray-50 text-gray-900 antialiased font-sans">
 
