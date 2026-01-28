@@ -9,8 +9,9 @@
     <link rel="apple-touch-icon" href="/img/bfi.webp">
     <link rel="shortcut icon" href="/img/bfi.webp">
     <meta name="description" content="Privacy Policy for BFI Education Services (BFI SIS). Learn how we collect, use, and protect your personal data.">
-
-    @vite(['resources/css/app.css'])
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
 </head>
 <body class="bg-gray-50 text-gray-900 antialiased font-sans">
