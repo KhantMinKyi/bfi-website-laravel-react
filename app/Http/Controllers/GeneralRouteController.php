@@ -208,4 +208,8 @@ class GeneralRouteController extends Controller
             'data' => $data,
         ], 200);
     }
+    public function showPrivacyPolicy()
+    {
+        return view('privacy-policy');
+    }
 }

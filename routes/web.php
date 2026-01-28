@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'front-end/Welcome')->name('home');
 Route::get('/post/post-detail/{postId}', [PostController::class, 'show'])->name('post-detail');
+Route::get('/privacy-policy', [GeneralRouteController::class, 'showPrivacyPolicy'])->name('privacy-policy');
 
 
 require __DIR__ . '/route_groups/front_end/data_fetch.php';
