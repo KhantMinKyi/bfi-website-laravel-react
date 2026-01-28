@@ -110,6 +110,13 @@ const Footer = ({
                                             : 'text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700'
                                     }
                                 />
+                                <a
+                                    href={route('privacy-policy')}
+                                    target="_blank"
+                                    className="text-gray-800 hover:text-blue-700 dark:text-gray-300 dark:hover:text-green-700"
+                                >
+                                    Our Privacy & Policy{' '}
+                                </a>
                             </LinkGroup>
                             <LinkGroup header="Group of Schools" className="w-full text-center sm:text-left md:block">
                                 {sisterSchools.map((school) => (
@@ -223,6 +230,13 @@ const Footer = ({
                     <hr className="w-1/2" />
                     <div className="mt-3">
                         <p className="text-center text-base text-gray-800 dark:text-gray-300">&copy; 2025 BFI Education Services' Developer</p>
+                    </div>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                    <div className="mt-3">
+                        <a href={route('privacy-policy')} target="_blank" className="text-center text-base text-gray-800 dark:text-gray-300">
+                            Our Privacy & Policy{' '}
+                        </a>
                     </div>
                 </div>
             </footer>

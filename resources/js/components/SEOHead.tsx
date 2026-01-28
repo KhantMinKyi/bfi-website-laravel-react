@@ -46,15 +46,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
             <meta property="og:site_name" content="BFI Education Services" />
 
             {/* Article specific */}
-            {type === 'article' && publishedTime && (
-                <meta property="article:published_time" content={publishedTime} />
-            )}
-            {type === 'article' && modifiedTime && (
-                <meta property="article:modified_time" content={modifiedTime} />
-            )}
-            {type === 'article' && author && (
-                <meta property="article:author" content={author} />
-            )}
+            {type === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+            {type === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+            {type === 'article' && author && <meta property="article:author" content={author} />}
 
             {/* Twitter Card */}
             <meta name="twitter:card" content="summary_large_image" />
@@ -63,11 +57,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
             <meta name="twitter:image" content={image} />
 
             {/* Structured Data */}
-            {structuredData && (
-                <script type="application/ld+json">
-                    {JSON.stringify(structuredData)}
-                </script>
-            )}
+            {structuredData && <script type="application/ld+json">{JSON.stringify(structuredData)}</script>}
         </Head>
     );
 };

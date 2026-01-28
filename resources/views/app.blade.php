@@ -67,11 +67,13 @@
     <meta name="twitter:image" content="{{ $currentSeo['image'] }}">
 
     {{-- Favicon --}}
-    <link rel="icon" type="image/png" sizes="32x32" href="img/bfi.webp">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/bfi.webp">
-    <link rel="apple-touch-icon" href="img/bfi.webp">
-    <link rel="shortcut icon" href="img/bfi.webp">
-
+    <link rel="icon" type="image/webp" sizes="32x32" href="{{ asset('img/bfi.webp') }}">
+    <link rel="icon" type="image/webp" sizes="16x16" href="{{ asset('img/bfi.webp') }}">
+    <link rel="apple-touch-icon" href="{{ asset('img/bfi.webp') }}">
+    <link rel="shortcut icon" href="{{ asset('img/bfi.webp') }}">
+    {{-- <link rel="icon" type="image/x-icon" href="{{ asset('img/bfi.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('img/bfi.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('img/bfi.ico') }}"> --}}
     <link rel="preload" href="/assets/fonts/oswald-v57-latin-regular.woff2" as="font" type="font/woff2"
         crossorigin />
     @routes

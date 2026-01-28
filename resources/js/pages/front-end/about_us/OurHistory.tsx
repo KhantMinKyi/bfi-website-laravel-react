@@ -1,7 +1,6 @@
 import HistoryBanner from '@/components/front-end/about_us/our_history/history-banner';
 import HistoryProgressBar from '@/components/front-end/about_us/our_history/history-progess-bar';
 import HistoryTagline from '@/components/front-end/about_us/our_history/history-tagline';
-import { useSeoHead } from '@/hooks/useSeoHead';
 import FrontEndLayout from '@/layouts/front-end-layout';
 import * as motion from 'motion/react-client';
 const events = [
@@ -10,9 +9,9 @@ const events = [
     { year: '2010', title: 'SKT Riverside Campus' },
     { year: '2013', title: 'NISA ' },
 ];
-function OurHistory() {
+function OurHistory({ seo }: { seo: any }) {
     return (
-        <FrontEndLayout>
+        <FrontEndLayout seo={seo}>
             <>
                 <div
                     className="relative bg-cover bg-center bg-no-repeat text-white"
